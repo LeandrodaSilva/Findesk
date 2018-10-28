@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package socketdemo;
+package server;
 
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
@@ -118,21 +118,7 @@ public class ServerUI extends javax.swing.JFrame {
     }//GEN-LAST:event_stopBTActionPerformed
 
     private void startBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startBTActionPerformed
-        try{
-            // Instancia o ServerSocket ouvindo a porta 12345
-            ServerSocket servidor = new ServerSocket(12345);
-            System.out.println("Servidor ouvindo a porta 12345");
-            while(true) {
-              // o método accept() bloqueia a execução até que
-              // o servidor receba um pedido de conexão
-              Socket cliente = servidor.accept();
-              System.out.println("Cliente conectado: " + cliente.getInetAddress().getHostAddress());
-              ObjectOutputStream saida = new ObjectOutputStream(cliente.getOutputStream());
-              saida.flush();
-              saida.writeObject(new Date());
-              saida.close();
-              cliente.close();
-        }
+        
     }//GEN-LAST:event_startBTActionPerformed
 
     /**
@@ -161,6 +147,7 @@ public class ServerUI extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(ServerUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -168,6 +155,25 @@ public class ServerUI extends javax.swing.JFrame {
                 new ServerUI().setVisible(true);
             }
         });
+        try {
+            // Instancia o ServerSocket ouvindo a porta 12345
+            ServerSocket servidor = new ServerSocket(12345);
+            System.out.println("Servidor ouvindo a porta 12345");
+            while(true) {
+              // o método accept() bloqueia a execução até que
+              // o servidor receba um pedido de conexão
+              Socket cliente = servidor.accept();
+              System.out.println("Cliente conectado: " + cliente.getInetAddress().getHostAddress());
+              ObjectOutputStream saida = new ObjectOutputStream(cliente.getOutputStream());
+              saida.flush();
+              saida.writeObject(new Date());
+              saida.close();
+              cliente.close();
+            }  
+        }   
+        catch(Exception e) {
+           System.out.println("Erro: " + e.getMessage());
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -118,10 +118,10 @@ public class ServerUI extends javax.swing.JFrame {
     }//GEN-LAST:event_stopBTActionPerformed
 
     private void startBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startBTActionPerformed
-        try{
+        try {
             // Instancia o ServerSocket ouvindo a porta 12345
-            ServerSocket servidor = new ServerSocket(12345);
-            System.out.println("Servidor ouvindo a porta 12345");
+            ServerSocket servidor = new ServerSocket(Integer.parseInt(portaTF.getText()));
+            System.out.println("Servidor ouvindo a porta " + portaTF.getText());
             while(true) {
               // o método accept() bloqueia a execução até que
               // o servidor receba um pedido de conexão
@@ -132,6 +132,10 @@ public class ServerUI extends javax.swing.JFrame {
               saida.writeObject(new Date());
               saida.close();
               cliente.close();
+            }  
+        }   
+        catch(Exception e) {
+           System.out.println("Erro: " + e.getMessage());
         }
     }//GEN-LAST:event_startBTActionPerformed
 

@@ -114,7 +114,7 @@ public class ClientUI extends javax.swing.JFrame {
 
     private void sendBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendBTActionPerformed
       try {
-            Socket cliente = new Socket("paulo",12345);
+            Socket cliente = new Socket(ipTF.getText(),Integer.parseInt(portaTF.getText()));
             ObjectInputStream entrada = new ObjectInputStream(cliente.getInputStream());
             Date data_atual = (Date)entrada.readObject();
             JOptionPane.showMessageDialog(null,"Data recebida do servidor:" + data_atual.toString());

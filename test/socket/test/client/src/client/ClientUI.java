@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package socketdemo;
+package client;
 
 import java.io.ObjectInputStream;
 import java.net.Socket;
@@ -114,7 +114,7 @@ public class ClientUI extends javax.swing.JFrame {
 
     private void sendBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendBTActionPerformed
       try {
-            Socket cliente = new Socket("paulo",12345);
+            Socket cliente = new Socket(ipTF.getText(),Integer.parseInt(portaTF.getText()));
             ObjectInputStream entrada = new ObjectInputStream(cliente.getInputStream());
             Date data_atual = (Date)entrada.readObject();
             JOptionPane.showMessageDialog(null,"Data recebida do servidor:" + data_atual.toString());
@@ -152,11 +152,13 @@ public class ClientUI extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(ClientUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new ClientUI().setVisible(true);
+                
             }
         });
     }
