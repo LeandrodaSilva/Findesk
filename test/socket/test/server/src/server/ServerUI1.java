@@ -14,13 +14,19 @@ import java.util.Date;
  *
  * @author ld_si
  */
-public class ServerUI extends javax.swing.JFrame {
+public class ServerUI1 extends javax.swing.JFrame {
 
     /**
      * Creates new form ServerUI
      */
-    public ServerUI() {
+    private static ServerUI1 janela;
+    private static ServerUI1 janela2;
+    
+    public ServerUI1() {
         initComponents();
+    }
+     public ServerUI1(int i) {
+        initComponents2();
     }
 
     /**
@@ -31,6 +37,33 @@ public class ServerUI extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+
+        jLabel4 = new javax.swing.JLabel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel4.setText("EXECUTANDO");
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(162, 162, 162)
+                .addComponent(jLabel4)
+                .addContainerGap(171, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(138, 138, 138)
+                .addComponent(jLabel4)
+                .addContainerGap(148, Short.MAX_VALUE))
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+private void initComponents2() {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -111,16 +144,8 @@ public class ServerUI extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
-
-    private void stopBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopBTActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_stopBTActionPerformed
-
-    private void startBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startBTActionPerformed
-        
-    }//GEN-LAST:event_startBTActionPerformed
-
+    }// </editor-fold> 
+    
     /**
      * @param args the command line arguments
      */
@@ -138,21 +163,32 @@ public class ServerUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ServerUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ServerUI1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ServerUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ServerUI1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ServerUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ServerUI1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ServerUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ServerUI1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ServerUI().setVisible(true);
+                ServerUI1 server =  new ServerUI1();
+                server.setVisible(true);
+                janela = server;
+            }
+        });
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                ServerUI1 server2 =  new ServerUI1(1);
+                server2.setVisible(false);
+                janela2 = server2;
             }
         });
         try {
@@ -177,13 +213,6 @@ public class ServerUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField dadosTF;
-    private javax.swing.JTextField ipTF;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField portaTF;
-    private javax.swing.JButton startBT;
-    private javax.swing.JButton stopBT;
+    private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
 }

@@ -19,8 +19,14 @@ public class ServerUI extends javax.swing.JFrame {
     /**
      * Creates new form ServerUI
      */
+    private static ServerUI janela;
+    private static ServerUI janela2;
+    
     public ServerUI() {
         initComponents();
+    }
+     public ServerUI(int i) {
+        initComponents2();
     }
 
     /**
@@ -112,13 +118,41 @@ public class ServerUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+private void initComponents2() {
 
+        jLabel4 = new javax.swing.JLabel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel4.setText("EXECUTANDO");
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(162, 162, 162)
+                .addComponent(jLabel4)
+                .addContainerGap(171, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(138, 138, 138)
+                .addComponent(jLabel4)
+                .addContainerGap(148, Short.MAX_VALUE))
+        );
+
+        pack();
+    }// </editor-fold> 
+    
     private void stopBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopBTActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_stopBTActionPerformed
 
     private void startBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startBTActionPerformed
-        
+        janela.setVisible(false);
+        janela2.setVisible(true);
     }//GEN-LAST:event_startBTActionPerformed
 
     /**
@@ -152,7 +186,16 @@ public class ServerUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ServerUI().setVisible(true);
+                ServerUI server =  new ServerUI();
+                server.setVisible(true);
+                janela = server;
+            }
+        });
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                ServerUI server2 =  new ServerUI(1);
+                server2.setVisible(false);
+                janela2 = server2;
             }
         });
         try {
@@ -186,4 +229,5 @@ public class ServerUI extends javax.swing.JFrame {
     private javax.swing.JButton startBT;
     private javax.swing.JButton stopBT;
     // End of variables declaration//GEN-END:variables
+    private javax.swing.JLabel jLabel4;
 }
