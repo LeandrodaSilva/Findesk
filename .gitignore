@@ -1,1 +1,5 @@
 /test/socket/socketdemo/nbproject/private/
+/test/socket/test/server/nbproject/private/
+/test/socket/test/client/nbproject/private/
+/test/socket/test/server/build/
+/test/socket/test/client/build/

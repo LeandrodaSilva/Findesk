@@ -5,6 +5,11 @@
  */
 package socketdemo;
 
+import java.io.ObjectInputStream;
+import java.net.Socket;
+import java.util.Date;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ld_si
@@ -39,6 +44,11 @@ public class ClientUI extends javax.swing.JFrame {
 
         sendBT.setText("Enviar");
         sendBT.setActionCommand("");
+        sendBT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sendBTActionPerformed(evt);
+            }
+        });
 
         dadosTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -101,6 +111,20 @@ public class ClientUI extends javax.swing.JFrame {
     private void dadosTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dadosTFActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_dadosTFActionPerformed
+
+    private void sendBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendBTActionPerformed
+      try {
+            Socket cliente = new Socket("paulo",12345);
+            ObjectInputStream entrada = new ObjectInputStream(cliente.getInputStream());
+            Date data_atual = (Date)entrada.readObject();
+            JOptionPane.showMessageDialog(null,"Data recebida do servidor:" + data_atual.toString());
+            entrada.close();
+            System.out.println("Conexão encerrada");
+        }
+        catch(Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+        }
+    }//GEN-LAST:event_sendBTActionPerformed
 
     /**
      * @param args the command line arguments
