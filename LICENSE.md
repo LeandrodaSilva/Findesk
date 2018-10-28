@@ -1,2 +1,2 @@
 
-Copyright (C) 2018 Leandro da Silva
+Copyright (C) 2018 Smart Way Software
