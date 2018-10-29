@@ -11,4 +11,6 @@ Findesk/class -> guardar as classes java.
 
 Findesk/model -> guardar os arquivos de modelo dos diagramas, banco de dados, protótipos de tela etc.
 
+Findesk/model/UIClient -> protótipos de telas dos usuários.
+
 Findesk/database -> guardar o modelo do banco de dados.
