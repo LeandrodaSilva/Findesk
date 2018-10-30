@@ -7,7 +7,7 @@ Integração com o github: https://www.gitkraken.com/
 
 Adobe XD CC: https://www.adobe.com/br/products/xd.html
 
-            Organização das pastas:
+                        Organização das pastas:
 
 Findesk/class -> guardar as classes java.
 
