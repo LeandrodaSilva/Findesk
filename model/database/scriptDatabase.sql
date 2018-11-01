@@ -2,7 +2,7 @@
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 -- -----------------------------------------------------
 -- Schema findesk
@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `findesk`.`Categoria` (
   `idCategoria` INT NOT NULL,
   `nomeCat` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idCategoria`),
-  UNIQUE INDEX `nomeCat_UNIQUE` (`nomeCat` ASC) VISIBLE)
+  UNIQUE INDEX `nomeCat_UNIQUE` (`nomeCat` ASC))
 ENGINE = InnoDB;
 
 
@@ -37,8 +37,8 @@ CREATE TABLE IF NOT EXISTS `findesk`.`Cor` (
   `idCor` VARCHAR(7) NOT NULL COMMENT 'contêm o valor hexadecimal da cor referenciada',
   `nomeCor` VARCHAR(45) NOT NULL COMMENT 'contêm o nome da cor',
   PRIMARY KEY (`idCor`),
-  UNIQUE INDEX `idCor_UNIQUE` (`idCor` ASC) VISIBLE,
-  UNIQUE INDEX `nomeCor_UNIQUE` (`nomeCor` ASC) VISIBLE)
+  UNIQUE INDEX `idCor_UNIQUE` (`idCor` ASC),
+  UNIQUE INDEX `nomeCor_UNIQUE` (`nomeCor` ASC))
 ENGINE = InnoDB;
 
 
@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS `findesk`.`Config` (
   `portaConfig` INT NOT NULL,
   `bufferSizeConfig` INT NOT NULL,
   PRIMARY KEY (`idConfig`),
-  UNIQUE INDEX `idConfig_UNIQUE` (`idConfig` ASC) VISIBLE)
+  UNIQUE INDEX `idConfig_UNIQUE` (`idConfig` ASC))
 ENGINE = InnoDB;
 
 
@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `findesk`.`Administrador` (
   `idAdm` INT NOT NULL,
   `idConfig` INT NOT NULL,
   PRIMARY KEY (`idAdm`),
-  INDEX `fk_Administrador_Config1_idx` (`idConfig` ASC) VISIBLE,
+  INDEX `fk_Administrador_Config1_idx` (`idConfig` ASC),
   CONSTRAINT `idAdmConfig`
     FOREIGN KEY (`idConfig`)
     REFERENCES `findesk`.`Config` (`idConfig`)
@@ -92,9 +92,9 @@ CREATE TABLE IF NOT EXISTS `findesk`.`Item` (
   `fotoItem` VARCHAR(100) NULL COMMENT 'Atributo referente ao arquivo de imagem do item',
   `descricaoItem` VARCHAR(200) NULL COMMENT 'descrição escrita pelo administrador no momento do cadastro',
   PRIMARY KEY (`idItem`),
-  INDEX `idItemCategoria` (`idCategoria` ASC) VISIBLE,
-  INDEX `idItemCor` (`idCor` ASC) VISIBLE,
-  INDEX `fk_Item_Administrador1_idx` (`idAdm` ASC) VISIBLE,
+  INDEX `idItemCategoria` (`idCategoria` ASC),
+  INDEX `idItemCor` (`idCor` ASC),
+  INDEX `fk_Item_Administrador1_idx` (`idAdm` ASC),
   CONSTRAINT `idItemCategoria`
     FOREIGN KEY (`idCategoria`)
     REFERENCES `findesk`.`Categoria` (`idCategoria`)
@@ -122,7 +122,7 @@ CREATE TABLE IF NOT EXISTS `findesk`.`Usuario` (
   `idUsuario` INT NOT NULL,
   `idConfig` INT NOT NULL,
   PRIMARY KEY (`idUsuario`),
-  INDEX `fk_Usuario_Config1_idx` (`idConfig` ASC) VISIBLE,
+  INDEX `fk_Usuario_Config1_idx` (`idConfig` ASC),
   CONSTRAINT `idUsuConfig`
     FOREIGN KEY (`idConfig`)
     REFERENCES `findesk`.`Config` (`idConfig`)
@@ -192,4 +192,3 @@ USE `findesk`;
 INSERT INTO `findesk`.`Usuario` (`idUsuario`, `idConfig`) VALUES (1, 1);
 
 COMMIT;
-
