@@ -21,7 +21,7 @@ USE `findesk` ;
 DROP TABLE IF EXISTS `findesk`.`Categoria` ;
 
 CREATE TABLE IF NOT EXISTS `findesk`.`Categoria` (
-  `idCategoria` INT NOT NULL,
+  `idCategoria` CHAR(1) NOT NULL,
   `nomeCat` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idCategoria`),
   UNIQUE INDEX `nomeCat_UNIQUE` (`nomeCat` ASC))
@@ -77,6 +77,25 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `findesk`.`Nome`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `findesk`.`Nome` ;
+
+CREATE TABLE IF NOT EXISTS `findesk`.`Nome` (
+  `idNome` INT NOT NULL,
+  `nome` VARCHAR(45) NOT NULL,
+  `idCategoria` INT NOT NULL,
+  PRIMARY KEY (`idNome`),
+  INDEX `fk_Nome_Categoria1_idx` (`idCategoria` ASC),
+  CONSTRAINT `fk_Nome_Categoria1`
+    FOREIGN KEY (`idCategoria`)
+    REFERENCES `findesk`.`Categoria` (`idCategoria`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `findesk`.`Item`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `findesk`.`Item` ;
@@ -86,6 +105,7 @@ CREATE TABLE IF NOT EXISTS `findesk`.`Item` (
   `idAdm` INT NOT NULL,
   `idCategoria` INT NOT NULL,
   `idCor` VARCHAR(7) NOT NULL,
+  `idNome` INT NOT NULL,
   `dataEntradaItem` DATETIME NOT NULL COMMENT 'Data referente ao momento de cadastro do item',
   `dataSaidaItem` DATETIME NULL COMMENT 'Data referente a retirada do item',
   `retiradoItem` TINYINT NOT NULL DEFAULT 0 COMMENT 'Valor valendo 1 = foi retirado ou 0 = não foi retirado',
@@ -95,6 +115,7 @@ CREATE TABLE IF NOT EXISTS `findesk`.`Item` (
   INDEX `idItemCategoria` (`idCategoria` ASC),
   INDEX `idItemCor` (`idCor` ASC),
   INDEX `fk_Item_Administrador1_idx` (`idAdm` ASC),
+  INDEX `fk_Item_Nome1_idx` (`idNome` ASC),
   CONSTRAINT `idItemCategoria`
     FOREIGN KEY (`idCategoria`)
     REFERENCES `findesk`.`Categoria` (`idCategoria`)
@@ -108,6 +129,11 @@ CREATE TABLE IF NOT EXISTS `findesk`.`Item` (
   CONSTRAINT `idItemAdm`
     FOREIGN KEY (`idAdm`)
     REFERENCES `findesk`.`Administrador` (`idAdm`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Item_Nome1`
+    FOREIGN KEY (`idNome`)
+    REFERENCES `findesk`.`Nome` (`idNome`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -140,10 +166,10 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `findesk`;
-INSERT INTO `findesk`.`Categoria` (`idCategoria`, `nomeCat`) VALUES (1, 'Eletrônicos');
-INSERT INTO `findesk`.`Categoria` (`idCategoria`, `nomeCat`) VALUES (2, 'Documentos');
-INSERT INTO `findesk`.`Categoria` (`idCategoria`, `nomeCat`) VALUES (3, 'Vestíveis');
-INSERT INTO `findesk`.`Categoria` (`idCategoria`, `nomeCat`) VALUES (4, 'Outros');
+INSERT INTO `findesk`.`Categoria` (`idCategoria`, `nomeCat`) VALUES ('1', 'Eletrônicos');
+INSERT INTO `findesk`.`Categoria` (`idCategoria`, `nomeCat`) VALUES ('2', 'Documentos');
+INSERT INTO `findesk`.`Categoria` (`idCategoria`, `nomeCat`) VALUES ('3', 'Vestíveis');
+INSERT INTO `findesk`.`Categoria` (`idCategoria`, `nomeCat`) VALUES ('4', 'Outros');
 
 COMMIT;
 
@@ -192,3 +218,5 @@ USE `findesk`;
 INSERT INTO `findesk`.`Usuario` (`idUsuario`, `idConfig`) VALUES (1, 1);
 
 COMMIT;
+
+
