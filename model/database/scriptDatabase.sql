@@ -53,39 +53,9 @@ CREATE TABLE IF NOT EXISTS `findesk`.`Nome` (
   `idCategoria` CHAR(1) NOT NULL,
   PRIMARY KEY (`idNome`),
   INDEX `fk_Nome_Categoria1_idx` (`idCategoria` ASC) VISIBLE,
-  CONSTRAINT `fk_Nome_Categoria1`
+  CONSTRAINT `fk_idCategoria`
     FOREIGN KEY (`idCategoria`)
     REFERENCES `findesk`.`Categoria` (`idCategoria`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `findesk`.`Item`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `findesk`.`Item` ;
-
-CREATE TABLE IF NOT EXISTS `findesk`.`Item` (
-  `idItem` INT NOT NULL COMMENT 'Valor de idêntificação do item',
-  `idCor` VARCHAR(7) NOT NULL,
-  `idNome` CHAR(10) NOT NULL,
-  `dataEntradaItem` DATETIME NOT NULL COMMENT 'Data referente ao momento de cadastro do item',
-  `dataSaidaItem` DATETIME NULL COMMENT 'Data referente a retirada do item',
-  `retiradoItem` TINYINT NOT NULL DEFAULT 0 COMMENT 'Valor valendo 1 = foi retirado ou 0 = não foi retirado',
-  `fotoItem` VARCHAR(100) NULL COMMENT 'Atributo referente ao arquivo de imagem do item',
-  `descricaoItem` VARCHAR(200) NULL COMMENT 'descrição escrita pelo administrador no momento do cadastro',
-  PRIMARY KEY (`idItem`),
-  INDEX `idItemCor` (`idCor` ASC) VISIBLE,
-  INDEX `fk_Item_Nome1_idx` (`idNome` ASC) VISIBLE,
-  CONSTRAINT `idItemCor`
-    FOREIGN KEY (`idCor`)
-    REFERENCES `findesk`.`Cor` (`idCor`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Item_Nome1`
-    FOREIGN KEY (`idNome`)
-    REFERENCES `findesk`.`Nome` (`idNome`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -115,18 +85,48 @@ DROP TABLE IF EXISTS `findesk`.`Administrador` ;
 CREATE TABLE IF NOT EXISTS `findesk`.`Administrador` (
   `idAdm` INT NOT NULL,
   `idConfig` INT NOT NULL,
-  `idItem` INT NOT NULL,
   PRIMARY KEY (`idAdm`),
   INDEX `fk_Administrador_Config1_idx` (`idConfig` ASC) VISIBLE,
-  INDEX `fk_Administrador_Item1_idx` (`idItem` ASC) VISIBLE,
-  CONSTRAINT `idAdmConfig`
+  CONSTRAINT `fk_idAdmConfig`
     FOREIGN KEY (`idConfig`)
     REFERENCES `findesk`.`Config` (`idConfig`)
     ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `findesk`.`Item`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `findesk`.`Item` ;
+
+CREATE TABLE IF NOT EXISTS `findesk`.`Item` (
+  `idItem` INT NOT NULL COMMENT 'Valor de idêntificação do item',
+  `idCor` VARCHAR(7) NOT NULL,
+  `idNome` CHAR(10) NOT NULL,
+  `idAdm` INT NOT NULL,
+  `dataEntradaItem` DATETIME NOT NULL COMMENT 'Data referente ao momento de cadastro do item',
+  `dataSaidaItem` DATETIME NULL COMMENT 'Data referente a retirada do item',
+  `retiradoItem` TINYINT NOT NULL DEFAULT 0 COMMENT 'Valor valendo 1 = foi retirado ou 0 = não foi retirado',
+  `fotoItem` VARCHAR(100) NULL COMMENT 'Atributo referente ao arquivo de imagem do item',
+  `descricaoItem` VARCHAR(200) NULL COMMENT 'descrição escrita pelo administrador no momento do cadastro',
+  PRIMARY KEY (`idItem`),
+  INDEX `fk_idItemCor` (`idCor` ASC) VISIBLE,
+  INDEX `fk_Item_Nome1_idx` (`idNome` ASC) VISIBLE,
+  INDEX `fk_Item_Administrador1_idx` (`idAdm` ASC) VISIBLE,
+  CONSTRAINT `fk_idItemCor`
+    FOREIGN KEY (`idCor`)
+    REFERENCES `findesk`.`Cor` (`idCor`)
+    ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Administrador_Item1`
-    FOREIGN KEY (`idItem`)
-    REFERENCES `findesk`.`Item` (`idItem`)
+  CONSTRAINT `fk_idNome`
+    FOREIGN KEY (`idNome`)
+    REFERENCES `findesk`.`Nome` (`idNome`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_idAdm`
+    FOREIGN KEY (`idAdm`)
+    REFERENCES `findesk`.`Administrador` (`idAdm`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -142,7 +142,7 @@ CREATE TABLE IF NOT EXISTS `findesk`.`Usuario` (
   `idConfig` INT NOT NULL,
   PRIMARY KEY (`idUsuario`),
   INDEX `fk_Usuario_Config1_idx` (`idConfig` ASC) VISIBLE,
-  CONSTRAINT `idUsuConfig`
+  CONSTRAINT `fk_idUsuConfig`
     FOREIGN KEY (`idConfig`)
     REFERENCES `findesk`.`Config` (`idConfig`)
     ON DELETE NO ACTION
@@ -201,7 +201,6 @@ INSERT INTO `findesk`.`Nome` (`idNome`, `nome`, `idCategoria`) VALUES ('8', 'Cop
 INSERT INTO `findesk`.`Nome` (`idNome`, `nome`, `idCategoria`) VALUES ('9', 'Caderno', 'e');
 INSERT INTO `findesk`.`Nome` (`idNome`, `nome`, `idCategoria`) VALUES ('10', 'Caneta', 'e');
 INSERT INTO `findesk`.`Nome` (`idNome`, `nome`, `idCategoria`) VALUES ('11', 'Guarda-Chuva', 'f');
-INSERT INTO `findesk`.`Nome` (`idNome`, `nome`, `idCategoria`) VALUES ('', DEFAULT, DEFAULT);
 
 COMMIT;
 
@@ -221,7 +220,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `findesk`;
-INSERT INTO `findesk`.`Administrador` (`idAdm`, `idConfig`, `idItem`) VALUES (1, 1, DEFAULT);
+INSERT INTO `findesk`.`Administrador` (`idAdm`, `idConfig`) VALUES (1, 1);
 
 COMMIT;
 
