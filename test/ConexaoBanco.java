@@ -22,7 +22,7 @@ public class ConexaoBanco {
     public static String URL = "jdbc:mysql://localhost:3306/oficinaexemplo";
     // oficinaexemplo é o nome do Banco de Dados no Workbench.
     public static String User = "root";
-    public static String Password = "123456";
+    public static String Password = "02utfpres31";
     
     public static Connection getConnection(){
         
