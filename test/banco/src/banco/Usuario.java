@@ -9,7 +9,7 @@ package banco;
  *
  * @author ld_si
  */
-public class Main {
+public class Usuario {
     
     public static void main(String[] args) {
         SGBD mybd = new SGBD();
