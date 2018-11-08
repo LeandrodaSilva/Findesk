@@ -17,3 +17,6 @@ model/diagram/FinDesk\.asta\.lock
 /test/socket/test/banco/build/
 /test/banco/build/
 /test/banco/nbproject/private/
+/findesk.admnistrador/build/
+/findesk.admnistrador/dist/
+/findesk.cliente/nbproject/private/
