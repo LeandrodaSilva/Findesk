@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package javaapplication5;
+package banco;
 
 /**
  *
  * @author ld_si
  */
-public class NewClass {
+public class Main {
+    
     public static void main(String[] args) {
-        JavaApplication5 mydb = new JavaApplication5();
-        
-        mydb.getConnection();
+        SGBD mybd = new SGBD();
+        mybd.getConexaoMySQL();
+        System.out.println(mybd.statusConection());
     }
     
 }
-

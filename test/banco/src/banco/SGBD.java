@@ -19,14 +19,14 @@ import java.sql.SQLException;
  
 //Início da classe de conexão//
  
-public class Banco 
+public class SGBD 
 {
  
     public static String status = "Não conectou...";
  
     //Método Construtor da Classe//
  
-    public Banco() {}
+    public SGBD() {}
  
  
     //Método de Conexão//
@@ -117,7 +117,7 @@ public class Banco
         try 
         {
  
-            Banco.getConexaoMySQL().close();
+            SGBD.getConexaoMySQL().close();
  
             return true;
         } catch (SQLException e) 
@@ -137,7 +137,7 @@ public class Banco
  
   
  
-        return Banco.getConexaoMySQL();
+        return SGBD.getConexaoMySQL();
  
     }
  
