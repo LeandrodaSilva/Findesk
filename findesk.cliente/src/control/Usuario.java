@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package control;
+import model.SGBD;
 
 /**
  *
@@ -16,6 +17,16 @@ public class Usuario {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        SGBD mybd = new SGBD("127.0.0.1:3307", "findesk", "client", "client123456");
+        
+        mybd.getConexaoMySQL();
+        
+        System.out.println(mybd.statusConection());
+        
+        mybd.consultarItemBd("SELECT idCor, nomeCor FROM cor");
+        
+        mybd.fecharConexao();
+        
     }
     
 }

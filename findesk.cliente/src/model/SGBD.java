@@ -12,8 +12,12 @@ package model;
 import java.sql.Connection;
  
 import java.sql.DriverManager;
+import java.sql.ResultSet;
  
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
  
   
  
@@ -23,10 +27,28 @@ public class SGBD
 {
  
     public static String status = "Não conectou...";
+    public static String driverName = "com.mysql.jdbc.Driver";
+    public static String url;
+    public static String user;
+    public static String password;
+    
+    public static Connection connection = null;
+    public static Statement sttmt = null;
+    
  
     //Método Construtor da Classe//
+    
+    public SGBD() {
+        this.url = "";
+        this.user = "";
+        this.password = "";
+    }
  
-    public SGBD() {}
+    public SGBD(String ipPort, String database, String user, String password) {
+        this.url = "jdbc:mysql://" + ipPort + "/" + database;
+        this.user = user;
+        this.password = password;
+    }
  
  
     //Método de Conexão//
@@ -34,65 +56,31 @@ public class SGBD
     public static java.sql.Connection getConexaoMySQL() 
     {
 
-        Connection connection = null;          //atributo do tipo Connection
+                 //atributo do tipo Connection
 
-
-
-        try 
-        {
-
-            // Carregando o JDBC Driver padrão
-
-            String driverName = "com.mysql.jdbc.Driver";                        
-
+        
+        try {
+            // Carregando o JDBC Driver padrão         
             Class.forName(driverName);
-
-
-
             // Configurando a nossa conexão com um banco de dados//
-
-            String serverName = "127.0.0.1:3307";    //caminho do servidor do BD
-
-            String mydatabase = "findesk";        //nome do seu banco de dados
-
-            String url = "jdbc:mysql://127.0.0.1:3307/findesk";  // + serverName + "/" + mydatabase;
-
-            String username = "root";        //nome de um usuário de seu BD      
-
-            String password = "02utfpres31";      //sua senha de acesso
-
-            connection = DriverManager.getConnection(url, username, password);
-
-
-
-                //Testa sua conexão//  
-
-            if (connection != null) 
-            {
-
+            connection = DriverManager.getConnection(url, user, password);
+            //Testa sua conexão//  
+            if (connection != null) {
+                sttmt = connection.createStatement();
                 status = ("STATUS--->Conectado com sucesso!");
-            } else 
-            {
-
+            } else {
                 status = ("STATUS--->Não foi possivel realizar conexão");
             }
-
-
-
-            return connection;
             
-        } catch (ClassNotFoundException e) 
-        {  
+            return connection;    
+        } catch (ClassNotFoundException e) {  
             //Driver não encontradO
             System.out.println("O driver expecificado nao foi encontrado.");
-
             return null;
 
-        } catch (SQLException e) 
-        {
+        } catch (SQLException e) {
             //Não conseguindo se conectar ao banco
             System.out.println("Nao foi possivel conectar ao Banco de Dados.");
-
             return null;
         }
     }
@@ -101,9 +89,7 @@ public class SGBD
  
     //Método que retorna o status da sua conexão//
  
-    public static String statusConection() 
-    {
- 
+    public static String statusConection() {
         return status;
     }
  
@@ -111,18 +97,11 @@ public class SGBD
  
    //Método que fecha sua conexão//
  
-    public static boolean FecharConexao() 
-    {
- 
-        try 
-        {
- 
+    public static boolean fecharConexao() {
+        try {
             SGBD.getConexaoMySQL().close();
- 
             return true;
-        } catch (SQLException e) 
-        {
- 
+        } catch (SQLException e) {
             return false;
         }
     }
@@ -131,14 +110,40 @@ public class SGBD
  
    //Método que reinicia sua conexão//
  
-    public static java.sql.Connection ReiniciarConexao() {
- 
-        FecharConexao();
- 
-  
- 
+    public static java.sql.Connection reiniciarConexao() {
+        fecharConexao();
         return SGBD.getConexaoMySQL();
- 
     }
+    
+    
+    public static void consultarItemBd(String sql){
+        
+         String result;
+        try { 
+            ResultSet rs = sttmt.executeQuery(sql);
+            String id = rs.getString("idCor");
+            String nome = rs.getString("nomeCor");
+            while(rs.next()){
+                System.out.println(id);
+                System.out.println(nome);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(SGBD.class.getName()).log(Level.SEVERE, null, ex);
+        }   
+    }
+    
+    public static void inserirItemBd(){
+        
+    } 
+    
+    public static void alterarItemBd(){
+        
+    }
+    
+    public static void excluirItemBd(){
+        
+    }
+    
+    
  
 }
