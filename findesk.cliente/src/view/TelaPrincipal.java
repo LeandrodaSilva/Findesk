@@ -4,6 +4,11 @@
  * and open the template in the editor.
  */
 package view;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import model.SGBD;
 
 /**
  *
@@ -36,6 +41,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(800, 600));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         jButtonConfirmar.setText("Buscar");
 
@@ -60,6 +70,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addGap(133, 133, 133))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -96,7 +110,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
     }
-
+   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonConfirmar;
     private javax.swing.JComboBox<String> jComboBox1;

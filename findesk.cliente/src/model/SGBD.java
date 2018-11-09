@@ -9,13 +9,17 @@ package model;
  *
  * @author ld_si
  */
+import control.Usuario;
+import java.awt.List;
 import java.sql.Connection;
  
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
  
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
  
@@ -39,9 +43,9 @@ public class SGBD
     //Método Construtor da Classe//
     
     public SGBD() {
-        this.url = "";
-        this.user = "";
-        this.password = "";
+        this.url = "jdbc:mysql://127.0.0.1:3307/findesk";
+        this.user = "client";
+        this.password = "client123456";
     }
  
     public SGBD(String ipPort, String database, String user, String password) {
@@ -66,7 +70,6 @@ public class SGBD
             connection = DriverManager.getConnection(url, user, password);
             //Testa sua conexão//  
             if (connection != null) {
-                sttmt = connection.createStatement();
                 status = ("STATUS--->Conectado com sucesso!");
             } else {
                 status = ("STATUS--->Não foi possivel realizar conexão");
@@ -116,21 +119,28 @@ public class SGBD
     }
     
     
-    public static void consultarItemBd(String sql){
-        
-         String result;
-        try { 
-            ResultSet rs = sttmt.executeQuery(sql);
-            String id = rs.getString("idCor");
-            String nome = rs.getString("nomeCor");
+    public static ArrayList consultarItemBd(String sql){
+        ArrayList mylist = new ArrayList();
+        Statement stt;
+   
+        try {
+            stt = connection.createStatement(); 
+            ResultSet rs = stt.executeQuery(sql);
+            rs.first();
+            String nome;
             while(rs.next()){
-                System.out.println(id);
+                nome = rs.getString("nomeCat");
+                mylist.add(nome);
                 System.out.println(nome);
             }
+              
         } catch (SQLException ex) {
             Logger.getLogger(SGBD.class.getName()).log(Level.SEVERE, null, ex);
-        }   
+        }
+        return mylist;
     }
+     
+    
     
     public static void inserirItemBd(){
         
