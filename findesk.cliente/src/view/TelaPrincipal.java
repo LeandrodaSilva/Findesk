@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JLabel;
 import model.SGBD;
+import view.NewClass;
 import view.NewJFrame;
 
 /**
@@ -50,7 +51,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
-        jButtonCriaLabel = new javax.swing.JButton();
         jLabelFundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -61,14 +61,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(null);
 
         jButtonConfirmar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButtonConfirmar.setText("Buscar");
+        jButtonConfirmar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/bt2.png"))); // NOI18N
+        jButtonConfirmar.setContentAreaFilled(false);
         jButtonConfirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonConfirmarActionPerformed(evt);
             }
         });
         getContentPane().add(jButtonConfirmar);
-        jButtonConfirmar.setBounds(320, 450, 120, 60);
+        jButtonConfirmar.setBounds(320, 430, 120, 70);
 
         jComboBoxCategoria.setModel(defaultComboBoxCategoria);
         jComboBoxCategoria.setSelectedItem(jComboBoxCategoria);
@@ -104,15 +105,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         getContentPane().add(jLabel2);
         jLabel2.setBounds(240, 260, 60, 14);
 
-        jButtonCriaLabel.setText("jButton1");
-        jButtonCriaLabel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCriaLabelActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButtonCriaLabel);
-        jButtonCriaLabel.setBounds(200, 320, 73, 23);
-
         jLabelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Fundo2.png"))); // NOI18N
         jLabelFundo.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Fundo2.png"))); // NOI18N
         jLabelFundo.setEnabled(false);
@@ -128,17 +120,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         novo.criar();
         janelaControl.fechar();
     }//GEN-LAST:event_jButtonConfirmarActionPerformed
-
-    private void jButtonCriaLabelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCriaLabelActionPerformed
-        JLabel jl = new javax.swing.JLabel();
-        
-        jl.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jl.setForeground(new java.awt.Color(255, 255, 255));
-        jl.setText("teste");
-        getContentPane().add(jl);
-        jl.setBounds(50, 150, 50, 150);
-       
-    }//GEN-LAST:event_jButtonCriaLabelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -218,7 +199,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonConfirmar;
-    private javax.swing.JButton jButtonCriaLabel;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBoxCategoria;

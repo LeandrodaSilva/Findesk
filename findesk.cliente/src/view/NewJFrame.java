@@ -5,6 +5,7 @@
  */
 
 package view;
+import javax.swing.JLabel;
 import view.TelaPrincipal;
 
 /**
@@ -19,6 +20,8 @@ public class NewJFrame extends javax.swing.JFrame {
     public NewJFrame() {
         initComponents();
     }
+    
+ 
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -30,36 +33,30 @@ public class NewJFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jButtonVoltar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(800, 600));
+        setResizable(false);
+        setSize(new java.awt.Dimension(800, 600));
+        getContentPane().setLayout(null);
 
-        jButtonVoltar.setText("jButton1");
+        jButtonVoltar.setText("Voltar");
         jButtonVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonVoltarActionPerformed(evt);
             }
         });
+        getContentPane().add(jButtonVoltar);
+        jButtonVoltar.setBounds(30, 35, 61, 23);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(162, 162, 162)
-                .addComponent(jButtonVoltar)
-                .addContainerGap(165, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(133, 133, 133)
-                .addComponent(jButtonVoltar)
-                .addContainerGap(144, Short.MAX_VALUE))
-        );
+        jLabel1.setText("ITEM");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(170, 110, 24, 14);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
         TelaPrincipal novo = new TelaPrincipal();
         novo.mostrar();
@@ -105,6 +102,7 @@ public class NewJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonVoltar;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 
 }
