@@ -23,34 +23,8 @@ public class Usuario {
      */
   
     public static void main(String[] args) {
- 
-//        SGBD mybd = new SGBD("127.0.0.1:3307", "findesk", "client", "client123456");
-//        
-//        mybd.getConexaoMySQL();
-//        
-//        System.out.println(mybd.statusConection());
-//        
-//        
-//        
-//        ResultSet rs = mybd.consultarItemBd("SELECT * FROM cor");
-//       
-//        String nome;
-//        
-//        try {
-//            rs.first();
-//            while(rs.next()){
-//                nome = rs.getString(2);
-//                
-//                System.out.println(nome);
-//            }
-//        } catch (SQLException ex) {
-//            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        
-//        mybd.fecharConexao();
-           TelaPrincipal mytela = new TelaPrincipal();
-           mytela.criar();
-
+       TelaPrincipal mytela = new TelaPrincipal();
+       mytela.mostrar();
     }
     
  
