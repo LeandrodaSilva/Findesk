@@ -119,25 +119,18 @@ public class SGBD
     }
     
     
-    public static ArrayList consultarItemBd(String sql){
-        ArrayList mylist = new ArrayList();
+    public static ResultSet consultarItemBd(String sql){
         Statement stt;
+        ResultSet rs = null;
    
         try {
             stt = connection.createStatement(); 
-            ResultSet rs = stt.executeQuery(sql);
-            rs.first();
-            String nome;
-            while(rs.next()){
-                nome = rs.getString("nomeCat");
-                mylist.add(nome);
-                System.out.println(nome);
-            }
-              
+            rs = stt.executeQuery(sql);
+            rs.first();   
         } catch (SQLException ex) {
             Logger.getLogger(SGBD.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return mylist;
+        return rs;
     }
      
     
