@@ -11,7 +11,9 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JLabel;
 import model.SGBD;
+import view.NewJFrame;
 
 /**
  *
@@ -29,6 +31,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         initComponents();
         popularComboBox();
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -47,6 +50,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
+        jButtonCriaLabel = new javax.swing.JButton();
         jLabelFundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -100,20 +104,41 @@ public class TelaPrincipal extends javax.swing.JFrame {
         getContentPane().add(jLabel2);
         jLabel2.setBounds(240, 260, 60, 14);
 
+        jButtonCriaLabel.setText("jButton1");
+        jButtonCriaLabel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCriaLabelActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonCriaLabel);
+        jButtonCriaLabel.setBounds(200, 320, 73, 23);
+
         jLabelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Fundo2.png"))); // NOI18N
         jLabelFundo.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Fundo2.png"))); // NOI18N
         jLabelFundo.setEnabled(false);
-        jLabelFundo.setMaximumSize(new java.awt.Dimension(800, 600));
-        jLabelFundo.setMinimumSize(new java.awt.Dimension(800, 600));
-        jLabelFundo.setPreferredSize(new java.awt.Dimension(800, 600));
         getContentPane().add(jLabelFundo);
         jLabelFundo.setBounds(0, 0, 800, 600);
     }// </editor-fold>//GEN-END:initComponents
 
+    
     private void jButtonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfirmarActionPerformed
         // TODO add your handling code here:
         ocultar();
+        NewJFrame novo = new NewJFrame();
+        novo.criar();
+        janelaControl.fechar();
     }//GEN-LAST:event_jButtonConfirmarActionPerformed
+
+    private void jButtonCriaLabelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCriaLabelActionPerformed
+        JLabel jl = new javax.swing.JLabel();
+        
+        jl.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jl.setForeground(new java.awt.Color(255, 255, 255));
+        jl.setText("teste");
+        getContentPane().add(jl);
+        jl.setBounds(50, 150, 50, 150);
+       
+    }//GEN-LAST:event_jButtonCriaLabelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -141,7 +166,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {  
@@ -154,6 +179,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
     
     public static void ocultar(){
          janelaControl.setVisible(false);
+    }
+    
+    public static void fechar(){
+         janelaControl.dispose();
     }
     
     private static void popularComboBox(){
@@ -170,7 +199,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         String nome;
         
         try {
-            rs.first();
+            rs.beforeFirst();
             while(rs.next()){
                 nome = rs.getString(2);
                 strList.add(nome);
@@ -189,6 +218,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonConfirmar;
+    private javax.swing.JButton jButtonCriaLabel;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBoxCategoria;
