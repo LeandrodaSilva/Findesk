@@ -23,9 +23,12 @@ import view.NewJFrame;
 public class TelaPrincipal extends javax.swing.JFrame {
     
     private static DefaultComboBoxModel defaultComboBoxCategoria = new DefaultComboBoxModel();
-    private static DefaultComboBoxModel defaultComboBoxDia = new DefaultComboBoxModel();
-    private static DefaultComboBoxModel defaultComboBoxMes = new DefaultComboBoxModel();
-    private static DefaultComboBoxModel defaultComboBoxAno = new DefaultComboBoxModel();
+    private static DefaultComboBoxModel defaultComboBoxDiaInicial = new DefaultComboBoxModel();
+    private static DefaultComboBoxModel defaultComboBoxMesInicial = new DefaultComboBoxModel();
+    private static DefaultComboBoxModel defaultComboBoxAnoInicial = new DefaultComboBoxModel();
+    private static DefaultComboBoxModel defaultComboBoxDiaFinal = new DefaultComboBoxModel();
+    private static DefaultComboBoxModel defaultComboBoxMesFinal = new DefaultComboBoxModel();
+    private static DefaultComboBoxModel defaultComboBoxAnoFinal = new DefaultComboBoxModel();
     private static TelaPrincipal janelaControl;
 
     /**
@@ -37,6 +40,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         popularComboBoxDia();
         popularComboBoxMes();
         popularComboBoxAno();
+        hideComponents();
     }
     
 
@@ -53,12 +57,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jComboBoxCategoria = new javax.swing.JComboBox<>();
         jLabelTitulo = new javax.swing.JLabel();
         jLabelComboBoxCategoria = new javax.swing.JLabel();
-        jComboBoxDia = new javax.swing.JComboBox<>();
+        jComboBoxDiaInicial = new javax.swing.JComboBox<>();
         jLabelDataInicial = new javax.swing.JLabel();
-        jComboBoxMes = new javax.swing.JComboBox<>();
+        jComboBoxMesInicial = new javax.swing.JComboBox<>();
+        jComboBoxAnoInicial = new javax.swing.JComboBox<>();
         jLabelDataFinal = new javax.swing.JLabel();
-        jLabelDia = new javax.swing.JLabel();
-        jComboBoxAno = new javax.swing.JComboBox<>();
+        jComboBoxDiaFinal = new javax.swing.JComboBox<>();
+        jComboBoxMesFinal = new javax.swing.JComboBox<>();
+        jComboBoxAnoFinal = new javax.swing.JComboBox<>();
         jLabelFundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -77,10 +83,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonConfirmar);
-        jButtonConfirmar.setBounds(320, 430, 120, 70);
+        jButtonConfirmar.setBounds(320, 450, 120, 70);
 
         jComboBoxCategoria.setModel(defaultComboBoxCategoria);
         jComboBoxCategoria.setSelectedItem(jComboBoxCategoria);
+        jComboBoxCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxCategoriaActionPerformed(evt);
+            }
+        });
         getContentPane().add(jComboBoxCategoria);
         jComboBoxCategoria.setBounds(390, 200, 110, 20);
 
@@ -95,41 +106,69 @@ public class TelaPrincipal extends javax.swing.JFrame {
         getContentPane().add(jLabelComboBoxCategoria);
         jLabelComboBoxCategoria.setBounds(240, 200, 140, 20);
 
-        jComboBoxDia.setModel(defaultComboBoxDia);
-        jComboBoxDia.addActionListener(new java.awt.event.ActionListener() {
+        jComboBoxDiaInicial.setModel(defaultComboBoxDiaInicial);
+        jComboBoxDiaInicial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxDiaActionPerformed(evt);
+                jComboBoxDiaInicialActionPerformed(evt);
             }
         });
-        getContentPane().add(jComboBoxDia);
-        jComboBoxDia.setBounds(300, 260, 50, 20);
+        getContentPane().add(jComboBoxDiaInicial);
+        jComboBoxDiaInicial.setBounds(350, 250, 70, 20);
 
         jLabelDataInicial.setForeground(new java.awt.Color(255, 255, 255));
         jLabelDataInicial.setText("Data Inicial");
         getContentPane().add(jLabelDataInicial);
-        jLabelDataInicial.setBounds(240, 230, 70, 14);
+        jLabelDataInicial.setBounds(240, 250, 70, 14);
 
-        jComboBoxMes.setModel(defaultComboBoxMes);
-        getContentPane().add(jComboBoxMes);
-        jComboBoxMes.setBounds(360, 260, 60, 20);
+        jComboBoxMesInicial.setModel(defaultComboBoxMesInicial);
+        jComboBoxMesInicial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxMesInicialActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jComboBoxMesInicial);
+        jComboBoxMesInicial.setBounds(430, 250, 70, 20);
+
+        jComboBoxAnoInicial.setModel(defaultComboBoxAnoInicial);
+        jComboBoxAnoInicial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxAnoInicialActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jComboBoxAnoInicial);
+        jComboBoxAnoInicial.setBounds(510, 250, 110, 20);
 
         jLabelDataFinal.setForeground(new java.awt.Color(255, 255, 255));
         jLabelDataFinal.setText("Data Final");
         getContentPane().add(jLabelDataFinal);
-        jLabelDataFinal.setBounds(240, 300, 60, 14);
+        jLabelDataFinal.setBounds(240, 280, 60, 14);
 
-        jLabelDia.setText("Dia");
-        getContentPane().add(jLabelDia);
-        jLabelDia.setBounds(240, 260, 20, 14);
-
-        jComboBoxAno.setModel(defaultComboBoxAno);
-        jComboBoxAno.addActionListener(new java.awt.event.ActionListener() {
+        jComboBoxDiaFinal.setModel(defaultComboBoxDiaFinal);
+        jComboBoxDiaFinal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxAnoActionPerformed(evt);
+                jComboBoxDiaFinalActionPerformed(evt);
             }
         });
-        getContentPane().add(jComboBoxAno);
-        jComboBoxAno.setBounds(430, 260, 110, 20);
+        getContentPane().add(jComboBoxDiaFinal);
+        jComboBoxDiaFinal.setBounds(350, 280, 70, 20);
+
+        jComboBoxMesFinal.setModel(defaultComboBoxMesFinal);
+        jComboBoxMesFinal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxMesFinalActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jComboBoxMesFinal);
+        jComboBoxMesFinal.setBounds(430, 280, 70, 20);
+
+        jComboBoxAnoFinal.setModel(defaultComboBoxAnoFinal);
+        jComboBoxAnoFinal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxAnoFinalActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jComboBoxAnoFinal);
+        jComboBoxAnoFinal.setBounds(510, 280, 110, 20);
 
         jLabelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Fundo2.png"))); // NOI18N
         jLabelFundo.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Fundo2.png"))); // NOI18N
@@ -147,13 +186,33 @@ public class TelaPrincipal extends javax.swing.JFrame {
         janelaControl.fechar();
     }//GEN-LAST:event_jButtonConfirmarActionPerformed
 
-    private void jComboBoxDiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxDiaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBoxDiaActionPerformed
+    private void jComboBoxDiaInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxDiaInicialActionPerformed
+       if(estaMarcado("DataInicial")) showComponents("DataFinal");
+    }//GEN-LAST:event_jComboBoxDiaInicialActionPerformed
 
-    private void jComboBoxAnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxAnoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBoxAnoActionPerformed
+    private void jComboBoxAnoInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxAnoInicialActionPerformed
+        if(estaMarcado("DataInicial")) showComponents("DataFinal");
+    }//GEN-LAST:event_jComboBoxAnoInicialActionPerformed
+
+    private void jComboBoxCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCategoriaActionPerformed
+        showComponents("DataInicial");
+    }//GEN-LAST:event_jComboBoxCategoriaActionPerformed
+
+    private void jComboBoxMesInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxMesInicialActionPerformed
+        if(estaMarcado("DataInicial")) showComponents("DataFinal");
+    }//GEN-LAST:event_jComboBoxMesInicialActionPerformed
+
+    private void jComboBoxDiaFinalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxDiaFinalActionPerformed
+        if(estaMarcado("DataFinal")) showComponents("jButtonConfirmar");
+    }//GEN-LAST:event_jComboBoxDiaFinalActionPerformed
+
+    private void jComboBoxMesFinalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxMesFinalActionPerformed
+        if(estaMarcado("DataFinal")) showComponents("jButtonConfirmar");
+    }//GEN-LAST:event_jComboBoxMesFinalActionPerformed
+
+    private void jComboBoxAnoFinalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxAnoFinalActionPerformed
+        if(estaMarcado("DataFinal")) showComponents("jButtonConfirmar");
+    }//GEN-LAST:event_jComboBoxAnoFinalActionPerformed
 
     /**
      * @param args the command line arguments
@@ -200,6 +259,60 @@ public class TelaPrincipal extends javax.swing.JFrame {
          janelaControl.dispose();
     }
     
+    private void hideComponents(){
+        jLabelDataInicial.hide();
+        jComboBoxDiaInicial.hide();
+        jComboBoxMesInicial.hide();
+        jComboBoxAnoInicial.hide();
+     
+        jLabelDataFinal.hide();
+        jComboBoxDiaFinal.hide();
+        jComboBoxMesFinal.hide();
+        jComboBoxAnoFinal.hide();
+        
+        jButtonConfirmar.hide();
+    }
+    
+    private void showComponents(String opt){
+        switch(opt){
+            case "DataInicial":
+                jComboBoxDiaInicial.show();
+                jComboBoxMesInicial.show();
+                jComboBoxAnoInicial.show();
+                jLabelDataInicial.show();  
+            break;
+            case "DataFinal":
+                jLabelDataFinal.show();
+                jComboBoxDiaFinal.show();
+                jComboBoxMesFinal.show();
+                jComboBoxAnoFinal.show();
+            break;
+            case "jButtonConfirmar":
+                jButtonConfirmar.show();
+            break;
+        }
+    }
+    
+    private Boolean estaMarcado(String opt){
+        switch(opt){
+            case "DataInicial":
+                if(jComboBoxDiaInicial.getSelectedItem().toString() != "Dia" &&
+                    jComboBoxMesInicial.getSelectedItem().toString() != "Mês" &&
+                    jComboBoxAnoInicial.getSelectedItem().toString() != "Ano"
+                ) return true;
+            break;
+            
+            case "DataFinal":
+                if(jComboBoxDiaFinal.getSelectedItem().toString() != "Dia" &&
+                    jComboBoxMesFinal.getSelectedItem().toString() != "Mês" &&
+                    jComboBoxAnoFinal.getSelectedItem().toString() != "Ano"
+                ) return true;
+            break;
+        }
+        
+        return false;
+    }
+    
     private static void popularComboBoxCategoria(){
         SGBD mybd = new SGBD("127.0.0.1:3307", "findesk", "client", "client123456");
         
@@ -242,7 +355,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         ResultSet rs = mybd.consultarItemBd("SELECT * FROM dia");
        
         String nome;
-        
+        strList.add("Dia");
         try {
             rs.beforeFirst();
             while(rs.next()){
@@ -253,10 +366,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        defaultComboBoxDia = new DefaultComboBoxModel(strList.toArray());
+        defaultComboBoxDiaInicial = new DefaultComboBoxModel(strList.toArray());
+        defaultComboBoxDiaFinal = new DefaultComboBoxModel(strList.toArray());
         
         
         mybd.fecharConexao();
+        
         
     }
     
@@ -272,7 +387,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         ResultSet rs = mybd.consultarItemBd("SELECT * FROM mes");
        
         String nome;
-        
+        strList.add("Mês");
         try {
             rs.beforeFirst();
             while(rs.next()){
@@ -283,7 +398,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        defaultComboBoxMes = new DefaultComboBoxModel(strList.toArray());
+        defaultComboBoxMesInicial = new DefaultComboBoxModel(strList.toArray());
+        defaultComboBoxMesFinal = new DefaultComboBoxModel(strList.toArray());
         
         
         mybd.fecharConexao();
@@ -302,7 +418,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         ResultSet rs = mybd.consultarItemBd("SELECT * FROM ano");
        
         String nome;
-        
+        strList.add("Ano");
         try {
             rs.beforeFirst();
             while(rs.next()){
@@ -313,7 +429,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        defaultComboBoxAno = new DefaultComboBoxModel(strList.toArray());
+        defaultComboBoxAnoInicial = new DefaultComboBoxModel(strList.toArray());
+        defaultComboBoxAnoFinal = new DefaultComboBoxModel(strList.toArray());
         
         
         mybd.fecharConexao();
@@ -322,14 +439,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonConfirmar;
-    private javax.swing.JComboBox<String> jComboBoxAno;
+    private javax.swing.JComboBox<String> jComboBoxAnoFinal;
+    private javax.swing.JComboBox<String> jComboBoxAnoInicial;
     private javax.swing.JComboBox<String> jComboBoxCategoria;
-    private javax.swing.JComboBox<String> jComboBoxDia;
-    private javax.swing.JComboBox<String> jComboBoxMes;
+    private javax.swing.JComboBox<String> jComboBoxDiaFinal;
+    private javax.swing.JComboBox<String> jComboBoxDiaInicial;
+    private javax.swing.JComboBox<String> jComboBoxMesFinal;
+    private javax.swing.JComboBox<String> jComboBoxMesInicial;
     private javax.swing.JLabel jLabelComboBoxCategoria;
     private javax.swing.JLabel jLabelDataFinal;
     private javax.swing.JLabel jLabelDataInicial;
-    private javax.swing.JLabel jLabelDia;
     private javax.swing.JLabel jLabelFundo;
     private javax.swing.JLabel jLabelTitulo;
     // End of variables declaration//GEN-END:variables
