@@ -5,6 +5,7 @@
  */
 
 package view;
+import java.util.ArrayList;
 import javax.swing.JLabel;
 import view.TelaPrincipal;
 
@@ -35,6 +36,7 @@ public class NewClass extends javax.swing.JFrame {
 
         jButtonVoltar = new javax.swing.JButton();
         JLabel[] label = new JLabel[5];
+        ArrayList<JLabel> array = new ArrayList<JLabel>();
         //jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -55,14 +57,17 @@ public class NewClass extends javax.swing.JFrame {
         
         int x = 170,y = 110, i = 0;
         
-        
         while(i < 5){
-            label[i].setText("ITEM");
-            label[i].setBounds(x, y, 24, 14);
-            x = x + 26;
-            i++;
+            array.add(label[i]);
         }
-        getContentPane().add(label[0]);
+        
+////        while(i < 5){
+////            label[i].setText("ITEM");
+////            label[i].setBounds(x, y, 24, 14);
+////            x = x + 26;
+////            i++;
+////        }
+////        getContentPane().add(label[0]);
         
         
 
