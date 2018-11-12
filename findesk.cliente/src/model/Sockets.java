@@ -11,6 +11,10 @@ public class Sockets {
 	private int bufferSize;
 
 	private byte buffer;
+        
+        public Sockets(){
+            
+        }
 
 	public void setIpCliente() {
 

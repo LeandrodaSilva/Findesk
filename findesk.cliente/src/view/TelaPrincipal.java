@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import model.SGBD;
 import view.NewClass;
@@ -228,17 +230,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
         novo.criar();
         janelaControl.fechar();
     }//GEN-LAST:event_jButtonConfirmarActionPerformed
-
+    //Dia Inicial
     private void jComboBoxDiaInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxDiaInicialActionPerformed
        if(estaMarcado("DataInicial")) showComponents("DataFinal");
     }//GEN-LAST:event_jComboBoxDiaInicialActionPerformed
-
+    //Ano Inicial
     private void jComboBoxAnoInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxAnoInicialActionPerformed
         if(estaMarcado("DataInicial")) showComponents("DataFinal");
     }//GEN-LAST:event_jComboBoxAnoInicialActionPerformed
-
+    //Categoria
     private void jComboBoxCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCategoriaActionPerformed
-        
+
         showComponents("DataInicial");
         Object item = jComboBoxCategoria.getSelectedItem();
         String itemName = item.toString();
@@ -250,19 +252,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jComboBoxNome.setModel(defaultComboBoxNome);    
        
     }//GEN-LAST:event_jComboBoxCategoriaActionPerformed
-
+    //Mês Inicial
     private void jComboBoxMesInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxMesInicialActionPerformed
         if(estaMarcado("DataInicial")) showComponents("DataFinal");
     }//GEN-LAST:event_jComboBoxMesInicialActionPerformed
-
+    //Dia Final
     private void jComboBoxDiaFinalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxDiaFinalActionPerformed
         if(estaMarcado("DataFinal")) showComponents("jButtonConfirmar");
     }//GEN-LAST:event_jComboBoxDiaFinalActionPerformed
-
+    // Mês Final
     private void jComboBoxMesFinalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxMesFinalActionPerformed
         if(estaMarcado("DataFinal")) showComponents("jButtonConfirmar");
     }//GEN-LAST:event_jComboBoxMesFinalActionPerformed
-
+    //Ano Final
     private void jComboBoxAnoFinalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxAnoFinalActionPerformed
         if(estaMarcado("DataFinal")) showComponents("Cor");
     }//GEN-LAST:event_jComboBoxAnoFinalActionPerformed
@@ -340,6 +342,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabelConfirmar.hide();
         jButtonConfirmar.hide();
     }
+    
+    public ImageIcon criarImageIcon(String caminho, String descricao) {
+		java.net.URL imgURL = getClass().getResource(caminho);
+		if (imgURL != null) {
+			return new ImageIcon(imgURL, descricao);
+		} else {
+			System.err.println("Não foi possível carregar o arquivo de imagem: " + caminho);
+			return null;
+		}
+	}
     
     private void showComponents(String opt){
         switch(opt){
