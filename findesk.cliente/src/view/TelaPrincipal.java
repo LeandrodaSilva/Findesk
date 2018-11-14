@@ -15,7 +15,6 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import model.SGBD;
-import view.NewClass;
 import view.NewJFrame;
 
 /**
