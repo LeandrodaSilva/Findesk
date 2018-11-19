@@ -46,6 +46,7 @@ public class SGBD
         this.url = "jdbc:mysql://127.0.0.1:3306/findesk";
         this.user = "utfpr";
         this.password = "utfpr";
+        
     }
  
     public SGBD(String ipPort, String database, String user, String password) {
