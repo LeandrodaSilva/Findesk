@@ -343,7 +343,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
     
     private static void popularComboBoxCategoria(){
-        SGBD mybd = new SGBD("127.0.0.1:3307", "findesk", "client", "client123456");
+        SGBD mybd = new SGBD();
         
         mybd.getConexaoMySQL();
         ArrayList strList = new ArrayList();
@@ -373,7 +373,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
    
     private static void popularComboBoxDia(){
-        SGBD mybd = new SGBD("127.0.0.1:3307", "findesk", "client", "client123456");
+        SGBD mybd = new SGBD();
         
         mybd.getConexaoMySQL();
         ArrayList strList = new ArrayList();
@@ -405,7 +405,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
     
     private static void popularComboBoxMes(){
-        SGBD mybd = new SGBD("127.0.0.1:3307", "findesk", "client", "client123456");
+        //"127.0.0.1:3307", "findesk", "client", "client123456"
+        SGBD mybd = new SGBD();
         
         mybd.getConexaoMySQL();
         ArrayList strList = new ArrayList();
@@ -435,7 +436,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
     
     private static void popularComboBoxAno(){
-        SGBD mybd = new SGBD("127.0.0.1:3307", "findesk", "client", "client123456");
+        SGBD mybd = new SGBD();
         
         mybd.getConexaoMySQL();
         ArrayList strList = new ArrayList();
@@ -466,7 +467,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
     
     private static void popularComboBoxCor(){
-        SGBD mybd = new SGBD("127.0.0.1:3307", "findesk", "client", "client123456");
+        SGBD mybd = new SGBD();
         
         mybd.getConexaoMySQL();
         ArrayList strList = new ArrayList();
@@ -497,7 +498,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
     
     private static void popularComboBoxNome(String sql){
-        SGBD mybd = new SGBD("127.0.0.1:3307", "findesk", "client", "client123456");
+        SGBD mybd = new SGBD();
         
         mybd.getConexaoMySQL();
         ArrayList strList = new ArrayList();
