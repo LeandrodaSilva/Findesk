@@ -43,9 +43,9 @@ public class SGBD
     //Método Construtor da Classe//
     
     public SGBD() {
-        this.url = "jdbc:mysql://127.0.0.1:3307/findesk";
-        this.user = "client";
-        this.password = "client123456";
+        this.url = "jdbc:mysql://127.0.0.1:3306/findesk";
+        this.user = "utfpr";
+        this.password = "utfpr";
     }
  
     public SGBD(String ipPort, String database, String user, String password) {

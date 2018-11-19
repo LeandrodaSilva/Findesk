@@ -15,7 +15,6 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import model.SGBD;
-import view.NewClass;
 import view.NewJFrame;
 
 /**
@@ -28,9 +27,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private static DefaultComboBoxModel defaultComboBoxDiaInicial = new DefaultComboBoxModel();
     private static DefaultComboBoxModel defaultComboBoxMesInicial = new DefaultComboBoxModel();
     private static DefaultComboBoxModel defaultComboBoxAnoInicial = new DefaultComboBoxModel();
-    private static DefaultComboBoxModel defaultComboBoxDiaFinal = new DefaultComboBoxModel();
-    private static DefaultComboBoxModel defaultComboBoxMesFinal = new DefaultComboBoxModel();
-    private static DefaultComboBoxModel defaultComboBoxAnoFinal = new DefaultComboBoxModel();
     private static DefaultComboBoxModel defaultComboBoxCor = new DefaultComboBoxModel();
     private static DefaultComboBoxModel defaultComboBoxNome= new DefaultComboBoxModel();
     private static TelaPrincipal janelaControl;
@@ -69,10 +65,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabelDataInicial = new javax.swing.JLabel();
         jComboBoxMesInicial = new javax.swing.JComboBox<>();
         jComboBoxAnoInicial = new javax.swing.JComboBox<>();
-        jLabelDataFinal = new javax.swing.JLabel();
-        jComboBoxDiaFinal = new javax.swing.JComboBox<>();
-        jComboBoxMesFinal = new javax.swing.JComboBox<>();
-        jComboBoxAnoFinal = new javax.swing.JComboBox<>();
         jComboBoxCor = new javax.swing.JComboBox<>();
         jComboBoxNome = new javax.swing.JComboBox<>();
         jLabelCor = new javax.swing.JLabel();
@@ -89,7 +81,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabelConfirmar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabelConfirmar.setText("Vai!!");
         getContentPane().add(jLabelConfirmar);
-        jLabelConfirmar.setBounds(360, 470, 34, 14);
+        jLabelConfirmar.setBounds(380, 470, 34, 20);
 
         jButtonConfirmar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonConfirmar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/bt2.png"))); // NOI18N
@@ -100,7 +92,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonConfirmar);
-        jButtonConfirmar.setBounds(320, 450, 120, 70);
+        jButtonConfirmar.setBounds(340, 450, 120, 70);
 
         jComboBoxCategoria.setModel(defaultComboBoxCategoria);
         jComboBoxCategoria.setSelectedItem(jComboBoxCategoria);
@@ -116,10 +108,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabelTitulo.setForeground(new java.awt.Color(255, 255, 255));
         jLabelTitulo.setText("Buscar");
         getContentPane().add(jLabelTitulo);
-        jLabelTitulo.setBounds(320, 110, 120, 70);
+        jLabelTitulo.setBounds(350, 110, 120, 70);
 
         jLabelComboBoxCategoria.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelComboBoxCategoria.setText("Selecionar Categoria");
+        jLabelComboBoxCategoria.setText("*Selecionar Categoria");
         getContentPane().add(jLabelComboBoxCategoria);
         jLabelComboBoxCategoria.setBounds(210, 200, 140, 20);
 
@@ -133,7 +125,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jComboBoxDiaInicial.setBounds(350, 250, 70, 20);
 
         jLabelDataInicial.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelDataInicial.setText("Data de busca inicial ");
+        jLabelDataInicial.setText("*Data de busca inicial ");
         getContentPane().add(jLabelDataInicial);
         jLabelDataInicial.setBounds(210, 250, 130, 14);
 
@@ -155,38 +147,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         getContentPane().add(jComboBoxAnoInicial);
         jComboBoxAnoInicial.setBounds(510, 250, 110, 20);
 
-        jLabelDataFinal.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelDataFinal.setText("Data de busca final");
-        getContentPane().add(jLabelDataFinal);
-        jLabelDataFinal.setBounds(210, 280, 130, 14);
-
-        jComboBoxDiaFinal.setModel(defaultComboBoxDiaFinal);
-        jComboBoxDiaFinal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxDiaFinalActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jComboBoxDiaFinal);
-        jComboBoxDiaFinal.setBounds(350, 280, 70, 20);
-
-        jComboBoxMesFinal.setModel(defaultComboBoxMesFinal);
-        jComboBoxMesFinal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxMesFinalActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jComboBoxMesFinal);
-        jComboBoxMesFinal.setBounds(430, 280, 70, 20);
-
-        jComboBoxAnoFinal.setModel(defaultComboBoxAnoFinal);
-        jComboBoxAnoFinal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxAnoFinalActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jComboBoxAnoFinal);
-        jComboBoxAnoFinal.setBounds(510, 280, 110, 20);
-
         jComboBoxCor.setModel(defaultComboBoxCor);
         jComboBoxCor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -194,7 +154,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jComboBoxCor);
-        jComboBoxCor.setBounds(350, 310, 70, 20);
+        jComboBoxCor.setBounds(350, 330, 110, 20);
 
         jComboBoxNome.setModel(defaultComboBoxNome);
         jComboBoxNome.addActionListener(new java.awt.event.ActionListener() {
@@ -203,17 +163,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jComboBoxNome);
-        jComboBoxNome.setBounds(350, 340, 110, 20);
+        jComboBoxNome.setBounds(350, 290, 110, 20);
 
         jLabelCor.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelCor.setText("Cor do item");
+        jLabelCor.setText("*Cor do item");
         getContentPane().add(jLabelCor);
-        jLabelCor.setBounds(210, 310, 110, 14);
+        jLabelCor.setBounds(210, 330, 110, 14);
 
         jLabelNome.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelNome.setText("Nome do item");
+        jLabelNome.setText("*Nome do item");
         getContentPane().add(jLabelNome);
-        jLabelNome.setBounds(210, 340, 110, 14);
+        jLabelNome.setBounds(210, 290, 110, 14);
 
         jLabelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Fundo2.png"))); // NOI18N
         jLabelFundo.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Fundo2.png"))); // NOI18N
@@ -222,7 +182,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabelFundo.setBounds(0, 0, 800, 600);
     }// </editor-fold>//GEN-END:initComponents
 
-    
+    //Confirmar
     private void jButtonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfirmarActionPerformed
         // TODO add your handling code here:
         ocultar();
@@ -232,11 +192,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonConfirmarActionPerformed
     //Dia Inicial
     private void jComboBoxDiaInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxDiaInicialActionPerformed
-       if(estaMarcado("DataInicial")) showComponents("DataFinal");
+       if(estaMarcado("DataInicial")) showComponents("Cor");
     }//GEN-LAST:event_jComboBoxDiaInicialActionPerformed
     //Ano Inicial
     private void jComboBoxAnoInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxAnoInicialActionPerformed
-        if(estaMarcado("DataInicial")) showComponents("DataFinal");
+        if(estaMarcado("DataInicial")) showComponents("Cor");
     }//GEN-LAST:event_jComboBoxAnoInicialActionPerformed
     //Categoria
     private void jComboBoxCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCategoriaActionPerformed
@@ -254,25 +214,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxCategoriaActionPerformed
     //Mês Inicial
     private void jComboBoxMesInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxMesInicialActionPerformed
-        if(estaMarcado("DataInicial")) showComponents("DataFinal");
+        if(estaMarcado("DataInicial")) showComponents("Cor");
     }//GEN-LAST:event_jComboBoxMesInicialActionPerformed
-    //Dia Final
-    private void jComboBoxDiaFinalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxDiaFinalActionPerformed
-        if(estaMarcado("DataFinal")) showComponents("jButtonConfirmar");
-    }//GEN-LAST:event_jComboBoxDiaFinalActionPerformed
-    // Mês Final
-    private void jComboBoxMesFinalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxMesFinalActionPerformed
-        if(estaMarcado("DataFinal")) showComponents("jButtonConfirmar");
-    }//GEN-LAST:event_jComboBoxMesFinalActionPerformed
-    //Ano Final
-    private void jComboBoxAnoFinalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxAnoFinalActionPerformed
-        if(estaMarcado("DataFinal")) showComponents("Cor");
-    }//GEN-LAST:event_jComboBoxAnoFinalActionPerformed
-
+    //Cor
     private void jComboBoxCorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCorActionPerformed
         if(estaMarcado("Cor")) showComponents("Nome");
     }//GEN-LAST:event_jComboBoxCorActionPerformed
-
+    //Nome
     private void jComboBoxNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxNomeActionPerformed
         if(estaMarcado("Nome")) showComponents("jButtonConfirmar");
     }//GEN-LAST:event_jComboBoxNomeActionPerformed
@@ -328,10 +276,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jComboBoxMesInicial.hide();
         jComboBoxAnoInicial.hide();
      
-        jLabelDataFinal.hide();
-        jComboBoxDiaFinal.hide();
-        jComboBoxMesFinal.hide();
-        jComboBoxAnoFinal.hide();
+        
         
         jLabelCor.hide();
         jComboBoxCor.hide();
@@ -361,12 +306,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 jComboBoxAnoInicial.show();
                 jLabelDataInicial.show();  
             break;
-            case "DataFinal":
-                jLabelDataFinal.show();
-                jComboBoxDiaFinal.show();
-                jComboBoxMesFinal.show();
-                jComboBoxAnoFinal.show();
-            break;
             case "Cor":
                 jLabelCor.show();
                 jComboBoxCor.show();
@@ -390,19 +329,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
                     jComboBoxAnoInicial.getSelectedItem().toString() != "Ano"
                 ) return true;
             break;
-            
-            case "DataFinal":
-                if(jComboBoxDiaFinal.getSelectedItem().toString() != "Dia" &&
-                    jComboBoxMesFinal.getSelectedItem().toString() != "Mês" &&
-                    jComboBoxAnoFinal.getSelectedItem().toString() != "Ano"
-                ) return true;
-            break;
             case "Cor":
-                if(jComboBoxDiaFinal.getSelectedItem().toString() != "Cor"
+                if(jComboBoxCor.getSelectedItem().toString() != "Cor"
                 ) return true;
             break;
             case "Nome":
-                if(jComboBoxDiaFinal.getSelectedItem().toString() != "Nome"
+                if(jComboBoxNome.getSelectedItem().toString() != "Nome"
                 ) return true;
             break;
         }
@@ -411,7 +343,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
     
     private static void popularComboBoxCategoria(){
-        SGBD mybd = new SGBD("127.0.0.1:3307", "findesk", "client", "client123456");
+        SGBD mybd = new SGBD();
         
         mybd.getConexaoMySQL();
         ArrayList strList = new ArrayList();
@@ -422,7 +354,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         ResultSet rs = mybd.consultarItemBd("SELECT * FROM categoria");
        
         String nome;
-        
+        strList.add("Selecionar");
         try {
             rs.beforeFirst();
             while(rs.next()){
@@ -441,7 +373,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
    
     private static void popularComboBoxDia(){
-        SGBD mybd = new SGBD("127.0.0.1:3307", "findesk", "client", "client123456");
+        SGBD mybd = new SGBD();
         
         mybd.getConexaoMySQL();
         ArrayList strList = new ArrayList();
@@ -464,7 +396,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
         
         defaultComboBoxDiaInicial = new DefaultComboBoxModel(strList.toArray());
-        defaultComboBoxDiaFinal = new DefaultComboBoxModel(strList.toArray());
+        
         
         
         mybd.fecharConexao();
@@ -473,7 +405,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
     
     private static void popularComboBoxMes(){
-        SGBD mybd = new SGBD("127.0.0.1:3307", "findesk", "client", "client123456");
+        //"127.0.0.1:3307", "findesk", "client", "client123456"
+        SGBD mybd = new SGBD();
         
         mybd.getConexaoMySQL();
         ArrayList strList = new ArrayList();
@@ -496,7 +429,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
         
         defaultComboBoxMesInicial = new DefaultComboBoxModel(strList.toArray());
-        defaultComboBoxMesFinal = new DefaultComboBoxModel(strList.toArray());
         
         
         mybd.fecharConexao();
@@ -504,7 +436,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
     
     private static void popularComboBoxAno(){
-        SGBD mybd = new SGBD("127.0.0.1:3307", "findesk", "client", "client123456");
+        SGBD mybd = new SGBD();
         
         mybd.getConexaoMySQL();
         ArrayList strList = new ArrayList();
@@ -527,7 +459,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
         
         defaultComboBoxAnoInicial = new DefaultComboBoxModel(strList.toArray());
-        defaultComboBoxAnoFinal = new DefaultComboBoxModel(strList.toArray());
+       
         
         
         mybd.fecharConexao();
@@ -535,7 +467,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
     
     private static void popularComboBoxCor(){
-        SGBD mybd = new SGBD("127.0.0.1:3307", "findesk", "client", "client123456");
+        SGBD mybd = new SGBD();
         
         mybd.getConexaoMySQL();
         ArrayList strList = new ArrayList();
@@ -566,7 +498,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
     
     private static void popularComboBoxNome(String sql){
-        SGBD mybd = new SGBD("127.0.0.1:3307", "findesk", "client", "client123456");
+        SGBD mybd = new SGBD();
         
         mybd.getConexaoMySQL();
         ArrayList strList = new ArrayList();
@@ -596,19 +528,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonConfirmar;
-    private javax.swing.JComboBox<String> jComboBoxAnoFinal;
     private javax.swing.JComboBox<String> jComboBoxAnoInicial;
     private javax.swing.JComboBox<String> jComboBoxCategoria;
     private javax.swing.JComboBox<String> jComboBoxCor;
-    private javax.swing.JComboBox<String> jComboBoxDiaFinal;
     private javax.swing.JComboBox<String> jComboBoxDiaInicial;
-    private javax.swing.JComboBox<String> jComboBoxMesFinal;
     private javax.swing.JComboBox<String> jComboBoxMesInicial;
     private javax.swing.JComboBox<String> jComboBoxNome;
     private javax.swing.JLabel jLabelComboBoxCategoria;
     private javax.swing.JLabel jLabelConfirmar;
     private javax.swing.JLabel jLabelCor;
-    private javax.swing.JLabel jLabelDataFinal;
     private javax.swing.JLabel jLabelDataInicial;
     private javax.swing.JLabel jLabelFundo;
     private javax.swing.JLabel jLabelNome;
