@@ -27,13 +27,57 @@ public class suaJanela extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        jLabelFundo = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAutoRequestFocus(false);
         setResizable(false);
         setSize(new java.awt.Dimension(800, 600));
         getContentPane().setLayout(null);
 
-        pack();
+        jButton1.setText("Gerar Estatiscas");
+        getContentPane().add(jButton1);
+        jButton1.setBounds(340, 500, 120, 40);
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Categorias");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(50, 340, 180, 40);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Estatísticas");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(300, 90, 280, 70);
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Estado do item");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(50, 220, 180, 40);
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Perdido", "Resgatado" }));
+        getContentPane().add(jComboBox1);
+        jComboBox1.setBounds(50, 270, 77, 20);
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todas", "Eletronicôs", "Vestuário", "Recipientes", "Materiais", "Outros" }));
+        getContentPane().add(jComboBox2);
+        jComboBox2.setBounds(50, 390, 80, 20);
+
+        jLabelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Fundo2.png"))); // NOI18N
+        jLabelFundo.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Fundo2.png"))); // NOI18N
+        jLabelFundo.setEnabled(false);
+        getContentPane().add(jLabelFundo);
+        jLabelFundo.setBounds(0, 0, 800, 600);
+
+        setSize(new java.awt.Dimension(816, 639));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -73,5 +117,12 @@ public class suaJanela extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabelFundo;
     // End of variables declaration//GEN-END:variables
 }

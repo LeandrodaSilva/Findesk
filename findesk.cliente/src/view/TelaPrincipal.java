@@ -70,6 +70,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabelCor = new javax.swing.JLabel();
         jLabelNome = new javax.swing.JLabel();
         jLabelFundo = new javax.swing.JLabel();
+        jLabelTitulo1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Findesk");
@@ -180,6 +181,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabelFundo.setEnabled(false);
         getContentPane().add(jLabelFundo);
         jLabelFundo.setBounds(0, 0, 800, 600);
+
+        jLabelTitulo1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabelTitulo1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelTitulo1.setText("Buscar");
+        getContentPane().add(jLabelTitulo1);
+        jLabelTitulo1.setBounds(350, 110, 120, 70);
     }// </editor-fold>//GEN-END:initComponents
 
     //Confirmar
@@ -541,5 +548,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelFundo;
     private javax.swing.JLabel jLabelNome;
     private javax.swing.JLabel jLabelTitulo;
+    private javax.swing.JLabel jLabelTitulo1;
     // End of variables declaration//GEN-END:variables
 }
