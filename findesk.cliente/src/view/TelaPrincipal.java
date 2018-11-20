@@ -196,38 +196,22 @@ public class TelaPrincipal extends javax.swing.JFrame {
     //Confirmar
     private void jButtonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfirmarActionPerformed
         // TODO add your handling code here:
+        //"SELECT * FROM item, nome WHERE item.`idNome` = nome.`idNome` and nome.nome like \"PenDrive\";"
         String categoria = jComboBoxCategoria.getSelectedItem().toString();
         String dia = jComboBoxDiaInicial.getSelectedItem().toString();
         String mes = jComboBoxMesInicial.getSelectedItem().toString();
         String ano = jComboBoxAnoInicial.getSelectedItem().toString();
         String nome = jComboBoxNome.getSelectedItem().toString();
         String cor = jComboBoxCor.getSelectedItem().toString();
-        ///////////////////////////////////////////////////////////////////
-        SGBD mybd = new SGBD();
         
-        mybd.getConexaoMySQL();
-       
-         
-        ResultSet rs = mybd.consultarItemBd(
-                "SELECT * "
-              + "FROM item, nome"
-              + "WHERE item.`idNome` = nome.`idNome` "
-              + "and nome.nome like \""
-                        + nome
-                        + "\";");
-       
+        String consulta = "SELECT * FROM item, nome WHERE item.`idNome` = nome.`idNome` and nome.nome like "
+                +"\""+nome+"\""
+                +";";
         
-        mybd.fecharConexao();
-        
-        try {
-            int tam = rs.getFetchSize();
-        } catch (SQLException ex) {
-            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }
- 
-        BuscaUser buscaUser = new BuscaUser(rs);
+        System.out.println("Consulta realizada: " + consulta);
+        BuscaUser buscaUser = new BuscaUser();
         janelaControl.setVisible(false);
-        buscaUser.mostrar();
+        buscaUser.mostrar(consulta);
  
     }//GEN-LAST:event_jButtonConfirmarActionPerformed
     //Dia Inicial
