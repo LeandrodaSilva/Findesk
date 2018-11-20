@@ -75,7 +75,15 @@ public class BuscaUser extends javax.swing.JFrame {
 
         jTableResultado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
                 "Categoria", "Item", "Descrição"
