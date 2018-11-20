@@ -127,7 +127,9 @@ public class BuscaUser extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonVoltarActionPerformed
 
     private void jButtonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfirmarActionPerformed
-        
+        janelaControl.setVisible(false);
+        RequisicaoCliente janela = new RequisicaoCliente();
+        janela.mostrar();
     }//GEN-LAST:event_jButtonConfirmarActionPerformed
 
     /**
