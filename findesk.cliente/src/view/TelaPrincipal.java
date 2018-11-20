@@ -156,7 +156,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jComboBoxCor);
-        jComboBoxCor.setBounds(350, 330, 110, 20);
+        jComboBoxCor.setBounds(350, 290, 110, 20);
 
         jComboBoxNome.setModel(defaultComboBoxNome);
         jComboBoxNome.addActionListener(new java.awt.event.ActionListener() {
@@ -165,17 +165,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jComboBoxNome);
-        jComboBoxNome.setBounds(350, 290, 110, 20);
+        jComboBoxNome.setBounds(350, 330, 110, 20);
 
         jLabelCor.setForeground(new java.awt.Color(255, 255, 255));
         jLabelCor.setText("*Cor do item");
         getContentPane().add(jLabelCor);
-        jLabelCor.setBounds(210, 330, 110, 14);
+        jLabelCor.setBounds(210, 290, 110, 14);
 
         jLabelNome.setForeground(new java.awt.Color(255, 255, 255));
         jLabelNome.setText("*Nome do item");
         getContentPane().add(jLabelNome);
-        jLabelNome.setBounds(210, 290, 110, 14);
+        jLabelNome.setBounds(210, 330, 110, 14);
 
         jLabelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Fundo2.png"))); // NOI18N
         jLabelFundo.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Fundo2.png"))); // NOI18N
