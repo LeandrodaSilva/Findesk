@@ -123,7 +123,6 @@ public class SGBD
     public static ResultSet consultarItemBd(String sql){
         Statement stt;
         ResultSet rs = null;
-   
         try {
             stt = connection.createStatement(); 
             rs = stt.executeQuery(sql);

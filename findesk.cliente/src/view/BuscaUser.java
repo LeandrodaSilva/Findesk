@@ -8,6 +8,7 @@ import control.Usuario;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
@@ -27,9 +28,9 @@ public class BuscaUser extends javax.swing.JFrame {
     /**
      * Creates new form suaJanela
      */
-    public BuscaUser() {
+    public BuscaUser(ResultSet resultado) {
         initComponents();
-        popular();
+        popular(resultado);
     }
 
     /**
@@ -41,12 +42,11 @@ public class BuscaUser extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButtonProximo = new javax.swing.JButton();
-        jButtonAnterior = new javax.swing.JButton();
         jButtonVoltar = new javax.swing.JButton();
         jLabelTitulo = new javax.swing.JLabel();
         jScrollPaneResultado = new javax.swing.JScrollPane();
         jTableResultado = new javax.swing.JTable();
+        jButtonConfirmar = new javax.swing.JButton();
         jLabelFundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -55,24 +55,6 @@ public class BuscaUser extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(800, 600));
         getContentPane().setLayout(null);
 
-        jButtonProximo.setText("Próximo");
-        jButtonProximo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonProximoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButtonProximo);
-        jButtonProximo.setBounds(420, 510, 90, 23);
-
-        jButtonAnterior.setText("Anterior");
-        jButtonAnterior.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAnteriorActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButtonAnterior);
-        jButtonAnterior.setBounds(310, 510, 90, 23);
-
         jButtonVoltar.setText("Voltar");
         jButtonVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -80,7 +62,7 @@ public class BuscaUser extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonVoltar);
-        jButtonVoltar.setBounds(60, 70, 61, 23);
+        jButtonVoltar.setBounds(70, 530, 61, 23);
 
         jLabelTitulo.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabelTitulo.setForeground(new java.awt.Color(255, 255, 255));
@@ -90,15 +72,7 @@ public class BuscaUser extends javax.swing.JFrame {
 
         jTableResultado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Categoria", "Item", "Descrição"
@@ -124,6 +98,10 @@ public class BuscaUser extends javax.swing.JFrame {
         getContentPane().add(jScrollPaneResultado);
         jScrollPaneResultado.setBounds(60, 100, 680, 402);
 
+        jButtonConfirmar.setText("Confirmar");
+        getContentPane().add(jButtonConfirmar);
+        jButtonConfirmar.setBounds(640, 530, 100, 23);
+
         jLabelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Fundo2.png"))); // NOI18N
         jLabelFundo.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Fundo2.png"))); // NOI18N
         jLabelFundo.setEnabled(false);
@@ -133,14 +111,6 @@ public class BuscaUser extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(816, 639));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButtonProximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProximoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonProximoActionPerformed
-
-    private void jButtonAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnteriorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAnteriorActionPerformed
 
     private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
         janelaControl.dispose();
@@ -177,52 +147,32 @@ public class BuscaUser extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                BuscaUser buscaUser = new BuscaUser();
+                BuscaUser buscaUser = new BuscaUser(null);
                 buscaUser.setVisible(true);
                 janelaControl = buscaUser;
             }
         });
     }
     
-    private  void popular(){
+    private  void popular(ResultSet resultado){
         String categoria = "Eletrônicos";
         String item = "Pendrive";
         String descricao = "lindo";
         String[] colunas = {"Categoria", "Item", "Descrição"};
-        Object[] linha = {categoria, item, descricao};
-        SGBD mybd = new SGBD();
+        ResultSet linha = resultado;
         
-        mybd.getConexaoMySQL();
-        ArrayList strList = new ArrayList();
-        System.out.println(mybd.statusConection());
-        
-        
-        
-        ResultSet rs = mybd.consultarItemBd("SELECT * FROM categoria");
+      
        
-        String nome;
-        strList.add("Selecionar");
-        try {
-            rs.beforeFirst();
-            while(rs.next()){
-                nome = rs.getString(2);
-                strList.add(nome);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
-        }
         
         defaultTableResultado = (DefaultTableModel) jTableResultado.getModel();
-        defaultTableResultado.insertRow(1,linha);
+        defaultTableResultado.addRow((Vector) linha);
         
         
-        mybd.fecharConexao();
         
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonAnterior;
-    private javax.swing.JButton jButtonProximo;
+    private javax.swing.JButton jButtonConfirmar;
     private javax.swing.JButton jButtonVoltar;
     private javax.swing.JLabel jLabelFundo;
     private javax.swing.JLabel jLabelTitulo;
