@@ -2,21 +2,23 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< Updated upstream
 <<<<<<< HEAD
         <group/>
 =======
 <<<<<<< HEAD
         <group/>
 =======
+=======
+>>>>>>> Stashed changes
         <group>
-            <file>file:/C:/Users/victo/Desktop/Findesk/findesk.admnistrador/src/view/suaJanela.java</file>
-            <file>file:/C:/Users/victo/Desktop/Findesk/findesk.admnistrador/src/control/Administrador.java</file>
-            <file>file:/C:/Users/victo/Desktop/Findesk/findesk.admnistrador/src/view/images/Fundo.png</file>
-            <file>file:/C:/Users/victo/Desktop/Findesk/findesk.admnistrador/src/view/images/Tela%20de%20seleção%20da%20categoria.png</file>
-            <file>file:/C:/Users/victo/Desktop/Findesk/findesk.admnistrador/src/view/buscaAdm.java</file>
-            <file>file:/C:/Users/victo/Desktop/Findesk/findesk.admnistrador/src/view/images/Tela%20de%20seleção%20da%20categoria%20(clic).png</file>
+            <file>file:/C:/Users/ld_si/OneDrive/Documentos/oficina/git/Findesk/findesk.admnistrador/src/control/Administrador.java</file>
+            <file>file:/C:/Users/ld_si/OneDrive/Documentos/oficina/git/Findesk/findesk.admnistrador/src/view/buscaAdm.java</file>
         </group>
+<<<<<<< Updated upstream
 >>>>>>> master
 >>>>>>> master
+=======
+>>>>>>> Stashed changes
     </open-files>
 </project-private>
