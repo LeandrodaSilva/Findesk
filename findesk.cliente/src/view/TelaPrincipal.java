@@ -15,7 +15,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import model.SGBD;
-import view.NewJFrame;
+
 
 /**
  *
@@ -192,10 +192,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     //Confirmar
     private void jButtonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfirmarActionPerformed
         // TODO add your handling code here:
-        ocultar();
-        NewJFrame novo = new NewJFrame();
-        novo.criar();
-        janelaControl.fechar();
     }//GEN-LAST:event_jButtonConfirmarActionPerformed
     //Dia Inicial
     private void jComboBoxDiaInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxDiaInicialActionPerformed
