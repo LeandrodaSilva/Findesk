@@ -4,18 +4,32 @@
  * and open the template in the editor.
  */
 package view;
+import control.Usuario;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.table.DefaultTableModel;
+import model.SGBD;
+import view.*;
 
 /**
  *
  * @author ld_si
  */
 public class BuscaUser extends javax.swing.JFrame {
+    
+    private static BuscaUser janelaControl;
+    private  DefaultTableModel defaultTableResultado;
 
     /**
      * Creates new form suaJanela
      */
     public BuscaUser() {
         initComponents();
+        popular();
     }
 
     /**
@@ -27,11 +41,12 @@ public class BuscaUser extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jButtonProximo = new javax.swing.JButton();
+        jButtonAnterior = new javax.swing.JButton();
+        jButtonVoltar = new javax.swing.JButton();
+        jLabelTitulo = new javax.swing.JLabel();
+        jScrollPaneResultado = new javax.swing.JScrollPane();
+        jTableResultado = new javax.swing.JTable();
         jLabelFundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -40,31 +55,40 @@ public class BuscaUser extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(800, 600));
         getContentPane().setLayout(null);
 
-        jButton1.setText("Próximo");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonProximo.setText("Próximo");
+        jButtonProximo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonProximoActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(390, 510, 120, 40);
+        getContentPane().add(jButtonProximo);
+        jButtonProximo.setBounds(420, 510, 90, 23);
 
-        jButton2.setText("Anterior");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonAnterior.setText("Anterior");
+        jButtonAnterior.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButtonAnteriorActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2);
-        jButton2.setBounds(210, 510, 120, 40);
+        getContentPane().add(jButtonAnterior);
+        jButtonAnterior.setBounds(310, 510, 90, 23);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Busca ");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(310, 0, 280, 70);
+        jButtonVoltar.setText("Voltar");
+        jButtonVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVoltarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonVoltar);
+        jButtonVoltar.setBounds(60, 70, 61, 23);
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jLabelTitulo.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabelTitulo.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelTitulo.setText("Busca ");
+        getContentPane().add(jLabelTitulo);
+        jLabelTitulo.setBounds(340, 30, 110, 70);
+
+        jTableResultado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -95,10 +119,10 @@ public class BuscaUser extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable2);
+        jScrollPaneResultado.setViewportView(jTableResultado);
 
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(40, 70, 680, 402);
+        getContentPane().add(jScrollPaneResultado);
+        jScrollPaneResultado.setBounds(60, 100, 680, 402);
 
         jLabelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Fundo2.png"))); // NOI18N
         jLabelFundo.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Fundo2.png"))); // NOI18N
@@ -110,13 +134,19 @@ public class BuscaUser extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonProximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProximoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButtonProximoActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButtonAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnteriorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jButtonAnteriorActionPerformed
+
+    private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
+        janelaControl.dispose();
+        TelaPrincipal telaPrincipal = new TelaPrincipal();
+        telaPrincipal.mostrar();
+    }//GEN-LAST:event_jButtonVoltarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -147,18 +177,56 @@ public class BuscaUser extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                
-                new BuscaUser().setVisible(true);
+                BuscaUser buscaUser = new BuscaUser();
+                buscaUser.setVisible(true);
+                janelaControl = buscaUser;
             }
         });
     }
+    
+    private  void popular(){
+        String categoria = "Eletrônicos";
+        String item = "Pendrive";
+        String descricao = "lindo";
+        String[] colunas = {"Categoria", "Item", "Descrição"};
+        Object[] linha = {categoria, item, descricao};
+        SGBD mybd = new SGBD();
+        
+        mybd.getConexaoMySQL();
+        ArrayList strList = new ArrayList();
+        System.out.println(mybd.statusConection());
+        
+        
+        
+        ResultSet rs = mybd.consultarItemBd("SELECT * FROM categoria");
+       
+        String nome;
+        strList.add("Selecionar");
+        try {
+            rs.beforeFirst();
+            while(rs.next()){
+                nome = rs.getString(2);
+                strList.add(nome);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        defaultTableResultado = (DefaultTableModel) jTableResultado.getModel();
+        defaultTableResultado.insertRow(1,linha);
+        
+        
+        mybd.fecharConexao();
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton jButtonAnterior;
+    private javax.swing.JButton jButtonProximo;
+    private javax.swing.JButton jButtonVoltar;
     private javax.swing.JLabel jLabelFundo;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JLabel jLabelTitulo;
+    private javax.swing.JScrollPane jScrollPaneResultado;
+    private javax.swing.JTable jTableResultado;
     // End of variables declaration//GEN-END:variables
 }

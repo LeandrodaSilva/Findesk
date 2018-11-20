@@ -15,6 +15,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import model.SGBD;
+import view.BuscaUser;
 
 
 /**
@@ -28,7 +29,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private static DefaultComboBoxModel defaultComboBoxMesInicial = new DefaultComboBoxModel();
     private static DefaultComboBoxModel defaultComboBoxAnoInicial = new DefaultComboBoxModel();
     private static DefaultComboBoxModel defaultComboBoxCor = new DefaultComboBoxModel();
-    private static DefaultComboBoxModel defaultComboBoxNome= new DefaultComboBoxModel();
+    private static DefaultComboBoxModel defaultComboBoxNome = new DefaultComboBoxModel();
     private static TelaPrincipal janelaControl;
 
     /**
@@ -187,11 +188,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabelTitulo1.setText("Buscar");
         getContentPane().add(jLabelTitulo1);
         jLabelTitulo1.setBounds(350, 110, 120, 70);
+
+        setSize(new java.awt.Dimension(815, 638));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     //Confirmar
     private void jButtonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfirmarActionPerformed
         // TODO add your handling code here:
+        BuscaUser buscaUser = new BuscaUser();
+        janelaControl.setVisible(false);
+        buscaUser.mostrar();
+ 
     }//GEN-LAST:event_jButtonConfirmarActionPerformed
     //Dia Inicial
     private void jComboBoxDiaInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxDiaInicialActionPerformed
