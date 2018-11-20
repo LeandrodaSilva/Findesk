@@ -5,6 +5,14 @@
  */
 package view;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
+import model.SGBD;
+
 /**
  *
  * @author ld_si
@@ -16,8 +24,19 @@ public class buscaAdm extends javax.swing.JFrame {
      */
     public buscaAdm() {
         initComponents();
+        popularComboBoxCategoria();
     }
+    
+    private static DefaultComboBoxModel defaultComboBoxCategoria = new DefaultComboBoxModel();
+    private static DefaultComboBoxModel defaultComboBoxDiaInicial = new DefaultComboBoxModel();
+    private static DefaultComboBoxModel defaultComboBoxMesInicial = new DefaultComboBoxModel();
+    private static DefaultComboBoxModel defaultComboBoxAnoInicial = new DefaultComboBoxModel();
+    private static DefaultComboBoxModel defaultComboBoxCor = new DefaultComboBoxModel();
+    private static DefaultComboBoxModel defaultComboBoxNome= new DefaultComboBoxModel();
+ 
 
+
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -74,9 +93,14 @@ public class buscaAdm extends javax.swing.JFrame {
         getContentPane().add(jLabel1);
         jLabel1.setBounds(310, 0, 280, 70);
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todas", "Eletronicôs", "Vestuário", "Recipientes", "Materiais", "Outros" }));
+        jComboBox2.setModel(defaultComboBoxCategoria);
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jComboBox2);
-        jComboBox2.setBounds(70, 150, 80, 20);
+        jComboBox2.setBounds(70, 150, 28, 20);
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -150,10 +174,14 @@ public class buscaAdm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void nomeQualquer() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -200,4 +228,34 @@ public class buscaAdm extends javax.swing.JFrame {
     private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
+private static void popularComboBoxCategoria(){
+        SGBD mybd = new SGBD();
+        
+        mybd.getConexaoMySQL();
+        ArrayList strList = new ArrayList();
+        System.out.println(mybd.statusConection());
+        
+        
+        
+        ResultSet rs = mybd.consultarItemBd("SELECT * FROM categoria");
+       
+        String nome;
+        strList.add("Selecionar");
+        /*try {
+            rs.beforeFirst();
+            while(rs.next()){
+                nome = rs.getString(2);
+                strList.add(nome);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        */
+        defaultComboBoxCategoria = new DefaultComboBoxModel(strList.toArray());
+        
+        
+        mybd.fecharConexao();
+        
+    }
+
 }

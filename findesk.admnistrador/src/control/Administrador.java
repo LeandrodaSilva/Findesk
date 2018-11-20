@@ -1,6 +1,6 @@
 package control;
 import view.suaJanela;
-import view.buscaAdm
+import view.buscaAdm;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -19,7 +19,7 @@ public class Administrador {
     public static void main(String[] args) {
         view.suaJanela view = new view.suaJanela();
         view.buscaAdm ba = new view.buscaAdm();
-        view.setVisible(true);
+        ba.nomeQualquer();
         view.setSize(800, 600);
     }
     
