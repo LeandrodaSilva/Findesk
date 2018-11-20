@@ -59,15 +59,15 @@ public class RequisicaoCliente extends javax.swing.JFrame {
         getContentPane().add(jLabel2);
         jLabel2.setBounds(290, 240, 110, 14);
 
-        jLabelTitulo.setText("jLabel3");
+        jLabelTitulo.setText("Requerimento");
         getContentPane().add(jLabelTitulo);
-        jLabelTitulo.setBounds(380, 150, 34, 14);
+        jLabelTitulo.setBounds(360, 150, 120, 14);
 
         jLabelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Fundo2.png"))); // NOI18N
         getContentPane().add(jLabelFundo);
         jLabelFundo.setBounds(0, -10, 800, 620);
 
-        pack();
+        setSize(new java.awt.Dimension(814, 661));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
