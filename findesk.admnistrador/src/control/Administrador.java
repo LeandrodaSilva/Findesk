@@ -1,6 +1,5 @@
 package control;
-import view.Estatisticas;
-import view.BuscaAdm;
+import view.TelaPrincipalAdm;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -16,9 +15,8 @@ public class Administrador {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Estatisticas view = new Estatisticas();
-        BuscaAdm ba = new BuscaAdm();
-        ba.nomeQualquer();
+        TelaPrincipalAdm telaPrincipalAdm = new TelaPrincipalAdm();
+        telaPrincipalAdm.setVisible(true);
     }
     
 }

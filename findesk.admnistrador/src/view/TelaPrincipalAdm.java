@@ -14,6 +14,8 @@ public class TelaPrincipalAdm extends javax.swing.JFrame {
     /**
      * Creates new form TelaPrincipal
      */
+    private static TelaPrincipalAdm janelaControl; 
+            
     public TelaPrincipalAdm() {
         initComponents();
     }
@@ -27,42 +29,59 @@ public class TelaPrincipalAdm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabelCadastrar1 = new javax.swing.JLabel();
+        jLabelCadastrar3 = new javax.swing.JLabel();
+        jButtonCadastrar = new javax.swing.JButton();
+        jButtonBuscar = new javax.swing.JButton();
         jLabelFundoCadastrar = new javax.swing.JLabel();
 
+        jLabelCadastrar1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabelCadastrar1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelCadastrar1.setText("Cadastrar Item");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(800, 600));
+        getContentPane().setLayout(null);
+
+        jLabelCadastrar3.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabelCadastrar3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelCadastrar3.setText("FinDesk");
+        getContentPane().add(jLabelCadastrar3);
+        jLabelCadastrar3.setBounds(330, 0, 280, 70);
+
+        jButtonCadastrar.setText("Cadastrar Item");
+        jButtonCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCadastrarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonCadastrar);
+        jButtonCadastrar.setBounds(260, 300, 260, 60);
+
+        jButtonBuscar.setText("Buscar Item");
+        getContentPane().add(jButtonBuscar);
+        jButtonBuscar.setBounds(260, 180, 260, 60);
 
         jLabelFundoCadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Fundo2.png"))); // NOI18N
         jLabelFundoCadastrar.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Fundo2.png"))); // NOI18N
         jLabelFundoCadastrar.setEnabled(false);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jLabelFundoCadastrar)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jLabelFundoCadastrar)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        getContentPane().add(jLabelFundoCadastrar);
+        jLabelFundoCadastrar.setBounds(0, -20, 800, 600);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
+        janelaControl.setVisible(false);
+        CadastrarItem cadastrarItem = new CadastrarItem();
+        cadastrarItem.mostrar();
+    }//GEN-LAST:event_jButtonCadastrarActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void mostrar() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -90,12 +109,18 @@ public class TelaPrincipalAdm extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaPrincipalAdm().setVisible(true);
+                TelaPrincipalAdm telaPrincipal = new TelaPrincipalAdm();
+                telaPrincipal.setVisible(true);
+                janelaControl = telaPrincipal;
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonBuscar;
+    private javax.swing.JButton jButtonCadastrar;
+    private javax.swing.JLabel jLabelCadastrar1;
+    private javax.swing.JLabel jLabelCadastrar3;
     private javax.swing.JLabel jLabelFundoCadastrar;
     // End of variables declaration//GEN-END:variables
 }

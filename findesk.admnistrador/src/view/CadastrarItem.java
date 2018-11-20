@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package view;
-
 import javax.swing.JOptionPane;
 
 /**
@@ -16,6 +15,8 @@ public class CadastrarItem extends javax.swing.JFrame {
     /**
      * Creates new form CadastrarItem
      */
+    private static CadastrarItem janelaControl;
+    
     public CadastrarItem() {
         initComponents();
     }
@@ -41,6 +42,7 @@ public class CadastrarItem extends javax.swing.JFrame {
         jComboBox4 = new javax.swing.JComboBox<>();
         jLabelDataPerda1 = new javax.swing.JLabel();
         jTextFieldNomeItem1 = new javax.swing.JTextField();
+        jButtonVoltar = new javax.swing.JButton();
         jLabelFundoCadastrar = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -68,7 +70,7 @@ public class CadastrarItem extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonCadastrar);
-        jButtonCadastrar.setBounds(330, 520, 150, 40);
+        jButtonCadastrar.setBounds(330, 510, 150, 40);
 
         jLabelDataDescrição.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabelDataDescrição.setForeground(new java.awt.Color(255, 255, 255));
@@ -106,23 +108,39 @@ public class CadastrarItem extends javax.swing.JFrame {
         getContentPane().add(jTextFieldNomeItem1);
         jTextFieldNomeItem1.setBounds(210, 120, 200, 30);
 
+        jButtonVoltar.setText("Voltar");
+        jButtonVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVoltarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonVoltar);
+        jButtonVoltar.setBounds(20, 530, 73, 23);
+
         jLabelFundoCadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Fundo2.png"))); // NOI18N
         jLabelFundoCadastrar.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Fundo2.png"))); // NOI18N
         jLabelFundoCadastrar.setEnabled(false);
         getContentPane().add(jLabelFundoCadastrar);
-        jLabelFundoCadastrar.setBounds(0, -10, 800, 600);
+        jLabelFundoCadastrar.setBounds(0, 0, 800, 600);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
         JOptionPane.showConfirmDialog(null, "Deseja confirmar o cadastro?");
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
 
+    private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
+       janelaControl.dispose();
+       TelaPrincipalAdm telaPrincipal = new TelaPrincipalAdm();
+       telaPrincipal.mostrar();
+    }//GEN-LAST:event_jButtonVoltarActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void mostrar() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -147,15 +165,19 @@ public class CadastrarItem extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CadastrarItem().setVisible(true);
+                CadastrarItem cadastrarItem = new CadastrarItem();
+                cadastrarItem.setVisible(true);
+                janelaControl = cadastrarItem;
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCadastrar;
+    private javax.swing.JButton jButtonVoltar;
     private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JComboBox<String> jComboBoxAno;
     private javax.swing.JComboBox<String> jComboBoxDia;

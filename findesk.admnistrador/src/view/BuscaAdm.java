@@ -32,7 +32,7 @@ public class BuscaAdm extends javax.swing.JFrame {
     private static DefaultComboBoxModel defaultComboBoxAnoInicial = new DefaultComboBoxModel();
     private static DefaultComboBoxModel defaultComboBoxCor = new DefaultComboBoxModel();
     private static DefaultComboBoxModel defaultComboBoxNome= new DefaultComboBoxModel();
-    private static BuscaAdm baControl;
+    private static BuscaAdm janelaControl;
  
   public BuscaAdm() {
         initComponents();
@@ -204,44 +204,6 @@ public class BuscaAdm extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void nomeQualquer() {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BuscaAdm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BuscaAdm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BuscaAdm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BuscaAdm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new BuscaAdm().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAlterar;
@@ -313,19 +275,19 @@ private static void popularComboBoxCategoria(){
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {  
-                BuscaAdm ba =  new BuscaAdm();
-               baControl = ba;
-                ba.setVisible(true);
+               BuscaAdm buscaAdm =  new BuscaAdm();
+               buscaAdm.setVisible(true);
+               janelaControl = buscaAdm;
             }
         });
     }
     
     public static void ocultar(){
-         baControl.setVisible(false);
+         janelaControl.setVisible(false);
     }
     
     public static void fechar(){
-         baControl.dispose();
+         janelaControl.dispose();
     }
     
     private void hideComponents(){
