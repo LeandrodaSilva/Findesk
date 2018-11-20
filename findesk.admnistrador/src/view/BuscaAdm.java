@@ -164,13 +164,17 @@ public class BuscaAdm extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
+=======
+>>>>>>> parent of d64378d... Revert "Tela cadastro adm"
         jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable2MouseClicked(evt);
             }
         });
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
         jTable2.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -180,6 +184,8 @@ public class BuscaAdm extends javax.swing.JFrame {
         });
 >>>>>>> Stashed changes
 >>>>>>> Stashed changes
+=======
+>>>>>>> parent of d64378d... Revert "Tela cadastro adm"
         jScrollPane1.setViewportView(jTable2);
 
         getContentPane().add(jScrollPane1);
@@ -221,6 +227,7 @@ public class BuscaAdm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btAlterarActionPerformed
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
     private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
@@ -242,6 +249,14 @@ Updated upstream
 
 >>>>>>> Stashed changes
 >>>>>>> Stashed changes
+=======
+    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+        if(jTable2.getSelectedRow() == -1){
+            jTable2.getCellEditor(jTable2.getSelectedRow(), NORMAL)
+        }
+    }//GEN-LAST:event_jTable2MouseClicked
+
+>>>>>>> parent of d64378d... Revert "Tela cadastro adm"
     /**
      * @param args the command line arguments
      */

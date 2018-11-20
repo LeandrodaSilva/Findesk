@@ -188,6 +188,7 @@
               </Table>
             </Property>
           </Properties>
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
           <Events>
@@ -198,6 +199,11 @@
 >>>>>>> Stashed changes
           </Events>
 >>>>>>> Stashed changes
+=======
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTable2MouseClicked"/>
+          </Events>
+>>>>>>> parent of d64378d... Revert "Tela cadastro adm"
         </Component>
       </SubComponents>
     </Container>
