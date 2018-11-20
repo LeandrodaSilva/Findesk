@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import model.SGBD;
 
 /**
@@ -30,6 +32,7 @@ public class BuscaAdm extends javax.swing.JFrame {
     private static DefaultComboBoxModel defaultComboBoxAnoInicial = new DefaultComboBoxModel();
     private static DefaultComboBoxModel defaultComboBoxCor = new DefaultComboBoxModel();
     private static DefaultComboBoxModel defaultComboBoxNome= new DefaultComboBoxModel();
+    private static BuscaAdm baControl;
  
   public BuscaAdm() {
         initComponents();
@@ -48,6 +51,7 @@ public class BuscaAdm extends javax.swing.JFrame {
 
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        btAlterar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
@@ -70,7 +74,7 @@ public class BuscaAdm extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(390, 510, 120, 40);
+        jButton1.setBounds(370, 510, 120, 40);
 
         jButton2.setText("Anterior");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -80,6 +84,15 @@ public class BuscaAdm extends javax.swing.JFrame {
         });
         getContentPane().add(jButton2);
         jButton2.setBounds(210, 510, 120, 40);
+
+        btAlterar.setText("Alterar");
+        btAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAlterarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btAlterar);
+        btAlterar.setBounds(520, 510, 100, 40);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -100,7 +113,7 @@ public class BuscaAdm extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jComboBox2);
-        jComboBox2.setBounds(70, 150, 120, 20);
+        jComboBox2.setBounds(70, 140, 120, 20);
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,11 +127,11 @@ public class BuscaAdm extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Categorias");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(70, 100, 180, 40);
+        jLabel3.setBounds(70, 90, 180, 40);
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
+                {"t7", "kk", null},
                 {null, null, null},
                 {null, null, null},
                 {null, null, null},
@@ -178,6 +191,16 @@ public class BuscaAdm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
+    private void btAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAlterarActionPerformed
+
+        if(jTable2.getSelectedRow() == -1){
+            JOptionPane.showConfirmDialog(null, "Primeiro selecione um item");
+        }
+        else{
+            jTable2.setEditingRow(jTable2.getSelectedRow());
+        }
+    }//GEN-LAST:event_btAlterarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -221,6 +244,7 @@ public class BuscaAdm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btAlterar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox2;
@@ -265,5 +289,65 @@ private static void popularComboBoxCategoria(){
         mybd.fecharConexao();
         
     }
+   public static void mostrar() {
+        /* Set the Nimbus look and feel */
+
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(BuscaAdm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(BuscaAdm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(BuscaAdm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(BuscaAdm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {  
+                BuscaAdm ba =  new BuscaAdm();
+               baControl = ba;
+                ba.setVisible(true);
+            }
+        });
+    }
+    
+    public static void ocultar(){
+         baControl.setVisible(false);
+    }
+    
+    public static void fechar(){
+         baControl.dispose();
+    }
+    
+    private void hideComponents(){
+        btAlterar.hide();
+
+    }
+    
+    public ImageIcon criarImageIcon(String caminho, String descricao) {
+		java.net.URL imgURL = getClass().getResource(caminho);
+		if (imgURL != null) {
+			return new ImageIcon(imgURL, descricao);
+		} else {
+			System.err.println("Não foi possível carregar o arquivo de imagem: " + caminho);
+			return null;
+		}
+	}
+    
+    private void showComponents(String opt){
+     
+                btAlterar.show();
+           
+    }
+    
 
 }
