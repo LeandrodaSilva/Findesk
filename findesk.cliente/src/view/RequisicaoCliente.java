@@ -32,7 +32,8 @@ public class RequisicaoCliente extends javax.swing.JFrame {
         JLabelDocumento = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        jLabelTitulo = new javax.swing.JLabel();
+        jLabelFundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -40,25 +41,31 @@ public class RequisicaoCliente extends javax.swing.JFrame {
 
         JButtonConfirmar.setText("Confirmar");
         getContentPane().add(JButtonConfirmar);
-        JButtonConfirmar.setBounds(390, 330, 100, 23);
+        JButtonConfirmar.setBounds(350, 500, 100, 23);
         getContentPane().add(JTFDocumento);
-        JTFDocumento.setBounds(390, 280, 100, 20);
+        JTFDocumento.setBounds(410, 280, 100, 20);
 
+        JLabelDocumento.setForeground(new java.awt.Color(255, 255, 255));
         JLabelDocumento.setText("Nº documento");
         getContentPane().add(JLabelDocumento);
-        JLabelDocumento.setBounds(300, 280, 80, 14);
+        JLabelDocumento.setBounds(290, 280, 80, 14);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "RA", "SIAPE", "RG", " " }));
         getContentPane().add(jComboBox1);
         jComboBox1.setBounds(410, 240, 56, 20);
 
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Tipo de Documento");
         getContentPane().add(jLabel2);
         jLabel2.setBounds(290, 240, 110, 14);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Fundo2.png"))); // NOI18N
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, -10, 800, 620);
+        jLabelTitulo.setText("jLabel3");
+        getContentPane().add(jLabelTitulo);
+        jLabelTitulo.setBounds(380, 150, 34, 14);
+
+        jLabelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Fundo2.png"))); // NOI18N
+        getContentPane().add(jLabelFundo);
+        jLabelFundo.setBounds(0, -10, 800, 620);
 
         pack();
         setLocationRelativeTo(null);
@@ -105,7 +112,8 @@ public class RequisicaoCliente extends javax.swing.JFrame {
     private javax.swing.JLabel JLabelDocumento;
     private javax.swing.JTextField JTFDocumento;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabelFundo;
+    private javax.swing.JLabel jLabelTitulo;
     // End of variables declaration//GEN-END:variables
 }
