@@ -25,7 +25,7 @@ public class Usuario {
   
     public static void main(String[] args) {
        TelaPrincipal mytela = new TelaPrincipal();
-       BuscaUser bu = new BuscaUser();
+       //BuscaUser bu = new BuscaUser();
        mytela.mostrar();
     }
     
