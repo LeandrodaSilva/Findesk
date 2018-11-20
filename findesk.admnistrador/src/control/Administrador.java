@@ -16,10 +16,9 @@ public class Administrador {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        view.Estatisticas view = new view.Estatisticas();
-        view.BuscaAdm ba = new view.BuscaAdm();
+        Estatisticas view = new Estatisticas();
+        BuscaAdm ba = new BuscaAdm();
         ba.nomeQualquer();
-        view.setSize(800, 600);
     }
     
 }

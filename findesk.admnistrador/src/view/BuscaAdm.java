@@ -100,7 +100,7 @@ public class BuscaAdm extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jComboBox2);
-        jComboBox2.setBounds(70, 150, 28, 20);
+        jComboBox2.setBounds(70, 150, 120, 20);
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -245,16 +245,20 @@ private static void popularComboBoxCategoria(){
        
         String nome;
         strList.add("Selecionar");
-        /*try {
+
+        try {
             rs.beforeFirst();
-            while(rs.next()){
+             while(rs.next()){
                 nome = rs.getString(2);
                 strList.add(nome);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BuscaAdm.class.getName()).log(Level.SEVERE, null, ex);
         }
-        */
+           
+        
+       
+       
         defaultComboBoxCategoria = new DefaultComboBoxModel(strList.toArray());
         
         
