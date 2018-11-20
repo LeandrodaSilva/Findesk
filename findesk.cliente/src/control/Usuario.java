@@ -11,7 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.SGBD;
 import view.TelaPrincipal;
-import view.buscaUser;
+import view.BuscaUser;
 /**
  *
  * @author ld_si
@@ -25,7 +25,7 @@ public class Usuario {
   
     public static void main(String[] args) {
        TelaPrincipal mytela = new TelaPrincipal();
-       buscaUser bu = new buscaUser();
+       BuscaUser bu = new BuscaUser();
        mytela.mostrar();
     }
     
