@@ -59,9 +59,10 @@ public class BuscaAdm extends javax.swing.JFrame {
         jComboBox2 = new javax.swing.JComboBox<>();
         jTextField1 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
+        btBusca = new javax.swing.JToggleButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
-        jLabelFundo = new javax.swing.JLabel();
+        palavraChave = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAutoRequestFocus(false);
@@ -122,9 +123,18 @@ public class BuscaAdm extends javax.swing.JFrame {
         getContentPane().add(jLabel3);
         jLabel3.setBounds(70, 90, 180, 40);
 
+        btBusca.setText("OK");
+        btBusca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btBuscaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btBusca);
+        btBusca.setBounds(550, 130, 50, 30);
+
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"t7", "kk", null},
+                {"", "kk", null},
                 {null, null, null},
                 {null, null, null},
                 {null, null, null},
@@ -151,11 +161,11 @@ public class BuscaAdm extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(40, 180, 680, 310);
 
-        jLabelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Fundo2.png"))); // NOI18N
-        jLabelFundo.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Fundo2.png"))); // NOI18N
-        jLabelFundo.setEnabled(false);
-        getContentPane().add(jLabelFundo);
-        jLabelFundo.setBounds(0, 0, 800, 600);
+        palavraChave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Fundo2.png"))); // NOI18N
+        palavraChave.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Fundo2.png"))); // NOI18N
+        palavraChave.setEnabled(false);
+        getContentPane().add(palavraChave);
+        palavraChave.setBounds(0, 0, 800, 600);
 
         setSize(new java.awt.Dimension(816, 639));
         setLocationRelativeTo(null);
@@ -176,6 +186,10 @@ public class BuscaAdm extends javax.swing.JFrame {
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox2ActionPerformed
+
+    private void btBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscaActionPerformed
+        
+    }//GEN-LAST:event_btBuscaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -220,16 +234,17 @@ public class BuscaAdm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton btBusca;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabelFundo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel palavraChave;
     // End of variables declaration//GEN-END:variables
 private static void popularComboBoxCategoria(){
         SGBD mybd = new SGBD();
