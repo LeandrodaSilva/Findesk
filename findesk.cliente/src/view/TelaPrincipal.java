@@ -196,7 +196,36 @@ public class TelaPrincipal extends javax.swing.JFrame {
     //Confirmar
     private void jButtonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfirmarActionPerformed
         // TODO add your handling code here:
-        BuscaUser buscaUser = new BuscaUser();
+        String categoria = jComboBoxCategoria.getSelectedItem().toString();
+        String dia = jComboBoxDiaInicial.getSelectedItem().toString();
+        String mes = jComboBoxMesInicial.getSelectedItem().toString();
+        String ano = jComboBoxAnoInicial.getSelectedItem().toString();
+        String nome = jComboBoxNome.getSelectedItem().toString();
+        String cor = jComboBoxCor.getSelectedItem().toString();
+        ///////////////////////////////////////////////////////////////////
+        SGBD mybd = new SGBD();
+        
+        mybd.getConexaoMySQL();
+       
+         
+        ResultSet rs = mybd.consultarItemBd(
+                "SELECT * "
+              + "FROM item, nome"
+              + "WHERE item.`idNome` = nome.`idNome` "
+              + "and nome.nome like \""
+                        + nome
+                        + "\";");
+       
+        
+        mybd.fecharConexao();
+        
+        try {
+            int tam = rs.getFetchSize();
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+ 
+        BuscaUser buscaUser = new BuscaUser(rs);
         janelaControl.setVisible(false);
         buscaUser.mostrar();
  
@@ -335,10 +364,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private Boolean estaMarcado(String opt){
         switch(opt){
             case "DataInicial":
-                if(jComboBoxDiaInicial.getSelectedItem().toString() != "Dia" &&
+                if(jComboBoxDiaInicial.getSelectedItem().toString().compareTo("Dia") != 0 &&
                     jComboBoxMesInicial.getSelectedItem().toString() != "Mês" &&
                     jComboBoxAnoInicial.getSelectedItem().toString() != "Ano"
                 ) return true;
+                
             break;
             case "Cor":
                 if(jComboBoxCor.getSelectedItem().toString() != "Cor"
