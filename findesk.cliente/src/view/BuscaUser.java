@@ -75,15 +75,7 @@ public class BuscaUser extends javax.swing.JFrame {
 
         jTableResultado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Categoria", "Item", "Descrição"
@@ -110,6 +102,11 @@ public class BuscaUser extends javax.swing.JFrame {
         jScrollPaneResultado.setBounds(60, 100, 680, 402);
 
         jButtonConfirmar.setText("Confirmar");
+        jButtonConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonConfirmarActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonConfirmar);
         jButtonConfirmar.setBounds(640, 530, 100, 23);
 
@@ -128,6 +125,10 @@ public class BuscaUser extends javax.swing.JFrame {
         TelaPrincipal telaPrincipal = new TelaPrincipal();
         telaPrincipal.mostrar();
     }//GEN-LAST:event_jButtonVoltarActionPerformed
+
+    private void jButtonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfirmarActionPerformed
+        
+    }//GEN-LAST:event_jButtonConfirmarActionPerformed
 
     /**
      * @param args the command line arguments
