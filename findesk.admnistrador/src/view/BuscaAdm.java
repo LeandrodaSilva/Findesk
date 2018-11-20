@@ -160,6 +160,11 @@ public class BuscaAdm extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable2MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable2);
 
         getContentPane().add(jScrollPane1);
@@ -200,6 +205,12 @@ public class BuscaAdm extends javax.swing.JFrame {
             jTable2.setEditingRow(jTable2.getSelectedRow());
         }
     }//GEN-LAST:event_btAlterarActionPerformed
+
+    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+        if(jTable2.getSelectedRow() == -1){
+            jTable2.getCellEditor(jTable2.getSelectedRow(), NORMAL)
+        }
+    }//GEN-LAST:event_jTable2MouseClicked
 
     /**
      * @param args the command line arguments
