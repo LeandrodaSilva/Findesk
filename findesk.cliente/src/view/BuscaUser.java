@@ -14,7 +14,6 @@ import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 import model.SGBD;
-import view.*;
 
 /**
  *
@@ -28,9 +27,13 @@ public class BuscaUser extends javax.swing.JFrame {
     /**
      * Creates new form suaJanela
      */
-    public BuscaUser(ResultSet resultado) {
+    public BuscaUser(String resultado) {
         initComponents();
         popular(resultado);
+    }
+    public BuscaUser() {
+        initComponents();
+        popular();
     }
 
     /**
@@ -147,28 +150,114 @@ public class BuscaUser extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                BuscaUser buscaUser = new BuscaUser(null);
+                BuscaUser buscaUser = new BuscaUser();
                 buscaUser.setVisible(true);
                 janelaControl = buscaUser;
             }
         });
     }
     
-    private  void popular(ResultSet resultado){
-        String categoria = "Eletrônicos";
-        String item = "Pendrive";
-        String descricao = "lindo";
-        String[] colunas = {"Categoria", "Item", "Descrição"};
-        ResultSet linha = resultado;
-        
+    public static void mostrar(String result) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(BuscaUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(BuscaUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(BuscaUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(BuscaUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                BuscaUser buscaUser = new BuscaUser(result);
+                buscaUser.setVisible(true);
+                janelaControl = buscaUser;
+            }
+        });
+    }
+    
+   
+    
+    private  void popular(String resultado){
       
+            String categoria = "Eletrônicos";
+            String item = "Pendrive";
+            String descricao = "lindo";
+            //String[] colunas = {"1","2","3"};
+           
+        
+            //System.out.println("Consulta recebida: "+resultado);
+
+        ///////////////////////////////////////////////////////////////
+  
+            
        
+            String[] colunas = new String[3];
+            SGBD mybd = new SGBD();
+
+            mybd.getConexaoMySQL();
+            ArrayList strList = new ArrayList();
+            System.out.println(mybd.statusConection());
+
+
+            ResultSet rs;
+            rs = mybd.consultarItemBd(resultado);
+            String nome;
+            strList.add("Selecionar");
+            defaultTableResultado = (DefaultTableModel) jTableResultado.getModel();
+
+            try {
+                rs.beforeFirst();
+                while(rs.next()){
+                    colunas[0] = rs.getString(3);
+                    colunas[1] = rs.getString(4);
+                    colunas[2] = rs.getString(9);
+                    defaultTableResultado.addRow(colunas);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+            }   
+            mybd.fecharConexao();
+            
+            
+
+            
         
-        defaultTableResultado = (DefaultTableModel) jTableResultado.getModel();
-        defaultTableResultado.addRow((Vector) linha);
+
+        /////////////////////////////////////////////////////////////////////   
+    }
+    
+    private  void popular(){
+      
+            String categoria = "Eletrônicos";
+            String item = "Pendrive";
+            String descricao = "lindo";
+            String[] colunas = {"1","2","3"};
+           
+            defaultTableResultado = (DefaultTableModel) jTableResultado.getModel();
+          
+            
+            defaultTableResultado.addRow(colunas);
+            
+
+            
         
-        
-        
+
+        /////////////////////////////////////////////////////////////////////   
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
