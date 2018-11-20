@@ -204,9 +204,23 @@ public class TelaPrincipal extends javax.swing.JFrame {
         String nome = jComboBoxNome.getSelectedItem().toString();
         String cor = jComboBoxCor.getSelectedItem().toString();
         
-        String consulta = "SELECT * FROM item, nome WHERE item.`idNome` = nome.`idNome` and nome.nome like "
-                +"\""+nome+"\""
-                +";";
+        String consulta = "select item.idItem , nome.nome , item.descricaoItem " 
+                            +"from item,nome,cor,categoria, dataentrada , data, dia, mes, ano "
+                            +"where item.idNome = nome.idNome and "
+                            +"item.retiradoItem = 0 and "
+                            +"nome.nome like \""+nome+"\" and " 
+                            +"categoria.idCategoria = nome.idCategoria and " 
+                            +"cor.idCor = item.idCor and " 
+                            +"cor.nomeCor like \""+cor+"\" and "
+                            +"dataentrada.idDataEntrada = item.idDataEntrada and "
+                            +"data.idData = dataentrada.idData and "
+                            +"data.idDia = dia.idDia and "
+                            +"data.idMes = mes.idMes and "
+                            +"data.idAno = ano.idAno and "
+                            +"dia.idDia like \""+dia+"\" and "
+                            +"mes.idMes like \""+mes+"\" and "
+                            +"ano.idAno like \""+ano+"\""
+                            +";";
         
         System.out.println("Consulta realizada: " + consulta);
         BuscaUser buscaUser = new BuscaUser();

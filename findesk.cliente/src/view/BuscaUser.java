@@ -231,9 +231,9 @@ public class BuscaUser extends javax.swing.JFrame {
             try {
                 rs.beforeFirst();
                 while(rs.next()){
-                    colunas[0] = rs.getString(3);
-                    colunas[1] = rs.getString(4);
-                    colunas[2] = rs.getString(9);
+                    colunas[0] = Integer.toString(rs.getInt(1));
+                    colunas[1] = rs.getString(2);
+                    colunas[2] = rs.getString(3);
                     defaultTableResultado.addRow(colunas);
                 }
             } catch (SQLException ex) {
