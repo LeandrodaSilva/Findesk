@@ -35,3 +35,9 @@ findesk\.admnistrador/nbproject/private/
 *.properties
 
 *.xml
+
+findesk\.admnistrador/src/view/BuscaAdm\.form
+
+findesk\.admnistrador/src/view/BuscaAdm\.java
+
+findesk\.admnistrador/src/view/

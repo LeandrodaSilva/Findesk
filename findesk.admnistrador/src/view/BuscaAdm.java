@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import model.SGBD;
 
 /**
@@ -33,10 +34,13 @@ public class BuscaAdm extends javax.swing.JFrame {
     private static DefaultComboBoxModel defaultComboBoxCor = new DefaultComboBoxModel();
     private static DefaultComboBoxModel defaultComboBoxNome= new DefaultComboBoxModel();
     private static BuscaAdm baControl;
+    private  DefaultTableModel defaultTableResultado;
+    
  
   public BuscaAdm() {
         initComponents();
         popularComboBoxCategoria();
+        popular();
     }
 
     
@@ -131,7 +135,7 @@ public class BuscaAdm extends javax.swing.JFrame {
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"t7", "kk", null},
+                {"categoria", "item", null},
                 {null, null, null},
                 {null, null, null},
                 {null, null, null},
@@ -160,6 +164,22 @@ public class BuscaAdm extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+<<<<<<< Updated upstream
+=======
+        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable2MouseClicked(evt);
+            }
+        });
+<<<<<<< Updated upstream
+=======
+        jTable2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTable2KeyPressed(evt);
+            }
+        });
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
         jScrollPane1.setViewportView(jTable2);
 
         getContentPane().add(jScrollPane1);
@@ -194,13 +214,34 @@ public class BuscaAdm extends javax.swing.JFrame {
     private void btAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAlterarActionPerformed
 
         if(jTable2.getSelectedRow() == -1){
-            JOptionPane.showConfirmDialog(null, "Primeiro selecione um item");
+            JOptionPane.showMessageDialog(null, "Selecione um item");
         }
         else{
             jTable2.setEditingRow(jTable2.getSelectedRow());
         }
     }//GEN-LAST:event_btAlterarActionPerformed
 
+<<<<<<< Updated upstream
+=======
+    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+Updated upstream
+        if(jTable2.getSelectedRow() == -1){
+            jTable2.getCellEditor(jTable2.getSelectedRow(), NORMAL)
+        }
+    }                                    
+
+
+        if(jTable2.getSelectedRow() != -1){
+            jTable2.getCellEditor(jTable2.getSelectedRow(), jTable2.getSelectedColumn());
+        }
+    }//GEN-LAST:event_jTable2MouseClicked
+
+    private void jTable2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable2KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTable2KeyPressed
+
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
     /**
      * @param args the command line arguments
      */
@@ -347,6 +388,33 @@ private static void popularComboBoxCategoria(){
      
                 btAlterar.show();
            
+    }
+     private  void popular(){
+        String categoria = "Eletrônicos";
+        String item = "Pendrive";
+        String descricao = "lindo";
+        String[] colunas = {"Categoria", "Item", "Descrição"};
+        Object[] linha = {categoria, item, descricao};
+        SGBD mybd = new SGBD();
+        
+        mybd.getConexaoMySQL();
+        ArrayList strList = new ArrayList();
+        System.out.println(mybd.statusConection());
+        
+        
+        
+        ResultSet rs = mybd.consultarItemBd("SELECT * FROM categoria");
+       
+        String nome;
+        strList.add("Selecionar");
+   
+        
+        defaultTableResultado = (DefaultTableModel) jTable2.getModel();
+        defaultTableResultado.insertRow(1,linha);
+        
+        
+        mybd.fecharConexao();
+        
     }
     
 

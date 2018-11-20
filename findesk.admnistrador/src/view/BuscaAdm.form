@@ -163,7 +163,7 @@
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="3" rowCount="9">
                 <Column editable="false" title="Categoria" type="java.lang.String">
-                  <Data value="t7"/>
+                  <Data value="categoria"/>
                   <Data value="null"/>
                   <Data value="null"/>
                   <Data value="null"/>
@@ -174,7 +174,7 @@
                   <Data value="null"/>
                 </Column>
                 <Column editable="false" title="Item" type="java.lang.String">
-                  <Data value="kk"/>
+                  <Data value="item"/>
                   <Data value="null"/>
                   <Data value="null"/>
                   <Data value="null"/>
@@ -188,6 +188,16 @@
               </Table>
             </Property>
           </Properties>
+<<<<<<< Updated upstream
+=======
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTable2MouseClicked"/>
+<<<<<<< Updated upstream
+=======
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTable2KeyPressed"/>
+>>>>>>> Stashed changes
+          </Events>
+>>>>>>> Stashed changes
         </Component>
       </SubComponents>
     </Container>
