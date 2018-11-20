@@ -1,0 +1,174 @@
+-- Data for table `findesk`.`categoria`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `findesk`;
+INSERT INTO `findesk`.`categoria` (`idCategoria`, `nomeCat`) VALUES ('a', 'Eletrônicos');
+INSERT INTO `findesk`.`categoria` (`idCategoria`, `nomeCat`) VALUES ('b', 'Vestuários');
+INSERT INTO `findesk`.`categoria` (`idCategoria`, `nomeCat`) VALUES ('c', 'Materiais');
+INSERT INTO `findesk`.`categoria` (`idCategoria`, `nomeCat`) VALUES ('d', 'Recipientes');
+INSERT INTO `findesk`.`categoria` (`idCategoria`, `nomeCat`) VALUES ('e', 'Documentos');
+INSERT INTO `findesk`.`categoria` (`idCategoria`, `nomeCat`) VALUES ('f', 'Outros');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `findesk`.`cor`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `findesk`;
+INSERT INTO `findesk`.`cor` (`idCor`, `nomeCor`) VALUES ('#0000000', 'Preto');
+INSERT INTO `findesk`.`cor` (`idCor`, `nomeCor`) VALUES ('#000001', 'Branco');
+INSERT INTO `findesk`.`cor` (`idCor`, `nomeCor`) VALUES ('#000002', 'Vermelho');
+INSERT INTO `findesk`.`cor` (`idCor`, `nomeCor`) VALUES ('#000003', 'Amarelo');
+INSERT INTO `findesk`.`cor` (`idCor`, `nomeCor`) VALUES ('#000004', 'Azul');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `findesk`.`nome`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `findesk`;
+INSERT INTO `findesk`.`nome` (`idNome`, `nome`, `idCategoria`) VALUES ('1', 'Pendrive', 'a');
+INSERT INTO `findesk`.`nome` (`idNome`, `nome`, `idCategoria`) VALUES ('2', 'Notebook', 'a');
+INSERT INTO `findesk`.`nome` (`idNome`, `nome`, `idCategoria`) VALUES ('3', 'Camiseta', 'b');
+INSERT INTO `findesk`.`nome` (`idNome`, `nome`, `idCategoria`) VALUES ('4', 'Caderno', 'c');
+INSERT INTO `findesk`.`nome` (`idNome`, `nome`, `idCategoria`) VALUES ('5', 'Caneta', 'c');
+INSERT INTO `findesk`.`nome` (`idNome`, `nome`, `idCategoria`) VALUES ('6', 'Garrafa', 'd');
+INSERT INTO `findesk`.`nome` (`idNome`, `nome`, `idCategoria`) VALUES ('7', 'Guarda-Chuva', 'f');
+INSERT INTO `findesk`.`nome` (`idNome`, `nome`, `idCategoria`) VALUES ('8', 'RA', 'e');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `findesk`.`ano`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `findesk`;
+INSERT INTO `findesk`.`ano` (`idAno`) VALUES (2018);
+INSERT INTO `findesk`.`ano` (`idAno`) VALUES (2019);
+INSERT INTO `findesk`.`ano` (`idAno`) VALUES (2020);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `findesk`.`dia`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `findesk`;
+INSERT INTO `findesk`.`dia` (`idDia`) VALUES (1);
+INSERT INTO `findesk`.`dia` (`idDia`) VALUES (2);
+INSERT INTO `findesk`.`dia` (`idDia`) VALUES (3);
+INSERT INTO `findesk`.`dia` (`idDia`) VALUES (4);
+INSERT INTO `findesk`.`dia` (`idDia`) VALUES (5);
+INSERT INTO `findesk`.`dia` (`idDia`) VALUES (6);
+INSERT INTO `findesk`.`dia` (`idDia`) VALUES (7);
+INSERT INTO `findesk`.`dia` (`idDia`) VALUES (8);
+INSERT INTO `findesk`.`dia` (`idDia`) VALUES (9);
+INSERT INTO `findesk`.`dia` (`idDia`) VALUES (10);
+INSERT INTO `findesk`.`dia` (`idDia`) VALUES (11);
+INSERT INTO `findesk`.`dia` (`idDia`) VALUES (12);
+INSERT INTO `findesk`.`dia` (`idDia`) VALUES (13);
+INSERT INTO `findesk`.`dia` (`idDia`) VALUES (14);
+INSERT INTO `findesk`.`dia` (`idDia`) VALUES (15);
+INSERT INTO `findesk`.`dia` (`idDia`) VALUES (16);
+INSERT INTO `findesk`.`dia` (`idDia`) VALUES (17);
+INSERT INTO `findesk`.`dia` (`idDia`) VALUES (18);
+INSERT INTO `findesk`.`dia` (`idDia`) VALUES (19);
+INSERT INTO `findesk`.`dia` (`idDia`) VALUES (20);
+INSERT INTO `findesk`.`dia` (`idDia`) VALUES (21);
+INSERT INTO `findesk`.`dia` (`idDia`) VALUES (22);
+INSERT INTO `findesk`.`dia` (`idDia`) VALUES (23);
+INSERT INTO `findesk`.`dia` (`idDia`) VALUES (24);
+INSERT INTO `findesk`.`dia` (`idDia`) VALUES (25);
+INSERT INTO `findesk`.`dia` (`idDia`) VALUES (26);
+INSERT INTO `findesk`.`dia` (`idDia`) VALUES (27);
+INSERT INTO `findesk`.`dia` (`idDia`) VALUES (28);
+INSERT INTO `findesk`.`dia` (`idDia`) VALUES (29);
+INSERT INTO `findesk`.`dia` (`idDia`) VALUES (30);
+INSERT INTO `findesk`.`dia` (`idDia`) VALUES (31);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `findesk`.`mes`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `findesk`;
+INSERT INTO `findesk`.`mes` (`idMes`) VALUES (1);
+INSERT INTO `findesk`.`mes` (`idMes`) VALUES (2);
+INSERT INTO `findesk`.`mes` (`idMes`) VALUES (3);
+INSERT INTO `findesk`.`mes` (`idMes`) VALUES (4);
+INSERT INTO `findesk`.`mes` (`idMes`) VALUES (5);
+INSERT INTO `findesk`.`mes` (`idMes`) VALUES (6);
+INSERT INTO `findesk`.`mes` (`idMes`) VALUES (7);
+INSERT INTO `findesk`.`mes` (`idMes`) VALUES (8);
+INSERT INTO `findesk`.`mes` (`idMes`) VALUES (9);
+INSERT INTO `findesk`.`mes` (`idMes`) VALUES (10);
+INSERT INTO `findesk`.`mes` (`idMes`) VALUES (11);
+INSERT INTO `findesk`.`mes` (`idMes`) VALUES (12);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `findesk`.`data`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `findesk`;
+INSERT INTO `findesk`.`data` (`idData`, `idDia`, `idMes`, `idAno`) VALUES (1, 1, 1, 2018);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `findesk`.`dataEntrada`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `findesk`;
+INSERT INTO `findesk`.`dataEntrada` (`idDataEntrada`, `idData`) VALUES (1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `findesk`.`dataSaida`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `findesk`;
+INSERT INTO `findesk`.`dataSaida` (`idDataSaida`, `idData`) VALUES (1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `findesk`.`item`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `findesk`;
+INSERT INTO `findesk`.`item` (`idItem`, `idCor`, `idNome`, `idAdm`, `idDataEntrada`, `idDataSaida`, `retiradoItem`, `fotoItem`, `descricaoItem`) VALUES (1, '#000000', '1', 1, 1, 1, 1, NULL, 'Lindo pendrive ');
+INSERT INTO `findesk`.`item` (`idItem`, `idCor`, `idNome`, `idAdm`, `idDataEntrada`, `idDataSaida`, `retiradoItem`, `fotoItem`, `descricaoItem`) VALUES (2, '#000000', '2', 1, 2, 2, 0, NULL, 'Lindo notebook');
+INSERT INTO `findesk`.`item` (`idItem`, `idCor`, `idNome`, `idAdm`, `idDataEntrada`, `idDataSaida`, `retiradoItem`, `fotoItem`, `descricaoItem`) VALUES (3, '#000001', '3', 1, 1, 1, 0, NULL, 'Ekko, lacoste, peça da oakley, varias camisa de time');
+INSERT INTO `findesk`.`item` (`idItem`, `idCor`, `idNome`, `idAdm`, `idDataEntrada`, `idDataSaida`, `retiradoItem`, `fotoItem`, `descricaoItem`) VALUES (4, '#000002', '4', 1, 1, 1, 0, NULL, 'Caderno 10 matérias da Moranguinho');
+INSERT INTO `findesk`.`item` (`idItem`, `idCor`, `idNome`, `idAdm`, `idDataEntrada`, `idDataSaida`, `retiradoItem`, `fotoItem`, `descricaoItem`) VALUES (5, '#000003', '5', 1, 1, 1, 0, NULL, 'Caneta BIC vermelha');
+INSERT INTO `findesk`.`item` (`idItem`, `idCor`, `idNome`, `idAdm`, `idDataEntrada`, `idDataSaida`, `retiradoItem`, `fotoItem`, `descricaoItem`) VALUES (6, '#000004', '6', 1, 1, 1, 1, NULL, 'Garrafa vermelha de aluminio');
+INSERT INTO `findesk`.`item` (`idItem`, `idCor`, `idNome`, `idAdm`, `idDataEntrada`, `idDataSaida`, `retiradoItem`, `fotoItem`, `descricaoItem`) VALUES (8, '#000001', '7', 1, 1, 1, 0, NULL, 'Leandro Jasinto Pinto');
+INSERT INTO `findesk`.`item` (`idItem`, `idCor`, `idNome`, `idAdm`, `idDataEntrada`, `idDataSaida`, `retiradoItem`, `fotoItem`, `descricaoItem`) VALUES (7, '#000004', '8', 1, 1, 1, 1, NULL, 'Guarda chuva preto grande');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `findesk`.`usuario`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `findesk`;
+INSERT INTO `findesk`.`usuario` (`idUsuario`, `idConfig`) VALUES (1, 1);
+
+COMMIT;
+
