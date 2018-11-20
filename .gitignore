@@ -33,3 +33,5 @@ findesk\.admnistrador/nbproject/private/private\.xml
 findesk\.admnistrador/nbproject/private/
 
 *.properties
+
+*.xml
