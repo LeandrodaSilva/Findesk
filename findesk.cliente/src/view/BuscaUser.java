@@ -22,6 +22,7 @@ import model.SGBD;
 public class BuscaUser extends javax.swing.JFrame {
     
     private static BuscaUser janelaControl;
+    private static RequisicaoCliente janelaControlRequerimento = null;
     private  DefaultTableModel defaultTableResultado;
 
     /**
@@ -128,8 +129,9 @@ public class BuscaUser extends javax.swing.JFrame {
 
     private void jButtonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfirmarActionPerformed
         janelaControl.setVisible(false);
-        RequisicaoCliente janela = new RequisicaoCliente();
-        janela.mostrar();
+        RequisicaoCliente requerimento = new RequisicaoCliente();
+        requerimento.mostrar(janelaControl);
+        janelaControlRequerimento = requerimento;
     }//GEN-LAST:event_jButtonConfirmarActionPerformed
 
     /**
@@ -199,6 +201,9 @@ public class BuscaUser extends javax.swing.JFrame {
                 janelaControl = buscaUser;
             }
         });
+//        if(janelaControlRequerimento != null){
+//            janelaControlRequerimento.dispose();
+//        }
     }
     
    
@@ -269,6 +274,11 @@ public class BuscaUser extends javax.swing.JFrame {
         
 
         /////////////////////////////////////////////////////////////////////   
+    }
+    public void showFrame(){
+        janelaControl.setVisible(true);
+        janelaControl.setAlwaysOnTop(true);
+        janelaControl.setAlwaysOnTop(false);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

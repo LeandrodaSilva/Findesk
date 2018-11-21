@@ -11,6 +11,7 @@ package view;
  */
 public class RequisicaoCliente extends javax.swing.JFrame {
     private static RequisicaoCliente janelaControl;
+    private static BuscaUser janelaControlBusca;
     /**
      * Creates new form RequisicaoCliente
      */
@@ -29,47 +30,66 @@ public class RequisicaoCliente extends javax.swing.JFrame {
 
         JButtonConfirmar = new javax.swing.JButton();
         JTFDocumento = new javax.swing.JTextField();
-        JLabelDocumento = new javax.swing.JLabel();
+        JLabelNumero = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel2 = new javax.swing.JLabel();
+        jLabelTipo = new javax.swing.JLabel();
         jLabelTitulo = new javax.swing.JLabel();
+        jButtonVoltar = new javax.swing.JButton();
         jLabelFundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
+        setSize(new java.awt.Dimension(800, 600));
         getContentPane().setLayout(null);
 
         JButtonConfirmar.setText("Confirmar");
         getContentPane().add(JButtonConfirmar);
-        JButtonConfirmar.setBounds(350, 500, 100, 23);
+        JButtonConfirmar.setBounds(470, 490, 100, 23);
         getContentPane().add(JTFDocumento);
         JTFDocumento.setBounds(410, 280, 100, 20);
 
-        JLabelDocumento.setForeground(new java.awt.Color(255, 255, 255));
-        JLabelDocumento.setText("Nº documento");
-        getContentPane().add(JLabelDocumento);
-        JLabelDocumento.setBounds(290, 280, 80, 14);
+        JLabelNumero.setForeground(new java.awt.Color(255, 255, 255));
+        JLabelNumero.setText("Nº documento");
+        getContentPane().add(JLabelNumero);
+        JLabelNumero.setBounds(290, 280, 80, 14);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "RA", "SIAPE", "RG", " " }));
         getContentPane().add(jComboBox1);
         jComboBox1.setBounds(410, 240, 56, 20);
 
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Tipo de Documento");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(290, 240, 110, 14);
+        jLabelTipo.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelTipo.setText("Tipo de Documento");
+        getContentPane().add(jLabelTipo);
+        jLabelTipo.setBounds(290, 240, 110, 14);
 
+        jLabelTitulo.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabelTitulo.setForeground(new java.awt.Color(255, 255, 255));
         jLabelTitulo.setText("Requerimento");
         getContentPane().add(jLabelTitulo);
-        jLabelTitulo.setBounds(360, 150, 120, 14);
+        jLabelTitulo.setBounds(290, 120, 230, 60);
+
+        jButtonVoltar.setText("Voltar");
+        jButtonVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVoltarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonVoltar);
+        jButtonVoltar.setBounds(240, 490, 100, 23);
 
         jLabelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Fundo2.png"))); // NOI18N
         getContentPane().add(jLabelFundo);
         jLabelFundo.setBounds(0, -10, 800, 620);
 
-        setSize(new java.awt.Dimension(814, 661));
+        setSize(new java.awt.Dimension(814, 641));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
+        // TODO add your handling code here:
+        janelaControlBusca.showFrame();
+        janelaControl.setVisible(false);
+    }//GEN-LAST:event_jButtonVoltarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -109,14 +129,53 @@ public class RequisicaoCliente extends javax.swing.JFrame {
             }
         });
     }
+    public static void mostrar(BuscaUser busca) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(RequisicaoCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(RequisicaoCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(RequisicaoCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(RequisicaoCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
 
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                RequisicaoCliente janela = new RequisicaoCliente();
+                janelaControl = janela;
+                janelaControlBusca = busca;
+                janela.setVisible(true);
+
+            }
+        });
+    }
+    public void closeFrame(){
+        janelaControl.dispose();
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JButtonConfirmar;
-    private javax.swing.JLabel JLabelDocumento;
+    private javax.swing.JLabel JLabelNumero;
     private javax.swing.JTextField JTFDocumento;
+    private javax.swing.JButton jButtonVoltar;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabelFundo;
+    private javax.swing.JLabel jLabelTipo;
     private javax.swing.JLabel jLabelTitulo;
     // End of variables declaration//GEN-END:variables
 }
