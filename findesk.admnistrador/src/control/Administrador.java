@@ -18,7 +18,7 @@ public class Administrador {
     public static void main(String[] args) {
         Estatisticas view = new Estatisticas();
         BuscaAdm ba = new BuscaAdm();
-        ba.nomeQualquer();
+        ba.mostrar();
     }
     
 }

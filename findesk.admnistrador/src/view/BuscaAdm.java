@@ -33,13 +33,13 @@ public class BuscaAdm extends javax.swing.JFrame {
     private static DefaultComboBoxModel defaultComboBoxAnoInicial = new DefaultComboBoxModel();
     private static DefaultComboBoxModel defaultComboBoxCor = new DefaultComboBoxModel();
     private static DefaultComboBoxModel defaultComboBoxNome= new DefaultComboBoxModel();
-<<<<<<< HEAD
+
     private static BuscaAdm baControl;
    private  DefaultTableModel defaultTableResultado;
-=======
+
     private static BuscaAdm janelaControl;
  
->>>>>>> master
+
   public BuscaAdm() {
         initComponents();
         popularComboBoxCategoria();
