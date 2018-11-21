@@ -29,6 +29,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private static DefaultComboBoxModel defaultComboBoxMesInicial = new DefaultComboBoxModel();
     private static DefaultComboBoxModel defaultComboBoxAnoInicial = new DefaultComboBoxModel();
     private static DefaultComboBoxModel defaultComboBoxCor = new DefaultComboBoxModel();
+    private static DefaultComboBoxModel defaultComboBoxNumero = new DefaultComboBoxModel();
     private static DefaultComboBoxModel defaultComboBoxNome = new DefaultComboBoxModel();
     private static TelaPrincipal janelaControl;
 
@@ -42,6 +43,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         popularComboBoxMes();
         popularComboBoxAno();
         popularComboBoxCor();
+        popularComboBoxNumero();
         //popularComboBoxNome();
         //this.defaultComboBoxNome ;
         hideComponents();
@@ -156,7 +158,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jComboBoxCor);
-        jComboBoxCor.setBounds(350, 290, 110, 20);
+        jComboBoxCor.setBounds(350, 330, 110, 20);
 
         jComboBoxNome.setModel(defaultComboBoxNome);
         jComboBoxNome.addActionListener(new java.awt.event.ActionListener() {
@@ -165,17 +167,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jComboBoxNome);
-        jComboBoxNome.setBounds(350, 330, 110, 20);
+        jComboBoxNome.setBounds(350, 290, 110, 20);
 
         jLabelCor.setForeground(new java.awt.Color(255, 255, 255));
         jLabelCor.setText("*Cor do item");
         getContentPane().add(jLabelCor);
-        jLabelCor.setBounds(210, 290, 110, 14);
+        jLabelCor.setBounds(210, 330, 110, 14);
 
         jLabelNome.setForeground(new java.awt.Color(255, 255, 255));
         jLabelNome.setText("*Nome do item");
         getContentPane().add(jLabelNome);
-        jLabelNome.setBounds(210, 330, 110, 14);
+        jLabelNome.setBounds(210, 290, 110, 14);
 
         jLabelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Fundo2.png"))); // NOI18N
         jLabelFundo.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Fundo2.png"))); // NOI18N
@@ -230,37 +232,49 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonConfirmarActionPerformed
     //Dia Inicial
     private void jComboBoxDiaInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxDiaInicialActionPerformed
-       if(estaMarcado("DataInicial")) showComponents("Cor");
+       if(estaMarcado("DataInicial")) showComponents("Nome");
     }//GEN-LAST:event_jComboBoxDiaInicialActionPerformed
     //Ano Inicial
     private void jComboBoxAnoInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxAnoInicialActionPerformed
-        if(estaMarcado("DataInicial")) showComponents("Cor");
+        if(estaMarcado("DataInicial")) showComponents("Nome");
     }//GEN-LAST:event_jComboBoxAnoInicialActionPerformed
     //Categoria
     private void jComboBoxCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCategoriaActionPerformed
-
+        if(jComboBoxCategoria.getSelectedItem().toString().compareTo("Documentos") == 0){
+            jLabelCor.setText("*Número");
+            jComboBoxCor.setModel(defaultComboBoxNumero);
+        }else{
+            jLabelCor.setText("*Cor do item");
+            jComboBoxCor.setModel(defaultComboBoxCor);
+        }
         showComponents("DataInicial");
         Object item = jComboBoxCategoria.getSelectedItem();
         String itemName = item.toString();
         
         System.out.println("Categoria: "+itemName);
      
-        popularComboBoxNome("SELECT nome FROM nome, categoria WHERE nomeCat = '"+itemName+"' and categoria.`idCategoria` = nome.`idCategoria`");
+        popularComboBoxNome("select distinct nome.nome " +
+                            "from item, nome, categoria " +
+                            "where nome.idNome = item.idNome and " +
+                                    "nome.idCategoria = categoria.idCategoria and " +
+                                    "categoria.nomeCat like \""
+                                    + itemName
+                                     + "\";");
       
         jComboBoxNome.setModel(defaultComboBoxNome);    
        
     }//GEN-LAST:event_jComboBoxCategoriaActionPerformed
     //Mês Inicial
     private void jComboBoxMesInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxMesInicialActionPerformed
-        if(estaMarcado("DataInicial")) showComponents("Cor");
+        if(estaMarcado("DataInicial")) showComponents("Nome");
     }//GEN-LAST:event_jComboBoxMesInicialActionPerformed
     //Cor
     private void jComboBoxCorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCorActionPerformed
-        if(estaMarcado("Cor")) showComponents("Nome");
+        if(estaMarcado("Cor")) showComponents("jButtonConfirmar");
     }//GEN-LAST:event_jComboBoxCorActionPerformed
     //Nome
     private void jComboBoxNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxNomeActionPerformed
-        if(estaMarcado("Nome")) showComponents("jButtonConfirmar");
+        if(estaMarcado("Nome")) showComponents("Cor");
     }//GEN-LAST:event_jComboBoxNomeActionPerformed
 
     /**
@@ -390,14 +404,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
         
         
         
-        ResultSet rs = mybd.consultarItemBd("SELECT * FROM categoria");
+        ResultSet rs = mybd.consultarItemBd("select distinct categoria.nomeCat " +
+                                                "from nome, item, categoria " +
+                                                "where item.idNome = nome.idNome and " +
+                                                "nome.idCategoria = categoria.idCategoria;");
        
         String nome;
         strList.add("Selecionar");
         try {
             rs.beforeFirst();
             while(rs.next()){
-                nome = rs.getString(2);
+                nome = rs.getString("nomeCat");
                 strList.add(nome);
             }
         } catch (SQLException ex) {
@@ -514,14 +531,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
         
         
         
-        ResultSet rs = mybd.consultarItemBd("SELECT * FROM cor");
+        ResultSet rs = mybd.consultarItemBd("select distinct cor.nomeCor " +
+                                            "from cor, item " +
+                                            "where item.idCor = cor.idCor;");
        
         String nome;
         strList.add("Cor");
         try {
             rs.beforeFirst();
             while(rs.next()){
-                nome = rs.getString(2);
+                nome = rs.getString("nomeCor");
                 strList.add(nome);
             }
         } catch (SQLException ex) {
@@ -529,6 +548,41 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
         
         defaultComboBoxCor = new DefaultComboBoxModel(strList.toArray());
+        
+        
+        
+        mybd.fecharConexao();
+        
+    }
+    
+    private static void popularComboBoxNumero(){
+        SGBD mybd = new SGBD();
+        
+        mybd.getConexaoMySQL();
+        ArrayList strList = new ArrayList();
+        System.out.println(mybd.statusConection());
+        
+        
+        
+        ResultSet rs = mybd.consultarItemBd("SELECT item.descricaoItem " +
+                                "FROM item, nome, categoria " +
+                                "WHERE item.idNome  = nome.idNome and " +
+                                        "nome.idCategoria  = categoria.idCategoria and  " +
+                                        "categoria.idCategoria like \"e\";");
+       
+        String nome;
+        strList.add("Selecione");
+        try {
+            rs.beforeFirst();
+            while(rs.next()){
+                nome = rs.getString(1);
+                strList.add(nome);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        defaultComboBoxNumero= new DefaultComboBoxModel(strList.toArray());
         
         
         
@@ -552,7 +606,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         try {
             rs.beforeFirst();
             while(rs.next()){
-                nome = rs.getString(1);
+                nome = rs.getString("nome");
                 strList.add(nome);
             }
         } catch (SQLException ex) {
