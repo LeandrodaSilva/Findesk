@@ -10,6 +10,8 @@ package view;
  * @author ld_si
  */
 public class Estatisticas extends javax.swing.JFrame {
+    
+    private static Estatisticas janelaControl;
 
     /**
      * Creates new form suaJanela
@@ -27,12 +29,13 @@ public class Estatisticas extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        jButtonGerarEstatisticas = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jComboBox2 = new javax.swing.JComboBox<>();
+        jButtonVoltar = new javax.swing.JButton();
         jLabelFundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -41,14 +44,14 @@ public class Estatisticas extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(800, 600));
         getContentPane().setLayout(null);
 
-        jButton1.setText("Gerar Estatiscas");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonGerarEstatisticas.setText("Gerar Estatiscas");
+        jButtonGerarEstatisticas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonGerarEstatisticasActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(340, 500, 120, 40);
+        getContentPane().add(jButtonGerarEstatisticas);
+        jButtonGerarEstatisticas.setBounds(310, 500, 180, 40);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -70,11 +73,25 @@ public class Estatisticas extends javax.swing.JFrame {
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Perdido", "Resgatado" }));
         getContentPane().add(jComboBox1);
-        jComboBox1.setBounds(50, 270, 77, 20);
+        jComboBox1.setBounds(50, 270, 100, 20);
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todas", "Eletronicôs", "Vestuário", "Recipientes", "Materiais", "Outros" }));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jComboBox2);
-        jComboBox2.setBounds(50, 390, 80, 20);
+        jComboBox2.setBounds(50, 390, 100, 20);
+
+        jButtonVoltar.setText("Voltar");
+        jButtonVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVoltarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonVoltar);
+        jButtonVoltar.setBounds(20, 550, 73, 23);
 
         jLabelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Fundo2.png"))); // NOI18N
         jLabelFundo.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Fundo2.png"))); // NOI18N
@@ -86,9 +103,21 @@ public class Estatisticas extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonGerarEstatisticasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGerarEstatisticasActionPerformed
+        janelaControl.dispose();
+        Estatisticas1 estatisticas1 = new Estatisticas1();
+        estatisticas1.mostrar();
+    }//GEN-LAST:event_jButtonGerarEstatisticasActionPerformed
+
+    private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
+        janelaControl.dispose();
+        TelaPrincipal telaPrincipal = new TelaPrincipal();
+        telaPrincipal.mostrar();
+    }//GEN-LAST:event_jButtonVoltarActionPerformed
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jComboBox2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -121,13 +150,16 @@ public class Estatisticas extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Estatisticas().setVisible(true);
+                Estatisticas estatisticas = new Estatisticas();
+                estatisticas.setVisible(true);
+                janelaControl = estatisticas;
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonGerarEstatisticas;
+    private javax.swing.JButton jButtonVoltar;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;

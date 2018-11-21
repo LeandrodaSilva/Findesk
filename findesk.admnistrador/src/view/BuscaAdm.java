@@ -14,7 +14,6 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import model.SGBD;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -33,18 +32,11 @@ public class BuscaAdm extends javax.swing.JFrame {
     private static DefaultComboBoxModel defaultComboBoxAnoInicial = new DefaultComboBoxModel();
     private static DefaultComboBoxModel defaultComboBoxCor = new DefaultComboBoxModel();
     private static DefaultComboBoxModel defaultComboBoxNome= new DefaultComboBoxModel();
-
-    private static BuscaAdm baControl;
-   private  DefaultTableModel defaultTableResultado;
-
     private static BuscaAdm janelaControl;
  
-
   public BuscaAdm() {
         initComponents();
-        popularComboBoxCategoria();
-        popular();
-        popular();
+        jTable2.setVisible(false);
     }
 
     
@@ -59,11 +51,14 @@ public class BuscaAdm extends javax.swing.JFrame {
 
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        btAlterar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
         jTextField1 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
+        jButtonOK = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jButtonVoltar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         jLabelFundo = new javax.swing.JLabel();
@@ -90,7 +85,16 @@ public class BuscaAdm extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(210, 510, 120, 40);
+        jButton2.setBounds(220, 510, 120, 40);
+
+        btAlterar.setText("Alterar");
+        btAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAlterarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btAlterar);
+        btAlterar.setBounds(560, 510, 100, 40);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -102,16 +106,7 @@ public class BuscaAdm extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Busca ");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(310, 0, 280, 70);
-
-        jComboBox2.setModel(defaultComboBoxCategoria);
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jComboBox2);
-        jComboBox2.setBounds(70, 140, 120, 20);
+        jLabel1.setBounds(330, 0, 280, 70);
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -119,23 +114,42 @@ public class BuscaAdm extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jTextField1);
-        jTextField1.setBounds(350, 130, 190, 30);
+        jTextField1.setBounds(350, 140, 190, 20);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Categorias");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(70, 90, 180, 40);
+        jLabel3.setBounds(30, 90, 180, 40);
+
+        jButtonOK.setText("OK");
+        jButtonOK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOKActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonOK);
+        jButtonOK.setBounds(560, 140, 60, 23);
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todas", "Eletrônico", "Vestuário", "Recipientes", "Outros" }));
+        getContentPane().add(jComboBox1);
+        jComboBox1.setBounds(30, 140, 80, 20);
+
+        jButtonVoltar.setText("Voltar");
+        jButtonVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVoltarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonVoltar);
+        jButtonVoltar.setBounds(30, 540, 73, 23);
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"t7", "kk", null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
+                {"Eletrônico", "PeinDrive", "Pequeno e azul"},
+                {"Vestuário", "Camisa", "Vermelha  "},
+                {"Outros", "Guarda-Chuva", "Preto"},
+                {"Recipiente", "Copo", "Preto UTFPR"},
                 {null, null, null},
                 {null, null, null}
             },
@@ -154,7 +168,7 @@ public class BuscaAdm extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable2);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(40, 180, 680, 310);
+        jScrollPane1.setBounds(30, 180, 680, 310);
 
         jLabelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Fundo2.png"))); // NOI18N
         jLabelFundo.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Fundo2.png"))); // NOI18N
@@ -178,18 +192,37 @@ public class BuscaAdm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox2ActionPerformed
+    private void btAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAlterarActionPerformed
+
+        if(jTable2.getSelectedRow() == -1){
+            JOptionPane.showMessageDialog(null,"Selecione um item");
+        }
+        else{
+            JOptionPane.showMessageDialog(null,"Item alterado com sucesso!!");
+        }
+    }//GEN-LAST:event_btAlterarActionPerformed
+
+    private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
+       janelaControl.dispose();
+       TelaPrincipal telaPrincipal = new TelaPrincipal();
+       telaPrincipal.mostrar();
+    }//GEN-LAST:event_jButtonVoltarActionPerformed
+
+    private void jButtonOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOKActionPerformed
+        jTable2.setVisible(true);
+    }//GEN-LAST:event_jButtonOKActionPerformed
 
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btAlterar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JButton jButtonOK;
+    private javax.swing.JButton jButtonVoltar;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -198,66 +231,15 @@ public class BuscaAdm extends javax.swing.JFrame {
     private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
-private static void popularComboBoxCategoria(){
-        SGBD mybd = new SGBD();
-        
-        mybd.getConexaoMySQL();
-        ArrayList strList = new ArrayList();
-        System.out.println(mybd.statusConection());
-        
-        
-        
-        ResultSet rs = mybd.consultarItemBd("SELECT * FROM categoria");
-       
-        String nome;
-        strList.add("Selecionar");
 
-        try {
-            rs.beforeFirst();
-             while(rs.next()){
-                nome = rs.getString(2);
-                strList.add(nome);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(BuscaAdm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-           
-        
-       
-       
-        defaultComboBoxCategoria = new DefaultComboBoxModel(strList.toArray());
-        
-        
-        mybd.fecharConexao();
-        
-    }
+          
    public static void mostrar() {
-        /* Set the Nimbus look and feel */
-
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BuscaAdm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BuscaAdm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BuscaAdm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BuscaAdm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        
-        /* Create and display the form */
+ 
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {  
-               BuscaAdm buscaAdm =  new BuscaAdm();
-               buscaAdm.setVisible(true);
-               janelaControl = buscaAdm;
+            public void run() {
+                BuscaAdm buscaAdm = new BuscaAdm();
+                buscaAdm.setVisible(true);
+                janelaControl = buscaAdm;
             }
         });
     }
@@ -270,7 +252,10 @@ private static void popularComboBoxCategoria(){
          janelaControl.dispose();
     }
     
+    private void hideComponents(){
+        btAlterar.hide();
 
+    }
     
     public ImageIcon criarImageIcon(String caminho, String descricao) {
 		java.net.URL imgURL = getClass().getResource(caminho);
@@ -282,34 +267,11 @@ private static void popularComboBoxCategoria(){
 		}
 	}
     
-
-    
-     private  void popular(){
-         
-        String categoria = "Eletrônicos";
-        String item = "Pendrive";
-        String descricao = "lindo";
-        String[] colunas = {"Categoria", "Item", "Descrição"};
-        Object[] linha = {categoria, item, descricao};
-        SGBD mybd = new SGBD();
-        
-        mybd.getConexaoMySQL();
-        ArrayList strList = new ArrayList();
-        System.out.println(mybd.statusConection());
-        
-        
-        
-        ResultSet rs = mybd.consultarItemBd("SELECT * FROM categoria");
-       
-        String nome;
-        strList.add("Selecionar");
-   
-        
-        defaultTableResultado = (DefaultTableModel) jTable2.getModel();
-        defaultTableResultado.insertRow(1,linha);
-        
-        
-        mybd.fecharConexao();
-        
+    private void showComponents(String opt){
+     
+                btAlterar.show();
+           
     }
+    
+
 }

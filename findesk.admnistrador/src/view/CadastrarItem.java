@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package view;
-
 import javax.swing.JOptionPane;
 
 /**
@@ -16,6 +15,8 @@ public class CadastrarItem extends javax.swing.JFrame {
     /**
      * Creates new form CadastrarItem
      */
+    private static CadastrarItem janelaControl;
+    
     public CadastrarItem() {
         initComponents();
     }
@@ -35,16 +36,16 @@ public class CadastrarItem extends javax.swing.JFrame {
         jButtonCadastrar = new javax.swing.JButton();
         jLabelDataDescrição = new javax.swing.JLabel();
         jLabelNomeItem1 = new javax.swing.JLabel();
-        jComboBoxDia = new javax.swing.JComboBox<>();
+        Dia = new javax.swing.JComboBox<>();
         jComboBoxMes = new javax.swing.JComboBox<>();
         jComboBoxAno = new javax.swing.JComboBox<>();
-        jComboBox4 = new javax.swing.JComboBox<>();
+        Categorias = new javax.swing.JComboBox<>();
         jLabelDataPerda1 = new javax.swing.JLabel();
         jTextFieldNomeItem1 = new javax.swing.JTextField();
+        jButtonVoltar = new javax.swing.JButton();
         jLabelFundoCadastrar = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(800, 600));
         getContentPane().setLayout(null);
 
         jLabelCategoria.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -68,7 +69,7 @@ public class CadastrarItem extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonCadastrar);
-        jButtonCadastrar.setBounds(330, 520, 150, 40);
+        jButtonCadastrar.setBounds(330, 510, 150, 40);
 
         jLabelDataDescrição.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabelDataDescrição.setForeground(new java.awt.Color(255, 255, 255));
@@ -82,21 +83,22 @@ public class CadastrarItem extends javax.swing.JFrame {
         getContentPane().add(jLabelNomeItem1);
         jLabelNomeItem1.setBounds(30, 120, 170, 29);
 
-        jComboBoxDia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(jComboBoxDia);
-        jComboBoxDia.setBounds(210, 220, 60, 30);
+        Dia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dia", "Item 2", "Item 3", "Item 4" }));
+        getContentPane().add(Dia);
+        Dia.setBounds(210, 220, 60, 30);
 
-        jComboBoxMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mês", "Item 2", "Item 3", "Item 4" }));
         getContentPane().add(jComboBoxMes);
         jComboBoxMes.setBounds(290, 220, 60, 30);
 
-        jComboBoxAno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxAno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ano", "Item 2", "Item 3", "Item 4" }));
         getContentPane().add(jComboBoxAno);
         jComboBoxAno.setBounds(380, 220, 60, 30);
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(jComboBox4);
-        jComboBox4.setBounds(210, 170, 200, 30);
+        Categorias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Categorias", "Item 2", "Item 3", "Item 4" }));
+        Categorias.setToolTipText("");
+        getContentPane().add(Categorias);
+        Categorias.setBounds(210, 170, 200, 30);
 
         jLabelDataPerda1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabelDataPerda1.setForeground(new java.awt.Color(255, 255, 255));
@@ -106,23 +108,39 @@ public class CadastrarItem extends javax.swing.JFrame {
         getContentPane().add(jTextFieldNomeItem1);
         jTextFieldNomeItem1.setBounds(210, 120, 200, 30);
 
+        jButtonVoltar.setText("Voltar");
+        jButtonVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVoltarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonVoltar);
+        jButtonVoltar.setBounds(20, 530, 73, 23);
+
         jLabelFundoCadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Fundo2.png"))); // NOI18N
         jLabelFundoCadastrar.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Fundo2.png"))); // NOI18N
         jLabelFundoCadastrar.setEnabled(false);
         getContentPane().add(jLabelFundoCadastrar);
-        jLabelFundoCadastrar.setBounds(0, -10, 800, 600);
+        jLabelFundoCadastrar.setBounds(0, 0, 800, 600);
 
-        pack();
+        setSize(new java.awt.Dimension(814, 631));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
         JOptionPane.showConfirmDialog(null, "Deseja confirmar o cadastro?");
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
 
+    private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
+       janelaControl.dispose();
+       TelaPrincipal telaPrincipal = new TelaPrincipal();
+       telaPrincipal.mostrar();
+    }//GEN-LAST:event_jButtonVoltarActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void mostrar() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -147,18 +165,22 @@ public class CadastrarItem extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CadastrarItem().setVisible(true);
+                CadastrarItem cadastrarItem = new CadastrarItem();
+                cadastrarItem.setVisible(true);
+                janelaControl = cadastrarItem;
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> Categorias;
+    private javax.swing.JComboBox<String> Dia;
     private javax.swing.JButton jButtonCadastrar;
-    private javax.swing.JComboBox<String> jComboBox4;
+    private javax.swing.JButton jButtonVoltar;
     private javax.swing.JComboBox<String> jComboBoxAno;
-    private javax.swing.JComboBox<String> jComboBoxDia;
     private javax.swing.JComboBox<String> jComboBoxMes;
     private javax.swing.JLabel jLabelCadastrar1;
     private javax.swing.JLabel jLabelCategoria;
