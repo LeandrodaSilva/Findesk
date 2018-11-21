@@ -23,9 +23,12 @@ public class BuscaUserImage extends javax.swing.JFrame {
     /**
      * Creates new form BuscaUserImage
      */
-    private int qtd = 10;
+    private int qtd = 20;
     private  JLabel[] novo = new JLabel[qtd];
+    
+    
     public BuscaUserImage() {
+        //initComponents();
         initComponent(qtd);
         //labelCreate();
         popular();
@@ -40,7 +43,14 @@ public class BuscaUserImage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel1 = new javax.swing.JPanel();
+        jLabelMoldura1 = new javax.swing.JLabel();
+        jLabelFoto = new javax.swing.JLabel();
+        jLabelId = new javax.swing.JLabel();
+        jLabelNome = new javax.swing.JLabel();
+        jButtonVoltar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jLabelFundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 600));
@@ -49,9 +59,40 @@ public class BuscaUserImage extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(800, 600));
         getContentPane().setLayout(null);
 
-        jTabbedPane1.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
-        getContentPane().add(jTabbedPane1);
-        jTabbedPane1.setBounds(130, 70, 530, 360);
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(null);
+
+        jLabelMoldura1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jLabelMoldura1.setEnabled(false);
+        jPanel1.add(jLabelMoldura1);
+        jLabelMoldura1.setBounds(20, 20, 160, 160);
+
+        jLabelFoto.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jPanel1.add(jLabelFoto);
+        jLabelFoto.setBounds(40, 40, 120, 90);
+
+        jLabelId.setText("ID:");
+        jPanel1.add(jLabelId);
+        jLabelId.setBounds(40, 140, 120, 14);
+
+        jLabelNome.setText("Nome:");
+        jPanel1.add(jLabelNome);
+        jLabelNome.setBounds(40, 160, 120, 14);
+
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(70, 90, 660, 410);
+
+        jButtonVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/bt2.png"))); // NOI18N
+        getContentPane().add(jButtonVoltar);
+        jButtonVoltar.setBounds(70, 510, 120, 70);
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/bt2.png"))); // NOI18N
+        getContentPane().add(jButton1);
+        jButton1.setBounds(610, 510, 120, 70);
+
+        jLabelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Fundo2.png"))); // NOI18N
+        getContentPane().add(jLabelFundo);
+        jLabelFundo.setBounds(0, 0, 800, 600);
 
         setSize(new java.awt.Dimension(816, 639));
         setLocationRelativeTo(null);
@@ -174,6 +215,13 @@ public class BuscaUserImage extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonVoltar;
+    private javax.swing.JLabel jLabelFoto;
+    private javax.swing.JLabel jLabelFundo;
+    private javax.swing.JLabel jLabelId;
+    private javax.swing.JLabel jLabelMoldura1;
+    private javax.swing.JLabel jLabelNome;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
