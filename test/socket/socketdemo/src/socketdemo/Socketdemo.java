@@ -15,7 +15,7 @@ public class Socketdemo {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        ServerUI server = ServerUI(); 
+       // ServerUI server = new ServerUI(); 
     }
     
 }
