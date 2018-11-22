@@ -76,7 +76,7 @@ public class BuscaAdm extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(370, 510, 120, 40);
+        jButton1.setBounds(360, 510, 120, 40);
 
         jButton2.setText("Anterior");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -85,7 +85,7 @@ public class BuscaAdm extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(220, 510, 120, 40);
+        jButton2.setBounds(210, 510, 120, 40);
 
         btAlterar.setText("Alterar");
         btAlterar.addActionListener(new java.awt.event.ActionListener() {
@@ -94,7 +94,7 @@ public class BuscaAdm extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btAlterar);
-        btAlterar.setBounds(560, 510, 100, 40);
+        btAlterar.setBounds(610, 510, 100, 40);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -106,7 +106,7 @@ public class BuscaAdm extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Busca ");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(330, 0, 280, 70);
+        jLabel1.setBounds(340, 0, 280, 70);
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -168,7 +168,7 @@ public class BuscaAdm extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable2);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(30, 180, 680, 310);
+        jScrollPane1.setBounds(30, 180, 700, 310);
 
         jLabelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Fundo2.png"))); // NOI18N
         jLabelFundo.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Fundo2.png"))); // NOI18N

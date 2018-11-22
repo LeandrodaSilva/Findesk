@@ -10,6 +10,7 @@ import view.TelaPrincipal;
  * @author ld_si
  */
 //teste
+//leleo gay
 public class Administrador {
     
     /**
