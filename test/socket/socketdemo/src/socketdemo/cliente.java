@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
 public class cliente {
     public static void main(String[] args) {
         try {
-            Socket cliente = new Socket("127.0.0.1",8087);
+            Socket cliente = new Socket("10.20.156.2",8087);
             ObjectInputStream entrada = new ObjectInputStream(cliente.getInputStream());
             Date data_atual = (Date)entrada.readObject();
             JOptionPane.showMessageDialog(null,"Data recebida do servidor:" + data_atual.toString());

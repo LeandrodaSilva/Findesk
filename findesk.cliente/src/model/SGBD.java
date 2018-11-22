@@ -133,7 +133,9 @@ public class SGBD
         return rs;
     }
      
-    
+    public static void loadUserConfig(){
+        
+    }
     
     public static void inserirItemBd(){
         
