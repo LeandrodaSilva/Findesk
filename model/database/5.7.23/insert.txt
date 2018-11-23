@@ -19,35 +19,13 @@ CREATE SCHEMA IF NOT EXISTS `findesk` DEFAULT CHARACTER SET latin1 ;
 USE `findesk` ;
 
 -- -----------------------------------------------------
--- Table `findesk`.`config`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `findesk`.`config` ;
-
-CREATE TABLE IF NOT EXISTS `findesk`.`config` (
-  `idConfig` INT(11) NOT NULL,
-  `admIpConfig` VARCHAR(15) NOT NULL,
-  `userIpConfig` VARCHAR(15) NOT NULL,
-  `portaConfig` INT(11) NOT NULL,
-  `bufferSizeConfig` INT(11) NOT NULL,
-  PRIMARY KEY (`idConfig`),
-  UNIQUE INDEX `idConfig_UNIQUE` (`idConfig` ASC) VISIBLE)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
-
-
--- -----------------------------------------------------
 -- Table `findesk`.`administrador`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `findesk`.`administrador` ;
 
 CREATE TABLE IF NOT EXISTS `findesk`.`administrador` (
   `idAdm` INT(11) NOT NULL,
-  `idConfig` INT(11) NOT NULL,
-  PRIMARY KEY (`idAdm`),
-  INDEX `fk_Administrador_Config1_idx` (`idConfig` ASC) VISIBLE,
-  CONSTRAINT `fk_idAdmConfig`
-    FOREIGN KEY (`idConfig`)
-    REFERENCES `findesk`.`config` (`idConfig`))
+  PRIMARY KEY (`idAdm`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
@@ -62,6 +40,27 @@ CREATE TABLE IF NOT EXISTS `findesk`.`categoria` (
   `nomeCat` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idCategoria`),
   UNIQUE INDEX `nomeCat_UNIQUE` (`nomeCat` ASC) VISIBLE)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `findesk`.`admConfig`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `findesk`.`admConfig` ;
+
+CREATE TABLE IF NOT EXISTS `findesk`.`admConfig` (
+  `idAdmConfig` INT NOT NULL,
+  `idAdm` INT(11) NOT NULL,
+  `ipAdmConfig` VARCHAR(20) NULL,
+  `portAdmConfig` INT NULL,
+  PRIMARY KEY (`idAdmConfig`),
+  INDEX `fk_admConfig_administrador1_idx` (`idAdm` ASC) VISIBLE,
+  CONSTRAINT `fk_admConfig_administrador1`
+    FOREIGN KEY (`idAdm`)
+    REFERENCES `findesk`.`administrador` (`idAdm`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
@@ -82,11 +81,11 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `findesk`.`nome`
+-- Table `findesk`.`nomeItem`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `findesk`.`nome` ;
+DROP TABLE IF EXISTS `findesk`.`nomeItem` ;
 
-CREATE TABLE IF NOT EXISTS `findesk`.`nome` (
+CREATE TABLE IF NOT EXISTS `findesk`.`nomeItem` (
   `idNome` CHAR(10) NOT NULL,
   `nome` VARCHAR(45) NOT NULL,
   `idCategoria` CHAR(1) NOT NULL,
@@ -170,7 +169,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `findesk`.`dataEntrada` ;
 
 CREATE TABLE IF NOT EXISTS `findesk`.`dataEntrada` (
-  `idDataEntrada` INT NOT NULL,
+  `idDataEntrada` INT NOT NULL AUTO_INCREMENT,
   `idData` INT NOT NULL,
   PRIMARY KEY (`idDataEntrada`),
   INDEX `fk_dataEntrada_data1_idx` (`idData` ASC) VISIBLE,
@@ -188,7 +187,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `findesk`.`dataSaida` ;
 
 CREATE TABLE IF NOT EXISTS `findesk`.`dataSaida` (
-  `idDataSaida` INT NOT NULL,
+  `idDataSaida` INT NOT NULL AUTO_INCREMENT,
   `idData` INT NOT NULL,
   PRIMARY KEY (`idDataSaida`),
   INDEX `fk_dataSaida_data1_idx` (`idData` ASC) VISIBLE,
@@ -201,13 +200,26 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `findesk`.`documento`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `findesk`.`documento` ;
+
+CREATE TABLE IF NOT EXISTS `findesk`.`documento` (
+  `idDoc` INT NOT NULL,
+  `nomeDoc` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idDoc`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `findesk`.`item`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `findesk`.`item` ;
 
 CREATE TABLE IF NOT EXISTS `findesk`.`item` (
-  `idItem` INT(11) NOT NULL COMMENT 'Valor de idêntificação do item',
-  `idCor` VARCHAR(7) NOT NULL,
+  `idItem` INT(11) NOT NULL AUTO_INCREMENT COMMENT 'Valor de idêntificação do item',
+  `idCor` VARCHAR(7) NULL,
+  `idDoc` INT NULL,
   `idNome` CHAR(10) NOT NULL,
   `idAdm` INT(11) NOT NULL,
   `idDataEntrada` INT NOT NULL,
@@ -221,6 +233,7 @@ CREATE TABLE IF NOT EXISTS `findesk`.`item` (
   INDEX `fk_Item_Administrador1_idx` (`idAdm` ASC) VISIBLE,
   INDEX `fk_item_dataEntrada1_idx` (`idDataEntrada` ASC) VISIBLE,
   INDEX `fk_item_dataSaida1_idx` (`idDataSaida` ASC) VISIBLE,
+  INDEX `fk_item_docuemnto1_idx` (`idDoc` ASC) VISIBLE,
   CONSTRAINT `fk_idAdm`
     FOREIGN KEY (`idAdm`)
     REFERENCES `findesk`.`administrador` (`idAdm`),
@@ -229,7 +242,7 @@ CREATE TABLE IF NOT EXISTS `findesk`.`item` (
     REFERENCES `findesk`.`cor` (`idCor`),
   CONSTRAINT `fk_idNome`
     FOREIGN KEY (`idNome`)
-    REFERENCES `findesk`.`nome` (`idNome`),
+    REFERENCES `findesk`.`nomeItem` (`idNome`),
   CONSTRAINT `fk_item_dataEntrada1`
     FOREIGN KEY (`idDataEntrada`)
     REFERENCES `findesk`.`dataEntrada` (`idDataEntrada`)
@@ -238,6 +251,11 @@ CREATE TABLE IF NOT EXISTS `findesk`.`item` (
   CONSTRAINT `fk_item_dataSaida1`
     FOREIGN KEY (`idDataSaida`)
     REFERENCES `findesk`.`dataSaida` (`idDataSaida`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_item_docuemnto1`
+    FOREIGN KEY (`idDoc`)
+    REFERENCES `findesk`.`documento` (`idDoc`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -251,14 +269,55 @@ DROP TABLE IF EXISTS `findesk`.`usuario` ;
 
 CREATE TABLE IF NOT EXISTS `findesk`.`usuario` (
   `idUsuario` INT(11) NOT NULL,
-  `idConfig` INT(11) NOT NULL,
-  PRIMARY KEY (`idUsuario`),
-  INDEX `fk_Usuario_Config1_idx` (`idConfig` ASC) VISIBLE,
-  CONSTRAINT `fk_idUsuConfig`
-    FOREIGN KEY (`idConfig`)
-    REFERENCES `findesk`.`config` (`idConfig`))
+  PRIMARY KEY (`idUsuario`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `findesk`.`userConfig`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `findesk`.`userConfig` ;
+
+CREATE TABLE IF NOT EXISTS `findesk`.`userConfig` (
+  `idUserConfig` INT NOT NULL,
+  `ipUserConfig` VARCHAR(45) NULL,
+  `portUserConfig` INT NULL,
+  `idUsuario` INT(11) NOT NULL,
+  PRIMARY KEY (`idUserConfig`),
+  INDEX `fk_userConfig_usuario1_idx` (`idUsuario` ASC) VISIBLE,
+  CONSTRAINT `fk_userConfig_usuario1`
+    FOREIGN KEY (`idUsuario`)
+    REFERENCES `findesk`.`usuario` (`idUsuario`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `findesk`.`socket`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `findesk`.`socket` ;
+
+CREATE TABLE IF NOT EXISTS `findesk`.`socket` (
+  `idSocket` INT NOT NULL,
+  `logSocket` VARCHAR(45) NULL,
+  `idAdm` INT(11) NOT NULL,
+  `idUsuario` INT(11) NOT NULL,
+  PRIMARY KEY (`idSocket`),
+  INDEX `fk_socket_administrador1_idx` (`idAdm` ASC) VISIBLE,
+  INDEX `fk_socket_usuario1_idx` (`idUsuario` ASC) VISIBLE,
+  CONSTRAINT `fk_socket_administrador1`
+    FOREIGN KEY (`idAdm`)
+    REFERENCES `findesk`.`administrador` (`idAdm`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_socket_usuario1`
+    FOREIGN KEY (`idUsuario`)
+    REFERENCES `findesk`.`usuario` (`idUsuario`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
@@ -266,21 +325,11 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 -- -----------------------------------------------------
--- Data for table `findesk`.`config`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `findesk`;
-INSERT INTO `findesk`.`config` (`idConfig`, `admIpConfig`, `userIpConfig`, `portaConfig`, `bufferSizeConfig`) VALUES (1, '127.0.0.1', '127.0.0.1', 1, 1);
-
-COMMIT;
-
-
--- -----------------------------------------------------
 -- Data for table `findesk`.`administrador`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `findesk`;
-INSERT INTO `findesk`.`administrador` (`idAdm`, `idConfig`) VALUES (1, 1);
+INSERT INTO `findesk`.`administrador` (`idAdm`) VALUES (1);
 
 COMMIT;
 
@@ -301,32 +350,42 @@ COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `findesk`.`cor`
+-- Data for table `findesk`.`admConfig`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `findesk`;
-INSERT INTO `findesk`.`cor` (`idCor`, `nomeCor`) VALUES ('#0000000', 'Preto');
-INSERT INTO `findesk`.`cor` (`idCor`, `nomeCor`) VALUES ('#000001', 'Branco');
-INSERT INTO `findesk`.`cor` (`idCor`, `nomeCor`) VALUES ('#000002', 'Vermelho');
-INSERT INTO `findesk`.`cor` (`idCor`, `nomeCor`) VALUES ('#000003', 'Amarelo');
-INSERT INTO `findesk`.`cor` (`idCor`, `nomeCor`) VALUES ('#000004', 'Azul');
+INSERT INTO `findesk`.`admConfig` (`idAdmConfig`, `idAdm`, `ipAdmConfig`, `portAdmConfig`) VALUES (1, 1, '127.0.0.1', 8087);
 
 COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `findesk`.`nome`
+-- Data for table `findesk`.`cor`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `findesk`;
-INSERT INTO `findesk`.`nome` (`idNome`, `nome`, `idCategoria`) VALUES ('1', 'Pendrive', 'a');
-INSERT INTO `findesk`.`nome` (`idNome`, `nome`, `idCategoria`) VALUES ('2', 'Notebook', 'a');
-INSERT INTO `findesk`.`nome` (`idNome`, `nome`, `idCategoria`) VALUES ('3', 'Camiseta', 'b');
-INSERT INTO `findesk`.`nome` (`idNome`, `nome`, `idCategoria`) VALUES ('4', 'Caderno', 'c');
-INSERT INTO `findesk`.`nome` (`idNome`, `nome`, `idCategoria`) VALUES ('5', 'Caneta', 'c');
-INSERT INTO `findesk`.`nome` (`idNome`, `nome`, `idCategoria`) VALUES ('6', 'Garrafa', 'd');
-INSERT INTO `findesk`.`nome` (`idNome`, `nome`, `idCategoria`) VALUES ('7', 'Guarda-Chuva', 'f');
-INSERT INTO `findesk`.`nome` (`idNome`, `nome`, `idCategoria`) VALUES ('8', 'RA', 'e');
+INSERT INTO `findesk`.`cor` (`idCor`, `nomeCor`) VALUES ('#000000', 'Preto');
+INSERT INTO `findesk`.`cor` (`idCor`, `nomeCor`) VALUES ('#FFFFFF', 'Branco');
+INSERT INTO `findesk`.`cor` (`idCor`, `nomeCor`) VALUES ('#FF0000', 'Vermelho');
+INSERT INTO `findesk`.`cor` (`idCor`, `nomeCor`) VALUES ('#00FF00', 'Verde');
+INSERT INTO `findesk`.`cor` (`idCor`, `nomeCor`) VALUES ('#0000FF', 'Azul');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `findesk`.`nomeItem`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `findesk`;
+INSERT INTO `findesk`.`nomeItem` (`idNome`, `nome`, `idCategoria`) VALUES ('1', 'Pendrive', 'a');
+INSERT INTO `findesk`.`nomeItem` (`idNome`, `nome`, `idCategoria`) VALUES ('2', 'Notebook', 'a');
+INSERT INTO `findesk`.`nomeItem` (`idNome`, `nome`, `idCategoria`) VALUES ('3', 'Camiseta', 'b');
+INSERT INTO `findesk`.`nomeItem` (`idNome`, `nome`, `idCategoria`) VALUES ('4', 'Caderno', 'c');
+INSERT INTO `findesk`.`nomeItem` (`idNome`, `nome`, `idCategoria`) VALUES ('5', 'Caneta', 'c');
+INSERT INTO `findesk`.`nomeItem` (`idNome`, `nome`, `idCategoria`) VALUES ('6', 'Garrafa', 'd');
+INSERT INTO `findesk`.`nomeItem` (`idNome`, `nome`, `idCategoria`) VALUES ('7', 'Guarda-Chuva', 'f');
+INSERT INTO `findesk`.`nomeItem` (`idNome`, `nome`, `idCategoria`) VALUES ('8', 'RA', 'e');
 
 COMMIT;
 
@@ -435,18 +494,29 @@ COMMIT;
 
 
 -- -----------------------------------------------------
+-- Data for table `findesk`.`documento`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `findesk`;
+INSERT INTO `findesk`.`documento` (`idDoc`, `nomeDoc`) VALUES (1914413, 'Victor Batisttete Dias');
+INSERT INTO `findesk`.`documento` (`idDoc`, `nomeDoc`) VALUES (461773698, 'Antonio Neto');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `findesk`.`item`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `findesk`;
-INSERT INTO `findesk`.`item` (`idItem`, `idCor`, `idNome`, `idAdm`, `idDataEntrada`, `idDataSaida`, `retiradoItem`, `fotoItem`, `descricaoItem`) VALUES (1, '#000000', '1', 1, 1, 1, 1, NULL, 'Lindo pendrive ');
-INSERT INTO `findesk`.`item` (`idItem`, `idCor`, `idNome`, `idAdm`, `idDataEntrada`, `idDataSaida`, `retiradoItem`, `fotoItem`, `descricaoItem`) VALUES (2, '#000000', '2', 1, 2, 2, 0, NULL, 'Lindo notebook');
-INSERT INTO `findesk`.`item` (`idItem`, `idCor`, `idNome`, `idAdm`, `idDataEntrada`, `idDataSaida`, `retiradoItem`, `fotoItem`, `descricaoItem`) VALUES (3, '#000001', '3', 1, 1, 1, 0, NULL, 'Ekko, lacoste, pe�a da oakley, varias camisa de time');
-INSERT INTO `findesk`.`item` (`idItem`, `idCor`, `idNome`, `idAdm`, `idDataEntrada`, `idDataSaida`, `retiradoItem`, `fotoItem`, `descricaoItem`) VALUES (4, '#000002', '4', 1, 1, 1, 0, NULL, 'Caderno 10 mat�rias da Moranguinho');
-INSERT INTO `findesk`.`item` (`idItem`, `idCor`, `idNome`, `idAdm`, `idDataEntrada`, `idDataSaida`, `retiradoItem`, `fotoItem`, `descricaoItem`) VALUES (5, '#000003', '5', 1, 1, 1, 0, NULL, 'Caneta BIC vermelha');
-INSERT INTO `findesk`.`item` (`idItem`, `idCor`, `idNome`, `idAdm`, `idDataEntrada`, `idDataSaida`, `retiradoItem`, `fotoItem`, `descricaoItem`) VALUES (6, '#000004', '6', 1, 1, 1, 1, NULL, 'Garrafa vermelha de aluminio');
-INSERT INTO `findesk`.`item` (`idItem`, `idCor`, `idNome`, `idAdm`, `idDataEntrada`, `idDataSaida`, `retiradoItem`, `fotoItem`, `descricaoItem`) VALUES (8, '#000001', '7', 1, 1, 1, 0, NULL, 'Leandro Jasinto Pinto');
-INSERT INTO `findesk`.`item` (`idItem`, `idCor`, `idNome`, `idAdm`, `idDataEntrada`, `idDataSaida`, `retiradoItem`, `fotoItem`, `descricaoItem`) VALUES (7, '#000004', '8', 1, 1, 1, 1, NULL, 'Guarda chuva preto grande');
+INSERT INTO `findesk`.`item` (`idItem`, `idCor`, `idDoc`, `idNome`, `idAdm`, `idDataEntrada`, `idDataSaida`, `retiradoItem`, `fotoItem`, `descricaoItem`) VALUES (1, '#000000', NULL, '1', 1, 1, 1, 1, NULL, 'Lindo pendrive ');
+INSERT INTO `findesk`.`item` (`idItem`, `idCor`, `idDoc`, `idNome`, `idAdm`, `idDataEntrada`, `idDataSaida`, `retiradoItem`, `fotoItem`, `descricaoItem`) VALUES (2, '#000000', NULL, '2', 1, 2, 2, 0, NULL, 'Lindo notebook');
+INSERT INTO `findesk`.`item` (`idItem`, `idCor`, `idDoc`, `idNome`, `idAdm`, `idDataEntrada`, `idDataSaida`, `retiradoItem`, `fotoItem`, `descricaoItem`) VALUES (3, '#FFFFFF', NULL, '3', 1, 1, 1, 0, NULL, 'Camisa G via lance');
+INSERT INTO `findesk`.`item` (`idItem`, `idCor`, `idDoc`, `idNome`, `idAdm`, `idDataEntrada`, `idDataSaida`, `retiradoItem`, `fotoItem`, `descricaoItem`) VALUES (4, '#0000FF', NULL, '4', 1, 1, 1, 0, NULL, 'Caderno 10 mat�rias da Moranguinho');
+INSERT INTO `findesk`.`item` (`idItem`, `idCor`, `idDoc`, `idNome`, `idAdm`, `idDataEntrada`, `idDataSaida`, `retiradoItem`, `fotoItem`, `descricaoItem`) VALUES (5, '#0000FF', NULL, '5', 1, 1, 1, 0, NULL, 'Caneta BIC ');
+INSERT INTO `findesk`.`item` (`idItem`, `idCor`, `idDoc`, `idNome`, `idAdm`, `idDataEntrada`, `idDataSaida`, `retiradoItem`, `fotoItem`, `descricaoItem`) VALUES (6, '#00FF00', NULL, '6', 1, 1, 1, 1, NULL, 'Garrafa de aluminio');
+INSERT INTO `findesk`.`item` (`idItem`, `idCor`, `idDoc`, `idNome`, `idAdm`, `idDataEntrada`, `idDataSaida`, `retiradoItem`, `fotoItem`, `descricaoItem`) VALUES (8, '#000000', 1914413, '7', 1, 1, 1, 0, NULL, 'RA');
+INSERT INTO `findesk`.`item` (`idItem`, `idCor`, `idDoc`, `idNome`, `idAdm`, `idDataEntrada`, `idDataSaida`, `retiradoItem`, `fotoItem`, `descricaoItem`) VALUES (7, '#000000', NULL, '8', 1, 1, 1, 1, NULL, 'Guarda chuva grande');
 
 COMMIT;
 
@@ -456,7 +526,27 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `findesk`;
-INSERT INTO `findesk`.`usuario` (`idUsuario`, `idConfig`) VALUES (1, 1);
+INSERT INTO `findesk`.`usuario` (`idUsuario`) VALUES (1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `findesk`.`userConfig`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `findesk`;
+INSERT INTO `findesk`.`userConfig` (`idUserConfig`, `ipUserConfig`, `portUserConfig`, `idUsuario`) VALUES (1, '127.0.0.1', 8087, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `findesk`.`socket`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `findesk`;
+INSERT INTO `findesk`.`socket` (`idSocket`, `logSocket`, `idAdm`, `idUsuario`) VALUES (1, 'teste', 1, 1);
 
 COMMIT;
 
