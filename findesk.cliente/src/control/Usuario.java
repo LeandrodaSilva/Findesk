@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.SGBD;
+import model.Sockets;
 import view.TelaPrincipal;
 import view.BuscaUser;
 /**
@@ -28,6 +29,15 @@ public class Usuario {
   
     public static void main(String[] args) {
        setConfig();
+       
+       SGBD mybd = new SGBD();
+       mybd.getConexaoMySQL();
+       
+       Sockets novo = new Sockets(mybd.loadAdmIp(),mybd.loadAdmPort());
+       novo.testConnection();
+       
+       mybd.fecharConexao();
+       
        TelaPrincipal mytela = new TelaPrincipal();
        //BuscaUser bu = new BuscaUser();
        mytela.mostrar();
@@ -40,7 +50,7 @@ public class Usuario {
         try {
             SGBD mybd = new SGBD();
             mybd.getConexaoMySQL();
-            mybd.setUserConfig(InetAddress.getLocalHost().getHostAddress(), 5561);
+            mybd.setUserConfig(InetAddress.getLocalHost().getHostAddress(), 5061);
             mybd.fecharConexao();
             System.out.println("ip do usuário atualizado para "+ InetAddress.getLocalHost().getHostAddress());
         } catch (UnknownHostException ex) {
@@ -48,8 +58,5 @@ public class Usuario {
         } catch (ipException ex) {
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-    
- 
-    
+    }  
 }

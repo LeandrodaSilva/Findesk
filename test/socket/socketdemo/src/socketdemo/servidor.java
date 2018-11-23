@@ -19,8 +19,8 @@ public class servidor {
     public static void main(String[] args) {
         try {
             // Instancia o ServerSocket ouvindo a porta 12345
-            ServerSocket servidor = new ServerSocket(8087);
-            System.out.println("Servidor ouvindo a porta 8087");
+            ServerSocket servidor = new ServerSocket(5060);
+            System.out.println("Servidor ouvindo a porta 5060");
             while(true) {
               // o método accept() bloqueia a execução até que
               // o servidor receba um pedido de conexão
