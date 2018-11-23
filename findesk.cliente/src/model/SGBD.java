@@ -22,6 +22,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import Exceptions.*;
  
   
  
@@ -134,7 +135,54 @@ public class SGBD
     }
      
     public static void loadUserConfig(){
-        
+        Statement stt;
+        ResultSet rs = null;
+        try {
+            stt = connection.createStatement(); 
+            rs = stt.executeQuery("");
+            rs.beforeFirst();
+        } catch (SQLException ex) {
+            Logger.getLogger(SGBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public static void setUserConfig(String ip, int porta) throws ipException{
+        if(ip.isEmpty()){
+            throw new ipException();
+        }else{
+            try {
+                Statement stt;
+                stt = connection.createStatement(); 
+                stt.executeUpdate("UPDATE userconfig " +
+                                      "SET ipUserConfig = \""+ip+"\" " +
+                                      ", portUserConfig = " + porta +
+                                      " where idUserConfig = 1; ");
+
+            } catch (SQLException ex) {
+                Logger.getLogger(SGBD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    public static void loadAdmConfig(){
+        Statement stt;
+        ResultSet rs = null;
+        try {
+            stt = connection.createStatement(); 
+            rs = stt.executeQuery("");
+            rs.beforeFirst();
+        } catch (SQLException ex) {
+            Logger.getLogger(SGBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public static void setAdmConfig(String ip, int porta){
+        Statement stt;
+        ResultSet rs = null;
+        try {
+            stt = connection.createStatement(); 
+            rs = stt.executeQuery("");
+            rs.beforeFirst();
+        } catch (SQLException ex) {
+            Logger.getLogger(SGBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public static void inserirItemBd(){

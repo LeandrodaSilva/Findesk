@@ -5,6 +5,7 @@
  */
 package socketdemo;
 
+import java.net.InetAddress;
 import java.util.ArrayList;
 
 /**
@@ -21,6 +22,10 @@ public class main {
         }
         if(array.contains("leandro")){
             System.out.println("achou o leandro");
+        }
+          try {
+            System.out.println("Meu ip: " +InetAddress.getLocalHost().getHostAddress());
+        } catch (Exception e) {
         }
     }
     

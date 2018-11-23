@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package control;
+import Exceptions.ipException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -24,9 +27,27 @@ public class Usuario {
      */
   
     public static void main(String[] args) {
+       setConfig();
        TelaPrincipal mytela = new TelaPrincipal();
        //BuscaUser bu = new BuscaUser();
        mytela.mostrar();
+    }
+    
+    
+    
+    private static void setConfig(){
+       
+        try {
+            SGBD mybd = new SGBD();
+            mybd.getConexaoMySQL();
+            mybd.setUserConfig(InetAddress.getLocalHost().getHostAddress(), 5561);
+            mybd.fecharConexao();
+            System.out.println("ip do usuário atualizado para "+ InetAddress.getLocalHost().getHostAddress());
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ipException ex) {
+            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
  

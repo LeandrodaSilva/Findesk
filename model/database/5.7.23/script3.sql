@@ -71,8 +71,8 @@ DEFAULT CHARACTER SET = utf8;
 DROP TABLE IF EXISTS `findesk`.`cor` ;
 
 CREATE TABLE IF NOT EXISTS `findesk`.`cor` (
-  `idCor` VARCHAR(7) NOT NULL COMMENT 'contêm o valor hexadecimal da cor referenciada',
-  `nomeCor` VARCHAR(45) NOT NULL COMMENT 'contêm o nome da cor',
+  `idCor` VARCHAR(7) NOT NULL COMMENT 'contÃªm o valor hexadecimal da cor referenciada',
+  `nomeCor` VARCHAR(45) NOT NULL COMMENT 'contÃªm o nome da cor',
   PRIMARY KEY (`idCor`),
   UNIQUE INDEX `idCor_UNIQUE` (`idCor` ASC) ,
   UNIQUE INDEX `nomeCor_UNIQUE` (`nomeCor` ASC) )
@@ -217,16 +217,16 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `findesk`.`item` ;
 
 CREATE TABLE IF NOT EXISTS `findesk`.`item` (
-  `idItem` INT(11) NOT NULL AUTO_INCREMENT COMMENT 'Valor de idêntificação do item',
+  `idItem` INT(11) NOT NULL AUTO_INCREMENT COMMENT 'Valor de idÃªntificaÃ§Ã£o do item',
   `idCor` VARCHAR(7) NULL,
   `idDoc` INT NULL,
   `idNome` CHAR(10) NOT NULL,
   `idAdm` INT(11) NOT NULL,
   `idDataEntrada` INT NOT NULL,
   `idDataSaida` INT NOT NULL,
-  `retiradoItem` TINYINT(4) NOT NULL DEFAULT '0' COMMENT 'Valor valendo 1 = foi retirado ou 0 = não foi retirado',
+  `retiradoItem` TINYINT(4) NOT NULL DEFAULT '0' COMMENT 'Valor valendo 1 = foi retirado ou 0 = nÃ£o foi retirado',
   `fotoItem` BLOB NULL DEFAULT NULL COMMENT 'Atributo referente ao arquivo de imagem do item',
-  `descricaoItem` VARCHAR(200) NULL DEFAULT NULL COMMENT 'descrição escrita pelo administrador no momento do cadastro',
+  `descricaoItem` VARCHAR(200) NULL DEFAULT NULL COMMENT 'descriÃ§Ã£o escrita pelo administrador no momento do cadastro',
   PRIMARY KEY (`idItem`),
   INDEX `fk_idItemCor` (`idCor` ASC) ,
   INDEX `fk_Item_Nome1_idx` (`idNome` ASC) ,
@@ -339,8 +339,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `findesk`;
-INSERT INTO `findesk`.`categoria` (`idCategoria`, `nomeCat`) VALUES ('a', 'Eletr�nicos');
-INSERT INTO `findesk`.`categoria` (`idCategoria`, `nomeCat`) VALUES ('b', 'Vestu�rios');
+INSERT INTO `findesk`.`categoria` (`idCategoria`, `nomeCat`) VALUES ('a', 'Eletrônicos');
+INSERT INTO `findesk`.`categoria` (`idCategoria`, `nomeCat`) VALUES ('b', 'Vestuários');
 INSERT INTO `findesk`.`categoria` (`idCategoria`, `nomeCat`) VALUES ('c', 'Materiais');
 INSERT INTO `findesk`.`categoria` (`idCategoria`, `nomeCat`) VALUES ('d', 'Recipientes');
 INSERT INTO `findesk`.`categoria` (`idCategoria`, `nomeCat`) VALUES ('e', 'Documentos');
@@ -512,7 +512,7 @@ USE `findesk`;
 INSERT INTO `findesk`.`item` (`idItem`, `idCor`, `idDoc`, `idNome`, `idAdm`, `idDataEntrada`, `idDataSaida`, `retiradoItem`, `fotoItem`, `descricaoItem`) VALUES (1, '#000000', NULL, '1', 1, 1, 1, 1, NULL, 'Lindo pendrive ');
 INSERT INTO `findesk`.`item` (`idItem`, `idCor`, `idDoc`, `idNome`, `idAdm`, `idDataEntrada`, `idDataSaida`, `retiradoItem`, `fotoItem`, `descricaoItem`) VALUES (2, '#000000', NULL, '2', 1, 2, 2, 0, NULL, 'Lindo notebook');
 INSERT INTO `findesk`.`item` (`idItem`, `idCor`, `idDoc`, `idNome`, `idAdm`, `idDataEntrada`, `idDataSaida`, `retiradoItem`, `fotoItem`, `descricaoItem`) VALUES (3, '#FFFFFF', NULL, '3', 1, 1, 1, 0, NULL, 'Camisa G via lance');
-INSERT INTO `findesk`.`item` (`idItem`, `idCor`, `idDoc`, `idNome`, `idAdm`, `idDataEntrada`, `idDataSaida`, `retiradoItem`, `fotoItem`, `descricaoItem`) VALUES (4, '#0000FF', NULL, '4', 1, 1, 1, 0, NULL, 'Caderno 10 mat�rias da Moranguinho');
+INSERT INTO `findesk`.`item` (`idItem`, `idCor`, `idDoc`, `idNome`, `idAdm`, `idDataEntrada`, `idDataSaida`, `retiradoItem`, `fotoItem`, `descricaoItem`) VALUES (4, '#0000FF', NULL, '4', 1, 1, 1, 0, NULL, 'Caderno 10 matérias da Moranguinho');
 INSERT INTO `findesk`.`item` (`idItem`, `idCor`, `idDoc`, `idNome`, `idAdm`, `idDataEntrada`, `idDataSaida`, `retiradoItem`, `fotoItem`, `descricaoItem`) VALUES (5, '#0000FF', NULL, '5', 1, 1, 1, 0, NULL, 'Caneta BIC ');
 INSERT INTO `findesk`.`item` (`idItem`, `idCor`, `idDoc`, `idNome`, `idAdm`, `idDataEntrada`, `idDataSaida`, `retiradoItem`, `fotoItem`, `descricaoItem`) VALUES (6, '#00FF00', NULL, '6', 1, 1, 1, 1, NULL, 'Garrafa de aluminio');
 INSERT INTO `findesk`.`item` (`idItem`, `idCor`, `idDoc`, `idNome`, `idAdm`, `idDataEntrada`, `idDataSaida`, `retiradoItem`, `fotoItem`, `descricaoItem`) VALUES (8, '#000000', 1914413, '7', 1, 1, 1, 0, NULL, 'RA');

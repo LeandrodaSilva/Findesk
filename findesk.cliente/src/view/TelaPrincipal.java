@@ -206,12 +206,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         String nome = jComboBoxNome.getSelectedItem().toString();
         String cor = jComboBoxCor.getSelectedItem().toString();
         
-        String consulta = "select item.idItem , nome.nome , item.descricaoItem " 
-                            +"from item,nome,cor,categoria, dataentrada , data, dia, mes, ano "
-                            +"where item.idNome = nome.idNome and "
+        String consulta = "select item.idItem , nomeItem.nome , item.descricaoItem " 
+                            +"from item,nomeItem,cor,categoria, dataentrada , data, dia, mes, ano "
+                            +"where item.idNome = nomeItem.idNome and "
                             +"item.retiradoItem = 0 and "
-                            +"nome.nome like \""+nome+"\" and " 
-                            +"categoria.idCategoria = nome.idCategoria and " 
+                            +"nomeItem.nome like \""+nome+"\" and " 
+                            +"categoria.idCategoria = nomeItem.idCategoria and " 
                             +"cor.idCor = item.idCor and " 
                             +"cor.nomeCor like \""+cor+"\" and "
                             +"dataentrada.idDataEntrada = item.idDataEntrada and "
@@ -253,10 +253,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         
         System.out.println("Categoria: "+itemName);
      
-        popularComboBoxNome("select distinct nome.nome " +
-                            "from item, nome, categoria " +
-                            "where nome.idNome = item.idNome and " +
-                                    "nome.idCategoria = categoria.idCategoria and " +
+        popularComboBoxNome("select distinct nomeItem.nome " +
+                            "from item, nomeItem, categoria " +
+                            "where nomeItem.idNome = item.idNome and " +
+                                    "nomeItem.idCategoria = categoria.idCategoria and " +
                                     "categoria.nomeCat like \""
                                     + itemName
                                      + "\";");
@@ -405,9 +405,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         
         
         ResultSet rs = mybd.consultarItemBd("select distinct categoria.nomeCat " +
-                                                "from nome, item, categoria " +
-                                                "where item.idNome = nome.idNome and " +
-                                                "nome.idCategoria = categoria.idCategoria;");
+                                                "from nomeItem, item, categoria " +
+                                                "where item.idNome = nomeItem.idNome and " +
+                                                "nomeItem.idCategoria = categoria.idCategoria;");
        
         String nome;
         strList.add("Selecionar");
@@ -565,9 +565,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         
         
         ResultSet rs = mybd.consultarItemBd("SELECT item.descricaoItem " +
-                                "FROM item, nome, categoria " +
-                                "WHERE item.idNome  = nome.idNome and " +
-                                        "nome.idCategoria  = categoria.idCategoria and  " +
+                                "FROM item, nomeItem, categoria " +
+                                "WHERE item.idNome  = nomeItem.idNome and " +
+                                        "nomeItem.idCategoria  = categoria.idCategoria and  " +
                                         "categoria.idCategoria like \"e\";");
        
         String nome;

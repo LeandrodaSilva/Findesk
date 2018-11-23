@@ -5,15 +5,20 @@
  */
 package view;
 
+import Exceptions.ipException;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.sql.Array;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
-
+import model.SGBD;
 /**
  *
  * @author ld_si
@@ -166,6 +171,21 @@ public class BuscaUserImage extends javax.swing.JFrame {
                 janela.setVisible(true);
             }
         });
+        
+        SGBD mybd = new SGBD();
+        
+        mybd.getConexaoMySQL();
+        System.out.println(mybd.statusConection());
+        
+        
+        
+
+        try {
+            SGBD.setUserConfig("127.0.0.3", 8087);
+        } catch (ipException ex) {
+            Logger.getLogger(BuscaUserImage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        mybd.fecharConexao();
     }
     
     public void labelCreate(){
