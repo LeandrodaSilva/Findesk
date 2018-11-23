@@ -1,0 +1,34 @@
+DROP PROCEDURE IF EXISTS fill_date_dimension;
+DELIMITER //
+CREATE PROCEDURE fill_date_dimension()
+BEGIN
+	DECLARE cont INT DEFAULT 1;
+	DECLARE contid INT DEFAULT 1;
+    DECLARE contdia INT DEFAULT 1;
+    DECLARE contmes INT DEFAULT 1;
+    DECLARE contano INT DEFAULT 2018;
+    WHILE cont < 32 DO
+        INSERT INTO data (idData, idDia, idMes, idAno) VALUES (contid+1, contdia, contmes , cont);
+        
+        SET contid = contid + 1 ;
+        SET contdia = contdia + 1 ;
+        IF(contdia = 31 && contmes<12) THEN
+			SET contdia = 1;
+            SET contmes = contmes + 1;
+		END IF;
+			
+        
+    END WHILE;
+END
+//
+DELIMITER ;
+
+DELETE FROM data WHERE (idMes = 2 && (idDia > 28 ));
+DELETE FROM data WHERE (idMes = 4 && (idDia > 30 ));
+DELETE FROM data WHERE (idMes = 6 && (idDia > 30 ));
+DELETE FROM data WHERE (idMes = 9 && (idDia > 30 ));
+DELETE FROM data WHERE (idMes = 11 && (idDia > 30 ));
+
+
+
+CALL fill_date_dimension();
