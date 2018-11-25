@@ -22,6 +22,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import Exceptions.*;
  
   
  
@@ -60,10 +61,6 @@ public class SGBD
  
     public static java.sql.Connection getConexaoMySQL() 
     {
-
-                 //atributo do tipo Connection
-
-        
         try {
             // Carregando o JDBC Driver padrão         
             Class.forName(driverName);
@@ -133,8 +130,73 @@ public class SGBD
         return rs;
     }
      
-    public static void loadUserConfig(){
-        
+
+    public static void setUserConfig(String ip, int porta) throws ipException{
+        if(ip.isEmpty()){
+            throw new ipException();
+        }else{
+            try {
+                Statement stt;
+                stt = connection.createStatement(); 
+                stt.executeUpdate("UPDATE userconfig " +
+                                  "SET ipUserConfig = \""+ip+"\" " +
+                                  ", portUserConfig = " + porta +
+                                  " where idUserConfig = 1; ");
+
+            } catch (SQLException ex) {
+                Logger.getLogger(SGBD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    public static int loadAdmPort(){ 
+        try {
+            Statement stt;
+            ResultSet rs = null;
+            stt = connection.createStatement(); 
+            rs = stt.executeQuery("select portAdmConfig "
+                    + "from admconfig "
+                    + "where idAdmConfig = 1 and idAdm = 1;");
+            rs.beforeFirst();
+            rs.first();
+            return rs.getInt("portAdmConfig");
+        } catch (SQLException ex) {
+            Logger.getLogger(SGBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
+    
+       public static String loadAdmIp(){ 
+        try {
+            Statement stt;
+            ResultSet rs = null;
+            stt = connection.createStatement(); 
+            rs = stt.executeQuery("select ipAdmConfig "
+                    + "from admconfig "
+                    + "where idAdmConfig = 1 and idAdm = 1;");
+            rs.beforeFirst();
+            rs.first();
+            return rs.getString("ipAdmConfig");
+        } catch (SQLException ex) {
+            Logger.getLogger(SGBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "127.0.0.1";
+    }
+    
+    public static void setAdmConfig(String ip, int porta) throws ipException{
+         if(ip.isEmpty()){
+            throw new ipException();
+        }else{
+            try {
+                Statement stt;
+                stt = connection.createStatement(); 
+                stt.executeUpdate("UPDATE admconfig " +
+                                  "SET ipAdmConfig = \""+ip+"\" " +
+                                  ", portAdmConfig = " + porta +
+                                  " where idAdmConfig = 1; ");
+            } catch (SQLException ex) {
+                Logger.getLogger(SGBD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
     public static void inserirItemBd(){
