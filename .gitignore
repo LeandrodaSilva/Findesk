@@ -32,13 +32,9 @@ findesk\.admnistrador/nbproject/private/private\.xml
 
 findesk\.admnistrador/nbproject/private/
 
-*.properties
 
-*.xml
 
-findesk\.admnistrador/src/view/BuscaAdm\.form
 
-findesk\.admnistrador/src/view/BuscaAdm\.java
 
-findesk\.admnistrador/src/view/
 /test/socket/socketdemo/dist/
+/findesk.cliente/src/model/Selecionado.java
