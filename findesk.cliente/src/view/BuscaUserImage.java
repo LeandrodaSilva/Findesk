@@ -6,37 +6,76 @@
 package view;
 
 import Exceptions.ipException;
+import java.awt.BorderLayout;
+import static java.awt.BorderLayout.CENTER;
+import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Graphics2D;
+import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.RenderingHints;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.sql.Array;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.SwingUtilities;
+import javax.swing.Timer;
 import model.SGBD;
 /**
  *
  * @author ld_si
  */
-public class BuscaUserImage extends javax.swing.JFrame {
+public class BuscaUserImage extends javax.swing.JFrame{
     private static BuscaUserImage janelaControl;
     /**
      * Creates new form BuscaUserImage
      */
-    private int qtd = 20;
-    private  JLabel[] novo = new JLabel[qtd];
+    private  int qtd = 1;
+    private  JLabel[] novo = new JLabel[50];
+    private  Selecionado selec = new Selecionado();
     
     
     public BuscaUserImage() {
-        //initComponents();
-        initComponent(qtd);
-        //labelCreate();
+        initComponent();
         popular();
+    }
+    public BuscaUserImage(String sql) {
+        System.out.println("mostrar() -> Consulta recebida: "+sql);
+        SGBD mybd = new SGBD();
+        mybd.getConexaoMySQL();
+        ResultSet rs = mybd.consultarItemBd("SELECT item.idItem , concat(dia.idDia, \"/\",mes.idMes, \"/\", ano.idAno), item.fotoItem from item,nomeItem,cor,categoria, dataentrada , data, dia, mes, ano where item.idNome = nomeItem.idNome and  item.retiradoItem = 0 and nomeItem.nome like \"Notebook\" and  categoria.idCategoria = nomeItem.idCategoria and cor.idCor = item.idCor and cor.nomeCor like \"Preto\" and dataentrada.idDataEntrada = item.idDataEntrada and data.idData = dataentrada.idData and data.idDia = dia.idDia and data.idMes = mes.idMes and data.idAno = ano.idAno and data.idDia <= \"7\" and mes.idMes like \"2\" and ano.idAno like \"2000\" UNION SELECT item.idItem , concat(dia.idDia, \"/\",mes.idMes, \"/\", ano.idAno) , item.fotoItem from item,nomeItem,cor,categoria, dataentrada , data, dia, mes, ano where item.idNome = nomeItem.idNome and item.retiradoItem = 0 and nomeItem.nome like \"Notebook\" and  categoria.idCategoria = nomeItem.idCategoria and cor.idCor = item.idCor and cor.nomeCor like \"Preto\" and dataentrada.idDataEntrada = item.idDataEntrada and data.idData = dataentrada.idData and data.idDia = dia.idDia and data.idMes = mes.idMes and data.idAno = ano.idAno and data.idDia >= \"28\" and mes.idMes like \"1\" and ano.idAno like \"2000\";");
+        try {
+            rs.beforeFirst();
+            qtd = 0;
+            while(rs.next()){
+                this.qtd++;
+            }
+            System.out.println("mostrar() -> Quantidade de itens: "+qtd);
+        } catch (SQLException ex) {
+            Logger.getLogger(BuscaUserImage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        mybd.fecharConexao();
+        initComponent(sql);
+        popular(sql);
     }
 
     /**
@@ -48,11 +87,55 @@ public class BuscaUserImage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButtonVoltar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
-        jLabelMoldura1 = new javax.swing.JLabel();
-        jLabelFoto = new javax.swing.JLabel();
-        jLabelId = new javax.swing.JLabel();
-        jLabelNome = new javax.swing.JLabel();
+        jLabelFundo = new javax.swing.JLabel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(800, 600));
+        setPreferredSize(new java.awt.Dimension(800, 600));
+        setResizable(false);
+        setSize(new java.awt.Dimension(800, 600));
+        getContentPane().setLayout(null);
+
+        jButtonVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/bt2.png"))); // NOI18N
+        getContentPane().add(jButtonVoltar);
+        jButtonVoltar.setBounds(70, 510, 120, 70);
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/bt2.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(610, 510, 120, 70);
+
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        jScrollPane1.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
+            public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
+                jScrollPane1MouseWheelMoved(evt);
+            }
+        });
+
+        jPanel1.setLayout(null);
+        jScrollPane1.setViewportView(jPanel1);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(60, 60, 680, 420);
+
+        jLabelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Fundo2.png"))); // NOI18N
+        getContentPane().add(jLabelFundo);
+        jLabelFundo.setBounds(0, 0, 800, 600);
+
+        setSize(new java.awt.Dimension(800, 600));
+        setLocationRelativeTo(null);
+    }// </editor-fold>//GEN-END:initComponents
+    private void initComponent() {
+        JPanel painel = new JPanel();
         jButtonVoltar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jLabelFundo = new javax.swing.JLabel();
@@ -63,49 +146,52 @@ public class BuscaUserImage extends javax.swing.JFrame {
         setResizable(false);
         setSize(new java.awt.Dimension(800, 600));
         getContentPane().setLayout(null);
-
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setLayout(null);
-
-        jLabelMoldura1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jLabelMoldura1.setEnabled(false);
-        jPanel1.add(jLabelMoldura1);
-        jLabelMoldura1.setBounds(20, 20, 160, 160);
-
-        jLabelFoto.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jPanel1.add(jLabelFoto);
-        jLabelFoto.setBounds(40, 40, 120, 90);
-
-        jLabelId.setText("ID:");
-        jPanel1.add(jLabelId);
-        jLabelId.setBounds(40, 140, 120, 14);
-
-        jLabelNome.setText("Nome:");
-        jPanel1.add(jLabelNome);
-        jLabelNome.setBounds(40, 160, 120, 14);
-
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(70, 90, 660, 410);
-
-        jButtonVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/bt2.png"))); // NOI18N
-        getContentPane().add(jButtonVoltar);
-        jButtonVoltar.setBounds(70, 510, 120, 70);
-
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/bt2.png"))); // NOI18N
+        //new GridLayout( 80, 3 ) 
+        painel.setLayout(new GridLayout(0, 3, 10, 50));
+        int x = 40, y = 140;
+        for(int i= 0; i < qtd; i++){
+            novo[i] = new JLabel();
+            novo[i].setText("ID: "+i);
+            painel.add(novo[i]);
+            novo[i].addMouseListener(selec);
+            novo[i].setBounds(x, y, 120, 14);
+            x += 130;
+            if(x > 560){
+                x = 40;
+                y += 34;
+            }
+        } 
+        jScrollPane1 = new javax.swing.JScrollPane(painel);
+        jScrollPane1.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
+            public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
+                jScrollPane1MouseWheelMoved(evt);
+            }
+        });
+       // painel.setLayout(null);
+        //getContentPane().add(jScrollPane1, BorderLayout.CENTER);
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(70, 90, 660, 410);
+        //jScrollPane1.setLayout(null);
+        jButton1.setText("Confirmar");
         getContentPane().add(jButton1);
+         jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jButton1.setBounds(610, 510, 120, 70);
-
-        jLabelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Fundo2.png"))); // NOI18N
-        getContentPane().add(jLabelFundo);
-        jLabelFundo.setBounds(0, 0, 800, 600);
 
         setSize(new java.awt.Dimension(816, 639));
         setLocationRelativeTo(null);
-    }// </editor-fold>//GEN-END:initComponents
-    private void initComponent(int qtd) {
-       
-       
-        
+    }
+    
+     private void initComponent(String sql) {
+        System.out.println("initComponent() -> Consulta recebida: "+sql);
+        sql = "SELECT item.idItem , concat(dia.idDia, \"/\",mes.idMes, \"/\", ano.idAno), item.fotoItem from item,nomeItem,cor,categoria, dataentrada , data, dia, mes, ano where item.idNome = nomeItem.idNome and  item.retiradoItem = 0 and nomeItem.nome like \"Notebook\" and  categoria.idCategoria = nomeItem.idCategoria and cor.idCor = item.idCor and cor.nomeCor like \"Preto\" and dataentrada.idDataEntrada = item.idDataEntrada and data.idData = dataentrada.idData and data.idDia = dia.idDia and data.idMes = mes.idMes and data.idAno = ano.idAno and data.idDia <= \"7\" and mes.idMes like \"2\" and ano.idAno like \"2000\" UNION SELECT item.idItem , concat(dia.idDia, \"/\",mes.idMes, \"/\", ano.idAno) , item.fotoItem from item,nomeItem,cor,categoria, dataentrada , data, dia, mes, ano where item.idNome = nomeItem.idNome and item.retiradoItem = 0 and nomeItem.nome like \"Notebook\" and  categoria.idCategoria = nomeItem.idCategoria and cor.idCor = item.idCor and cor.nomeCor like \"Preto\" and dataentrada.idDataEntrada = item.idDataEntrada and data.idData = dataentrada.idData and data.idDia = dia.idDia and data.idMes = mes.idMes and data.idAno = ano.idAno and data.idDia >= \"28\" and mes.idMes like \"1\" and ano.idAno like \"2000\";";
+        JPanel painel = new JPanel();
+        jButtonVoltar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jLabelFundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 600));
@@ -113,33 +199,79 @@ public class BuscaUserImage extends javax.swing.JFrame {
         setResizable(false);
         setSize(new java.awt.Dimension(800, 600));
         getContentPane().setLayout(null);
+        //new GridLayout( 80, 3 ) 
+        painel.setLayout(new GridLayout(0, 3, 10, 50));
+        int x = 40, y = 140;
         
-        int x = 50, y = 20;
-        for (int i = 0; i < qtd; i++) {
+        
+        
+        SGBD mybd = new SGBD();
+        mybd.getConexaoMySQL();
+        ResultSet rs = mybd.consultarItemBd(sql);
+        
+        for(int i= 0; i < qtd; i++){
             novo[i] = new JLabel();
-            novo[i].setText("teste" + (i+1));
-        
-            getContentPane().add(novo[i]);
-            novo[i].setBounds((x+8), y, 34, 14);
-            x = x + 50;
-            if(x >= 700){
-                y = y + 20;
-                x = 50;
+            try {
+                novo[i].setText("ID: "+ rs.getInt(1));
+                rs.next();
+            } catch (SQLException ex) {
+                Logger.getLogger(BuscaUserImage.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
-        
-        
-        
-
-        
-
+            painel.add(novo[i]);
+            novo[i].addMouseListener(selec);
+            novo[i].setBounds(x, y, 120, 14);
+            x += 130;
+            if(x > 560){
+                x = 40;
+                y += 34;
+            }
+        } 
+        jScrollPane1 = new javax.swing.JScrollPane(painel);
+        jScrollPane1.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
+            public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
+                jScrollPane1MouseWheelMoved(evt);
+            }
+        });
+       // painel.setLayout(null);
+        //getContentPane().add(jScrollPane1, BorderLayout.CENTER);
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(70, 90, 660, 410);
+        //jScrollPane1.setLayout(null);
+        jButton1.setText("Confirmar");
+        getContentPane().add(jButton1);
+         jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jButton1.setBounds(610, 510, 120, 70);
+        mybd.fecharConexao();
         setSize(new java.awt.Dimension(816, 639));
         setLocationRelativeTo(null);
     }
+    private void jScrollPane1MouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_jScrollPane1MouseWheelMoved
+     
+    
+	
+		
+    }//GEN-LAST:event_jScrollPane1MouseWheelMoved
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        JLabel botao = selec.getMarcado();
+        if(botao != null){
+            //JOptionPane.showMessageDialog(null,"Item Selecionado: " + botao.getText());
+            System.out.println("Item marcado: "+selec.getMarcado().getText());
+        }else{
+            JOptionPane.showMessageDialog(null,"Selecione um item primeiro!");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void mostrar() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -171,49 +303,81 @@ public class BuscaUserImage extends javax.swing.JFrame {
                 janela.setVisible(true);
             }
         });
-        
-        SGBD mybd = new SGBD();
-        
-        mybd.getConexaoMySQL();
-        System.out.println(mybd.statusConection());
-        
-        
-        
-
-        try {
-            SGBD.setUserConfig("127.0.0.3", 8087);
-        } catch (ipException ex) {
-            Logger.getLogger(BuscaUserImage.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        mybd.fecharConexao();
+       
     }
     
-    public void labelCreate(){
-        Array[] novo = new Array[4];
-        
-        JLabel labels[] = new JLabel[4];
-        int tx = 50,ty = 20,px = 88,py = 14;
-        
-        for (int i = 0; i < 4; i++) {
-            labels[i].setText("label ");
-            janelaControl.add(labels[i]);
-            getContentPane().add(labels[i]);
-            labels[i].setBounds(tx, ty, px, py);
-            px += tx + 4;
+    public static void mostrar(String sql) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(BuscaUserImage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(BuscaUserImage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(BuscaUserImage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(BuscaUserImage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        
+        //</editor-fold>
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                BuscaUserImage janela = new BuscaUserImage(sql);
+                janelaControl = janela;
+                janela.setVisible(true);
+            }
+        });
+       
     }
     
     public void popular(){
+        //atribui imagem nos labels desejados
+        
         ImageIcon icon = new ImageIcon("C:\\Users\\ld_si\\OneDrive\\Imagens\\perfil.jpg", "teste");
         Image img = icon.getImage();
         Image nova = getScaledImage(img, 50,50);
         icon.setImage(nova);
-        novo[0].setIcon(icon);
-    
+        for(int i=0; i < qtd; i++){
+           novo[i].setIcon(icon); 
+        }
         
     }
+    
+    public void popular(String sql){
+        //atribui imagem nos labels desejados
+        System.out.println("popular() -> Consulta recebida: "+sql);
+        SGBD mybd = new SGBD();
+        mybd.getConexaoMySQL();
+        ResultSet rs = mybd.consultarItemBd("SELECT item.idItem , concat(dia.idDia, \"/\",mes.idMes, \"/\", ano.idAno), item.fotoItem from item,nomeItem,cor,categoria, dataentrada , data, dia, mes, ano where item.idNome = nomeItem.idNome and  item.retiradoItem = 0 and nomeItem.nome like \"Notebook\" and  categoria.idCategoria = nomeItem.idCategoria and cor.idCor = item.idCor and cor.nomeCor like \"Preto\" and dataentrada.idDataEntrada = item.idDataEntrada and data.idData = dataentrada.idData and data.idDia = dia.idDia and data.idMes = mes.idMes and data.idAno = ano.idAno and data.idDia <= \"7\" and mes.idMes like \"2\" and ano.idAno like \"2000\" UNION SELECT item.idItem , concat(dia.idDia, \"/\",mes.idMes, \"/\", ano.idAno) , item.fotoItem from item,nomeItem,cor,categoria, dataentrada , data, dia, mes, ano where item.idNome = nomeItem.idNome and item.retiradoItem = 0 and nomeItem.nome like \"Notebook\" and  categoria.idCategoria = nomeItem.idCategoria and cor.idCor = item.idCor and cor.nomeCor like \"Preto\" and dataentrada.idDataEntrada = item.idDataEntrada and data.idData = dataentrada.idData and data.idDia = dia.idDia and data.idMes = mes.idMes and data.idAno = ano.idAno and data.idDia >= \"28\" and mes.idMes like \"1\" and ano.idAno like \"2000\";");
+        
+        ImageIcon[] icone = new ImageIcon[qtd];
+        Image img;
+        Image nova;
+   
+        for(int i=0; i < qtd; i++){
+            try {
+                icone[i] = new ImageIcon(rs.getString(3), rs.getString(2));
+            } catch (SQLException ex) {
+                Logger.getLogger(BuscaUserImage.class.getName()).log(Level.SEVERE, null, ex);
+            }
+           img = icone[i].getImage();
+           nova = getScaledImage(img, 50,50);
+           icone[i].setImage(nova);
+           novo[i].setIcon(icone[i]); 
+        }
+        mybd.fecharConexao();
+    }
     public ImageIcon criarImageIcon(String caminho, String descricao) {
+        //Cria um icone com a imagem desejada
         java.net.URL imgURL = getClass().getResource(caminho);
         if (imgURL != null) {
             return new ImageIcon(imgURL, descricao);
@@ -223,6 +387,7 @@ public class BuscaUserImage extends javax.swing.JFrame {
         }
     }
     private Image getScaledImage(Image srcImg, int w, int h){
+        //Redimensiona a imagem para o tamanho desejado
         BufferedImage resizedImg = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2 = resizedImg.createGraphics();
 
@@ -237,11 +402,8 @@ public class BuscaUserImage extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonVoltar;
-    private javax.swing.JLabel jLabelFoto;
     private javax.swing.JLabel jLabelFundo;
-    private javax.swing.JLabel jLabelId;
-    private javax.swing.JLabel jLabelMoldura1;
-    private javax.swing.JLabel jLabelNome;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

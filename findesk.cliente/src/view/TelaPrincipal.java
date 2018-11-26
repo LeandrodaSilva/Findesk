@@ -77,7 +77,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Findesk");
-        setMaximumSize(new java.awt.Dimension(800, 600));
         setResizable(false);
         setSize(new java.awt.Dimension(800, 600));
         getContentPane().setLayout(null);
@@ -191,7 +190,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         getContentPane().add(jLabelTitulo1);
         jLabelTitulo1.setBounds(350, 110, 120, 70);
 
-        setSize(new java.awt.Dimension(815, 638));
+        setSize(new java.awt.Dimension(800, 600));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -205,8 +204,23 @@ public class TelaPrincipal extends javax.swing.JFrame {
         String ano = jComboBoxAnoInicial.getSelectedItem().toString();
         String nome = jComboBoxNome.getSelectedItem().toString();
         String cor = jComboBoxCor.getSelectedItem().toString();
+        String calcMes = "mes.idMes like \""+mes+"\" ";
         
-        String consulta = "select item.idItem , nomeItem.nome , item.descricaoItem " 
+        int max = Integer.parseInt(dia);
+        max = max + 5;
+        
+        if(max > 31){
+            max = 5;
+        }
+        
+        int min = Integer.parseInt(dia);
+        min = min - 5;
+        System.out.println("dia minimo: "+min);
+        if(min < 1 && Integer.parseInt(mes) > 1){
+           min = 31  - (min * -1);
+           int m = (Integer.parseInt(mes) - 1);
+           String mes2 = Integer.toString(m);
+           calcMes = "mes.idMes like \""+mes+"\" "+"union "+" select item.idItem , nomeItem.nome ,item.fotoItem , item.descricaoItem " 
                             +"from item,nomeItem,cor,categoria, dataentrada , data, dia, mes, ano "
                             +"where item.idNome = nomeItem.idNome and "
                             +"item.retiradoItem = 0 and "
@@ -219,15 +233,42 @@ public class TelaPrincipal extends javax.swing.JFrame {
                             +"data.idDia = dia.idDia and "
                             +"data.idMes = mes.idMes and "
                             +"data.idAno = ano.idAno and "
-                            +"dia.idDia like \""+dia+"\" and "
-                            +"mes.idMes like \""+mes+"\" and "
-                            +"ano.idAno like \""+ano+"\""
-                            +";";
+                            +"data.idDia >= \""+ min +"\" and "
+                            +"ano.idAno like \""+ano+"\"  and "
+                            + "mes.idMes like \""+mes2+"\" ;";
+        }else{
+            if(min < 1){
+                min = ((min * (-1)) + min)+1;
+            }else{
+                calcMes += " and data.idDia >= \"" + min + "\" ;";
+            }
+        }
+            
+        
+        
+        String consulta = "select item.idItem , nomeItem.nome  ,item.fotoItem , item.descricaoItem " 
+                            +"from item,nomeItem,cor,categoria, dataentrada , data, dia, mes, ano "
+                            +"where item.idNome = nomeItem.idNome and "
+                            +"item.retiradoItem = 0 and "
+                            +"nomeItem.nome like \""+nome+"\" and " 
+                            +"categoria.idCategoria = nomeItem.idCategoria and " 
+                            +"cor.idCor = item.idCor and " 
+                            +"cor.nomeCor like \""+cor+"\" and "
+                            +"dataentrada.idDataEntrada = item.idDataEntrada and "
+                            +"data.idData = dataentrada.idData and "
+                            +"data.idDia = dia.idDia and "
+                            +"data.idMes = mes.idMes and "
+                            +"data.idAno = ano.idAno and "
+                            +"data.idDia <= \""+ max +"\" and "
+                            +"ano.idAno like \""+ano+"\"  and "
+                            + calcMes;
         
         System.out.println("Consulta realizada: " + consulta);
         BuscaUser buscaUser = new BuscaUser();
+        //BuscaUserImage buscaUserImage = new BuscaUserImage();
         janelaControl.setVisible(false);
         buscaUser.mostrar(consulta);
+        //buscaUserImage.mostrar(consulta);
  
     }//GEN-LAST:event_jButtonConfirmarActionPerformed
     //Dia Inicial
