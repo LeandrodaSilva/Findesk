@@ -516,7 +516,7 @@ COMMIT;
 START TRANSACTION;
 USE `findesk`;
 INSERT INTO `findesk`.`item` (`idItem`, `idCor`, `idDoc`, `idNome`, `idAdm`, `idDataEntrada`, `idDataSaida`, `retiradoItem`, `fotoItem`, `descricaoItem`) VALUES (1, '#000000', 0, '1', 1, 1, 1, 1, 'CUsersvictoDesktopFindeskfindesk.clientesrcviewimagespendrive', 'Lindo pendrive ');
-INSERT INTO `findesk`.`item` (`idItem`, `idCor`, `idDoc`, `idNome`, `idAdm`, `idDataEntrada`, `idDataSaida`, `retiradoItem`, `fotoItem`, `descricaoItem`) VALUES (2, '#000000', 0, '2', 1, 2, 2, 0, 'CUsersvictoDesktopFindeskfindesk.clientesrcviewimagesnotebook', 'Lindo notebook');
+INSERT INTO `findesk`.`item` (`idItem`, `idCor`, `idDoc`, `idNome`, `idAdm`, `idDataEntrada`, `idDataSaida`, `retiradoItem`, `fotoItem`, `descricaoItem`) VALUES (2, '#000000', 0, '2', 1, 1 ,1, 0, 'CUsersvictoDesktopFindeskfindesk.clientesrcviewimagesnotebook', 'Lindo notebook');
 INSERT INTO `findesk`.`item` (`idItem`, `idCor`, `idDoc`, `idNome`, `idAdm`, `idDataEntrada`, `idDataSaida`, `retiradoItem`, `fotoItem`, `descricaoItem`) VALUES (3, '#FFFFFF', 0, '3', 1, 1, 1, 0, NULL, 'Camisa G via lance');
 INSERT INTO `findesk`.`item` (`idItem`, `idCor`, `idDoc`, `idNome`, `idAdm`, `idDataEntrada`, `idDataSaida`, `retiradoItem`, `fotoItem`, `descricaoItem`) VALUES (4, '#0000FF', 0, '4', 1, 1, 1, 0, 'CUsersvictoDesktopFindeskfindesk.clientesrcviewimagescaderno', 'Caderno 10 matérias da Moranguinho');
 INSERT INTO `findesk`.`item` (`idItem`, `idCor`, `idDoc`, `idNome`, `idAdm`, `idDataEntrada`, `idDataSaida`, `retiradoItem`, `fotoItem`, `descricaoItem`) VALUES (5, '#0000FF', 0, '5', 1, 1, 1, 0, NULL, 'Caneta BIC ');
