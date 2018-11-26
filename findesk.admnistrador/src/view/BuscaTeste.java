@@ -29,7 +29,6 @@ import model.*;
  *
  * @author ld_si
  */
-//SEU LELEO GAY
 public class BuscaTeste extends javax.swing.JFrame {
     
     private static BuscaTeste janelaControl;
