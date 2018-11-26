@@ -93,6 +93,7 @@ public class Sockets {
     }
     
      public void testConnection(){
+         //classe de teste 
         try {
             Socket cliente = new Socket(this.ipServidor,porta);
             ObjectOutputStream saida = new ObjectOutputStream(cliente.getOutputStream());
