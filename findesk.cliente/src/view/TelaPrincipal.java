@@ -204,7 +204,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
         String ano = jComboBoxAnoInicial.getSelectedItem().toString();
         String nome = jComboBoxNome.getSelectedItem().toString();
         String cor = jComboBoxCor.getSelectedItem().toString();
+        String calcCor = "cor.idCor = item.idCor and " +"cor.nomeCor like \""+cor+"\" and ";
         String calcMes = "mes.idMes like \""+mes+"\" ";
+        
+        
+        if(jComboBoxCategoria.getSelectedItem().toString().compareTo("Documentos") == 0){
+            cor = jComboBoxCor.getSelectedItem().toString();
+            int numero = Integer.parseInt(cor);
+            calcCor = "item.idDoc = \""+numero+"\" and ";
+        }
         
         int max = Integer.parseInt(dia);
         max = max + 5;
@@ -226,8 +234,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                             +"item.retiradoItem = 0 and "
                             +"nomeItem.nome like \""+nome+"\" and " 
                             +"categoria.idCategoria = nomeItem.idCategoria and " 
-                            +"cor.idCor = item.idCor and " 
-                            +"cor.nomeCor like \""+cor+"\" and "
+                            +calcCor
                             +"dataentrada.idDataEntrada = item.idDataEntrada and "
                             +"data.idData = dataentrada.idData and "
                             +"data.idDia = dia.idDia and "
@@ -251,9 +258,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
                             +"where item.idNome = nomeItem.idNome and "
                             +"item.retiradoItem = 0 and "
                             +"nomeItem.nome like \""+nome+"\" and " 
-                            +"categoria.idCategoria = nomeItem.idCategoria and " 
-                            +"cor.idCor = item.idCor and " 
-                            +"cor.nomeCor like \""+cor+"\" and "
+                            +"categoria.idCategoria = nomeItem.idCategoria and "  +"cor.idCor = item.idCor and " 
+                            +calcCor
                             +"dataentrada.idDataEntrada = item.idDataEntrada and "
                             +"data.idData = dataentrada.idData and "
                             +"data.idDia = dia.idDia and "
@@ -297,7 +303,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         popularComboBoxNome("select distinct nomeItem.nome " +
                             "from item, nomeItem, categoria " +
                             "where nomeItem.idNome = item.idNome and " +
-                                    "nomeItem.idCategoria = categoria.idCategoria and " +
+                                    "nomeItem.idCategoria = categoria.idCategoria and "
+                                    + "item.retiradoItem = 0 and " +
                                     "categoria.nomeCat like \""
                                     + itemName
                                      + "\";");
@@ -447,7 +454,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         
         ResultSet rs = mybd.consultarItemBd("select distinct categoria.nomeCat " +
                                                 "from nomeItem, item, categoria " +
-                                                "where item.idNome = nomeItem.idNome and " +
+                                                "where item.idNome = nomeItem.idNome and "
+                                                + "item.retiradoItem = 0 and " +
                                                 "nomeItem.idCategoria = categoria.idCategoria;");
        
         String nome;
@@ -483,7 +491,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         String nome;
         strList.add("Dia");
         try {
-            rs.beforeFirst();
+            rs.isFirst();
             while(rs.next()){
                 nome = rs.getString(1);
                 strList.add(nome);
@@ -516,7 +524,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         String nome;
         strList.add("Mês");
         try {
-            rs.beforeFirst();
+            rs.isFirst();
             while(rs.next()){
                 nome = rs.getString(1);
                 strList.add(nome);
@@ -546,7 +554,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         String nome;
         strList.add("Ano");
         try {
-            rs.beforeFirst();
+            rs.isFirst();
             while(rs.next()){
                 nome = rs.getString(1);
                 strList.add(nome);
@@ -605,19 +613,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
         
         
         
-        ResultSet rs = mybd.consultarItemBd("SELECT item.descricaoItem " +
+        ResultSet rs = mybd.consultarItemBd("SELECT item.idDoc " +
                                 "FROM item, nomeItem, categoria " +
                                 "WHERE item.idNome  = nomeItem.idNome and " +
                                         "nomeItem.idCategoria  = categoria.idCategoria and  " +
                                         "categoria.idCategoria like \"e\";");
        
-        String nome;
+        int numero;
         strList.add("Selecione");
         try {
             rs.beforeFirst();
             while(rs.next()){
-                nome = rs.getString(1);
-                strList.add(nome);
+                numero = rs.getInt(1);
+                strList.add(numero);
             }
         } catch (SQLException ex) {
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);

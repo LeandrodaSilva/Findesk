@@ -19,11 +19,12 @@ public class cliente {
     public static void main(String[] args) {
         try {
             Socket cliente = new Socket("127.0.0.1",5060);
-            
+            Item myItem = new Item();
             ObjectOutputStream saida = new ObjectOutputStream(cliente.getOutputStream());
             saida.flush();
-            saida.writeObject("Oi Servidor");
-            
+            saida.writeObject(myItem);
+            saida.flush();
+            saida.reset();
             
             
             ObjectInputStream entrada = new ObjectInputStream(cliente.getInputStream());
