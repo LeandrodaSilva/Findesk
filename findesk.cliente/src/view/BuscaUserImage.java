@@ -5,6 +5,7 @@
  */
 package view;
 
+import model.Selecionado;
 import Exceptions.ipException;
 import java.awt.BorderLayout;
 import static java.awt.BorderLayout.CENTER;
