@@ -1,14 +1,15 @@
+use findesk;
 DROP PROCEDURE IF EXISTS fill_date_dimension;
 DELIMITER //
-CREATE PROCEDURE fill_date_dimension()
+
+CREATE PROCEDURE fill_date_dimension(INT ano)
 BEGIN
 	DECLARE cont INT DEFAULT 1;
 	DECLARE contid INT DEFAULT 1;
     DECLARE contdia INT DEFAULT 1;
     DECLARE contmes INT DEFAULT 1;
-    DECLARE contano INT DEFAULT 2018;
     WHILE cont < 32 DO
-        INSERT INTO data (idData, idDia, idMes, idAno) VALUES (contid+1, contdia, contmes , cont);
+        INSERT INTO data (idData, idDia, idMes, idAno) VALUES (contid+1, contdia, contmes , ano);
         
         SET contid = contid + 1 ;
         SET contdia = contdia + 1 ;
@@ -31,4 +32,4 @@ DELETE FROM data WHERE (idMes = 11 && (idDia > 30 ));
 
 
 
-CALL fill_date_dimension();
+CALL fill_date_dimension(2018);

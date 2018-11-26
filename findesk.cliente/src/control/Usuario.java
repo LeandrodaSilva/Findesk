@@ -28,15 +28,15 @@ public class Usuario {
      */
   
     public static void main(String[] args) {
-       setConfig();
-       
-       SGBD mybd = new SGBD();
-       mybd.getConexaoMySQL();
-       
-       Sockets novo = new Sockets(mybd.loadAdmIp(),mybd.loadAdmPort());
-       novo.testConnection();
-       
-       mybd.fecharConexao();
+    setConfig();
+//       
+//       SGBD mybd = new SGBD();
+//       mybd.getConexaoMySQL();
+//       
+//       Sockets novo = new Sockets(mybd.loadAdmIp(),mybd.loadAdmPort());
+//       novo.testConnection();
+//       
+//       mybd.fecharConexao();
        
        TelaPrincipal mytela = new TelaPrincipal();
        //BuscaUser bu = new BuscaUser();

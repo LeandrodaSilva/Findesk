@@ -26,17 +26,17 @@ public class Administrador {
     
     public static void main(String[] args) {
         //Comentar esta parte abaixo caso nao deseje ativar o servidor
-//        setConfig();
-//        
-//        SGBD mybd = new SGBD();
-//        mybd.getConexaoMySQL();
-//        
-//        
-//        
-//        Sockets novo = new Sockets(mybd.loadAdmPort());
-//        novo.startServer();
-//        
-//        mybd.fecharConexao();
+        setConfig();
+        
+        SGBD mybd = new SGBD();
+        mybd.getConexaoMySQL();
+        
+        
+        
+        Sockets novo = new Sockets(mybd.loadAdmPort());
+        novo.startServer();
+        
+        mybd.fecharConexao();
         //fim do servidor
         
         TelaPrincipal telaPrincipal = new TelaPrincipal();

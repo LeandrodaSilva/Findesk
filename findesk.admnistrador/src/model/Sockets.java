@@ -1,5 +1,6 @@
 package model;
 
+import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
@@ -79,7 +80,7 @@ public class Sockets {
                     System.out.println("Cliente conectado: " + cliente.getInetAddress().getHostAddress());
                     ObjectOutputStream saida = new ObjectOutputStream(cliente.getOutputStream());
                     saida.flush();
-                    saida.writeObject(new Date());
+                    saida.writeObject("ola cliente");
                     saida.close();
                     cliente.close();
                 }  
@@ -94,10 +95,14 @@ public class Sockets {
      public void testConnection(){
         try {
             Socket cliente = new Socket(this.ipServidor,porta);
+            ObjectOutputStream saida = new ObjectOutputStream(cliente.getOutputStream());
+            saida.flush();
+            saida.writeChars("ola servidor");
             ObjectInputStream entrada = new ObjectInputStream(cliente.getInputStream());
-            Date data_atual = (Date)entrada.readObject();
-            JOptionPane.showMessageDialog(null,"Data recebida do servidor:" + data_atual.toString());
+            String resp = (String)entrada.readObject();
+            JOptionPane.showMessageDialog(null,"Resposta recebida: "+resp);
             entrada.close();
+            saida.close();
             System.out.println("Conexão encerrada");
         }
         catch(Exception e) {

@@ -5,10 +5,12 @@
  */
 package socketdemo;
 
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -26,9 +28,16 @@ public class servidor {
               // o servidor receba um pedido de conexão
               Socket cliente = servidor.accept();
               System.out.println("Cliente conectado: " + cliente.getInetAddress().getHostAddress());
+              ObjectInputStream recebido = new ObjectInputStream(cliente.getInputStream());
+              String msg = (String) recebido.readObject();
+              System.out.println("msg recebida: " + msg);
+             
+//              JOptionPane jop = new JOptionPane();
+//              jop.showMessageDialog(null,"Mensagem recebida: " + msg);
+              //JOptionPane.showMessageDialog(null,"Mensagem recebida do cliente: " + msg);
               ObjectOutputStream saida = new ObjectOutputStream(cliente.getOutputStream());
               saida.flush();
-              saida.writeObject(new Date());
+              saida.writeObject("Oi cliente");
               saida.close();
               cliente.close();
             }  
@@ -37,5 +46,7 @@ public class servidor {
            System.out.println("Erro: " + e.getMessage());
         }
     }
-    
+    public void mostrar(){
+        
+    }
 }
