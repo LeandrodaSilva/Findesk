@@ -1,71 +1,125 @@
 package model;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class Item {
 
 	private int idItem;
 
-	private char[] categoria;
+	private String nome;
 
-	private char cor;
+	private String cor;
 
-	private char[] descricao;
+	private String descricao;
 
-	private int dataEntrada;
+	private String dataEntrada;
 
-	private int dataSaida;
+	private String dataSaida;
+        
+        private String foto;
+        
+        private int idDoc;
+        
+        public Item(){
+            this.idItem = 0;
+            this.cor = "";
+            this.dataEntrada = "";
+            this.dataSaida = "";
+            this.foto = "";
+            this.descricao = "";
+            this.nome = "";
+            this.idDoc = 0;
+        }
 
-	//private File foto;
 
-	public void setIdItem() {
-
+	public void setIdItem(int id) {
+            this.idItem = id;
 	}
 
-	public void setCategoria() {
-
+	public void setNome(String nome) {
+            this.nome = nome;
 	}
 
-	public void setCor() {
-
+	public void setCor(String cor) {
+            this.cor = cor;
 	}
 
-	public void setDescricao() {
-
+	public void setDescricao(String descricao) {
+            this.descricao = descricao;
 	}
 
-	public void setDataEntrada() {
-
+	public void setDataEntrada(String dataEntrada) {
+            this.dataEntrada = dataEntrada;
 	}
 
-	public void setDataSaida() {
-
+	public void setDataSaida(String dataSaida) {
+            this.dataSaida = dataSaida;
 	}
 
-	public void setFoto() {
-
+	public void setFoto(String foto) {
+            this.foto = foto;
 	}
+        
+        public void setIdDoc(int idDoc){
+            this.idDoc = idDoc;
+        }
+        
+        public int getIdDoc(){
+            return this.idDoc;
+        }
 
 	public int getIdItem() {
-		return 0;
+		return this.idItem;
 	}
 
-	public char getCategoria() {
-		return 0;
+	public String getNome() {
+		return this.nome;
 	}
 
-	public char getCor() {
-		return 0;
+	public String getCor() {
+		return this.cor;
 	}
 
-	public char getDescrição() {
-		return 0;
+	public String getDescrição() {
+		return this.descricao;
 	}
 
-	public int getDataEntrada() {
-		return 0;
+	public String getDataEntrada() {
+		return this.dataEntrada;
 	}
+        
+        public String getFoto(){
+            return this.foto;
+        }
+        
+        public Boolean load(String id){
+            SGBD mybd = new SGBD();
+            mybd.getConexaoMySQL();
+            ResultSet rs = mybd.consultarItemBd("select idItem, idCor, idDoc, nome, fotoItem, descricaoItem , concat(data.idDia, \"/\",data.idMes, \"/\", data.idAno) "
+                                                + "from item,nomeItem, dataentrada, data "
+                                                 + "where item.idItem = \""+id+"\" and item.idNome = nomeItem.idNome and "
+                                                         + "item.idDataEntrada = dataentrada.idDataEntrada and "
+                                                         + "data.idData = dataentrada.idData;");
+            try {
+             
+                    setIdItem(rs.getInt("idItem"));
+                    setNome(rs.getString("nome"));
+                    setIdDoc(rs.getInt("idDoc"));
+                    setFoto(rs.getString("fotoItem"));
+                    setDataEntrada(rs.getString(7));
+                    setDescricao(rs.getString("descricaoItem"));
+                    setCor(rs.getString("idCor"));
+                    return true;
+                
+            } catch (SQLException ex) {
+                Logger.getLogger(Item.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            mybd.fecharConexao();
+            return false;
+        }
 
-//	public File getFoto() {
-//		return null;
-//	}
 
 }

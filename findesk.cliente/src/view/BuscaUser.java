@@ -5,6 +5,11 @@
  */
 package view;
 import control.Usuario;
+import java.awt.Component;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.RenderingHints;
+import java.awt.image.BufferedImage;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -12,8 +17,12 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
-import model.SGBD;
+import model.*;
 
 /**
  *
@@ -24,6 +33,7 @@ public class BuscaUser extends javax.swing.JFrame {
     private static BuscaUser janelaControl;
     private static RequisicaoCliente janelaControlRequerimento = null;
     private  DefaultTableModel defaultTableResultado;
+    public Item itemSelecionado = new Item();
 
     /**
      * Creates new form suaJanela
@@ -51,10 +61,12 @@ public class BuscaUser extends javax.swing.JFrame {
         jScrollPaneResultado = new javax.swing.JScrollPane();
         jTableResultado = new javax.swing.JTable();
         jButtonConfirmar = new javax.swing.JButton();
+        jLabelFoto = new javax.swing.JLabel();
         jLabelFundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAutoRequestFocus(false);
+        setMaximumSize(new java.awt.Dimension(800, 600));
         setResizable(false);
         setSize(new java.awt.Dimension(800, 600));
         getContentPane().setLayout(null);
@@ -79,7 +91,7 @@ public class BuscaUser extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Categoria", "Item", "Descrição"
+                "ID", "Nome", "Descrição"
             }
         ) {
             Class[] types = new Class [] {
@@ -97,10 +109,15 @@ public class BuscaUser extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTableResultado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableResultadoMouseClicked(evt);
+            }
+        });
         jScrollPaneResultado.setViewportView(jTableResultado);
 
         getContentPane().add(jScrollPaneResultado);
-        jScrollPaneResultado.setBounds(60, 100, 680, 402);
+        jScrollPaneResultado.setBounds(60, 312, 680, 190);
 
         jButtonConfirmar.setText("Confirmar");
         jButtonConfirmar.addActionListener(new java.awt.event.ActionListener() {
@@ -111,13 +128,18 @@ public class BuscaUser extends javax.swing.JFrame {
         getContentPane().add(jButtonConfirmar);
         jButtonConfirmar.setBounds(640, 530, 100, 23);
 
+        jLabelFoto.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelFoto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        getContentPane().add(jLabelFoto);
+        jLabelFoto.setBounds(210, 100, 370, 200);
+
         jLabelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Fundo2.png"))); // NOI18N
         jLabelFundo.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Fundo2.png"))); // NOI18N
         jLabelFundo.setEnabled(false);
         getContentPane().add(jLabelFundo);
-        jLabelFundo.setBounds(0, 0, 800, 600);
+        jLabelFundo.setBounds(0, 0, 790, 600);
 
-        setSize(new java.awt.Dimension(816, 639));
+        setSize(new java.awt.Dimension(800, 600));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -130,10 +152,44 @@ public class BuscaUser extends javax.swing.JFrame {
     private void jButtonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfirmarActionPerformed
         janelaControl.setVisible(false);
         RequisicaoCliente requerimento = new RequisicaoCliente();
-        requerimento.mostrar(janelaControl);
+        requerimento.mostrar(itemSelecionado,janelaControl);
         janelaControlRequerimento = requerimento;
     }//GEN-LAST:event_jButtonConfirmarActionPerformed
 
+    private void jTableResultadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableResultadoMouseClicked
+        int linha = jTableResultado.getSelectedRow();
+        System.out.println("Selecionado "+ linha);
+        String id = (String) jTableResultado.getValueAt(linha, 0);
+        System.out.println("Conteudo  "+ id);
+        if(itemSelecionado.load(id)){
+            System.out.println("Item carregado: "+ itemSelecionado.getIdItem());
+        }
+        popular(jLabelFoto, itemSelecionado.getFoto());
+    }//GEN-LAST:event_jTableResultadoMouseClicked
+
+    
+    public void popular(JLabel label, String imagem){
+        //atribui imagem nos labels desejados
+        
+        ImageIcon icon = new ImageIcon(imagem, "imagem");
+        Image img = icon.getImage();
+        Image nova = getScaledImage(img, 200,150);
+        icon.setImage(nova);
+        label.setIcon(icon); 
+    }
+      
+    private Image getScaledImage(Image srcImg, int w, int h){
+        //Redimensiona a imagem para o tamanho desejado
+        BufferedImage resizedImg = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2 = resizedImg.createGraphics();
+
+        g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+        g2.drawImage(srcImg, 0, 0, w, h, null);
+        g2.dispose();
+
+        return resizedImg;
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -213,15 +269,9 @@ public class BuscaUser extends javax.swing.JFrame {
             String categoria = "Eletrônicos";
             String item = "Pendrive";
             String descricao = "lindo";
-            //String[] colunas = {"1","2","3"};
-           
-        
+            //String[] colunas = {"1","2","3"};   
             //System.out.println("Consulta recebida: "+resultado);
-
         ///////////////////////////////////////////////////////////////
-  
-            
-       
             String[] colunas = new String[3];
             SGBD mybd = new SGBD();
 
@@ -241,19 +291,13 @@ public class BuscaUser extends javax.swing.JFrame {
                 while(rs.next()){
                     colunas[0] = Integer.toString(rs.getInt(1));
                     colunas[1] = rs.getString(2);
-                    colunas[2] = rs.getString(3);
+                    colunas[2] = rs.getString(4);
                     defaultTableResultado.addRow(colunas);
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
             }   
             mybd.fecharConexao();
-            
-            
-
-            
-        
-
         /////////////////////////////////////////////////////////////////////   
     }
     
@@ -284,6 +328,7 @@ public class BuscaUser extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonConfirmar;
     private javax.swing.JButton jButtonVoltar;
+    private javax.swing.JLabel jLabelFoto;
     private javax.swing.JLabel jLabelFundo;
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JScrollPane jScrollPaneResultado;

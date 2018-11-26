@@ -5,6 +5,16 @@
  */
 package view;
 
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.RenderingHints;
+import java.awt.image.BufferedImage;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import model.Item;
+import model.SGBD;
+import model.Sockets;
+
 /**
  *
  * @author pedro
@@ -12,9 +22,15 @@ package view;
 public class RequisicaoCliente extends javax.swing.JFrame {
     private static RequisicaoCliente janelaControl;
     private static BuscaUser janelaControlBusca;
+    private Item item;
     /**
      * Creates new form RequisicaoCliente
      */
+    public RequisicaoCliente(Item itemSelecionado) {
+        initComponents();
+        load(itemSelecionado);
+    }
+    
     public RequisicaoCliente() {
         initComponents();
     }
@@ -35,6 +51,13 @@ public class RequisicaoCliente extends javax.swing.JFrame {
         jLabelTipo = new javax.swing.JLabel();
         jLabelTitulo = new javax.swing.JLabel();
         jButtonVoltar = new javax.swing.JButton();
+        jScrollPaneDescricao = new javax.swing.JScrollPane();
+        jTextDescricao = new javax.swing.JTextArea();
+        jLabelId = new javax.swing.JLabel();
+        jLabelNome = new javax.swing.JLabel();
+        jLabelCor = new javax.swing.JLabel();
+        jLabelFoto = new javax.swing.JLabel();
+        jLabelData = new javax.swing.JLabel();
         jLabelFundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -43,30 +66,35 @@ public class RequisicaoCliente extends javax.swing.JFrame {
         getContentPane().setLayout(null);
 
         JButtonConfirmar.setText("Confirmar");
+        JButtonConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JButtonConfirmarActionPerformed(evt);
+            }
+        });
         getContentPane().add(JButtonConfirmar);
         JButtonConfirmar.setBounds(470, 490, 100, 23);
         getContentPane().add(JTFDocumento);
-        JTFDocumento.setBounds(410, 280, 100, 20);
+        JTFDocumento.setBounds(410, 250, 100, 20);
 
         JLabelNumero.setForeground(new java.awt.Color(255, 255, 255));
         JLabelNumero.setText("Nº documento");
         getContentPane().add(JLabelNumero);
-        JLabelNumero.setBounds(290, 280, 80, 14);
+        JLabelNumero.setBounds(290, 250, 80, 14);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "RA", "SIAPE", "RG", " " }));
         getContentPane().add(jComboBox1);
-        jComboBox1.setBounds(410, 240, 56, 20);
+        jComboBox1.setBounds(410, 220, 56, 20);
 
         jLabelTipo.setForeground(new java.awt.Color(255, 255, 255));
         jLabelTipo.setText("Tipo de Documento");
         getContentPane().add(jLabelTipo);
-        jLabelTipo.setBounds(290, 240, 110, 14);
+        jLabelTipo.setBounds(290, 220, 110, 14);
 
         jLabelTitulo.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabelTitulo.setForeground(new java.awt.Color(255, 255, 255));
         jLabelTitulo.setText("Requerimento");
         getContentPane().add(jLabelTitulo);
-        jLabelTitulo.setBounds(290, 120, 230, 60);
+        jLabelTitulo.setBounds(280, 140, 230, 60);
 
         jButtonVoltar.setText("Voltar");
         jButtonVoltar.addActionListener(new java.awt.event.ActionListener() {
@@ -77,11 +105,40 @@ public class RequisicaoCliente extends javax.swing.JFrame {
         getContentPane().add(jButtonVoltar);
         jButtonVoltar.setBounds(240, 490, 100, 23);
 
+        jTextDescricao.setColumns(20);
+        jTextDescricao.setRows(5);
+        jScrollPaneDescricao.setViewportView(jTextDescricao);
+
+        getContentPane().add(jScrollPaneDescricao);
+        jScrollPaneDescricao.setBounds(220, 390, 380, 70);
+
+        jLabelId.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelId.setText("ID:");
+        getContentPane().add(jLabelId);
+        jLabelId.setBounds(220, 290, 220, 14);
+
+        jLabelNome.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelNome.setText("Nome:");
+        getContentPane().add(jLabelNome);
+        jLabelNome.setBounds(220, 310, 220, 14);
+
+        jLabelCor.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelCor.setText("Cor:");
+        getContentPane().add(jLabelCor);
+        jLabelCor.setBounds(220, 330, 220, 14);
+        getContentPane().add(jLabelFoto);
+        jLabelFoto.setBounds(470, 290, 130, 90);
+
+        jLabelData.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelData.setText("Data:");
+        getContentPane().add(jLabelData);
+        jLabelData.setBounds(220, 350, 210, 14);
+
         jLabelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Fundo2.png"))); // NOI18N
         getContentPane().add(jLabelFundo);
         jLabelFundo.setBounds(0, -10, 800, 620);
 
-        setSize(new java.awt.Dimension(814, 641));
+        setSize(new java.awt.Dimension(800, 600));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -90,6 +147,17 @@ public class RequisicaoCliente extends javax.swing.JFrame {
         janelaControlBusca.showFrame();
         janelaControl.setVisible(false);
     }//GEN-LAST:event_jButtonVoltarActionPerformed
+
+    private void JButtonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButtonConfirmarActionPerformed
+               
+       SGBD mybd = new SGBD();
+       mybd.getConexaoMySQL();
+       
+       Sockets novo = new Sockets(mybd.loadAdmIp(),mybd.loadAdmPort());
+       novo.testConnection();
+       
+       mybd.fecharConexao();
+    }//GEN-LAST:event_JButtonConfirmarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -129,7 +197,7 @@ public class RequisicaoCliente extends javax.swing.JFrame {
             }
         });
     }
-    public static void mostrar(BuscaUser busca) {
+    public static void mostrar(Item itemSelecionado, BuscaUser busca) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -157,7 +225,7 @@ public class RequisicaoCliente extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                RequisicaoCliente janela = new RequisicaoCliente();
+                RequisicaoCliente janela = new RequisicaoCliente(itemSelecionado);
                 janelaControl = janela;
                 janelaControlBusca = busca;
                 janela.setVisible(true);
@@ -165,6 +233,40 @@ public class RequisicaoCliente extends javax.swing.JFrame {
             }
         });
     }
+    
+    private void load(Item itemSelecionado){
+        System.out.println("Requsição do item: "+itemSelecionado.getIdItem());
+        this.item = itemSelecionado;
+        jLabelId.setText("ID: "+Integer.toString(itemSelecionado.getIdItem()));
+        jLabelNome.setText("Nome: "+itemSelecionado.getNome());
+        jTextDescricao.setText(itemSelecionado.getDescrição());
+        jLabelCor.setText("Cor: "+itemSelecionado.getCor());
+        jLabelData.setText("Data: "+itemSelecionado.getDataEntrada());
+        loadIcon(jLabelFoto, itemSelecionado.getFoto());
+    }
+    
+     private void loadIcon(JLabel label, String imagem){
+        //atribui imagem nos labels desejados
+        
+        ImageIcon icon = new ImageIcon(imagem, "imagem");
+        Image img = icon.getImage();
+        Image nova = getScaledImage(img, 200,150);
+        icon.setImage(nova);
+        label.setIcon(icon); 
+    }
+      
+    private Image getScaledImage(Image srcImg, int w, int h){
+        //Redimensiona a imagem para o tamanho desejado
+        BufferedImage resizedImg = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2 = resizedImg.createGraphics();
+
+        g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+        g2.drawImage(srcImg, 0, 0, w, h, null);
+        g2.dispose();
+
+        return resizedImg;
+    }
+    
     public void closeFrame(){
         janelaControl.dispose();
     }
@@ -174,8 +276,15 @@ public class RequisicaoCliente extends javax.swing.JFrame {
     private javax.swing.JTextField JTFDocumento;
     private javax.swing.JButton jButtonVoltar;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabelCor;
+    private javax.swing.JLabel jLabelData;
+    private javax.swing.JLabel jLabelFoto;
     private javax.swing.JLabel jLabelFundo;
+    private javax.swing.JLabel jLabelId;
+    private javax.swing.JLabel jLabelNome;
     private javax.swing.JLabel jLabelTipo;
     private javax.swing.JLabel jLabelTitulo;
+    private javax.swing.JScrollPane jScrollPaneDescricao;
+    private javax.swing.JTextArea jTextDescricao;
     // End of variables declaration//GEN-END:variables
 }

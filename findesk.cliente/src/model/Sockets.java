@@ -77,9 +77,12 @@ public class Sockets {
                     // o servidor receba um pedido de conexão
                     Socket cliente = servidor.accept();
                     System.out.println("Cliente conectado: " + cliente.getInetAddress().getHostAddress());
+                    ObjectInputStream st = new ObjectInputStream(cliente.getInputStream());
+                    String texto = (String) st.readObject();
+                    JOptionPane.showMessageDialog(null,"Mensagem recebida: "+texto);
                     ObjectOutputStream saida = new ObjectOutputStream(cliente.getOutputStream());
                     saida.flush();
-                    saida.writeObject(new Date());
+                    saida.writeObject("ola cliente");
                     saida.close();
                     cliente.close();
                 }  
@@ -95,8 +98,8 @@ public class Sockets {
         try {
             Socket cliente = new Socket(this.ipServidor,porta);
             ObjectInputStream entrada = new ObjectInputStream(cliente.getInputStream());
-            Date data_atual = (Date)entrada.readObject();
-            JOptionPane.showMessageDialog(null,"Data recebida do servidor:" + data_atual.toString());
+            String resp = (String)entrada.readObject();
+            JOptionPane.showMessageDialog(null,"Resposta recebida: "+resp);
             entrada.close();
             System.out.println("Conexão encerrada");
         }
