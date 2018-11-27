@@ -91,7 +91,6 @@ public class ServidorUI extends javax.swing.JFrame {
     private void jButtonAceitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceitarActionPerformed
         try {
             server.tratamento("Aceito");
-            server = new Servidor();
             new Thread() {
                 @Override
                 public void run() {
@@ -109,7 +108,6 @@ public class ServidorUI extends javax.swing.JFrame {
     private void jButtonNegarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNegarActionPerformed
         try {
             server.tratamento("Negado");
-            server = new Servidor();
             new Thread() {
                 @Override
                 public void run() {
