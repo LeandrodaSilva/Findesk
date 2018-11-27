@@ -247,19 +247,12 @@ public class CadastrarItem extends javax.swing.JFrame {
        
         SGBD.getConexaoMySQL();
         
-        SGBD.inserirItemBd("INSERT INTO `findesk`.`nomeItem` "
-                + "(`nome`, `idCategoria`)"
-                + " VALUES (\""+nome+"\", select idCategoria from nomeItem where nomeCat = \""+categoria+"\" );");
-        
-           SGBD.inserirItemBd("INSERT INTO `findesk`.`item` "
-                + "( `idCor`, `idDoc`, idNome`, `idAdm`, `idDataEntrada`, `idDataSaida`,"
-                + " `retiradoItem`, `fotoItem`, `descricaoItem`)"
-                + " VALUES (\""+cor+"\",\""+iddoc+"\", 1,\"SELECT idDataEntrada from dataEntrada\"\n" +
-"                + \"where idData = (select idData from data\"\n" +
-"                + \" where idDia = \\\"\"+dia+\"\\\" AND idMes = \\\"\"+mes+\"\\\" AND idAno = \\\"\"+ano+\"\\\")  \"\n" +
-"                + \"(`nome`, `idCategoria`)\"\n" +
-"                + \"  );\", 0, 0,"
-                + ", '\""+descricao+"\"');");
+//        SGBD.inserirItemBd("INSERT INTO `findesk`.`nomeItem` "
+//                + "(`nome`, `idCategoria`)"
+//                + " VALUES (\""+nome+"\", select idCategoria from nomeItem where nomeCat = \""+categoria+"\" );");
+//        
+           SGBD.inserirItemBd("INSERT INTO item (idCor,idDoc, idNome, idAdm, idDataEntrada, idDataSaida, retiradoItem, fotoItem, descricaoItem) "
+                            + "VALUES ('#000000', 0,'8', 1, 1, 1, 1, NULL, 'teste victor');");
            
         SGBD.fecharConexao();
        
