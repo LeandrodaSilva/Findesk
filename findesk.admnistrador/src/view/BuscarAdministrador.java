@@ -73,8 +73,8 @@ public class BuscarAdministrador extends javax.swing.JFrame {
         jButtonBuscar = new javax.swing.JButton();
         jComboBoxCategoria = new javax.swing.JComboBox<>();
         jComboBoxNome = new javax.swing.JComboBox<>();
-        jLabelLixeira = new javax.swing.JLabel();
-        jLabelAlterar = new javax.swing.JLabel();
+        jButtonAlterar = new javax.swing.JButton();
+        jButtonDeletar = new javax.swing.JButton();
         jLabelFundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -83,14 +83,15 @@ public class BuscarAdministrador extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(800, 600));
         getContentPane().setLayout(null);
 
-        jButtonVoltar.setText("Voltar");
+        jButtonVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/icons8-seta-longa-à-esquerda-filled-50.png"))); // NOI18N
+        jButtonVoltar.setContentAreaFilled(false);
         jButtonVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonVoltarActionPerformed(evt);
             }
         });
         getContentPane().add(jButtonVoltar);
-        jButtonVoltar.setBounds(50, 520, 61, 23);
+        jButtonVoltar.setBounds(70, 520, 61, 23);
 
         jLabelTitulo.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabelTitulo.setForeground(new java.awt.Color(255, 255, 255));
@@ -103,22 +104,15 @@ public class BuscarAdministrador extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Nome", "Descrição"
+                "ID", "Nome", "Descrição", "Cor", "Situação do Item"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
             }
         });
         jTableResultado.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -129,12 +123,12 @@ public class BuscarAdministrador extends javax.swing.JFrame {
         jScrollPaneResultado.setViewportView(jTableResultado);
 
         getContentPane().add(jScrollPaneResultado);
-        jScrollPaneResultado.setBounds(50, 350, 680, 150);
+        jScrollPaneResultado.setBounds(0, 350, 790, 150);
 
         jLabelFoto.setForeground(new java.awt.Color(255, 255, 255));
         jLabelFoto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         getContentPane().add(jLabelFoto);
-        jLabelFoto.setBounds(200, 150, 370, 190);
+        jLabelFoto.setBounds(350, 90, 370, 190);
 
         jLabelCategoria.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabelCategoria.setForeground(new java.awt.Color(255, 255, 255));
@@ -187,15 +181,31 @@ public class BuscarAdministrador extends javax.swing.JFrame {
         getContentPane().add(jComboBoxNome);
         jComboBoxNome.setBounds(60, 170, 150, 20);
 
-        jLabelLixeira.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/icons8-lixo-26.png"))); // NOI18N
-        getContentPane().add(jLabelLixeira);
-        jLabelLixeira.setBounds(700, 500, 40, 40);
+        jButtonAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/icons8-editar-arquivo-24.png"))); // NOI18N
+        jButtonAlterar.setBorderPainted(false);
+        jButtonAlterar.setContentAreaFilled(false);
+        jButtonAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAlterarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonAlterar);
+        jButtonAlterar.setBounds(610, 510, 50, 40);
 
-        jLabelAlterar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabelAlterar.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/icons8-manutenção-26.png"))); // NOI18N
-        getContentPane().add(jLabelAlterar);
-        jLabelAlterar.setBounds(640, 500, 40, 40);
+        jButtonDeletar.setBackground(new java.awt.Color(255, 255, 255));
+        jButtonDeletar.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonDeletar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/icons8-lixo-26.png"))); // NOI18N
+        jButtonDeletar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButtonDeletar.setBorderPainted(false);
+        jButtonDeletar.setContentAreaFilled(false);
+        jButtonDeletar.setOpaque(false);
+        jButtonDeletar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDeletarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonDeletar);
+        jButtonDeletar.setBounds(680, 510, 50, 40);
 
         jLabelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Fundo2.png"))); // NOI18N
         jLabelFundo.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Fundo2.png"))); // NOI18N
@@ -208,7 +218,7 @@ public class BuscarAdministrador extends javax.swing.JFrame {
         getContentPane().add(jLabelFundo);
         jLabelFundo.setBounds(0, 0, 790, 600);
 
-        setSize(new java.awt.Dimension(800, 600));
+        setSize(new java.awt.Dimension(799, 600));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -219,6 +229,7 @@ public class BuscarAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonVoltarActionPerformed
 
     private void jTableResultadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableResultadoMouseClicked
+        jLabelFoto.setVisible(true);
         int linha = jTableResultado.getSelectedRow();
         System.out.println("Selecionado "+ linha);
         String id = (String) jTableResultado.getValueAt(linha, 0);
@@ -259,23 +270,26 @@ public class BuscarAdministrador extends javax.swing.JFrame {
         String nome = jComboBoxNome.getSelectedItem().toString();
         if ( categoria == "Todas"){
             ;
-                    popularResultado("select idItem, nome, descricaoItem "+
-                                     "from item, nomeitem "+
-                                     "where nomeitem.idNome = item.idNome");
+                    popularResultado("select idItem, nome, descricaoItem, nomeCor, retiradoItem "+
+                                     "from item, nomeitem, cor "+
+                                     "where nomeitem.idNome = item.idNome and "+
+                                     "cor.idCor = item.idCor ");
         }
         if( nome != "Todos" && categoria != "Todas"){
         
-        popularResultado("select idItem, nome, descricaoItem "+
+        popularResultado("select idItem, nome, descricaoItem, nomeCor, retiradoItem "+
                          "from nomeitem, item, categoria "+
                          " where nome like \""+nome+"\"and nomeCat like \""+categoria+"\"and "+
-                         "item.idNome = nomeitem.idNome and nomeItem.idCategoria = categoria.idCategoria");
+                         "item.idNome = nomeitem.idNome and nomeItem.idCategoria = categoria.idCategoria and "+
+                         "cor.idCor = item.idCor ");
         }
         if(nome == "Todos" && categoria != "Todas"){
             
-            popularResultado("select idItem, nome, descricaoItem "+
+            popularResultado("select idItem, nome, descricaoItem, nomeCor, retiradoItem "+
                              "from nomeitem, item, categoria "+
                              "where item.idNome = nomeitem.idNome and nomeItem.idCategoria = categoria.idCategoria and "+
-                             "nomeCat like \""+categoria+"\"");
+                             "nomeCat like \""+categoria+"\"and "+
+                             "cor.idCor = item.idCor ");
         }
     }//GEN-LAST:event_jButtonBuscarActionPerformed
 
@@ -290,6 +304,28 @@ public class BuscarAdministrador extends javax.swing.JFrame {
     private void jLabelFundoMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelFundoMouseMoved
       
     }//GEN-LAST:event_jLabelFundoMouseMoved
+
+    private void jButtonDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeletarActionPerformed
+        SGBD mybd = new SGBD();
+        mybd.getConexaoMySQL();
+        System.out.println(mybd.statusConection());
+        Object objeto = defaultTableResultado.getValueAt(jTableResultado.getSelectedRow(), 0);
+        Object objeto1 = defaultTableResultado.getValueAt(jTableResultado.getSelectedRow(), 1);
+        objeto1.toString();
+        Integer.parseInt((String) objeto);
+        System.out.println("valor "+objeto);
+        int Confirm = JOptionPane.showConfirmDialog(null,"Deseja excluir "+objeto1+"?","sim ou nao", JOptionPane.YES_NO_OPTION);
+        if (Confirm == JOptionPane.YES_OPTION) {
+        JOptionPane.showMessageDialog(null, ""+objeto1+" deletado com sucesso!!");
+        //mybd.alterarItemBd("delete from item where idItem = \""+objeto+"\"");
+        defaultTableResultado.removeRow(jTableResultado.getSelectedRow());
+        jLabelFoto.setVisible(false);
+        } 
+    }//GEN-LAST:event_jButtonDeletarActionPerformed
+
+    private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAlterarActionPerformed
 
     
     public void popular(JLabel label, String imagem){
@@ -450,7 +486,7 @@ public class BuscarAdministrador extends javax.swing.JFrame {
    
     
     private  void popularResultado(String resultado){
-            String[] colunas = new String[3];
+            String[] colunas = new String[5];
             SGBD mybd = new SGBD();
 
             mybd.getConexaoMySQL();
@@ -475,6 +511,14 @@ public class BuscarAdministrador extends javax.swing.JFrame {
                     colunas[0] = Integer.toString(rs.getInt(1));
                     colunas[1] = rs.getString(2);
                     colunas[2] = rs.getString(3);
+                    
+                    colunas[3] = rs.getString(4);
+                    colunas[4] = rs.getString(5);
+                    if(rs.getString(5).equals("1")){
+                        colunas[4] = "retirado";
+                    }else{
+                        colunas[4] = "disponível";
+                    }
                     defaultTableResultado.addRow(colunas);
                 }
             } catch (SQLException ex) {
@@ -491,15 +535,15 @@ public class BuscarAdministrador extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonAlterar;
     private javax.swing.JButton jButtonBuscar;
+    private javax.swing.JButton jButtonDeletar;
     private javax.swing.JButton jButtonVoltar;
     private javax.swing.JComboBox<String> jComboBoxCategoria;
     private javax.swing.JComboBox<String> jComboBoxNome;
-    private javax.swing.JLabel jLabelAlterar;
     private javax.swing.JLabel jLabelCategoria;
     private javax.swing.JLabel jLabelFoto;
     private javax.swing.JLabel jLabelFundo;
-    private javax.swing.JLabel jLabelLixeira;
     private javax.swing.JLabel jLabelPalavraChave;
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JScrollPane jScrollPaneResultado;
