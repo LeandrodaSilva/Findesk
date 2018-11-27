@@ -230,49 +230,48 @@ public class CadastrarItem extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
-//       // JOptionPane.showConfirmDialog(null, "Deseja confirmar o cadastro?");
-//        String categoria = jComboBoxCategoria.getSelectedItem().toString();
-//        String dia = jComboBoxDia.getSelectedItem().toString();
-//        String mes = jComboBoxMes.getSelectedItem().toString();
-//        String ano = jComboBoxAno.getSelectedItem().toString();
-//        String nome = jTextFieldNomeItem1.toString();
-//        String cor = jComboBoxCor.getSelectedItem().toString();
-//        String iddoc = jTextFieldDoc.toString();
-//        String descricao = jTextFieldNomeDescrição.getText();
-//       
-//     
-// 
-//        //cadastroCat(nome,categoria);
-//       // cadastroItem(cor,Integer.parseInt(iddoc),Integer.parseInt(dia),Integer.parseInt(mes),Integer.parseInt(ano),descricao);
-//       
-//        SGBD.getConexaoMySQL();
+       // JOptionPane.showConfirmDialog(null, "Deseja confirmar o cadastro?");
+        String categoria = jComboBoxCategoria.getSelectedItem().toString();
+        String dia = jComboBoxDia.getSelectedItem().toString();
+        String mes = jComboBoxMes.getSelectedItem().toString();
+        String ano = jComboBoxAno.getSelectedItem().toString();
+        String nome = jTextFieldNomeItem1.toString();
+        String cor = jComboBoxCor.getSelectedItem().toString();
+        String iddoc = jTextFieldDoc.toString();
+        String descricao = jTextFieldNomeDescrição.getText();
+       
+     
+ 
+        //cadastroCat(nome,categoria);
+       // cadastroItem(cor,Integer.parseInt(iddoc),Integer.parseInt(dia),Integer.parseInt(mes),Integer.parseInt(ano),descricao);
+       
+        SGBD.getConexaoMySQL();
+        
+//        SGBD.inserirItemBd("INSERT INTO `findesk`.`nomeItem` "
+//                + "(`nome`, `idCategoria`)"
+//                + " VALUES (\""+nome+"\", select idCategoria from nomeItem where nomeCat = \""+categoria+"\" );");
+
+    // SGBD.inserirItemBd("INSERT INTO documento (idDoc, nomeDoc) "
+  //                          + "VALUES (\""+iddoc+"\",documento);");
 //        
-////        SGBD.inserirItemBd("INSERT INTO `findesk`.`nomeItem` "
-////                + "(`nome`, `idCategoria`)"
-////                + " VALUES (\""+nome+"\", select idCategoria from nomeItem where nomeCat = \""+categoria+"\" );");
-//
-//    // SGBD.inserirItemBd("INSERT INTO documento (idDoc, nomeDoc) "
-//  //                          + "VALUES (\""+iddoc+"\",documento);");
-////        
-//           SGBD.inserirItemBd("INSERT INTO item (idCor, idAdm, idDataEntrada, idDataSaida, retiradoItem, fotoItem, descricaoItem) "
-//                            + "VALUES ((SELECT idCor from cor where nomeCor = \""+cor+"\"), 1, 1, 1, 0, NULL, \""+descricao+"\");");
-//           
-//        SGBD.fecharConexao();
-//       
-// /*
-//        SGBD.getConexaoMySQL();
-//        
-////        SGBD.inserirItemBd("INSERT INTO `findesk`.`nomeItem` "
-////                + "(`nome`, `idCategoria`)"
-////                + " VALUES (\""+nome+"\", select idCategoria from nomeItem where nomeCat = \""+categoria+"\" );");
-////        
-//           SGBD.inserirItemBd("INSERT INTO item (idCor,idDoc, idAdm, idDataEntrada, idDataSaida, retiradoItem, fotoItem, descricaoItem) "
-//                            + "VALUES (\""+cor+"\", \""+iddoc+"\", 1, 1, 0, 0, NULL, \""+descricao+"\");");
-//           
-//        SGBD.fecharConexao();
-//       
-//
-//        */
+       //    SGBD.inserirItemBd("INSERT INTO item (idCor, idAdm, idDataEntrada, idDataSaida, retiradoItem, fotoItem, descricaoItem) "
+         //                   + "VALUES ((SELECT idCor from cor where nomeCor = \""+cor+"\"), 1, 1, 1, 0, NULL, \""+descricao+"\");");
+           
+       // SGBD.fecharConexao();
+       
+ 
+        SGBD.getConexaoMySQL();
+        
+       // SGBD.inserirItemBd("INSERT INTO `findesk`.`nomeItem` "
+        //        + "(`nome`, `idCategoria`)"
+          //      + " VALUES (\""+nome+"\", select idCategoria from nomeItem where nomeCat = \""+categoria+"\" );");
+        
+           SGBD.inserirItemBd("INSERT INTO item (idItem, idCor, idDoc, idNome, idAdm, idDataEntrada, idDataSaida, retiradoItem, descricaoItem)"
+                   + " VALUES (13, '#000000', 0, '2', 1, 1, 1, 0, 'mouse gamer');");
+           
+        SGBD.fecharConexao();
+       
+/*
        Item novoItem = new Item();
        novoItem.setCor(jComboBoxCor.getSelectedItem().toString());
        novoItem.setDescricaoItem(jTextFieldNomeDescrição.getText());
@@ -284,7 +283,7 @@ public class CadastrarItem extends javax.swing.JFrame {
        SGBD.getConexaoMySQL();
        SGBD.inserirItemBd(novoItem);
        SGBD.fecharConexao();
-        
+        */
         
        
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
