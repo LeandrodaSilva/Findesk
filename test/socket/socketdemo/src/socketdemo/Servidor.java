@@ -46,7 +46,11 @@ public class Servidor{
                     int valor = item.getIdItem();
                     String id = Integer.toString(valor);
                     janela.setJLabelId(id);
-                    janela.setJLabelNome("etste");
+                    janela.setJLabelNome(item.getNome());
+                    try
+                    {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {};
                     janela.setVisible(true);
                 } catch (ClassNotFoundException ex) {
                     Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
