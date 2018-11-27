@@ -329,7 +329,7 @@ public class BuscarAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonDeletarActionPerformed
 
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
-       /*SGBD mybd = new SGBD();
+       SGBD mybd = new SGBD();
         mybd.getConexaoMySQL();
         System.out.println(mybd.statusConection());
         Object id = defaultTableResultado.getValueAt(jTableResultado.getSelectedRow(), 0);
@@ -345,8 +345,10 @@ public class BuscarAdministrador extends javax.swing.JFrame {
         int Confirm = JOptionPane.showConfirmDialog(null,"Deseja alterar "+nome+"?","sim ou nao", JOptionPane.YES_NO_OPTION);
         if (Confirm == JOptionPane.YES_OPTION) {
         JOptionPane.showMessageDialog(null, ""+nome+" alterado com sucesso!!");
-        mybd.alterarItemBd("update nomeItem set nome = \""+nome+"\" where idNome = select idNome from item where idItem = \""+id+"\"");
-        }*/
+        mybd.alterarItemBd("update item set idNome = (select idNome from nomeitem where nome = \""+nome+"\") where idItem = \""+id+"\"");
+        mybd.alterarItemBd("update item set descricaoItem = \""+descricao+"\" where idItem = \""+id+"\"");
+        mybd.alterarItemBd("update item set idCor = (select idCor from cor where nomeCor = \""+cor+"\") where idItem = \""+id+"\"");
+        }
     }//GEN-LAST:event_jButtonAlterarActionPerformed
 
     public void popular(JLabel label, String imagem){
