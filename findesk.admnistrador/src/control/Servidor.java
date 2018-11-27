@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package socketdemo;
+package control;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -17,7 +17,8 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javax.swing.JOptionPane;
 import javax.swing.event.ChangeEvent;
-
+import view.*;
+import model.*;
 /**
  *
  * @author ld_si
@@ -46,11 +47,7 @@ public class Servidor{
                     int valor = item.getIdItem();
                     String id = Integer.toString(valor);
                     janela.setJLabelId(id);
-                    janela.setJLabelNome(item.getNome());
-                    try
-                    {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {};
+                    janela.setJLabelNome("etste");
                     janela.setVisible(true);
                 } catch (ClassNotFoundException ex) {
                     Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);

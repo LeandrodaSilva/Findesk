@@ -3,17 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package socketdemo;
+package view;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.Timer;
+import control.*;
 
 /**
  *
@@ -47,19 +46,21 @@ public class ServidorUI extends javax.swing.JFrame {
         jLabelFundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(800, 600));
         setResizable(false);
         getContentPane().setLayout(null);
 
         jLabelTitulo.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabelTitulo.setForeground(new java.awt.Color(255, 255, 255));
         jLabelTitulo.setText("Solicitação de Retirada");
         getContentPane().add(jLabelTitulo);
         jLabelTitulo.setBounds(214, 90, 361, 44);
 
+        jLabelId.setForeground(new java.awt.Color(255, 255, 255));
         jLabelId.setText("ID:");
         getContentPane().add(jLabelId);
         jLabelId.setBounds(270, 210, 240, 14);
 
+        jLabelNome.setForeground(new java.awt.Color(255, 255, 255));
         jLabelNome.setText("Nome: ");
         getContentPane().add(jLabelNome);
         jLabelNome.setBounds(270, 230, 280, 20);
@@ -81,6 +82,8 @@ public class ServidorUI extends javax.swing.JFrame {
         });
         getContentPane().add(jButtonNegar);
         jButtonNegar.setBounds(220, 460, 90, 23);
+
+        jLabelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Fundo2.png"))); // NOI18N
         getContentPane().add(jLabelFundo);
         jLabelFundo.setBounds(0, 0, 800, 600);
 
@@ -91,6 +94,7 @@ public class ServidorUI extends javax.swing.JFrame {
     private void jButtonAceitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceitarActionPerformed
         try {
             server.tratamento("Aceito");
+            server = new Servidor();
             new Thread() {
                 @Override
                 public void run() {
@@ -108,6 +112,7 @@ public class ServidorUI extends javax.swing.JFrame {
     private void jButtonNegarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNegarActionPerformed
         try {
             server.tratamento("Negado");
+            server = new Servidor();
             new Thread() {
                 @Override
                 public void run() {
@@ -125,7 +130,7 @@ public class ServidorUI extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void mostrar() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -149,6 +154,8 @@ public class ServidorUI extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -168,8 +175,6 @@ public class ServidorUI extends javax.swing.JFrame {
             }
         });
     }
-    
-
     
     public static void iniciar(Servidor server, ServidorUI janela){
         new Thread() {
