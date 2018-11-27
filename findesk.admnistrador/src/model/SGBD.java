@@ -203,8 +203,14 @@ public class SGBD
         
     } 
     
-    public static void alterarItemBd(){
-        
+    public static void alterarItemBd(String sql){
+        Statement stt;
+        try {
+            stt = connection.createStatement(); 
+            stt.executeUpdate(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(SGBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public static void excluirItemBd(){

@@ -4,10 +4,9 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.*;
+import model.SGBD;
 import model.Sockets;
 import view.TelaPrincipal;
-import view.*;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -23,31 +22,25 @@ public class Administrador {
     /**
      * @param args the command line arguments
      */
-    private static TelaPrincipal telaPrincipal = new TelaPrincipal();
+    
+    
     public static void main(String[] args) {
         //Comentar esta parte abaixo caso nao deseje ativar o servidor
         setConfig();
         
-//        SGBD mybd = new SGBD();
-//        mybd.getConexaoMySQL();
-//        
-//        
-//        
-//        Sockets novo = new Sockets(mybd.loadAdmPort());
-//        novo.startServer();
-//        
-//        mybd.fecharConexao();
+        SGBD mybd = new SGBD();
+        mybd.getConexaoMySQL();
+        
+        
+        
+        Sockets novo = new Sockets(mybd.loadAdmPort());
+        novo.startServer();
+        
+        mybd.fecharConexao();
         //fim do servidor
         
-        
+        TelaPrincipal telaPrincipal = new TelaPrincipal();
         telaPrincipal.mostrar();
-        
-       
-       
-    
-        
-        
-        
     }
     
 
