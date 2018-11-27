@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Item implements Serializable {
+public class Item  implements Serializable{
 
 	private int idItem;
 
@@ -25,13 +25,13 @@ public class Item implements Serializable {
         private int idDoc;
         
         public Item(){
-            this.idItem = 10;
+            this.idItem = 0;
             this.cor = "";
             this.dataEntrada = "";
             this.dataSaida = "";
             this.foto = "";
             this.descricao = "";
-            this.nome = "Pendrive";
+            this.nome = "Teste";
             this.idDoc = 0;
         }
 
@@ -96,31 +96,31 @@ public class Item implements Serializable {
             return this.foto;
         }
         
-//        public Boolean load(String id){
-//            SGBD mybd = new SGBD();
-//            mybd.getConexaoMySQL();
-//            ResultSet rs = mybd.consultarItemBd("select idItem, idCor, idDoc, nome, fotoItem, descricaoItem , concat(data.idDia, \"/\",data.idMes, \"/\", data.idAno) "
-//                                                + "from item,nomeItem, dataentrada, data "
-//                                                 + "where item.idItem = \""+id+"\" and item.idNome = nomeItem.idNome and "
-//                                                         + "item.idDataEntrada = dataentrada.idDataEntrada and "
-//                                                         + "data.idData = dataentrada.idData;");
-//            try {
-//             
-//                    setIdItem(rs.getInt("idItem"));
-//                    setNome(rs.getString("nome"));
-//                    setIdDoc(rs.getInt("idDoc"));
-//                    setFoto(rs.getString("fotoItem"));
-//                    setDataEntrada(rs.getString(7));
-//                    setDescricao(rs.getString("descricaoItem"));
-//                    setCor(rs.getString("idCor"));
-//                    return true;
-//                
-//            } catch (SQLException ex) {
-//                Logger.getLogger(Item.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//            mybd.fecharConexao();
-//            return false;
-//        }
+        public Boolean load(String id){
+            SGBD mybd = new SGBD();
+            mybd.getConexaoMySQL();
+            ResultSet rs = mybd.consultarItemBd("select idItem, idCor, idDoc, nome, fotoItem, descricaoItem , concat(data.idDia, \"/\",data.idMes, \"/\", data.idAno) "
+                                                + "from item,nomeItem, dataentrada, data "
+                                                 + "where item.idItem = \""+id+"\" and item.idNome = nomeItem.idNome and "
+                                                         + "item.idDataEntrada = dataentrada.idDataEntrada and "
+                                                         + "data.idData = dataentrada.idData;");
+            try {
+             
+                    setIdItem(rs.getInt("idItem"));
+                    setNome(rs.getString("nome"));
+                    setIdDoc(rs.getInt("idDoc"));
+                    setFoto(rs.getString("fotoItem"));
+                    setDataEntrada(rs.getString(7));
+                    setDescricao(rs.getString("descricaoItem"));
+                    setCor(rs.getString("idCor"));
+                    return true;
+                
+            } catch (SQLException ex) {
+                Logger.getLogger(Item.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            mybd.fecharConexao();
+            return false;
+        }
 
 
 }
