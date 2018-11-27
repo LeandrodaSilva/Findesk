@@ -273,14 +273,19 @@ public class CadastrarItem extends javax.swing.JFrame {
 //       
 //
 //        */
-//       Item novoItem = new Item();
-//       novoItem.setCor(jComboBoxCor.getSelectedItem().toString());
-//       novoItem.setDescricaoItem(jTextFieldNomeDescrição.getText());
-//       novoItem
-        SGBD.getConexaoMySQL();
-        int id = SGBD.consultarIdNomeItem("Documento");
-        System.out.println("Id: "+id);
-        SGBD.fecharConexao();
+       Item novoItem = new Item();
+       novoItem.setCor(jComboBoxCor.getSelectedItem().toString());
+       novoItem.setDescricaoItem(jTextFieldNomeDescrição.getText());
+       int id = SGBD.consultarIdNomeItem("Documentos");
+       novoItem.setIdNome(id);
+       novoItem.setIdDoc(Integer.parseInt(jTextFieldDoc.getText()));
+       novoItem.setNomeItem(jTextFieldNomeItem1.getText());
+       
+       SGBD.getConexaoMySQL();
+       SGBD.inserirItemBd(novoItem);
+       SGBD.fecharConexao();
+        
+        
        
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
 

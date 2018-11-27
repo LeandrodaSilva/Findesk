@@ -9,8 +9,8 @@ import java.util.logging.Logger;
 public class Item implements Serializable {
 
     private int idItem;
-    private String idNome;
-    private String nome;
+    private int idNome;
+    private String nomeItem;
     private String cor;
     private String descricaoItem;
     private String dataEntradaString;
@@ -30,20 +30,20 @@ public class Item implements Serializable {
         this.idItem = idItem;
     }
 
-    public String getIdNome() {
+    public int getIdNome() {
         return idNome;
     }
 
-    public void setIdNome(String idNome) {
+    public void setIdNome(int idNome) {
         this.idNome = idNome;
     }
 
-    public String getNome() {
-        return nome;
+    public String getNomeItem() {
+        return nomeItem;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNomeItem(String nome) {
+        this.nomeItem = nome;
     }
 
     public String getCor() {
@@ -137,7 +137,7 @@ public class Item implements Serializable {
         this.dataSaida = new DataSaida();
         this.fotoItem = "";
         this.descricaoItem = "";
-        this.nome = "";
+        this.nomeItem = "";
         this.idDoc = 0;
         this.retiradoItem = 0;
     }
@@ -156,7 +156,7 @@ public class Item implements Serializable {
         try {
 
             setIdItem(rs.getInt("idItem"));
-            setNome(rs.getString("nome"));
+            setNomeItem(rs.getString("nome"));
             setIdDoc(rs.getInt("idDoc"));
             setFotoItem(rs.getString("fotoItem"));
             setDataEntradaString(rs.getString(7));
