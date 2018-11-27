@@ -199,11 +199,8 @@ public class SGBD
         }
     }
     
-    public static void inserirItemBd(Item novoItem){
+    public static void inserirItemBd(String sql){
       Statement stt;
-      
-      String sql = "insert into item(idItem,descricaoItem) "
-                 + "values ("+novoItem.getIdItem()+","+novoItem.getDescrição()+")";//Insira as demais informações do item
       
         try {
             stt = connection.createStatement(); 
