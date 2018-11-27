@@ -10,6 +10,7 @@ import model.Data;
 import model.DataEntrada;
 import model.Dia;
 import model.Mes;
+import model.SGBD;
 
 /**
  *
@@ -37,5 +38,11 @@ public class teste {
         int ano = dataEntrada.getDataEntrada().getIdAno().getIdAno();        
         //fim
         System.out.println(dia+"/"+mes+"/"+ano);
+        
+        
+        SGBD.getConexaoMySQL();
+        int id = SGBD.consultarIdNomeItem("Documento");
+        System.out.println("Id: "+id);
+        SGBD.fecharConexao();
     }
 }

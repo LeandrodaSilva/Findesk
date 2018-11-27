@@ -210,6 +210,22 @@ public class SGBD
         }
     }
     
+    public static int consultarIdNomeItem(String nomeCategoria){
+        Statement stt;
+        ResultSet rs = null;
+        int id = 0;
+        try {
+            stt = connection.createStatement(); 
+            rs = stt.executeQuery("select distinct item.idNome from item, nomeitem, categoria "
+                                  + "where categoria.nomeCat like \""+nomeCategoria+"\" and nomeitem.idCategoria = categoria.idCategoria and item.idNome = nomeitem.idNome;");
+            rs.first();
+            id = (int) rs.getInt("idNome");
+        } catch (SQLException ex) {
+            Logger.getLogger(SGBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return id;
+    }
+    
     public static void inserirItemBd(Item novoItem){
       Statement stt;
       
