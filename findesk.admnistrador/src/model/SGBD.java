@@ -208,7 +208,21 @@ public class SGBD
         } catch (SQLException ex) {
             Logger.getLogger(SGBD.class.getName()).log(Level.SEVERE, null, ex);
         }
-    } 
+    }
+    
+    public static void inserirItemBd(Item novoItem){
+      Statement stt;
+      
+        try {
+            stt = connection.createStatement(); 
+            stt.executeUpdate("INSERT INTO item (idCor, idDoc, idNome, idAdm, idDataEntrada, idDataSaida, retiradoItem, fotoItem, descricaoItem) "
+                            + "VALUES ('"+novoItem.getCor()+"', "+novoItem.getIdDoc()+",'"+novoItem.getIdNome()+"', "
+                                         + "1, "+novoItem.getIdDataEntrada()+", "+novoItem.getIdDataSaida()+", "
+                                         + ""+novoItem.getRetiradoItem()+", "+novoItem.getFotoItem()+", '"+novoItem.getDescricaoItem()+"');");
+        } catch (SQLException ex) {
+            Logger.getLogger(SGBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
     public static void alterarItemBd(String sql){
         Statement stt;
