@@ -238,7 +238,7 @@ public class CadastrarItem extends javax.swing.JFrame {
         String nome = jTextFieldNomeItem1.toString();
         String cor = jComboBoxCor.getSelectedItem().toString();
         String iddoc = jTextFieldDoc.toString();
-        String descricao = jTextFieldNomeDescrição.toString();
+        String descricao = jTextFieldNomeDescrição.getText();
        
      
  
@@ -250,13 +250,42 @@ public class CadastrarItem extends javax.swing.JFrame {
 //        SGBD.inserirItemBd("INSERT INTO `findesk`.`nomeItem` "
 //                + "(`nome`, `idCategoria`)"
 //                + " VALUES (\""+nome+"\", select idCategoria from nomeItem where nomeCat = \""+categoria+"\" );");
+
+    // SGBD.inserirItemBd("INSERT INTO documento (idDoc, nomeDoc) "
+  //                          + "VALUES (\""+iddoc+"\",documento);");
 //        
-           SGBD.inserirItemBd("INSERT INTO item (idCor,idDoc, idNome, idAdm, idDataEntrada, idDataSaida, retiradoItem, fotoItem, descricaoItem) "
-                            + "VALUES ('#000000', 0,'8', 1, 1, 1, 1, NULL, 'teste victor');");
+       //    SGBD.inserirItemBd("INSERT INTO item (idCor, idAdm, idDataEntrada, idDataSaida, retiradoItem, fotoItem, descricaoItem) "
+         //                   + "VALUES ((SELECT idCor from cor where nomeCor = \""+cor+"\"), 1, 1, 1, 0, NULL, \""+descricao+"\");");
+           
+       // SGBD.fecharConexao();
+       
+ 
+        SGBD.getConexaoMySQL();
+        
+       // SGBD.inserirItemBd("INSERT INTO `findesk`.`nomeItem` "
+        //        + "(`nome`, `idCategoria`)"
+          //      + " VALUES (\""+nome+"\", select idCategoria from nomeItem where nomeCat = \""+categoria+"\" );");
+        
+           SGBD.inserirItemBd("INSERT INTO item (idItem, idCor, idDoc, idNome, idAdm, idDataEntrada, idDataSaida, retiradoItem, descricaoItem)"
+                   + " VALUES (13, '#000000', 0, '2', 1, 1, 1, 0, 'mouse gamer');");
            
         SGBD.fecharConexao();
        
-
+/*
+       Item novoItem = new Item();
+       novoItem.setCor(jComboBoxCor.getSelectedItem().toString());
+       novoItem.setDescricaoItem(jTextFieldNomeDescrição.getText());
+       int id = SGBD.consultarIdNomeItem("Documentos");
+       novoItem.setIdNome(id);
+       novoItem.setIdDoc(Integer.parseInt(jTextFieldDoc.getText()));
+       novoItem.setNomeItem(jTextFieldNomeItem1.getText());
+       
+       SGBD.getConexaoMySQL();
+       SGBD.inserirItemBd(novoItem);
+       SGBD.fecharConexao();
+        */
+        
+       
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
 
     private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed

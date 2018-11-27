@@ -208,7 +208,37 @@ public class SGBD
         } catch (SQLException ex) {
             Logger.getLogger(SGBD.class.getName()).log(Level.SEVERE, null, ex);
         }
-    } 
+    }
+    
+    public static int consultarIdNomeItem(String nomeCategoria){
+        Statement stt;
+        ResultSet rs = null;
+        int id = 0;
+        try {
+            stt = connection.createStatement(); 
+            rs = stt.executeQuery("select distinct item.idNome from item, nomeitem, categoria "
+                                  + "where categoria.nomeCat like \""+nomeCategoria+"\" and nomeitem.idCategoria = categoria.idCategoria and item.idNome = nomeitem.idNome;");
+            rs.first();
+            id = (int) rs.getInt("idNome");
+        } catch (SQLException ex) {
+            Logger.getLogger(SGBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return id;
+    }
+    
+    public static void inserirItemBd(Item novoItem){
+      Statement stt;
+      
+        try {
+            stt = connection.createStatement(); 
+            stt.executeUpdate("INSERT INTO item (idCor, idDoc, idNome, idAdm, idDataEntrada, idDataSaida, retiradoItem, fotoItem, descricaoItem) "
+                            + "VALUES ('"+novoItem.getCor()+"', "+novoItem.getIdDoc()+",'"+novoItem.getIdNome()+"', "
+                                         + "1, "+novoItem.getIdDataEntrada()+", "+novoItem.getIdDataSaida()+", "
+                                         + ""+novoItem.getRetiradoItem()+", "+novoItem.getFotoItem()+", '"+novoItem.getDescricaoItem()+"');");
+        } catch (SQLException ex) {
+            Logger.getLogger(SGBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
     public static void alterarItemBd(String sql){
         Statement stt;

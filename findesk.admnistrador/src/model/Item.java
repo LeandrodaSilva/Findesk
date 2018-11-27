@@ -9,38 +9,18 @@ import java.util.logging.Logger;
 public class Item implements Serializable {
 
     private int idItem;
-    private String nome;
+    private int idNome;
+    private String nomeItem;
     private String cor;
-    private String descricao;
-    private String dataEntrada;
-    private DataEntrada dataE;
-    private String dataSaida;
-    private String foto;
+    private String descricaoItem;
+    private String dataEntradaString;
+    private int idDataEntrada;
+    private DataEntrada dataEntrada;
+    private int idDataSaida;
+    private DataSaida dataSaida;
+    private String fotoItem;
     private int idDoc;
-
-    public Item(String nome, String cor, String descricao, String dataEntrada, DataEntrada dataE, String dataSaida, String foto, int idDoc) {
-        this.idItem = 0;
-        this.nome = nome;
-        this.cor = cor;
-        this.descricao = descricao;
-        this.dataEntrada = dataEntrada;
-        this.dataE = dataE;
-        this.dataSaida = dataSaida;
-        this.foto = foto;
-        this.idDoc = idDoc;
-    }
-    
-    public Item(int idItem, String nome, String cor, String descricao, String dataEntrada, DataEntrada dataE, String dataSaida, String foto, int idDoc) {
-        this.idItem = idItem;
-        this.nome = nome;
-        this.cor = cor;
-        this.descricao = descricao;
-        this.dataEntrada = dataEntrada;
-        this.dataE = dataE;
-        this.dataSaida = dataSaida;
-        this.foto = foto;
-        this.idDoc = idDoc;
-    }
+    private int retiradoItem;
 
     public int getIdItem() {
         return idItem;
@@ -50,12 +30,20 @@ public class Item implements Serializable {
         this.idItem = idItem;
     }
 
-    public String getNome() {
-        return nome;
+    public int getIdNome() {
+        return idNome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setIdNome(int idNome) {
+        this.idNome = idNome;
+    }
+
+    public String getNomeItem() {
+        return nomeItem;
+    }
+
+    public void setNomeItem(String nome) {
+        this.nomeItem = nome;
     }
 
     public String getCor() {
@@ -66,44 +54,60 @@ public class Item implements Serializable {
         this.cor = cor;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getDescricaoItem() {
+        return descricaoItem;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setDescricaoItem(String descricaoItem) {
+        this.descricaoItem = descricaoItem;
     }
 
-    public String getDataEntrada() {
+    public String getDataEntradaString() {
+        return dataEntradaString;
+    }
+
+    public void setDataEntradaString(String dataEntradaString) {
+        this.dataEntradaString = dataEntradaString;
+    }
+
+    public int getIdDataEntrada() {
+        return idDataEntrada;
+    }
+
+    public void setIdDataEntrada(int idDataEntrada) {
+        this.idDataEntrada = idDataEntrada;
+    }
+
+    public DataEntrada getDataEntrada() {
         return dataEntrada;
     }
 
-    public void setDataEntrada(String dataEntrada) {
+    public void setDataEntrada(DataEntrada dataEntrada) {
         this.dataEntrada = dataEntrada;
     }
 
-    public DataEntrada getDataE() {
-        return dataE;
+    public int getIdDataSaida() {
+        return idDataSaida;
     }
 
-    public void setDataE(DataEntrada dataE) {
-        this.dataE = dataE;
+    public void setIdDataSaida(int idDataSaida) {
+        this.idDataSaida = idDataSaida;
     }
 
-    public String getDataSaida() {
+    public DataSaida getDataSaida() {
         return dataSaida;
     }
 
-    public void setDataSaida(String dataSaida) {
+    public void setDataSaida(DataSaida dataSaida) {
         this.dataSaida = dataSaida;
     }
 
-    public String getFoto() {
-        return foto;
+    public String getFotoItem() {
+        return fotoItem;
     }
 
-    public void setFoto(String foto) {
-        this.foto = foto;
+    public void setFotoItem(String fotoItem) {
+        this.fotoItem = fotoItem;
     }
 
     public int getIdDoc() {
@@ -114,15 +118,28 @@ public class Item implements Serializable {
         this.idDoc = idDoc;
     }
 
+    public int getRetiradoItem() {
+        return retiradoItem;
+    }
+
+    public void setRetiradoItem(int retiradoItem) {
+        this.retiradoItem = retiradoItem;
+    }
+
+
+ 
+
     public Item() {
         this.idItem = 0;
         this.cor = "";
-        this.dataEntrada = "";
-        this.dataSaida = "";
-        this.foto = "";
-        this.descricao = "";
-        this.nome = "";
+        this.dataEntradaString = "";
+        this.dataEntrada = new DataEntrada();
+        this.dataSaida = new DataSaida();
+        this.fotoItem = "";
+        this.descricaoItem = "";
+        this.nomeItem = "";
         this.idDoc = 0;
+        this.retiradoItem = 0;
     }
 
   
@@ -139,11 +156,11 @@ public class Item implements Serializable {
         try {
 
             setIdItem(rs.getInt("idItem"));
-            setNome(rs.getString("nome"));
+            setNomeItem(rs.getString("nome"));
             setIdDoc(rs.getInt("idDoc"));
-            setFoto(rs.getString("fotoItem"));
-            setDataEntrada(rs.getString(7));
-            setDescricao(rs.getString("descricaoItem"));
+            setFotoItem(rs.getString("fotoItem"));
+            setDataEntradaString(rs.getString(7));
+            setDescricaoItem(rs.getString("descricaoItem"));
             setCor(rs.getString("idCor"));
             return true;
 

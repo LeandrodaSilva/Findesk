@@ -243,7 +243,7 @@ public class BuscarAdministrador extends javax.swing.JFrame {
         if(itemSelecionado.load(id)){
             System.out.println("Item carregado: "+ itemSelecionado.getIdItem());
         }
-        popular(jLabelFoto, itemSelecionado.getFoto());
+        popular(jLabelFoto, itemSelecionado.getFotoItem());
     }//GEN-LAST:event_jTableResultadoMouseClicked
 
     private void jComboBoxCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCategoriaActionPerformed

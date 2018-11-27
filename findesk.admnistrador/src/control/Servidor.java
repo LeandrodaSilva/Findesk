@@ -42,7 +42,7 @@ public class Servidor{
                 Item item;
                 try {
                     item = (Item) itemRecebido.readObject();
-                    System.out.println("ID: " + item.getIdItem() + "\nNome: " + item.getNome());
+                    System.out.println("ID: " + item.getIdItem() + "\nNome: " + item.getNomeItem());
 
                     int valor = item.getIdItem();
                     String id = Integer.toString(valor);

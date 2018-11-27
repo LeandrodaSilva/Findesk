@@ -16,6 +16,10 @@ public class DataSaida {
         this.dataSaida = dataSaida;
     }
 
+    DataSaida() {
+         this.dataSaida = new Data();
+    }
+
     public Data getDataSaida() {
         return dataSaida;
     }
