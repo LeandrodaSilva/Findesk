@@ -84,7 +84,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabelConfirmar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabelConfirmar.setText("Vai!!");
         getContentPane().add(jLabelConfirmar);
-        jLabelConfirmar.setBounds(380, 470, 34, 20);
+        jLabelConfirmar.setBounds(380, 470, 40, 20);
 
         jButtonConfirmar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonConfirmar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/bt2.png"))); // NOI18N
