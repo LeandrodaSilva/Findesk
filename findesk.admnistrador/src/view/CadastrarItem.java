@@ -229,13 +229,13 @@ public class CadastrarItem extends javax.swing.JFrame {
         String dia = jComboBoxDia.getSelectedItem().toString();
         String mes = jComboBoxMes.getSelectedItem().toString();
         String ano = jComboBoxAno.getSelectedItem().toString();
-        
-        
-        
-       // String nome = jComboBoxNome.getSelectedItem().toString();
-       // String cor = jComboBoxCor.getSelectedItem().toString();
-        cadastroCat(nome,idCategoria)
-           //  cadastroItem(cor,iddoc,idnome,dataentrada,path,descricao);
+        String nome = jTextFieldNomeItem1.toString();
+        String cor = jComboBoxCor.getSelectedItem().toString();
+        String iddoc = jTextFieldDoc.toString();
+        //int dataentrada = dataEntrada(dia,mes,ano);
+       
+        cadastroCat(nome,categoria);
+       // cadastroItem(cor,iddoc,dataentrada,path,descricao);
  
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
 
@@ -569,7 +569,7 @@ public class CadastrarItem extends javax.swing.JFrame {
         
     }
      
-      private static void cadastroCat(String nome, char idCategoria){
+      private static void cadastroCat(String nome, String Categoria){
         SGBD mybd = new SGBD();
         
         mybd.getConexaoMySQL();
@@ -580,14 +580,34 @@ public class CadastrarItem extends javax.swing.JFrame {
         
         ResultSet rs = mybd.consultarItemBd("INSERT INTO `findesk`.`nomeItem` "
                 + "(`nome`, `idCategoria`)"
-                + " VALUES (\""+nome+"\", \""+idCategoria+"\");");
+                + " VALUES (\""+nome+"\", select idCategoria from nomeItem where nomeCat = \""+Categoria+"\" );");
         
        
         
         mybd.fecharConexao();
         
     }
-    
+     /*
+         private static void dataEntrada(int dia, int mes, int ano){
+        SGBD mybd = new SGBD();
+        
+        mybd.getConexaoMySQL();
+        ArrayList strList = new ArrayList();
+        System.out.println(mybd.statusConection());
+        
+        
+        
+        ResultSet rs = mybd.consultarItemBd("INSERT INTO `findesk`.`nomeItem` "
+                + "(`nome`, `idCategoria`)"
+                + " VALUES (\""+nome+"\", select idCategoria from nomeItem where nomeCat = \""+Categoria+"\" );");
+        
+       
+        
+        mybd.fecharConexao();
+        
+    }
+      
+    */
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCadastrar;
