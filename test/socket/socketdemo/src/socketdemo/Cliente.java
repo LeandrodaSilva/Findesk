@@ -21,6 +21,10 @@ public class Cliente {
             Socket cliente = new Socket("127.0.0.1",5060);
             Item myItem = new Item();
             ObjectOutputStream saida = new ObjectOutputStream(cliente.getOutputStream());
+            
+            myItem.setIdItem(20);
+            myItem.setNome("Notebook");
+            
             saida.flush();
             saida.writeObject(myItem);
             saida.flush();
@@ -33,6 +37,7 @@ public class Cliente {
             entrada.close();
             
             System.out.println("Conexão encerrada");
+            cliente.close();
         }
         catch(Exception e) {
             System.out.println("Erro: " + e.getMessage());

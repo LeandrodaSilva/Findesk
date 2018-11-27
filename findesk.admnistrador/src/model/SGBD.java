@@ -199,8 +199,8 @@ public class SGBD
         }
     }
     
-    public static void inserirItemBd(){
-        
+    public static void inserirItemBd(Item novoItem){
+      
     } 
     
     public static void alterarItemBd(String sql){
