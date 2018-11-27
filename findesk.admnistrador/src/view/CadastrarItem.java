@@ -110,6 +110,12 @@ public class CadastrarItem extends javax.swing.JFrame {
         jLabelCadastrar1.setText("Cadastrar Item");
         getContentPane().add(jLabelCadastrar1);
         jLabelCadastrar1.setBounds(280, 0, 280, 70);
+
+        jTextFieldNomeDescrição.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldNomeDescriçãoActionPerformed(evt);
+            }
+        });
         getContentPane().add(jTextFieldNomeDescrição);
         jTextFieldNomeDescrição.setBounds(210, 280, 450, 170);
 
@@ -224,7 +230,7 @@ public class CadastrarItem extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
-        JOptionPane.showConfirmDialog(null, "Deseja confirmar o cadastro?");
+       // JOptionPane.showConfirmDialog(null, "Deseja confirmar o cadastro?");
         String categoria = jComboBoxCategoria.getSelectedItem().toString();
         String dia = jComboBoxDia.getSelectedItem().toString();
         String mes = jComboBoxMes.getSelectedItem().toString();
@@ -232,11 +238,32 @@ public class CadastrarItem extends javax.swing.JFrame {
         String nome = jTextFieldNomeItem1.toString();
         String cor = jComboBoxCor.getSelectedItem().toString();
         String iddoc = jTextFieldDoc.toString();
-        //int dataentrada = dataEntrada(dia,mes,ano);
+        String descricao = jTextFieldNomeDescrição.toString();
        
-        cadastroCat(nome,categoria);
-       // cadastroItem(cor,iddoc,dataentrada,path,descricao);
+     
  
+        //cadastroCat(nome,categoria);
+       // cadastroItem(cor,Integer.parseInt(iddoc),Integer.parseInt(dia),Integer.parseInt(mes),Integer.parseInt(ano),descricao);
+       
+        SGBD.getConexaoMySQL();
+        
+        SGBD.inserirItemBd("INSERT INTO `findesk`.`nomeItem` "
+                + "(`nome`, `idCategoria`)"
+                + " VALUES (\""+nome+"\", select idCategoria from nomeItem where nomeCat = \""+categoria+"\" );");
+        
+           SGBD.inserirItemBd("INSERT INTO `findesk`.`item` "
+                + "( `idCor`, `idDoc`, idNome`, `idAdm`, `idDataEntrada`, `idDataSaida`,"
+                + " `retiradoItem`, `fotoItem`, `descricaoItem`)"
+                + " VALUES (\""+cor+"\",\""+iddoc+"\", 1,\"SELECT idDataEntrada from dataEntrada\"\n" +
+"                + \"where idData = (select idData from data\"\n" +
+"                + \" where idDia = \\\"\"+dia+\"\\\" AND idMes = \\\"\"+mes+\"\\\" AND idAno = \\\"\"+ano+\"\\\")  \"\n" +
+"                + \"(`nome`, `idCategoria`)\"\n" +
+"                + \"  );\", 0, 0,"
+                + ", '\""+descricao+"\"');");
+           
+        SGBD.fecharConexao();
+       
+
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
 
     private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
@@ -274,6 +301,10 @@ public class CadastrarItem extends javax.swing.JFrame {
     private void jComboBoxCorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxCorActionPerformed
+
+    private void jTextFieldNomeDescriçãoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeDescriçãoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldNomeDescriçãoActionPerformed
     
      public void popular(JLabel label, String imagem){
         //atribui imagem nos labels desejados
@@ -548,7 +579,7 @@ public class CadastrarItem extends javax.swing.JFrame {
         mybd.fecharConexao();
         
     }
-     private static void cadastroItem(char cor,int iddoc,int cont,int dataentrada,String path,String descricao){
+     private static void cadastroItem(String cor,int iddoc,int dia, int mes, int ano,String descricao){
         SGBD mybd = new SGBD();
         
         mybd.getConexaoMySQL();
@@ -560,8 +591,12 @@ public class CadastrarItem extends javax.swing.JFrame {
         ResultSet rs = mybd.consultarItemBd("INSERT INTO `findesk`.`item` "
                 + "( `idCor`, `idDoc`, idNome`, `idAdm`, `idDataEntrada`, `idDataSaida`,"
                 + " `retiradoItem`, `fotoItem`, `descricaoItem`)"
-                + " VALUES (\""+cor+"\",\""+iddoc+"\", \""+cont+"\", 1, \""+dataentrada+"\", 0, 0,"
-                + " \""+path+"\", '\""+descricao+"\"');");
+                + " VALUES (\""+cor+"\",\""+iddoc+"\", 1,\"SELECT idDataEntrada from dataEntrada\"\n" +
+"                + \"where idData = (select idData from data\"\n" +
+"                + \" where idDia = \\\"\"+dia+\"\\\" AND idMes = \\\"\"+mes+\"\\\" AND idAno = \\\"\"+ano+\"\\\")  \"\n" +
+"                + \"(`nome`, `idCategoria`)\"\n" +
+"                + \"  );\", 0, 0,"
+                + ", '\""+descricao+"\"');");
         
        
         
@@ -587,7 +622,7 @@ public class CadastrarItem extends javax.swing.JFrame {
         mybd.fecharConexao();
         
     }
-     /*
+     
          private static void dataEntrada(int dia, int mes, int ano){
         SGBD mybd = new SGBD();
         
@@ -597,9 +632,11 @@ public class CadastrarItem extends javax.swing.JFrame {
         
         
         
-        ResultSet rs = mybd.consultarItemBd("INSERT INTO `findesk`.`nomeItem` "
+        ResultSet rs = mybd.consultarItemBd("SELECT idDataEntrada from dataEntrada"
+                + "where idData = (select idData from data"
+                + " where idDia = \""+dia+"\" AND idMes = \""+mes+"\" AND idAno = \""+ano+"\")  "
                 + "(`nome`, `idCategoria`)"
-                + " VALUES (\""+nome+"\", select idCategoria from nomeItem where nomeCat = \""+Categoria+"\" );");
+                + "  );");
         
        
         
@@ -607,7 +644,7 @@ public class CadastrarItem extends javax.swing.JFrame {
         
     }
       
-    */
+    
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCadastrar;

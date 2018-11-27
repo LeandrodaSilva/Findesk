@@ -59,6 +59,9 @@
       </Constraints>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldNomeDescri&#xe7;&#xe3;o">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldNomeDescri&#xe7;&#xe3;oActionPerformed"/>
+      </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="210" y="280" width="450" height="170"/>
