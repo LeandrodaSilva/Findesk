@@ -16,6 +16,10 @@ public class DataSaida {
         this.dataSaida = dataSaida;
     }
 
+    DataSaida() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public Data getDataSaida() {
         return dataSaida;
     }
