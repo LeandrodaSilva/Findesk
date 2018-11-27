@@ -200,7 +200,17 @@ public class SGBD
     }
     
     public static void inserirItemBd(Item novoItem){
+      Statement stt;
       
+      String sql = "insert into item(idItem,descricaoItem) "
+                 + "values ("+novoItem.getIdItem()+","+novoItem.getDescrição()+")";//Insira as demais informações do item
+      
+        try {
+            stt = connection.createStatement(); 
+            stt.executeUpdate(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(SGBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
     } 
     
     public static void alterarItemBd(String sql){
