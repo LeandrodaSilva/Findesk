@@ -204,16 +204,17 @@ public class CadastrarItem extends javax.swing.JFrame {
         getContentPane().add(jTextFieldNomeItem1);
         jTextFieldNomeItem1.setBounds(210, 120, 200, 30);
 
-        jButtonVoltar.setText("Voltar");
+        jButtonVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/icons8-seta-longa-à-esquerda-filled-50.png"))); // NOI18N
+        jButtonVoltar.setContentAreaFilled(false);
         jButtonVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonVoltarActionPerformed(evt);
             }
         });
         getContentPane().add(jButtonVoltar);
-        jButtonVoltar.setBounds(20, 530, 73, 23);
+        jButtonVoltar.setBounds(20, 550, 73, 23);
 
-        jLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Fundo2.png"))); // NOI18N
+        jLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/icons8-seta-longa-à-esquerda-filled-50.png"))); // NOI18N
         jLabel.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Fundo2.png"))); // NOI18N
         jLabel.setEnabled(false);
         getContentPane().add(jLabel);
@@ -230,7 +231,7 @@ public class CadastrarItem extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
-       // JOptionPane.showConfirmDialog(null, "Deseja confirmar o cadastro?");
+       /* JOptionPane.showConfirmDialog(null, "Deseja confirmar o cadastro?");
         String categoria = jComboBoxCategoria.getSelectedItem().toString();
         String dia = jComboBoxDia.getSelectedItem().toString();
         String mes = jComboBoxMes.getSelectedItem().toString();
@@ -238,7 +239,7 @@ public class CadastrarItem extends javax.swing.JFrame {
         String nome = jTextFieldNomeItem1.toString();
         String cor = jComboBoxCor.getSelectedItem().toString();
         String iddoc = jTextFieldDoc.toString();
-        String descricao = jTextFieldNomeDescrição.getText();
+        String descricao = jTextFieldNomeDescrição.getText();*/
        
      
  
@@ -267,7 +268,8 @@ public class CadastrarItem extends javax.swing.JFrame {
           //      + " VALUES (\""+nome+"\", select idCategoria from nomeItem where nomeCat = \""+categoria+"\" );");
         
            SGBD.inserirItemBd("INSERT INTO item (idItem, idCor, idDoc, idNome, idAdm, idDataEntrada, idDataSaida, retiradoItem, descricaoItem)"
-                   + " VALUES (13, '#000000', 0, '2', 1, 1, 1, 0, 'mouse gamer');");
+                   + " VALUES (8, '#000000', 0, '2', 1, 1, 1, 0, 'Nootebook Gamer');");
+           JOptionPane.showMessageDialog(null,"Item cadastrado com sucesso!");
            
         SGBD.fecharConexao();
        

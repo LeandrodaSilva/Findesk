@@ -268,21 +268,24 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButtonVoltar">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Voltar"/>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/view/images/icons8-seta-longa-&#xe0;-esquerda-filled-50.png"/>
+        </Property>
+        <Property name="contentAreaFilled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonVoltarActionPerformed"/>
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="20" y="530" width="73" height="-1"/>
+          <AbsoluteConstraints x="20" y="550" width="73" height="23"/>
         </Constraint>
       </Constraints>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/view/images/Fundo2.png"/>
+          <Image iconType="3" name="/view/images/icons8-seta-longa-&#xe0;-esquerda-filled-50.png"/>
         </Property>
         <Property name="disabledIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/view/images/Fundo2.png"/>
