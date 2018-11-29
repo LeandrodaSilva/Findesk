@@ -33,6 +33,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabelCadastrar3 = new javax.swing.JLabel();
         jButtonCadastrar = new javax.swing.JButton();
         jButtonBuscar = new javax.swing.JButton();
+        jButtonEstatiísticas = new javax.swing.JButton();
         jLabelFundoCadastrar = new javax.swing.JLabel();
 
         jLabelCadastrar1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
@@ -56,7 +57,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         getContentPane().add(jLabelCadastrar3);
         jLabelCadastrar3.setBounds(320, 0, 280, 70);
 
-        jButtonCadastrar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonCadastrar.setText("Cadastrar Item");
         jButtonCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -64,9 +64,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonCadastrar);
-        jButtonCadastrar.setBounds(270, 320, 260, 60);
+        jButtonCadastrar.setBounds(270, 280, 260, 60);
 
-        jButtonBuscar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonBuscar.setText("Buscar");
         jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -74,7 +73,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonBuscar);
-        jButtonBuscar.setBounds(270, 190, 260, 60);
+        jButtonBuscar.setBounds(270, 180, 260, 60);
+
+        jButtonEstatiísticas.setText("Gerar Estatísticas");
+        jButtonEstatiísticas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEstatiísticasActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonEstatiísticas);
+        jButtonEstatiísticas.setBounds(270, 380, 260, 60);
 
         jLabelFundoCadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Fundo2.png"))); // NOI18N
         jLabelFundoCadastrar.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Fundo2.png"))); // NOI18N
@@ -102,6 +110,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
          buscaTeste.mostrar();
     }//GEN-LAST:event_jButtonBuscarActionPerformed
 
+    private void jButtonEstatiísticasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEstatiísticasActionPerformed
+        janelaControl.dispose();
+        Estatisticas estatisticas = new Estatisticas();
+        estatisticas.mostrar();
+    }//GEN-LAST:event_jButtonEstatiísticasActionPerformed
+
     /**
      */
     public static void mostrar() {
@@ -119,6 +133,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBuscar;
     private javax.swing.JButton jButtonCadastrar;
+    private javax.swing.JButton jButtonEstatiísticas;
     private javax.swing.JLabel jLabelCadastrar1;
     private javax.swing.JLabel jLabelCadastrar3;
     private javax.swing.JLabel jLabelFundoCadastrar;
