@@ -5,16 +5,17 @@
  */
 package view;
 
+
+
 /**
  *
  * @author alvar
  */
 public class TelaPrincipal extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TelaPrincipal
-     */
+    
     private static TelaPrincipal janelaControl; 
+    
             
     public TelaPrincipal() {
         initComponents();
@@ -29,17 +30,20 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabelCadastrar1 = new javax.swing.JLabel();
-        jLabelCadastrar3 = new javax.swing.JLabel();
+        jPanelFundo = new javax.swing.JPanel();
+        jSeparator2 = new javax.swing.JSeparator();
+        jLabelLogoFindesk = new javax.swing.JLabel();
         jButtonCadastrar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabelFechar = new javax.swing.JLabel();
+        jLabelMinimizar = new javax.swing.JLabel();
         jButtonBuscar = new javax.swing.JButton();
-        jLabelFundoCadastrar = new javax.swing.JLabel();
-
-        jLabelCadastrar1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jLabelCadastrar1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelCadastrar1.setText("Cadastrar Item");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setBackground(new java.awt.Color(0, 102, 102));
+        setForeground(java.awt.Color.white);
+        setUndecorated(true);
         setResizable(false);
         addHierarchyBoundsListener(new java.awt.event.HierarchyBoundsListener() {
             public void ancestorMoved(java.awt.event.HierarchyEvent evt) {
@@ -50,39 +54,66 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         getContentPane().setLayout(null);
 
-        jLabelCadastrar3.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
-        jLabelCadastrar3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelCadastrar3.setText("FinDesk");
-        getContentPane().add(jLabelCadastrar3);
-        jLabelCadastrar3.setBounds(320, 0, 280, 70);
+        jPanelFundo.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelFundo.setLayout(null);
 
+        jSeparator2.setForeground(new java.awt.Color(204, 204, 204));
+        jPanelFundo.add(jSeparator2);
+        jSeparator2.setBounds(0, 500, 800, 30);
+
+        jLabelLogoFindesk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/FINDESK_LOGO3_PNG.png"))); // NOI18N
+        jPanelFundo.add(jLabelLogoFindesk);
+        jLabelLogoFindesk.setBounds(210, 0, 410, 160);
+
+        jButtonCadastrar.setBackground(new java.awt.Color(255, 255, 255));
         jButtonCadastrar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonCadastrar.setText("Cadastrar Item");
+        jButtonCadastrar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButtonCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCadastrarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonCadastrar);
-        jButtonCadastrar.setBounds(270, 320, 260, 60);
+        jPanelFundo.add(jButtonCadastrar);
+        jButtonCadastrar.setBounds(270, 330, 260, 60);
 
-        jButtonBuscar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/SWS3.png"))); // NOI18N
+        jPanelFundo.add(jLabel1);
+        jLabel1.setBounds(690, 500, 170, 220);
+
+        jSeparator1.setForeground(new java.awt.Color(204, 204, 204));
+        jPanelFundo.add(jSeparator1);
+        jSeparator1.setBounds(10, 150, 800, 30);
+
+        jLabelFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/icons8-excluir-24.png"))); // NOI18N
+        jLabelFechar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelFecharMouseClicked(evt);
+            }
+        });
+        jPanelFundo.add(jLabelFechar);
+        jLabelFechar.setBounds(760, 0, 30, 40);
+
+        jLabelMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/icons8-minimize-window-24.png"))); // NOI18N
+        jPanelFundo.add(jLabelMinimizar);
+        jLabelMinimizar.setBounds(710, 10, 30, 20);
+
+        jButtonBuscar.setBackground(new java.awt.Color(255, 255, 255));
+        jButtonBuscar.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jButtonBuscar.setText("Buscar");
+        jButtonBuscar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonBuscarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonBuscar);
-        jButtonBuscar.setBounds(270, 190, 260, 60);
+        jPanelFundo.add(jButtonBuscar);
+        jButtonBuscar.setBounds(270, 230, 260, 60);
 
-        jLabelFundoCadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Fundo2.png"))); // NOI18N
-        jLabelFundoCadastrar.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Fundo2.png"))); // NOI18N
-        jLabelFundoCadastrar.setEnabled(false);
-        getContentPane().add(jLabelFundoCadastrar);
-        jLabelFundoCadastrar.setBounds(0, -10, 800, 600);
+        getContentPane().add(jPanelFundo);
+        jPanelFundo.setBounds(0, 0, 800, 600);
 
-        setSize(new java.awt.Dimension(815, 618));
+        setSize(new java.awt.Dimension(799, 583));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -96,8 +127,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_formAncestorMoved
 
+    private void jLabelFecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelFecharMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_jLabelFecharMouseClicked
+
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
-         janelaControl.dispose();
+        janelaControl.dispose();
          BuscarAdministrador buscaTeste = new BuscarAdministrador();
          buscaTeste.mostrar();
     }//GEN-LAST:event_jButtonBuscarActionPerformed
@@ -119,8 +154,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBuscar;
     private javax.swing.JButton jButtonCadastrar;
-    private javax.swing.JLabel jLabelCadastrar1;
-    private javax.swing.JLabel jLabelCadastrar3;
-    private javax.swing.JLabel jLabelFundoCadastrar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabelFechar;
+    private javax.swing.JLabel jLabelLogoFindesk;
+    private javax.swing.JLabel jLabelMinimizar;
+    private javax.swing.JPanel jPanelFundo;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     // End of variables declaration//GEN-END:variables
 }
