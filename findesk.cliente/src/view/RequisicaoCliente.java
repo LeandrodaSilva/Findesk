@@ -15,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import model.Item;
 import model.SGBD;
 import model.Sockets;
@@ -158,6 +159,9 @@ public class RequisicaoCliente extends javax.swing.JFrame {
         try {
             Socket destino = new Socket("127.0.0.1", 5060);
             Sockets.sendItem(destino, item);
+            String msg = Sockets.receiveText(destino);
+            JOptionPane.showMessageDialog(rootPane, "Mensagem: "+msg);
+            System.out.println("Recebido : "+ msg);
 
         } catch (IOException ex) {
             Logger.getLogger(RequisicaoCliente.class.getName()).log(Level.SEVERE, null, ex);

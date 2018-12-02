@@ -84,6 +84,17 @@ public class Sockets {
             Logger.getLogger(Sockets.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    public static String receiveText(Socket origem) {
+        try {
+            ObjectInputStream entrada = new ObjectInputStream(origem.getInputStream());
+            
+            return (String) entrada.readObject();
+            
+        } catch (IOException | ClassNotFoundException ex) {
+            Logger.getLogger(Sockets.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "";
+    }
 
     public void startServer() {
         new Thread() {
