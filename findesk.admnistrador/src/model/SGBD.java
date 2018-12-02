@@ -305,6 +305,30 @@ public class SGBD
         
     }
     
+    public static void retirarItem(int id, int opt){
+        Statement stt;
+        try {
+            stt = connection.createStatement();
+            String sql = "UPDATE findesk.item SET retiradoItem = '"+opt+"' WHERE (idItem = '"+id+"');";
+            System.out.println("Alterando: "+sql);
+            stt.executeUpdate(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(SGBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public static void retirarItem(){
+        Statement stt;
+        try {
+            stt = connection.createStatement();
+            String sql = "UPDATE findesk.item SET retiradoItem = '1' WHERE (idItem = '2');";
+            System.out.println("Alterando: "+sql);
+            stt.executeUpdate(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(SGBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     
  
 }
