@@ -5,11 +5,13 @@
  */
 package model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author ld_si
  */
-public class DataSaida {
+public class DataSaida implements Serializable{
     private Data dataSaida;
 
     public DataSaida(Data dataSaida) {
