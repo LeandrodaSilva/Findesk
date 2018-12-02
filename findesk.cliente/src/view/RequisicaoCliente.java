@@ -160,8 +160,21 @@ public class RequisicaoCliente extends javax.swing.JFrame {
             Socket destino = new Socket("127.0.0.1", 5060);
             Sockets.sendItem(destino, item);
             String msg = Sockets.receiveText(destino);
-            JOptionPane.showMessageDialog(rootPane, "Mensagem: "+msg);
-            System.out.println("Recebido : "+ msg);
+            SGBD mybd = new SGBD();
+            if(msg.equals("Aceito")){
+                
+                mybd.retirarItem(item.getIdItem(), 1);
+                mybd.fecharConexao();
+                JOptionPane.showMessageDialog(rootPane, "Mensagem: "+msg);
+                System.out.println("Recebido : "+ msg);
+            }
+            if(msg.equals("Negado")){
+                mybd.retirarItem(item.getIdItem(), 0);
+                mybd.fecharConexao();
+                JOptionPane.showMessageDialog(rootPane, "Mensagem: "+msg);
+                System.out.println("Recebido : "+ msg);
+            }
+            
 
         } catch (IOException ex) {
             Logger.getLogger(RequisicaoCliente.class.getName()).log(Level.SEVERE, null, ex);
