@@ -68,12 +68,12 @@
         <Component class="javax.swing.JLabel" name="jLabelLogoFindesk">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/view/images/FINDESK_LOGO3_PNG.png"/>
+              <Image iconType="3" name="/view/images/FINDESK_LOGO3_Azul_PNG.png"/>
             </Property>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="210" y="0" width="410" height="160"/>
+              <AbsoluteConstraints x="230" y="-10" width="410" height="160"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -97,7 +97,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="0" y="150" width="800" height="30"/>
+              <AbsoluteConstraints x="0" y="130" width="800" height="30"/>
             </Constraint>
           </Constraints>
         </Component>

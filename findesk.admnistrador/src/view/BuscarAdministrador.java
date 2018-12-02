@@ -69,7 +69,6 @@ public class BuscarAdministrador extends javax.swing.JFrame {
         jScrollPaneResultado = new javax.swing.JScrollPane();
         jTableResultado = new javax.swing.JTable();
         jLabelCategoria = new javax.swing.JLabel();
-        jLabelLogoFindesk = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jPanelFundo = new javax.swing.JPanel();
         jComboBoxCategoria = new javax.swing.JComboBox<>();
@@ -81,6 +80,7 @@ public class BuscarAdministrador extends javax.swing.JFrame {
         jLabelFoto = new javax.swing.JLabel();
         jButtonBuscar = new javax.swing.JButton();
         jButtonAlterar = new javax.swing.JButton();
+        jLabelLogoFindesk = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAutoRequestFocus(false);
@@ -146,10 +146,6 @@ public class BuscarAdministrador extends javax.swing.JFrame {
         jLabelCategoria.setText("CATEGORIAS");
         getContentPane().add(jLabelCategoria);
         jLabelCategoria.setBounds(20, 120, 180, 40);
-
-        jLabelLogoFindesk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/FINDESK_LOGO3_PNG.png"))); // NOI18N
-        getContentPane().add(jLabelLogoFindesk);
-        jLabelLogoFindesk.setBounds(-40, -10, 350, 110);
         getContentPane().add(jSeparator1);
         jSeparator1.setBounds(0, 110, 780, 50);
 
@@ -224,6 +220,14 @@ public class BuscarAdministrador extends javax.swing.JFrame {
         jButtonDeletar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jButtonDeletar.setBorderPainted(false);
         jButtonDeletar.setContentAreaFilled(false);
+        jButtonDeletar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButtonDeletarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButtonDeletarMouseExited(evt);
+            }
+        });
         jButtonDeletar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonDeletarActionPerformed(evt);
@@ -266,6 +270,14 @@ public class BuscarAdministrador extends javax.swing.JFrame {
 
         jButtonAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/LapisPreto.png"))); // NOI18N
         jButtonAlterar.setContentAreaFilled(false);
+        jButtonAlterar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButtonAlterarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButtonAlterarMouseExited(evt);
+            }
+        });
         jButtonAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonAlterarActionPerformed(evt);
@@ -273,6 +285,10 @@ public class BuscarAdministrador extends javax.swing.JFrame {
         });
         jPanelFundo.add(jButtonAlterar);
         jButtonAlterar.setBounds(600, 520, 73, 23);
+
+        jLabelLogoFindesk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/FINDESK_LOGO3_Azul_PNG.png"))); // NOI18N
+        jPanelFundo.add(jLabelLogoFindesk);
+        jLabelLogoFindesk.setBounds(-40, 0, 350, 110);
 
         getContentPane().add(jPanelFundo);
         jPanelFundo.setBounds(0, 0, 780, 590);
@@ -401,11 +417,11 @@ public class BuscarAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonFecharActionPerformed
 
     private void jButtonMinimizarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonMinimizarMouseEntered
-        // TODO add your handling code here:
+        jButtonMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/MinimizarAzul.png")));
     }//GEN-LAST:event_jButtonMinimizarMouseEntered
 
     private void jButtonMinimizarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonMinimizarMouseExited
-        // TODO add your handling code here:
+        jButtonMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/MinimizarPreto.png")));
     }//GEN-LAST:event_jButtonMinimizarMouseExited
 
     private void jButtonMinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMinimizarActionPerformed
@@ -421,11 +437,11 @@ public class BuscarAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonVoltarMouseExited
 
     private void jButtonBuscarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonBuscarMouseEntered
-        jButtonBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/LupaPreta.png")));
+        jButtonBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/LupaAzul.png")));
     }//GEN-LAST:event_jButtonBuscarMouseEntered
 
     private void jButtonBuscarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonBuscarMouseExited
-        jButtonBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/LupaAzul.png")));
+        jButtonBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/LupaPreta.png")));
     }//GEN-LAST:event_jButtonBuscarMouseExited
 
     private void jTableResultadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableResultadoMouseClicked
@@ -439,6 +455,22 @@ public class BuscarAdministrador extends javax.swing.JFrame {
         }
         popular(jLabelFoto, itemSelecionado.getFotoItem());
     }//GEN-LAST:event_jTableResultadoMouseClicked
+
+    private void jButtonAlterarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonAlterarMouseEntered
+        jButtonAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/LapisAzul.png")));
+    }//GEN-LAST:event_jButtonAlterarMouseEntered
+
+    private void jButtonAlterarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonAlterarMouseExited
+        jButtonAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/LapisPreto.png")));
+    }//GEN-LAST:event_jButtonAlterarMouseExited
+
+    private void jButtonDeletarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonDeletarMouseEntered
+        jButtonDeletar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/LixeiraAzul.png")));
+    }//GEN-LAST:event_jButtonDeletarMouseEntered
+
+    private void jButtonDeletarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonDeletarMouseExited
+        jButtonDeletar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/LixeiraPreta.png")));
+    }//GEN-LAST:event_jButtonDeletarMouseExited
 
     public void popular(JLabel label, String imagem){
         //atribui imagem nos labels desejados

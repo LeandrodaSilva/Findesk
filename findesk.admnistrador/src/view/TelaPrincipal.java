@@ -67,9 +67,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jPanelFundo.add(jSeparator2);
         jSeparator2.setBounds(0, 500, 800, 30);
 
-        jLabelLogoFindesk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/FINDESK_LOGO3_PNG.png"))); // NOI18N
+        jLabelLogoFindesk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/FINDESK_LOGO3_Azul_PNG.png"))); // NOI18N
         jPanelFundo.add(jLabelLogoFindesk);
-        jLabelLogoFindesk.setBounds(210, 0, 410, 160);
+        jLabelLogoFindesk.setBounds(230, -10, 410, 160);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/SWS3.png"))); // NOI18N
         jPanelFundo.add(jLabel1);
@@ -77,7 +77,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jSeparator1.setForeground(new java.awt.Color(204, 204, 204));
         jPanelFundo.add(jSeparator1);
-        jSeparator1.setBounds(0, 150, 800, 30);
+        jSeparator1.setBounds(0, 130, 800, 30);
 
         jButtonBuscar.setBackground(new java.awt.Color(255, 255, 255));
         jButtonBuscar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -227,11 +227,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonFecharActionPerformed
 
     private void jButtonMinimizarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonMinimizarMouseEntered
-        // TODO add your handling code here:
+        jButtonMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/MinimizarAzul.png")));
     }//GEN-LAST:event_jButtonMinimizarMouseEntered
 
     private void jButtonMinimizarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonMinimizarMouseExited
-        // TODO add your handling code here:
+        jButtonMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/MinimizarPreto.png")));
     }//GEN-LAST:event_jButtonMinimizarMouseExited
 
     private void jButtonMinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMinimizarActionPerformed
