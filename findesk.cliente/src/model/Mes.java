@@ -5,11 +5,13 @@
  */
 package model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author ld_si
  */
-public class Mes {
+public class Mes implements Serializable{
     private int idMes;
 
     public int getIdMes() {

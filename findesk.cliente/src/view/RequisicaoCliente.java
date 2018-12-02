@@ -9,6 +9,10 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import model.Item;
@@ -20,9 +24,11 @@ import model.Sockets;
  * @author pedro
  */
 public class RequisicaoCliente extends javax.swing.JFrame {
+
     private static RequisicaoCliente janelaControl;
     private static BuscaUser janelaControlBusca;
     private Item item;
+
     /**
      * Creates new form RequisicaoCliente
      */
@@ -30,7 +36,7 @@ public class RequisicaoCliente extends javax.swing.JFrame {
         initComponents();
         load(itemSelecionado);
     }
-    
+
     public RequisicaoCliente() {
         initComponents();
     }
@@ -149,8 +155,14 @@ public class RequisicaoCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonVoltarActionPerformed
 
     private void JButtonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButtonConfirmarActionPerformed
-               
-     
+        try {
+            Socket destino = new Socket("127.0.0.1", 5060);
+            Sockets.sendItem(destino, item);
+
+        } catch (IOException ex) {
+            Logger.getLogger(RequisicaoCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }//GEN-LAST:event_JButtonConfirmarActionPerformed
 
     /**
@@ -191,6 +203,7 @@ public class RequisicaoCliente extends javax.swing.JFrame {
             }
         });
     }
+
     public static void mostrar(Item itemSelecionado, BuscaUser busca) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -227,29 +240,29 @@ public class RequisicaoCliente extends javax.swing.JFrame {
             }
         });
     }
-    
-    private void load(Item itemSelecionado){
-        System.out.println("Requsição do item: "+itemSelecionado.getIdItem());
+
+    private void load(Item itemSelecionado) {
+        System.out.println("Requsição do item: " + itemSelecionado.getIdItem());
         this.item = itemSelecionado;
-        jLabelId.setText("ID: "+Integer.toString(itemSelecionado.getIdItem()));
-        jLabelNome.setText("Nome: "+itemSelecionado.getNomeItem());
+        jLabelId.setText("ID: " + Integer.toString(itemSelecionado.getIdItem()));
+        jLabelNome.setText("Nome: " + itemSelecionado.getNomeItem());
         jTextDescricao.setText(itemSelecionado.getDescricaoItem());
-        jLabelCor.setText("Cor: "+itemSelecionado.getCor());
-        jLabelData.setText("Data: "+itemSelecionado.getDataEntrada());
+        jLabelCor.setText("Cor: " + itemSelecionado.getCor());
+        jLabelData.setText("Data: " + itemSelecionado.getDataEntrada());
         loadIcon(jLabelFoto, itemSelecionado.getFotoItem());
     }
-    
-     private void loadIcon(JLabel label, String imagem){
+
+    private void loadIcon(JLabel label, String imagem) {
         //atribui imagem nos labels desejados
-        
+
         ImageIcon icon = new ImageIcon(imagem, "imagem");
         Image img = icon.getImage();
-        Image nova = getScaledImage(img, 200,150);
+        Image nova = getScaledImage(img, 200, 150);
         icon.setImage(nova);
-        label.setIcon(icon); 
+        label.setIcon(icon);
     }
-      
-    private Image getScaledImage(Image srcImg, int w, int h){
+
+    private Image getScaledImage(Image srcImg, int w, int h) {
         //Redimensiona a imagem para o tamanho desejado
         BufferedImage resizedImg = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2 = resizedImg.createGraphics();
@@ -260,8 +273,8 @@ public class RequisicaoCliente extends javax.swing.JFrame {
 
         return resizedImg;
     }
-    
-    public void closeFrame(){
+
+    public void closeFrame() {
         janelaControl.dispose();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables

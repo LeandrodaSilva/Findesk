@@ -5,11 +5,13 @@
  */
 package model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author ld_si
  */
-public class Dia {
+public class Dia implements Serializable{
     private int idDia;
 
     public int getIdDia() {
