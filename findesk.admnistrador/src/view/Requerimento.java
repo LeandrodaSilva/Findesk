@@ -7,6 +7,7 @@ package view;
 
 import java.net.Socket;
 import model.Item;
+import model.Sockets;
 
 /**
  *
@@ -93,10 +94,12 @@ public class Requerimento extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAceitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceitarActionPerformed
+        Sockets.sendText(cliente, "Aceito");
         janelaControl.setVisible(false);
     }//GEN-LAST:event_jButtonAceitarActionPerformed
 
     private void jButtonNegarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNegarActionPerformed
+        Sockets.sendText(cliente, "Negado");
         janelaControl.setVisible(false);
     }//GEN-LAST:event_jButtonNegarActionPerformed
 
