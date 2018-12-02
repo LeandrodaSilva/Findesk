@@ -17,6 +17,7 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -37,6 +38,7 @@ public class BuscarAdministrador extends javax.swing.JFrame {
     private static DefaultComboBoxModel defaultComboBoxNome;
     private DefaultTableModel defaultTableResultado;
     public Item itemSelecionado = new Item();
+    private Icon defaultIcon;
 
     /**
      * Creates new form suaJanela
@@ -67,19 +69,18 @@ public class BuscarAdministrador extends javax.swing.JFrame {
         jScrollPaneResultado = new javax.swing.JScrollPane();
         jTableResultado = new javax.swing.JTable();
         jLabelCategoria = new javax.swing.JLabel();
-        jButtonConfirmarAlteracao = new javax.swing.JButton();
         jLabelLogoFindesk = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jButtonBuscar = new javax.swing.JButton();
         jPanelFundo = new javax.swing.JPanel();
         jComboBoxCategoria = new javax.swing.JComboBox<>();
         jComboBoxNome = new javax.swing.JComboBox<>();
         jButtonFechar = new javax.swing.JButton();
         jButtonMinimizar = new javax.swing.JButton();
         jLabelPalavraChave = new javax.swing.JLabel();
-        jButtonAlterar = new javax.swing.JButton();
         jButtonDeletar = new javax.swing.JButton();
         jLabelFoto = new javax.swing.JLabel();
+        jButtonBuscar = new javax.swing.JButton();
+        jButtonAlterar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAutoRequestFocus(false);
@@ -89,7 +90,7 @@ public class BuscarAdministrador extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(800, 600));
         getContentPane().setLayout(null);
 
-        jButtonVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/icons8-voltar-26.png"))); // NOI18N
+        jButtonVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/VoltarPreto.png"))); // NOI18N
         jButtonVoltar.setContentAreaFilled(false);
         jButtonVoltar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -146,40 +147,11 @@ public class BuscarAdministrador extends javax.swing.JFrame {
         getContentPane().add(jLabelCategoria);
         jLabelCategoria.setBounds(20, 120, 180, 40);
 
-        jButtonConfirmarAlteracao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/icons8-selecionado-26.png"))); // NOI18N
-        jButtonConfirmarAlteracao.setContentAreaFilled(false);
-        jButtonConfirmarAlteracao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonConfirmarAlteracaoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButtonConfirmarAlteracao);
-        jButtonConfirmarAlteracao.setBounds(380, 520, 73, 23);
-
         jLabelLogoFindesk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/FINDESK_LOGO3_PNG.png"))); // NOI18N
         getContentPane().add(jLabelLogoFindesk);
         jLabelLogoFindesk.setBounds(-40, -10, 350, 110);
         getContentPane().add(jSeparator1);
         jSeparator1.setBounds(0, 110, 780, 50);
-
-        jButtonBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/icons8-pesquisar-24.png"))); // NOI18N
-        jButtonBuscar.setContentAreaFilled(false);
-        jButtonBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jButtonBuscar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                jButtonBuscarMouseDragged(evt);
-            }
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                jButtonBuscarMouseMoved(evt);
-            }
-        });
-        jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonBuscarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButtonBuscar);
-        jButtonBuscar.setBounds(390, 140, 57, 33);
 
         jPanelFundo.setBackground(new java.awt.Color(255, 255, 255));
         jPanelFundo.setLayout(null);
@@ -202,7 +174,7 @@ public class BuscarAdministrador extends javax.swing.JFrame {
         jPanelFundo.add(jComboBoxNome);
         jComboBoxNome.setBounds(20, 240, 190, 20);
 
-        jButtonFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/icons8-excluir-24.png"))); // NOI18N
+        jButtonFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/FecharPreto.png"))); // NOI18N
         jButtonFechar.setBorderPainted(false);
         jButtonFechar.setContentAreaFilled(false);
         jButtonFechar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -221,7 +193,7 @@ public class BuscarAdministrador extends javax.swing.JFrame {
         jPanelFundo.add(jButtonFechar);
         jButtonFechar.setBounds(750, 0, 20, 30);
 
-        jButtonMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/icons8-minimize-window-24.png"))); // NOI18N
+        jButtonMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/MinimizarPreto.png"))); // NOI18N
         jButtonMinimizar.setBorderPainted(false);
         jButtonMinimizar.setContentAreaFilled(false);
         jButtonMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -246,20 +218,9 @@ public class BuscarAdministrador extends javax.swing.JFrame {
         jPanelFundo.add(jLabelPalavraChave);
         jLabelPalavraChave.setBounds(20, 200, 180, 40);
 
-        jButtonAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/icons8-lápis-24.png"))); // NOI18N
-        jButtonAlterar.setBorderPainted(false);
-        jButtonAlterar.setContentAreaFilled(false);
-        jButtonAlterar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAlterarActionPerformed(evt);
-            }
-        });
-        jPanelFundo.add(jButtonAlterar);
-        jButtonAlterar.setBounds(630, 510, 50, 40);
-
         jButtonDeletar.setBackground(new java.awt.Color(255, 255, 255));
         jButtonDeletar.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonDeletar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/icons8-lixo-24.png"))); // NOI18N
+        jButtonDeletar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/LixeiraPreta.png"))); // NOI18N
         jButtonDeletar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jButtonDeletar.setBorderPainted(false);
         jButtonDeletar.setContentAreaFilled(false);
@@ -276,6 +237,43 @@ public class BuscarAdministrador extends javax.swing.JFrame {
         jPanelFundo.add(jLabelFoto);
         jLabelFoto.setBounds(470, 150, 190, 110);
 
+        jButtonBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/LupaPreta.png"))); // NOI18N
+        jButtonBuscar.setContentAreaFilled(false);
+        jButtonBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButtonBuscar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jButtonBuscarMouseDragged(evt);
+            }
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                jButtonBuscarMouseMoved(evt);
+            }
+        });
+        jButtonBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButtonBuscarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButtonBuscarMouseExited(evt);
+            }
+        });
+        jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuscarActionPerformed(evt);
+            }
+        });
+        jPanelFundo.add(jButtonBuscar);
+        jButtonBuscar.setBounds(210, 160, 57, 33);
+
+        jButtonAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/LapisPreto.png"))); // NOI18N
+        jButtonAlterar.setContentAreaFilled(false);
+        jButtonAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAlterarActionPerformed(evt);
+            }
+        });
+        jPanelFundo.add(jButtonAlterar);
+        jButtonAlterar.setBounds(600, 520, 73, 23);
+
         getContentPane().add(jPanelFundo);
         jPanelFundo.setBounds(0, 0, 780, 590);
 
@@ -288,18 +286,6 @@ public class BuscarAdministrador extends javax.swing.JFrame {
         TelaPrincipal telaPrincipal = new TelaPrincipal();
         telaPrincipal.mostrar();
     }//GEN-LAST:event_jButtonVoltarActionPerformed
-
-    private void jTableResultadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableResultadoMouseClicked
-        jLabelFoto.setVisible(true);
-        int linha = jTableResultado.getSelectedRow();
-        System.out.println("Selecionado "+ linha);
-        String id = (String) jTableResultado.getValueAt(linha, 0);
-        System.out.println("Conteudo  "+ id);
-        if(itemSelecionado.load(id)){
-            System.out.println("Item carregado: "+ itemSelecionado.getIdItem());
-        }
-        popular(jLabelFoto, itemSelecionado.getFotoItem());
-    }//GEN-LAST:event_jTableResultadoMouseClicked
 
     private void jComboBoxCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCategoriaActionPerformed
         Object item = jComboBoxCategoria.getSelectedItem();
@@ -380,10 +366,6 @@ public class BuscarAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonDeletarActionPerformed
 
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
-       jTableResultado.getCellEditor();
-    }//GEN-LAST:event_jButtonAlterarActionPerformed
-
-    private void jButtonConfirmarAlteracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfirmarAlteracaoActionPerformed
          SGBD mybd = new SGBD();
         mybd.getConexaoMySQL();
         System.out.println(mybd.statusConection());
@@ -404,14 +386,14 @@ public class BuscarAdministrador extends javax.swing.JFrame {
         mybd.alterarItemBd("update item set descricaoItem = \""+descricao+"\" where idItem = \""+id+"\"");
         mybd.alterarItemBd("update item set idCor = (select idCor from cor where nomeCor = \""+cor+"\") where idItem = \""+id+"\"");
         }
-    }//GEN-LAST:event_jButtonConfirmarAlteracaoActionPerformed
+    }//GEN-LAST:event_jButtonAlterarActionPerformed
 
     private void jButtonFecharMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonFecharMouseEntered
-       
+        jButtonFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/FecharAzul.png")));       
     }//GEN-LAST:event_jButtonFecharMouseEntered
 
     private void jButtonFecharMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonFecharMouseExited
-        
+        jButtonFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/FecharPreto.png"))); 
     }//GEN-LAST:event_jButtonFecharMouseExited
 
     private void jButtonFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFecharActionPerformed
@@ -431,12 +413,32 @@ public class BuscarAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonMinimizarActionPerformed
 
     private void jButtonVoltarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonVoltarMouseEntered
-        
+        jButtonVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/VoltarAzul.png")));
     }//GEN-LAST:event_jButtonVoltarMouseEntered
 
     private void jButtonVoltarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonVoltarMouseExited
-        // TODO add your handling code here:
+        jButtonVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/VoltarPreto.png")));
     }//GEN-LAST:event_jButtonVoltarMouseExited
+
+    private void jButtonBuscarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonBuscarMouseEntered
+        jButtonBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/LupaPreta.png")));
+    }//GEN-LAST:event_jButtonBuscarMouseEntered
+
+    private void jButtonBuscarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonBuscarMouseExited
+        jButtonBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/LupaAzul.png")));
+    }//GEN-LAST:event_jButtonBuscarMouseExited
+
+    private void jTableResultadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableResultadoMouseClicked
+        jLabelFoto.setVisible(true);
+        int linha = jTableResultado.getSelectedRow();
+        System.out.println("Selecionado "+ linha);
+        String id = (String) jTableResultado.getValueAt(linha, 0);
+        System.out.println("Conteudo  "+ id);
+        if(itemSelecionado.load(id)){
+            System.out.println("Item carregado: "+ itemSelecionado.getIdItem());
+        }
+        popular(jLabelFoto, itemSelecionado.getFotoItem());
+    }//GEN-LAST:event_jTableResultadoMouseClicked
 
     public void popular(JLabel label, String imagem){
         //atribui imagem nos labels desejados
@@ -647,7 +649,6 @@ public class BuscarAdministrador extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAlterar;
     private javax.swing.JButton jButtonBuscar;
-    private javax.swing.JButton jButtonConfirmarAlteracao;
     private javax.swing.JButton jButtonDeletar;
     private javax.swing.JButton jButtonFechar;
     private javax.swing.JButton jButtonMinimizar;
