@@ -59,10 +59,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabelConfirmar = new javax.swing.JLabel();
+        jPanelFundo = new javax.swing.JPanel();
         jButtonConfirmar = new javax.swing.JButton();
         jComboBoxCategoria = new javax.swing.JComboBox<>();
-        jLabelTitulo = new javax.swing.JLabel();
         jLabelComboBoxCategoria = new javax.swing.JLabel();
         jComboBoxDiaInicial = new javax.swing.JComboBox<>();
         jLabelDataInicial = new javax.swing.JLabel();
@@ -72,30 +71,33 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jComboBoxNome = new javax.swing.JComboBox<>();
         jLabelCor = new javax.swing.JLabel();
         jLabelNome = new javax.swing.JLabel();
-        jLabelFundo = new javax.swing.JLabel();
         jLabelTitulo1 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Findesk");
+        setBackground(new java.awt.Color(255, 255, 255));
+        setMaximumSize(new java.awt.Dimension(800, 600));
         setResizable(false);
         setSize(new java.awt.Dimension(800, 600));
         getContentPane().setLayout(null);
 
-        jLabelConfirmar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabelConfirmar.setText("Vai!!");
-        getContentPane().add(jLabelConfirmar);
-        jLabelConfirmar.setBounds(380, 470, 40, 20);
+        jPanelFundo.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelFundo.setMinimumSize(new java.awt.Dimension(800, 600));
+        jPanelFundo.setLayout(null);
 
         jButtonConfirmar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButtonConfirmar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/bt2.png"))); // NOI18N
+        jButtonConfirmar.setText("Vai!");
+        jButtonConfirmar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButtonConfirmar.setContentAreaFilled(false);
         jButtonConfirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonConfirmarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonConfirmar);
-        jButtonConfirmar.setBounds(340, 450, 120, 70);
+        jPanelFundo.add(jButtonConfirmar);
+        jButtonConfirmar.setBounds(330, 440, 120, 70);
 
         jComboBoxCategoria.setModel(defaultComboBoxCategoria);
         jComboBoxCategoria.setSelectedItem(jComboBoxCategoria);
@@ -104,18 +106,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 jComboBoxCategoriaActionPerformed(evt);
             }
         });
-        getContentPane().add(jComboBoxCategoria);
-        jComboBoxCategoria.setBounds(350, 200, 110, 20);
+        jPanelFundo.add(jComboBoxCategoria);
+        jComboBoxCategoria.setBounds(350, 200, 110, 26);
 
-        jLabelTitulo.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jLabelTitulo.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelTitulo.setText("Buscar");
-        getContentPane().add(jLabelTitulo);
-        jLabelTitulo.setBounds(350, 110, 120, 70);
-
-        jLabelComboBoxCategoria.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelComboBoxCategoria.setBackground(new java.awt.Color(0, 0, 0));
+        jLabelComboBoxCategoria.setForeground(new java.awt.Color(0, 0, 0));
         jLabelComboBoxCategoria.setText("*Selecionar Categoria");
-        getContentPane().add(jLabelComboBoxCategoria);
+        jPanelFundo.add(jLabelComboBoxCategoria);
         jLabelComboBoxCategoria.setBounds(210, 200, 140, 20);
 
         jComboBoxDiaInicial.setModel(defaultComboBoxDiaInicial);
@@ -124,13 +121,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 jComboBoxDiaInicialActionPerformed(evt);
             }
         });
-        getContentPane().add(jComboBoxDiaInicial);
-        jComboBoxDiaInicial.setBounds(350, 250, 70, 20);
+        jPanelFundo.add(jComboBoxDiaInicial);
+        jComboBoxDiaInicial.setBounds(350, 250, 70, 26);
 
-        jLabelDataInicial.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelDataInicial.setBackground(new java.awt.Color(0, 0, 0));
+        jLabelDataInicial.setForeground(new java.awt.Color(0, 0, 0));
         jLabelDataInicial.setText("*Data de busca inicial ");
-        getContentPane().add(jLabelDataInicial);
-        jLabelDataInicial.setBounds(210, 250, 130, 14);
+        jPanelFundo.add(jLabelDataInicial);
+        jLabelDataInicial.setBounds(210, 250, 130, 16);
 
         jComboBoxMesInicial.setModel(defaultComboBoxMesInicial);
         jComboBoxMesInicial.addActionListener(new java.awt.event.ActionListener() {
@@ -138,8 +136,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 jComboBoxMesInicialActionPerformed(evt);
             }
         });
-        getContentPane().add(jComboBoxMesInicial);
-        jComboBoxMesInicial.setBounds(430, 250, 70, 20);
+        jPanelFundo.add(jComboBoxMesInicial);
+        jComboBoxMesInicial.setBounds(430, 250, 70, 26);
 
         jComboBoxAnoInicial.setModel(defaultComboBoxAnoInicial);
         jComboBoxAnoInicial.addActionListener(new java.awt.event.ActionListener() {
@@ -147,17 +145,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 jComboBoxAnoInicialActionPerformed(evt);
             }
         });
-        getContentPane().add(jComboBoxAnoInicial);
-        jComboBoxAnoInicial.setBounds(510, 250, 110, 20);
+        jPanelFundo.add(jComboBoxAnoInicial);
+        jComboBoxAnoInicial.setBounds(510, 250, 110, 26);
 
+        jComboBoxCor.setForeground(new java.awt.Color(255, 255, 255));
         jComboBoxCor.setModel(defaultComboBoxCor);
+        jComboBoxCor.setBorder(null);
         jComboBoxCor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxCorActionPerformed(evt);
             }
         });
-        getContentPane().add(jComboBoxCor);
-        jComboBoxCor.setBounds(350, 330, 110, 20);
+        jPanelFundo.add(jComboBoxCor);
+        jComboBoxCor.setBounds(350, 330, 110, 26);
 
         jComboBoxNome.setModel(defaultComboBoxNome);
         jComboBoxNome.addActionListener(new java.awt.event.ActionListener() {
@@ -165,30 +165,34 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 jComboBoxNomeActionPerformed(evt);
             }
         });
-        getContentPane().add(jComboBoxNome);
-        jComboBoxNome.setBounds(350, 290, 110, 20);
+        jPanelFundo.add(jComboBoxNome);
+        jComboBoxNome.setBounds(350, 290, 110, 26);
 
-        jLabelCor.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelCor.setBackground(new java.awt.Color(0, 0, 0));
+        jLabelCor.setForeground(new java.awt.Color(0, 0, 0));
         jLabelCor.setText("*Cor do item");
-        getContentPane().add(jLabelCor);
-        jLabelCor.setBounds(210, 330, 110, 14);
+        jPanelFundo.add(jLabelCor);
+        jLabelCor.setBounds(210, 330, 110, 16);
 
-        jLabelNome.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelNome.setBackground(new java.awt.Color(0, 0, 0));
+        jLabelNome.setForeground(new java.awt.Color(0, 0, 0));
         jLabelNome.setText("*Nome do item");
-        getContentPane().add(jLabelNome);
-        jLabelNome.setBounds(210, 290, 110, 14);
+        jPanelFundo.add(jLabelNome);
+        jLabelNome.setBounds(210, 290, 110, 16);
 
-        jLabelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Fundo2.png"))); // NOI18N
-        jLabelFundo.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Fundo2.png"))); // NOI18N
-        jLabelFundo.setEnabled(false);
-        getContentPane().add(jLabelFundo);
-        jLabelFundo.setBounds(0, 0, 800, 600);
-
-        jLabelTitulo1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jLabelTitulo1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelTitulo1.setBackground(new java.awt.Color(0, 0, 0));
+        jLabelTitulo1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabelTitulo1.setForeground(new java.awt.Color(0, 0, 0));
         jLabelTitulo1.setText("Buscar");
-        getContentPane().add(jLabelTitulo1);
-        jLabelTitulo1.setBounds(350, 110, 120, 70);
+        jPanelFundo.add(jLabelTitulo1);
+        jLabelTitulo1.setBounds(330, 70, 140, 70);
+        jPanelFundo.add(jSeparator1);
+        jSeparator1.setBounds(0, 170, 790, 30);
+        jPanelFundo.add(jSeparator2);
+        jSeparator2.setBounds(0, 390, 780, 30);
+
+        getContentPane().add(jPanelFundo);
+        jPanelFundo.setBounds(0, 0, 790, 560);
 
         setSize(new java.awt.Dimension(800, 600));
         setLocationRelativeTo(null);
@@ -384,7 +388,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabelNome.hide();
         jComboBoxNome.hide();
         
-        jLabelConfirmar.hide();
         jButtonConfirmar.hide();
     }
     
@@ -415,7 +418,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 jComboBoxNome.show();
             break;
             case "jButtonConfirmar":
-                jLabelConfirmar.show();
                 jButtonConfirmar.show();
             break;
         }
@@ -590,7 +592,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
             rs.beforeFirst();
             while(rs.next()){
                 nome = rs.getString("nomeCor");
-                strList.add(nome);
+                if(!nome.equals("Nulo")){
+                    strList.add(nome);
+                }
+                
             }
         } catch (SQLException ex) {
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
@@ -677,12 +682,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBoxMesInicial;
     private javax.swing.JComboBox<String> jComboBoxNome;
     private javax.swing.JLabel jLabelComboBoxCategoria;
-    private javax.swing.JLabel jLabelConfirmar;
     private javax.swing.JLabel jLabelCor;
     private javax.swing.JLabel jLabelDataInicial;
-    private javax.swing.JLabel jLabelFundo;
     private javax.swing.JLabel jLabelNome;
-    private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JLabel jLabelTitulo1;
+    private javax.swing.JPanel jPanelFundo;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     // End of variables declaration//GEN-END:variables
 }
