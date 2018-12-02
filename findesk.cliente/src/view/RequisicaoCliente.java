@@ -150,13 +150,7 @@ public class RequisicaoCliente extends javax.swing.JFrame {
 
     private void JButtonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButtonConfirmarActionPerformed
                
-       SGBD mybd = new SGBD();
-       mybd.getConexaoMySQL();
-       
-       Sockets novo = new Sockets(mybd.loadAdmIp(),mybd.loadAdmPort());
-       novo.testConnection();
-       
-       mybd.fecharConexao();
+     
     }//GEN-LAST:event_JButtonConfirmarActionPerformed
 
     /**
@@ -238,11 +232,11 @@ public class RequisicaoCliente extends javax.swing.JFrame {
         System.out.println("Requsição do item: "+itemSelecionado.getIdItem());
         this.item = itemSelecionado;
         jLabelId.setText("ID: "+Integer.toString(itemSelecionado.getIdItem()));
-        jLabelNome.setText("Nome: "+itemSelecionado.getNome());
-        jTextDescricao.setText(itemSelecionado.getDescrição());
+        jLabelNome.setText("Nome: "+itemSelecionado.getNomeItem());
+        jTextDescricao.setText(itemSelecionado.getDescricaoItem());
         jLabelCor.setText("Cor: "+itemSelecionado.getCor());
         jLabelData.setText("Data: "+itemSelecionado.getDataEntrada());
-        loadIcon(jLabelFoto, itemSelecionado.getFoto());
+        loadIcon(jLabelFoto, itemSelecionado.getFotoItem());
     }
     
      private void loadIcon(JLabel label, String imagem){

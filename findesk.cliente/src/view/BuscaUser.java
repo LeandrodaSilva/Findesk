@@ -164,7 +164,7 @@ public class BuscaUser extends javax.swing.JFrame {
         if(itemSelecionado.load(id)){
             System.out.println("Item carregado: "+ itemSelecionado.getIdItem());
         }
-        popular(jLabelFoto, itemSelecionado.getFoto());
+        popular(jLabelFoto, itemSelecionado.getFotoItem());
     }//GEN-LAST:event_jTableResultadoMouseClicked
 
     
