@@ -65,11 +65,7 @@ public class BuscarAdministrador extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButtonVoltar = new javax.swing.JButton();
-        jScrollPaneResultado = new javax.swing.JScrollPane();
-        jTableResultado = new javax.swing.JTable();
         jLabelCategoria = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
         jPanelFundo = new javax.swing.JPanel();
         jComboBoxCategoria = new javax.swing.JComboBox<>();
         jComboBoxNome = new javax.swing.JComboBox<>();
@@ -81,6 +77,11 @@ public class BuscarAdministrador extends javax.swing.JFrame {
         jButtonBuscar = new javax.swing.JButton();
         jButtonAlterar = new javax.swing.JButton();
         jLabelLogoFindesk = new javax.swing.JLabel();
+        jScrollPaneResultado = new javax.swing.JScrollPane();
+        jTableResultado = new javax.swing.JTable();
+        jSeparator2 = new javax.swing.JSeparator();
+        jSeparator1 = new javax.swing.JSeparator();
+        jButtonVoltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAutoRequestFocus(false);
@@ -90,64 +91,11 @@ public class BuscarAdministrador extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(800, 600));
         getContentPane().setLayout(null);
 
-        jButtonVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/VoltarPreto.png"))); // NOI18N
-        jButtonVoltar.setContentAreaFilled(false);
-        jButtonVoltar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButtonVoltarMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButtonVoltarMouseExited(evt);
-            }
-        });
-        jButtonVoltar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonVoltarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButtonVoltar);
-        jButtonVoltar.setBounds(70, 520, 61, 23);
-
-        jTableResultado.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "ID", "NOME", "DESCRIÇÃO", "COR", "SITUAÇÃO DO ITEM"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jTableResultado.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTableResultadoMouseClicked(evt);
-            }
-        });
-        jScrollPaneResultado.setViewportView(jTableResultado);
-
-        getContentPane().add(jScrollPaneResultado);
-        jScrollPaneResultado.setBounds(0, 350, 780, 150);
-
         jLabelCategoria.setBackground(new java.awt.Color(255, 255, 255));
         jLabelCategoria.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabelCategoria.setText("CATEGORIAS");
         getContentPane().add(jLabelCategoria);
         jLabelCategoria.setBounds(20, 120, 180, 40);
-        getContentPane().add(jSeparator1);
-        jSeparator1.setBounds(0, 110, 780, 50);
 
         jPanelFundo.setBackground(new java.awt.Color(255, 255, 255));
         jPanelFundo.setLayout(null);
@@ -234,12 +182,12 @@ public class BuscarAdministrador extends javax.swing.JFrame {
             }
         });
         jPanelFundo.add(jButtonDeletar);
-        jButtonDeletar.setBounds(680, 510, 50, 40);
+        jButtonDeletar.setBounds(690, 510, 50, 40);
 
         jLabelFoto.setForeground(new java.awt.Color(255, 255, 255));
         jLabelFoto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jPanelFundo.add(jLabelFoto);
-        jLabelFoto.setBounds(470, 150, 190, 110);
+        jLabelFoto.setBounds(470, 120, 270, 200);
 
         jButtonBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/LupaPreta.png"))); // NOI18N
         jButtonBuscar.setContentAreaFilled(false);
@@ -284,14 +232,69 @@ public class BuscarAdministrador extends javax.swing.JFrame {
             }
         });
         jPanelFundo.add(jButtonAlterar);
-        jButtonAlterar.setBounds(600, 520, 73, 23);
+        jButtonAlterar.setBounds(640, 500, 40, 60);
 
         jLabelLogoFindesk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/FINDESK_LOGO3_Azul_PNG.png"))); // NOI18N
         jPanelFundo.add(jLabelLogoFindesk);
         jLabelLogoFindesk.setBounds(-40, 0, 350, 110);
 
+        jTableResultado.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "NOME", "DESCRIÇÃO", "COR", "SITUAÇÃO DO ITEM"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTableResultado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableResultadoMouseClicked(evt);
+            }
+        });
+        jScrollPaneResultado.setViewportView(jTableResultado);
+
+        jPanelFundo.add(jScrollPaneResultado);
+        jScrollPaneResultado.setBounds(0, 330, 780, 150);
+        jPanelFundo.add(jSeparator2);
+        jSeparator2.setBounds(0, 110, 780, 50);
+        jPanelFundo.add(jSeparator1);
+        jSeparator1.setBounds(0, 510, 780, 10);
+
+        jButtonVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/VoltarPreto.png"))); // NOI18N
+        jButtonVoltar.setContentAreaFilled(false);
+        jButtonVoltar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButtonVoltarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButtonVoltarMouseExited(evt);
+            }
+        });
+        jButtonVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVoltarActionPerformed(evt);
+            }
+        });
+        jPanelFundo.add(jButtonVoltar);
+        jButtonVoltar.setBounds(10, 520, 61, 23);
+
         getContentPane().add(jPanelFundo);
-        jPanelFundo.setBounds(0, 0, 780, 590);
+        jPanelFundo.setBounds(0, 0, 800, 600);
 
         setSize(new java.awt.Dimension(783, 561));
         setLocationRelativeTo(null);
@@ -694,6 +697,7 @@ public class BuscarAdministrador extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelFundo;
     private javax.swing.JScrollPane jScrollPaneResultado;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTable jTableResultado;
     // End of variables declaration//GEN-END:variables
 }

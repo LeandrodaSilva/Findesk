@@ -45,6 +45,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jButtonCadastrarItem = new javax.swing.JButton();
         jButtonFechar = new javax.swing.JButton();
         jButtonMinimizar = new javax.swing.JButton();
+        jButtonEstatistica = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(0, 102, 102));
@@ -69,7 +70,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jLabelLogoFindesk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/FINDESK_LOGO3_Azul_PNG.png"))); // NOI18N
         jPanelFundo.add(jLabelLogoFindesk);
-        jLabelLogoFindesk.setBounds(230, -10, 410, 160);
+        jLabelLogoFindesk.setBounds(220, -10, 360, 160);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/SWS3.png"))); // NOI18N
         jPanelFundo.add(jLabel1);
@@ -102,7 +103,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         jPanelFundo.add(jButtonBuscar);
-        jButtonBuscar.setBounds(280, 240, 260, 60);
+        jButtonBuscar.setBounds(280, 190, 230, 60);
 
         jButtonCadastrarItem.setBackground(new java.awt.Color(255, 255, 255));
         jButtonCadastrarItem.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -127,7 +128,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         jPanelFundo.add(jButtonCadastrarItem);
-        jButtonCadastrarItem.setBounds(280, 340, 260, 60);
+        jButtonCadastrarItem.setBounds(280, 290, 230, 60);
 
         jButtonFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/FecharPreto.png"))); // NOI18N
         jButtonFechar.setBorderPainted(false);
@@ -166,6 +167,31 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         jPanelFundo.add(jButtonMinimizar);
         jButtonMinimizar.setBounds(700, 0, 40, 30);
+
+        jButtonEstatistica.setBackground(new java.awt.Color(255, 255, 255));
+        jButtonEstatistica.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButtonEstatistica.setText("ESTATÍSTICAS");
+        jButtonEstatistica.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButtonEstatistica.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                jButtonEstatisticaMouseMoved(evt);
+            }
+        });
+        jButtonEstatistica.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButtonEstatisticaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButtonEstatisticaMouseExited(evt);
+            }
+        });
+        jButtonEstatistica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEstatisticaActionPerformed(evt);
+            }
+        });
+        jPanelFundo.add(jButtonEstatistica);
+        jButtonEstatistica.setBounds(280, 390, 230, 60);
 
         getContentPane().add(jPanelFundo);
         jPanelFundo.setBounds(0, 0, 800, 600);
@@ -238,6 +264,22 @@ public class TelaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonMinimizarActionPerformed
 
+    private void jButtonEstatisticaMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEstatisticaMouseMoved
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonEstatisticaMouseMoved
+
+    private void jButtonEstatisticaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEstatisticaMouseEntered
+         mudarCorAzul(jButtonEstatistica);
+    }//GEN-LAST:event_jButtonEstatisticaMouseEntered
+
+    private void jButtonEstatisticaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEstatisticaMouseExited
+        mudarCorPreto(jButtonEstatistica);
+    }//GEN-LAST:event_jButtonEstatisticaMouseExited
+
+    private void jButtonEstatisticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEstatisticaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonEstatisticaActionPerformed
+
     /**
      */
     public static void mostrar() {
@@ -255,6 +297,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBuscar;
     private javax.swing.JButton jButtonCadastrarItem;
+    private javax.swing.JButton jButtonEstatistica;
     private javax.swing.JButton jButtonFechar;
     private javax.swing.JButton jButtonMinimizar;
     private javax.swing.JLabel jLabel1;

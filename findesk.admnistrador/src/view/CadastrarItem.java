@@ -93,8 +93,8 @@ public class CadastrarItem extends javax.swing.JFrame {
         jLabelDataPerda1 = new javax.swing.JLabel();
         jTextFieldNomeItem1 = new javax.swing.JTextField();
         jButtonVoltar = new javax.swing.JButton();
-        jLabel = new javax.swing.JLabel();
         jLabelCategoria1 = new javax.swing.JLabel();
+        jPanelFundo = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -214,17 +214,15 @@ public class CadastrarItem extends javax.swing.JFrame {
         getContentPane().add(jButtonVoltar);
         jButtonVoltar.setBounds(20, 550, 73, 23);
 
-        jLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/icons8-seta-longa-à-esquerda-filled-50.png"))); // NOI18N
-        jLabel.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Fundo2.png"))); // NOI18N
-        jLabel.setEnabled(false);
-        getContentPane().add(jLabel);
-        jLabel.setBounds(0, 0, 800, 600);
-
         jLabelCategoria1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabelCategoria1.setForeground(new java.awt.Color(255, 255, 255));
         jLabelCategoria1.setText("Categoria:");
         getContentPane().add(jLabelCategoria1);
         jLabelCategoria1.setBounds(30, 170, 110, 30);
+
+        jPanelFundo.setBackground(new java.awt.Color(0, 0, 0));
+        getContentPane().add(jPanelFundo);
+        jPanelFundo.setBounds(0, 0, 800, 600);
 
         setSize(new java.awt.Dimension(814, 631));
         setLocationRelativeTo(null);
@@ -678,7 +676,6 @@ public class CadastrarItem extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBoxCor;
     private javax.swing.JComboBox<String> jComboBoxDia;
     private javax.swing.JComboBox<String> jComboBoxMes;
-    private javax.swing.JLabel jLabel;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabelCadastrar1;
     private javax.swing.JLabel jLabelCategoria;
@@ -687,6 +684,7 @@ public class CadastrarItem extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelDataPerda1;
     private javax.swing.JLabel jLabelDoc;
     private javax.swing.JLabel jLabelNomeItem1;
+    private javax.swing.JPanel jPanelFundo;
     private javax.swing.JTextField jTextFieldDoc;
     private javax.swing.JTextField jTextFieldNomeDescrição;
     private javax.swing.JTextField jTextFieldNomeItem1;
