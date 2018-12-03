@@ -5,6 +5,7 @@
  */
 package view;
 
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 
@@ -17,7 +18,8 @@ import javax.swing.JButton;
 public class TelaPrincipal extends javax.swing.JFrame {
 
     
-    private static TelaPrincipal janelaControl; 
+    private static TelaPrincipal janelaControl;
+    private static Point point = new Point();
     
             
     public TelaPrincipal() {
@@ -62,6 +64,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(null);
 
         jPanelFundo.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelFundo.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jPanelFundoMouseDragged(evt);
+            }
+        });
+        jPanelFundo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanelFundoMousePressed(evt);
+            }
+        });
         jPanelFundo.setLayout(null);
 
         jSeparator2.setForeground(new java.awt.Color(204, 204, 204));
@@ -73,6 +85,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabelLogoFindesk.setBounds(220, -10, 360, 160);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/SWS3.png"))); // NOI18N
+        jLabel1.setToolTipText("Smart Way Software.");
         jPanelFundo.add(jLabel1);
         jLabel1.setBounds(690, 500, 170, 220);
 
@@ -83,6 +96,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jButtonBuscar.setBackground(new java.awt.Color(255, 255, 255));
         jButtonBuscar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonBuscar.setText("BUSCAR");
+        jButtonBuscar.setToolTipText("Buscar e alterar itens.");
         jButtonBuscar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButtonBuscar.setContentAreaFilled(false);
         jButtonBuscar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -109,6 +123,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jButtonCadastrarItem.setBackground(new java.awt.Color(255, 255, 255));
         jButtonCadastrarItem.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonCadastrarItem.setText("CADASTRAR ITEM");
+        jButtonCadastrarItem.setToolTipText("Cadastrar novos itens.");
         jButtonCadastrarItem.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButtonCadastrarItem.setContentAreaFilled(false);
         jButtonCadastrarItem.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -175,6 +190,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jButtonEstatistica.setBackground(new java.awt.Color(255, 255, 255));
         jButtonEstatistica.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonEstatistica.setText("ESTATÍSTICAS");
+        jButtonEstatistica.setToolTipText("Ver estatísticas de uso.");
         jButtonEstatistica.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButtonEstatistica.setContentAreaFilled(false);
         jButtonEstatistica.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -284,6 +300,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void jButtonEstatisticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEstatisticaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonEstatisticaActionPerformed
+
+    private void jPanelFundoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelFundoMousePressed
+        point.x = evt.getX();
+        point.y = evt.getY();
+    }//GEN-LAST:event_jPanelFundoMousePressed
+
+    private void jPanelFundoMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelFundoMouseDragged
+        Point p = janelaControl.getLocation();
+        janelaControl.setLocation(p.x + evt.getX() - point.x, p.y + evt.getY() - point.y);
+    }//GEN-LAST:event_jPanelFundoMouseDragged
 
     /**
      */

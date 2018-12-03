@@ -8,6 +8,7 @@ import control.Administrador;
 import java.awt.Component;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Point;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.sql.ResultSet;
@@ -39,6 +40,7 @@ public class BuscarAdministrador extends javax.swing.JFrame {
     private DefaultTableModel defaultTableResultado;
     public Item itemSelecionado = new Item();
     private Icon defaultIcon;
+    private static Point point = new Point();
 
     /**
      * Creates new form suaJanela
@@ -98,27 +100,40 @@ public class BuscarAdministrador extends javax.swing.JFrame {
         jLabelCategoria.setBounds(20, 120, 180, 40);
 
         jPanelFundo.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelFundo.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jPanelFundoMouseDragged(evt);
+            }
+        });
+        jPanelFundo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanelFundoMousePressed(evt);
+            }
+        });
         jPanelFundo.setLayout(null);
 
+        jComboBoxCategoria.setToolTipText("Selecione a categoria desejada.");
         jComboBoxCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxCategoriaActionPerformed(evt);
             }
         });
         jPanelFundo.add(jComboBoxCategoria);
-        jComboBoxCategoria.setBounds(20, 170, 190, 20);
+        jComboBoxCategoria.setBounds(20, 170, 190, 26);
 
         jComboBoxNome.setVisible(false);
         jComboBoxNome.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos" }));
+        jComboBoxNome.setToolTipText("Selecione o item desejado.");
         jComboBoxNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxNomeActionPerformed(evt);
             }
         });
         jPanelFundo.add(jComboBoxNome);
-        jComboBoxNome.setBounds(20, 240, 190, 20);
+        jComboBoxNome.setBounds(20, 240, 190, 26);
 
         jButtonFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/FecharPreto.png"))); // NOI18N
+        jButtonFechar.setToolTipText("Fechar");
         jButtonFechar.setBorderPainted(false);
         jButtonFechar.setContentAreaFilled(false);
         jButtonFechar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -138,6 +153,7 @@ public class BuscarAdministrador extends javax.swing.JFrame {
         jButtonFechar.setBounds(750, 0, 20, 30);
 
         jButtonMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/MinimizarPreto.png"))); // NOI18N
+        jButtonMinimizar.setToolTipText("Minimizar");
         jButtonMinimizar.setBorderPainted(false);
         jButtonMinimizar.setContentAreaFilled(false);
         jButtonMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -165,6 +181,7 @@ public class BuscarAdministrador extends javax.swing.JFrame {
         jButtonDeletar.setBackground(new java.awt.Color(255, 255, 255));
         jButtonDeletar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonDeletar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/LixeiraPreta.png"))); // NOI18N
+        jButtonDeletar.setToolTipText("Excluir item.");
         jButtonDeletar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jButtonDeletar.setBorderPainted(false);
         jButtonDeletar.setContentAreaFilled(false);
@@ -186,10 +203,12 @@ public class BuscarAdministrador extends javax.swing.JFrame {
 
         jLabelFoto.setForeground(new java.awt.Color(255, 255, 255));
         jLabelFoto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelFoto.setToolTipText("Imagem.");
         jPanelFundo.add(jLabelFoto);
         jLabelFoto.setBounds(470, 120, 270, 200);
 
         jButtonBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/LupaPreta.png"))); // NOI18N
+        jButtonBuscar.setToolTipText("Buscar");
         jButtonBuscar.setContentAreaFilled(false);
         jButtonBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonBuscar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -214,9 +233,10 @@ public class BuscarAdministrador extends javax.swing.JFrame {
             }
         });
         jPanelFundo.add(jButtonBuscar);
-        jButtonBuscar.setBounds(210, 160, 57, 33);
+        jButtonBuscar.setBounds(210, 160, 54, 40);
 
         jButtonAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/LapisPreto.png"))); // NOI18N
+        jButtonAlterar.setToolTipText("Editar item.");
         jButtonAlterar.setContentAreaFilled(false);
         jButtonAlterar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -276,6 +296,7 @@ public class BuscarAdministrador extends javax.swing.JFrame {
         jSeparator1.setBounds(0, 510, 780, 10);
 
         jButtonVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/VoltarPreto.png"))); // NOI18N
+        jButtonVoltar.setToolTipText("Voltar para a tela principal.");
         jButtonVoltar.setContentAreaFilled(false);
         jButtonVoltar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -476,6 +497,16 @@ public class BuscarAdministrador extends javax.swing.JFrame {
     private void jButtonDeletarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonDeletarMouseExited
         jButtonDeletar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/LixeiraPreta.png")));
     }//GEN-LAST:event_jButtonDeletarMouseExited
+
+    private void jPanelFundoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelFundoMousePressed
+        point.x = evt.getX();
+        point.y = evt.getY();
+    }//GEN-LAST:event_jPanelFundoMousePressed
+
+    private void jPanelFundoMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelFundoMouseDragged
+        Point p = janelaControl.getLocation();
+        janelaControl.setLocation(p.x + evt.getX() - point.x, p.y + evt.getY() - point.y);
+    }//GEN-LAST:event_jPanelFundoMouseDragged
 
     public void popular(JLabel label, String imagem){
         //atribui imagem nos labels desejados
