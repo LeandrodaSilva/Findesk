@@ -69,6 +69,7 @@ public class RequisicaoCliente extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButtonMinimizar = new javax.swing.JButton();
         jButtonFechar = new javax.swing.JButton();
+        jLabelDescricao = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -96,8 +97,16 @@ public class RequisicaoCliente extends javax.swing.JFrame {
 
         JButtonConfirmar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/selecionadoPreto.png"))); // NOI18N
         JButtonConfirmar.setText("Confirmar");
+        JButtonConfirmar.setToolTipText("Confirmar pedido de retirada.");
         JButtonConfirmar.setContentAreaFilled(false);
-        JButtonConfirmar.setOpaque(false);
+        JButtonConfirmar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                JButtonConfirmarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                JButtonConfirmarMouseExited(evt);
+            }
+        });
         JButtonConfirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JButtonConfirmarActionPerformed(evt);
@@ -114,8 +123,16 @@ public class RequisicaoCliente extends javax.swing.JFrame {
 
         jButtonVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/VoltarPreto.png"))); // NOI18N
         jButtonVoltar.setText("Voltar");
+        jButtonVoltar.setToolTipText("Voltar para a tela de busca.");
         jButtonVoltar.setContentAreaFilled(false);
-        jButtonVoltar.setOpaque(false);
+        jButtonVoltar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButtonVoltarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButtonVoltarMouseExited(evt);
+            }
+        });
         jButtonVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonVoltarActionPerformed(evt);
@@ -127,10 +144,12 @@ public class RequisicaoCliente extends javax.swing.JFrame {
         jTextDescricao.setEditable(false);
         jTextDescricao.setColumns(20);
         jTextDescricao.setRows(5);
+        jTextDescricao.setToolTipText("Descrição do item.");
+        jTextDescricao.setRequestFocusEnabled(false);
         jScrollPaneDescricao.setViewportView(jTextDescricao);
 
         jPanel1.add(jScrollPaneDescricao);
-        jScrollPaneDescricao.setBounds(0, 330, 800, 170);
+        jScrollPaneDescricao.setBounds(20, 330, 760, 170);
 
         jLabelId.setForeground(new java.awt.Color(0, 0, 0));
         jLabelId.setText("ID:");
@@ -140,17 +159,17 @@ public class RequisicaoCliente extends javax.swing.JFrame {
         jLabelNome.setForeground(new java.awt.Color(0, 0, 0));
         jLabelNome.setText("Nome:");
         jPanel1.add(jLabelNome);
-        jLabelNome.setBounds(20, 210, 220, 16);
+        jLabelNome.setBounds(20, 220, 220, 16);
 
         jLabelCor.setForeground(new java.awt.Color(0, 0, 0));
         jLabelCor.setText("Cor:");
         jPanel1.add(jLabelCor);
-        jLabelCor.setBounds(20, 230, 230, 16);
+        jLabelCor.setBounds(20, 250, 230, 16);
 
         jLabelData.setForeground(new java.awt.Color(0, 0, 0));
         jLabelData.setText("Data:");
         jPanel1.add(jLabelData);
-        jLabelData.setBounds(20, 250, 220, 16);
+        jLabelData.setBounds(20, 280, 220, 16);
         jPanel1.add(jSeparator1);
         jSeparator1.setBounds(0, 110, 800, 20);
 
@@ -159,10 +178,12 @@ public class RequisicaoCliente extends javax.swing.JFrame {
         jSeparator2.setBounds(0, 510, 800, 30);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/SWS3.png"))); // NOI18N
+        jLabel1.setToolTipText("Smart Way Sofware.");
         jPanel1.add(jLabel1);
         jLabel1.setBounds(690, 510, 170, 220);
 
         jButtonMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/MinimizarPreto.png"))); // NOI18N
+        jButtonMinimizar.setToolTipText("Minimizar");
         jButtonMinimizar.setBorderPainted(false);
         jButtonMinimizar.setContentAreaFilled(false);
         jButtonMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -180,6 +201,7 @@ public class RequisicaoCliente extends javax.swing.JFrame {
         jButtonMinimizar.setBounds(700, 0, 40, 30);
 
         jButtonFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/FecharPreto.png"))); // NOI18N
+        jButtonFechar.setToolTipText("Fechar");
         jButtonFechar.setBorderPainted(false);
         jButtonFechar.setContentAreaFilled(false);
         jButtonFechar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -196,6 +218,11 @@ public class RequisicaoCliente extends javax.swing.JFrame {
         jPanel1.add(jButtonFechar);
         jButtonFechar.setBounds(760, 0, 20, 30);
 
+        jLabelDescricao.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelDescricao.setText("Descrição:");
+        jPanel1.add(jLabelDescricao);
+        jLabelDescricao.setBounds(20, 310, 90, 16);
+
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 800, 600);
 
@@ -211,7 +238,7 @@ public class RequisicaoCliente extends javax.swing.JFrame {
 
     private void JButtonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButtonConfirmarActionPerformed
         try {
-            Socket destino = new Socket("127.0.0.1", 5060);
+            Socket destino = new Socket("10.20.157.96", 5060);
             Sockets.sendItem(destino, item);
             String msg = Sockets.receiveText(destino);
             SGBD mybd = new SGBD();
@@ -269,6 +296,26 @@ public class RequisicaoCliente extends javax.swing.JFrame {
         point.x = evt.getX();
         point.y = evt.getY();
     }//GEN-LAST:event_jPanel1MousePressed
+
+    private void jButtonVoltarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonVoltarMouseEntered
+        jButtonVoltar.setForeground(new java.awt.Color(000, 191, 255));
+        jButtonVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/voltarAzul.png")));
+    }//GEN-LAST:event_jButtonVoltarMouseEntered
+
+    private void jButtonVoltarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonVoltarMouseExited
+        jButtonVoltar.setForeground(new java.awt.Color(0, 0, 0));
+        jButtonVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/voltarPreto.png")));
+    }//GEN-LAST:event_jButtonVoltarMouseExited
+
+    private void JButtonConfirmarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JButtonConfirmarMouseEntered
+        JButtonConfirmar.setForeground(new java.awt.Color(000, 191, 255));
+        JButtonConfirmar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/selecionadoAzul.png")));
+    }//GEN-LAST:event_JButtonConfirmarMouseEntered
+
+    private void JButtonConfirmarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JButtonConfirmarMouseExited
+        JButtonConfirmar.setForeground(new java.awt.Color(0, 0, 0));
+        JButtonConfirmar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/selecionadoPreto.png")));
+    }//GEN-LAST:event_JButtonConfirmarMouseExited
 
     /**
      * @param args the command line arguments
@@ -391,6 +438,7 @@ public class RequisicaoCliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelCor;
     private javax.swing.JLabel jLabelData;
+    private javax.swing.JLabel jLabelDescricao;
     private javax.swing.JLabel jLabelId;
     private javax.swing.JLabel jLabelLogoFindesk;
     private javax.swing.JLabel jLabelNome;

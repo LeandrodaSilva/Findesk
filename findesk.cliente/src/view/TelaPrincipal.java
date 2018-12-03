@@ -12,16 +12,11 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import model.SGBD;
-import view.BuscaUser;
 import java.awt.Point;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionAdapter;
-import javax.swing.ListCellRenderer;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import model.*;
 
 
@@ -55,6 +50,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         //popularComboBoxNome();
         //this.defaultComboBoxNome ;
         hideComponents();
+        jButtonConfirmar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButtonConfirmar.setForeground(new java.awt.Color(0, 0, 0));
+        jButtonConfirmar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/LupaPreta.png")));
     }
     
 
@@ -155,6 +153,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabelComboBoxCategoria.setBounds(210, 200, 140, 20);
 
         jComboBoxDiaInicial.setModel(defaultComboBoxDiaInicial);
+        jComboBoxDiaInicial.setToolTipText("Possível dia da perda ou esquecimento do item.");
         jComboBoxDiaInicial.setAutoscrolls(true);
         jComboBoxDiaInicial.setBorder(null);
         jComboBoxDiaInicial.setRequestFocusEnabled(false);
@@ -172,6 +171,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabelDataInicial.setBounds(210, 250, 130, 16);
 
         jComboBoxMesInicial.setModel(defaultComboBoxMesInicial);
+        jComboBoxMesInicial.setToolTipText("Possível mês da perda ou esquecimento do item.");
         jComboBoxMesInicial.setAutoscrolls(true);
         jComboBoxMesInicial.setBorder(null);
         jComboBoxMesInicial.setRequestFocusEnabled(false);
@@ -184,6 +184,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jComboBoxMesInicial.setBounds(430, 250, 70, 26);
 
         jComboBoxAnoInicial.setModel(defaultComboBoxAnoInicial);
+        jComboBoxAnoInicial.setToolTipText("Possível ano da perda ou esquecimento do item.");
         jComboBoxAnoInicial.setAutoscrolls(true);
         jComboBoxAnoInicial.setBorder(null);
         jComboBoxAnoInicial.setRequestFocusEnabled(false);
@@ -196,6 +197,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jComboBoxAnoInicial.setBounds(510, 250, 110, 26);
 
         jComboBoxCor.setModel(defaultComboBoxCor);
+        jComboBoxCor.setToolTipText("Selecione a cor do item desejado.");
         jComboBoxCor.setAutoscrolls(true);
         jComboBoxCor.setBorder(null);
         jComboBoxCor.setRequestFocusEnabled(false);
@@ -208,6 +210,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jComboBoxCor.setBounds(350, 330, 110, 26);
 
         jComboBoxNome.setModel(defaultComboBoxNome);
+        jComboBoxNome.setToolTipText("Selecione o nome do item desejado.");
         jComboBoxNome.setAutoscrolls(true);
         jComboBoxNome.setBorder(null);
         jComboBoxNome.setRequestFocusEnabled(false);
@@ -234,6 +237,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jSeparator1.setBounds(0, 110, 800, 20);
 
         jLabelLogoFindesk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/FINDESK_LOGO3_Azul_PNG.png"))); // NOI18N
+        jLabelLogoFindesk.setToolTipText("Abrir site.");
+        jLabelLogoFindesk.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelLogoFindeskMouseClicked(evt);
+            }
+        });
         jPanelFundo.add(jLabelLogoFindesk);
         jLabelLogoFindesk.setBounds(-40, -10, 350, 110);
 
@@ -242,10 +251,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jSeparator2.setBounds(0, 510, 800, 30);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/SWS3.png"))); // NOI18N
+        jLabel1.setToolTipText("Smart Way Software.");
         jPanelFundo.add(jLabel1);
         jLabel1.setBounds(690, 510, 170, 220);
 
         jButtonFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/FecharPreto.png"))); // NOI18N
+        jButtonFechar.setToolTipText("Fechar");
         jButtonFechar.setBorderPainted(false);
         jButtonFechar.setContentAreaFilled(false);
         jButtonFechar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -263,6 +274,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jButtonFechar.setBounds(760, 0, 20, 30);
 
         jButtonMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/MinimizarPreto.png"))); // NOI18N
+        jButtonMinimizar.setToolTipText("Minimizar");
         jButtonMinimizar.setBorderPainted(false);
         jButtonMinimizar.setContentAreaFilled(false);
         jButtonMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -462,6 +474,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void jButtonMinimizarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonMinimizarMouseExited
         jButtonMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/MinimizarPreto.png")));
     }//GEN-LAST:event_jButtonMinimizarMouseExited
+
+    private void jLabelLogoFindeskMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelLogoFindeskMouseClicked
+
+        try {
+            java.awt.Desktop.getDesktop().browse(new java.net.URI("http://www.google.com.br"));
+        } catch (URISyntaxException | IOException ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+    }//GEN-LAST:event_jLabelLogoFindeskMouseClicked
+    
 
     /**
      * @param args the command line arguments

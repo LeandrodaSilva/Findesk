@@ -72,10 +72,12 @@
               <Image iconType="3" name="/view/images/selecionadoPreto.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Confirmar"/>
+            <Property name="toolTipText" type="java.lang.String" value="Confirmar pedido de retirada."/>
             <Property name="contentAreaFilled" type="boolean" value="false"/>
-            <Property name="opaque" type="boolean" value="false"/>
           </Properties>
           <Events>
+            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="JButtonConfirmarMouseEntered"/>
+            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="JButtonConfirmarMouseExited"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JButtonConfirmarActionPerformed"/>
           </Events>
           <Constraints>
@@ -106,10 +108,12 @@
               <Image iconType="3" name="/view/images/VoltarPreto.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Voltar"/>
+            <Property name="toolTipText" type="java.lang.String" value="Voltar para a tela de busca."/>
             <Property name="contentAreaFilled" type="boolean" value="false"/>
-            <Property name="opaque" type="boolean" value="false"/>
           </Properties>
           <Events>
+            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButtonVoltarMouseEntered"/>
+            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButtonVoltarMouseExited"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonVoltarActionPerformed"/>
           </Events>
           <Constraints>
@@ -124,7 +128,7 @@
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="0" y="330" width="800" height="170"/>
+              <AbsoluteConstraints x="20" y="330" width="760" height="170"/>
             </Constraint>
           </Constraints>
 
@@ -135,6 +139,8 @@
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="rows" type="int" value="5"/>
+                <Property name="toolTipText" type="java.lang.String" value="Descri&#xe7;&#xe3;o do item."/>
+                <Property name="requestFocusEnabled" type="boolean" value="false"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -161,7 +167,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="20" y="210" width="220" height="-1"/>
+              <AbsoluteConstraints x="20" y="220" width="220" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -174,7 +180,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="20" y="230" width="230" height="-1"/>
+              <AbsoluteConstraints x="20" y="250" width="230" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -187,7 +193,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="20" y="250" width="220" height="-1"/>
+              <AbsoluteConstraints x="20" y="280" width="220" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -215,6 +221,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/view/images/SWS3.png"/>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Smart Way Sofware."/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -227,6 +234,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/view/images/MinimizarPreto.png"/>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Minimizar"/>
             <Property name="borderPainted" type="boolean" value="false"/>
             <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
@@ -246,6 +254,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/view/images/FecharPreto.png"/>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Fechar"/>
             <Property name="borderPainted" type="boolean" value="false"/>
             <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
@@ -257,6 +266,19 @@
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="760" y="0" width="20" height="30"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabelDescricao">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="0" red="0" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Descri&#xe7;&#xe3;o:"/>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="20" y="310" width="90" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>
