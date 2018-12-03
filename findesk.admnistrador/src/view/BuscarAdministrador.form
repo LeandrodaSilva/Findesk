@@ -275,10 +275,10 @@
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="5" rowCount="0">
                     <Column editable="false" title="ID" type="java.lang.String"/>
-                    <Column editable="false" title="NOME" type="java.lang.String"/>
-                    <Column editable="false" title="DESCRI&#xc7;&#xc3;O" type="java.lang.String"/>
-                    <Column editable="false" title="COR" type="java.lang.String"/>
-                    <Column editable="false" title="SITUA&#xc7;&#xc3;O DO ITEM" type="java.lang.Integer"/>
+                    <Column editable="true" title="NOME" type="java.lang.String"/>
+                    <Column editable="true" title="DESCRI&#xc7;&#xc3;O" type="java.lang.String"/>
+                    <Column editable="true" title="COR" type="java.lang.String"/>
+                    <Column editable="true" title="SITUA&#xc7;&#xc3;O DO ITEM" type="java.lang.Integer"/>
                   </Table>
                 </Property>
               </Properties>
@@ -316,7 +316,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="10" y="520" width="61" height="23"/>
+              <AbsoluteConstraints x="60" y="520" width="61" height="23"/>
             </Constraint>
           </Constraints>
         </Component>

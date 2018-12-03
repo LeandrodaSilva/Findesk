@@ -250,7 +250,7 @@ public class BuscarAdministrador extends javax.swing.JFrame {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, true, true, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -291,7 +291,7 @@ public class BuscarAdministrador extends javax.swing.JFrame {
             }
         });
         jPanelFundo.add(jButtonVoltar);
-        jButtonVoltar.setBounds(10, 520, 61, 23);
+        jButtonVoltar.setBounds(60, 520, 61, 23);
 
         getContentPane().add(jPanelFundo);
         jPanelFundo.setBounds(0, 0, 800, 600);
@@ -381,11 +381,12 @@ public class BuscarAdministrador extends javax.swing.JFrame {
         mybd.alterarItemBd("delete from item where idItem = \""+objeto+"\"");
         defaultTableResultado.removeRow(jTableResultado.getSelectedRow());
         jLabelFoto.setVisible(false);
+        mybd.fecharConexao();
         } 
     }//GEN-LAST:event_jButtonDeletarActionPerformed
 
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
-         SGBD mybd = new SGBD();
+        SGBD mybd = new SGBD();
         mybd.getConexaoMySQL();
         System.out.println(mybd.statusConection());
         Object id = defaultTableResultado.getValueAt(jTableResultado.getSelectedRow(), 0);
@@ -405,6 +406,7 @@ public class BuscarAdministrador extends javax.swing.JFrame {
         mybd.alterarItemBd("update item set descricaoItem = \""+descricao+"\" where idItem = \""+id+"\"");
         mybd.alterarItemBd("update item set idCor = (select idCor from cor where nomeCor = \""+cor+"\") where idItem = \""+id+"\"");
         }
+        mybd.fecharConexao();
     }//GEN-LAST:event_jButtonAlterarActionPerformed
 
     private void jButtonFecharMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonFecharMouseEntered

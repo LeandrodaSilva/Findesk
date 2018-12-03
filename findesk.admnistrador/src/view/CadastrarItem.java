@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package view;
+
 import javax.swing.JOptionPane;
 import control.Administrador;
 import java.awt.Component;
@@ -31,7 +32,7 @@ import model.*;
  * @author alvar
  */
 public class CadastrarItem extends javax.swing.JFrame {
-    
+
     private static DefaultComboBoxModel defaultComboBoxCategoria = new DefaultComboBoxModel();
     private static DefaultComboBoxModel defaultComboBoxDia = new DefaultComboBoxModel();
     private static DefaultComboBoxModel defaultComboBoxMes = new DefaultComboBoxModel();
@@ -40,16 +41,14 @@ public class CadastrarItem extends javax.swing.JFrame {
     private static DefaultComboBoxModel defaultComboBoxNumero = new DefaultComboBoxModel();
     private static DefaultComboBoxModel defaultComboBoxNome = new DefaultComboBoxModel();
     private static CadastrarItem janelaControl;
-     private DefaultTableModel defaultTableResultado;
-     public Item itemSelecionado = new Item();
+    private DefaultTableModel defaultTableResultado;
+    public Item itemSelecionado = new Item();
+
     /**
      * Creates new form CadastrarItem
      */
-
-    
-    
     public CadastrarItem() {
-        
+
         initComponents();
         popularComboBoxCategoria();
         popularComboBoxDia();
@@ -62,9 +61,10 @@ public class CadastrarItem extends javax.swing.JFrame {
         jComboBoxMes.setModel(defaultComboBoxMes);
         jComboBoxAno.setModel(defaultComboBoxAno);
         jComboBoxCor.setModel(defaultComboBoxCor);
-       // jComboBoxNumero.setModel(defaultComboBoxNumero);
-     
-      
+        jLabelDoc.setVisible(false);
+        jTextFieldDocumento.setVisible(false);
+        // jComboBoxNumero.setModel(defaultComboBoxNumero);
+
     }
 
     /**
@@ -76,116 +76,78 @@ public class CadastrarItem extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabelCategoria = new javax.swing.JLabel();
         jLabelCadastrar1 = new javax.swing.JLabel();
-        jTextFieldNomeDescrição = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabelDoc = new javax.swing.JLabel();
-        jButtonCadastrar = new javax.swing.JButton();
+        jPanelFundo = new javax.swing.JPanel();
         jComboBoxCor = new javax.swing.JComboBox<>();
-        jLabelDataDescrição = new javax.swing.JLabel();
-        jTextFieldDoc = new javax.swing.JTextField();
-        jLabelNomeItem1 = new javax.swing.JLabel();
+        jLabelCor = new javax.swing.JLabel();
+        jLabelDataDescricao = new javax.swing.JLabel();
+        jTextFieldDocumento = new javax.swing.JTextField();
+        jLabelNomeItem = new javax.swing.JLabel();
         jComboBoxDia = new javax.swing.JComboBox<>();
+        jComboBoxCategoria = new javax.swing.JComboBox<>();
         jComboBoxMes = new javax.swing.JComboBox<>();
         jComboBoxAno = new javax.swing.JComboBox<>();
-        jComboBoxCategoria = new javax.swing.JComboBox<>();
-        jLabelDataPerda1 = new javax.swing.JLabel();
-        jTextFieldNomeItem1 = new javax.swing.JTextField();
+        jTextFieldNomeItem = new javax.swing.JTextField();
         jButtonVoltar = new javax.swing.JButton();
-        jLabelCategoria1 = new javax.swing.JLabel();
-        jPanelFundo = new javax.swing.JPanel();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(null);
-
-        jLabelCategoria.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabelCategoria.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelCategoria.setText("Categoria:");
-        getContentPane().add(jLabelCategoria);
-        jLabelCategoria.setBounds(30, 170, 110, 30);
+        jLabelDataPerda = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextAreaDescricao = new javax.swing.JTextArea();
+        jButtonCadastrar = new javax.swing.JButton();
+        jLabelCategoria = new javax.swing.JLabel();
+        jLabelDoc = new javax.swing.JLabel();
+        jLabelFindesk = new javax.swing.JLabel();
+        jButtonFechar = new javax.swing.JButton();
+        jButtonMinimizar = new javax.swing.JButton();
+        jSeparator2 = new javax.swing.JSeparator();
 
         jLabelCadastrar1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jLabelCadastrar1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelCadastrar1.setText("Cadastrar Item");
-        getContentPane().add(jLabelCadastrar1);
-        jLabelCadastrar1.setBounds(280, 0, 280, 70);
+        jLabelCadastrar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/FINDESK_LOGO3_Azul_PNG.png"))); // NOI18N
 
-        jTextFieldNomeDescrição.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldNomeDescriçãoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jTextFieldNomeDescrição);
-        jTextFieldNomeDescrição.setBounds(210, 280, 450, 170);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        getContentPane().setLayout(null);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Cor:");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(420, 100, 60, 60);
-
-        jLabelDoc.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabelDoc.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelDoc.setText("Num documento:");
-        getContentPane().add(jLabelDoc);
-        jLabelDoc.setBounds(430, 150, 190, 60);
-
-        jButtonCadastrar.setText("Cadastrar");
-        jButtonCadastrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCadastrarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButtonCadastrar);
-        jButtonCadastrar.setBounds(330, 510, 150, 40);
+        jPanelFundo.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelFundo.setLayout(null);
 
         jComboBoxCor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxCorActionPerformed(evt);
             }
         });
-        getContentPane().add(jComboBoxCor);
-        jComboBoxCor.setBounds(480, 120, 110, 30);
+        jPanelFundo.add(jComboBoxCor);
+        jComboBoxCor.setBounds(520, 160, 110, 30);
 
-        jLabelDataDescrição.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabelDataDescrição.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelDataDescrição.setText("Descrição:");
-        getContentPane().add(jLabelDataDescrição);
-        jLabelDataDescrição.setBounds(30, 270, 180, 30);
+        jLabelCor.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabelCor.setText("Cor:");
+        jPanelFundo.add(jLabelCor);
+        jLabelCor.setBounds(460, 150, 60, 50);
 
-        jTextFieldDoc.addActionListener(new java.awt.event.ActionListener() {
+        jLabelDataDescricao.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabelDataDescricao.setText("Descrição:");
+        jPanelFundo.add(jLabelDataDescricao);
+        jLabelDataDescricao.setBounds(30, 340, 150, 30);
+
+        jTextFieldDocumento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldDocActionPerformed(evt);
+                jTextFieldDocumentoActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextFieldDoc);
-        jTextFieldDoc.setBounds(620, 170, 130, 30);
+        jPanelFundo.add(jTextFieldDocumento);
+        jTextFieldDocumento.setBounds(650, 210, 130, 30);
 
-        jLabelNomeItem1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabelNomeItem1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelNomeItem1.setText("Nome do item:");
-        getContentPane().add(jLabelNomeItem1);
-        jLabelNomeItem1.setBounds(30, 120, 170, 29);
+        jLabelNomeItem.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabelNomeItem.setText("Nome do item:");
+        jPanelFundo.add(jLabelNomeItem);
+        jLabelNomeItem.setBounds(30, 160, 170, 29);
 
         jComboBoxDia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxDiaActionPerformed(evt);
             }
         });
-        getContentPane().add(jComboBoxDia);
-        jComboBoxDia.setBounds(210, 220, 60, 30);
-
-        jComboBoxMes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxMesActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jComboBoxMes);
-        jComboBoxMes.setBounds(290, 220, 60, 30);
-
-        getContentPane().add(jComboBoxAno);
-        jComboBoxAno.setBounds(360, 220, 80, 30);
+        jPanelFundo.add(jComboBoxDia);
+        jComboBoxDia.setBounds(210, 270, 60, 30);
 
         jComboBoxCategoria.setToolTipText("");
         jComboBoxCategoria.addActionListener(new java.awt.event.ActionListener() {
@@ -193,119 +155,194 @@ public class CadastrarItem extends javax.swing.JFrame {
                 jComboBoxCategoriaActionPerformed(evt);
             }
         });
-        getContentPane().add(jComboBoxCategoria);
-        jComboBoxCategoria.setBounds(210, 170, 200, 30);
+        jPanelFundo.add(jComboBoxCategoria);
+        jComboBoxCategoria.setBounds(200, 210, 200, 30);
 
-        jLabelDataPerda1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabelDataPerda1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelDataPerda1.setText("Data de perda:");
-        getContentPane().add(jLabelDataPerda1);
-        jLabelDataPerda1.setBounds(30, 220, 180, 30);
-        getContentPane().add(jTextFieldNomeItem1);
-        jTextFieldNomeItem1.setBounds(210, 120, 200, 30);
+        jComboBoxMes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxMesActionPerformed(evt);
+            }
+        });
+        jPanelFundo.add(jComboBoxMes);
+        jComboBoxMes.setBounds(290, 270, 60, 30);
 
-        jButtonVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/icons8-seta-longa-à-esquerda-filled-50.png"))); // NOI18N
+        jPanelFundo.add(jComboBoxAno);
+        jComboBoxAno.setBounds(360, 270, 80, 30);
+        jPanelFundo.add(jTextFieldNomeItem);
+        jTextFieldNomeItem.setBounds(200, 160, 200, 30);
+
+        jButtonVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/VoltarPreto.png"))); // NOI18N
+        jButtonVoltar.setToolTipText("Voltar");
         jButtonVoltar.setContentAreaFilled(false);
+        jButtonVoltar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButtonVoltarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButtonVoltarMouseExited(evt);
+            }
+        });
         jButtonVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonVoltarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonVoltar);
-        jButtonVoltar.setBounds(20, 550, 73, 23);
+        jPanelFundo.add(jButtonVoltar);
+        jButtonVoltar.setBounds(20, 540, 59, 35);
 
-        jLabelCategoria1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabelCategoria1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelCategoria1.setText("Categoria:");
-        getContentPane().add(jLabelCategoria1);
-        jLabelCategoria1.setBounds(30, 170, 110, 30);
+        jLabelDataPerda.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabelDataPerda.setText("Data de perda:");
+        jPanelFundo.add(jLabelDataPerda);
+        jLabelDataPerda.setBounds(30, 270, 180, 30);
 
-        jPanelFundo.setBackground(new java.awt.Color(0, 0, 0));
+        jTextAreaDescricao.setColumns(20);
+        jTextAreaDescricao.setRows(5);
+        jScrollPane1.setViewportView(jTextAreaDescricao);
+
+        jPanelFundo.add(jScrollPane1);
+        jScrollPane1.setBounds(200, 340, 420, 150);
+
+        jButtonCadastrar.setBackground(new java.awt.Color(255, 255, 255));
+        jButtonCadastrar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButtonCadastrar.setText("CADASTRAR");
+        jButtonCadastrar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButtonCadastrar.setContentAreaFilled(false);
+        jButtonCadastrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButtonCadastrarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButtonCadastrarMouseExited(evt);
+            }
+        });
+        jButtonCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCadastrarActionPerformed(evt);
+            }
+        });
+        jPanelFundo.add(jButtonCadastrar);
+        jButtonCadastrar.setBounds(320, 530, 180, 40);
+
+        jLabelCategoria.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabelCategoria.setText("Categoria:");
+        jPanelFundo.add(jLabelCategoria);
+        jLabelCategoria.setBounds(30, 210, 110, 30);
+
+        jLabelDoc.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabelDoc.setText("Num documento:");
+        jPanelFundo.add(jLabelDoc);
+        jLabelDoc.setBounds(460, 190, 190, 60);
+
+        jLabelFindesk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/FINDESK_LOGO3_Azul_PNG.png"))); // NOI18N
+        jLabelFindesk.setText("jLabel1");
+        jPanelFundo.add(jLabelFindesk);
+        jLabelFindesk.setBounds(-40, -10, 390, 110);
+
+        jButtonFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/FecharPreto.png"))); // NOI18N
+        jButtonFechar.setToolTipText("Fechar");
+        jButtonFechar.setBorderPainted(false);
+        jButtonFechar.setContentAreaFilled(false);
+        jButtonFechar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButtonFecharMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButtonFecharMouseExited(evt);
+            }
+        });
+        jButtonFechar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFecharActionPerformed(evt);
+            }
+        });
+        jPanelFundo.add(jButtonFechar);
+        jButtonFechar.setBounds(760, 0, 20, 30);
+
+        jButtonMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/MinimizarPreto.png"))); // NOI18N
+        jButtonMinimizar.setToolTipText("Minimizar");
+        jButtonMinimizar.setBorderPainted(false);
+        jButtonMinimizar.setContentAreaFilled(false);
+        jButtonMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButtonMinimizarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButtonMinimizarMouseExited(evt);
+            }
+        });
+        jButtonMinimizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMinimizarActionPerformed(evt);
+            }
+        });
+        jPanelFundo.add(jButtonMinimizar);
+        jButtonMinimizar.setBounds(700, 0, 40, 30);
+        jPanelFundo.add(jSeparator2);
+        jSeparator2.setBounds(0, 110, 800, 10);
+
         getContentPane().add(jPanelFundo);
         jPanelFundo.setBounds(0, 0, 800, 600);
 
-        setSize(new java.awt.Dimension(814, 631));
+        setSize(new java.awt.Dimension(798, 589));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
-       /* JOptionPane.showConfirmDialog(null, "Deseja confirmar o cadastro?");
         String categoria = jComboBoxCategoria.getSelectedItem().toString();
-        String dia = jComboBoxDia.getSelectedItem().toString();
-        String mes = jComboBoxMes.getSelectedItem().toString();
-        String ano = jComboBoxAno.getSelectedItem().toString();
-        String nome = jTextFieldNomeItem1.toString();
+        int dia = Integer.parseInt((String) jComboBoxDia.getSelectedItem());
+        int mes = Integer.parseInt((String) jComboBoxMes.getSelectedItem());
+        int ano = Integer.parseInt((String) jComboBoxAno.getSelectedItem());
+        String nome = jTextFieldNomeItem.getText();
         String cor = jComboBoxCor.getSelectedItem().toString();
-        String iddoc = jTextFieldDoc.toString();
-        String descricao = jTextFieldNomeDescrição.getText();*/
-       
-     
- 
-        //cadastroCat(nome,categoria);
-       // cadastroItem(cor,Integer.parseInt(iddoc),Integer.parseInt(dia),Integer.parseInt(mes),Integer.parseInt(ano),descricao);
-       
-        SGBD.getConexaoMySQL();
-        
-//        SGBD.inserirItemBd("INSERT INTO `findesk`.`nomeItem` "
-//                + "(`nome`, `idCategoria`)"
-//                + " VALUES (\""+nome+"\", select idCategoria from nomeItem where nomeCat = \""+categoria+"\" );");
+//        String idDoc = jTextFieldDocumento.getText();
+        String descricao = jTextAreaDescricao.getText();
+        SGBD mybd = new SGBD();
+        System.out.println(mybd.statusConection());
+        mybd.getConexaoMySQL();
 
-    // SGBD.inserirItemBd("INSERT INTO documento (idDoc, nomeDoc) "
-  //                          + "VALUES (\""+iddoc+"\",documento);");
-//        
-       //    SGBD.inserirItemBd("INSERT INTO item (idCor, idAdm, idDataEntrada, idDataSaida, retiradoItem, fotoItem, descricaoItem) "
-         //                   + "VALUES ((SELECT idCor from cor where nomeCor = \""+cor+"\"), 1, 1, 1, 0, NULL, \""+descricao+"\");");
-           
-       // SGBD.fecharConexao();
-       
- 
-        SGBD.getConexaoMySQL();
+        ResultSet rsNome = mybd.consultarItemBd("select idNome from nomeitem where nome like \"" + nome + "\";");
+        ResultSet rsCategoria = mybd.consultarItemBd("select idCategoria from categoria where nomeCat like \"" + categoria + "\";");
+        ResultSet rsCor = mybd.consultarItemBd("select idCor from cor where nomeCor like \"" + cor + "\";");
+        ResultSet rsData = mybd.consultarItemBd("select idData from data where idDia like \"" + dia + "\" "
+               + "and idMes like \"" + mes + "\" and idAno like \"" + ano + "\"; "); 
+        String corId = "";
+        int nomeId = 0;
+        String categoriaId = "";
+        int dataId = 0;
+        try {
+            categoriaId = rsCategoria.getString("idCategoria");
+            corId = rsCor.getString("idCor");
+            nomeId = Integer.parseInt(rsNome.getString("idNome")); 
+            dataId = Integer.parseInt(rsData.getString("idData"));
+        } catch (SQLException ex) {
+            Logger.getLogger(CadastrarItem.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
-       // SGBD.inserirItemBd("INSERT INTO `findesk`.`nomeItem` "
-        //        + "(`nome`, `idCategoria`)"
-          //      + " VALUES (\""+nome+"\", select idCategoria from nomeItem where nomeCat = \""+categoria+"\" );");
-        
-           SGBD.inserirItemBd("INSERT INTO item (idItem, idCor, idDoc, idNome, idAdm, idDataEntrada, idDataSaida, retiradoItem, descricaoItem)"
-                   + " VALUES (8, '#000000', 0, '2', 1, 1, 1, 0, 'Nootebook Gamer');");
-           JOptionPane.showMessageDialog(null,"Item cadastrado com sucesso!");
-           
-        SGBD.fecharConexao();
-       
-/*
-       Item novoItem = new Item();
-       novoItem.setCor(jComboBoxCor.getSelectedItem().toString());
-       novoItem.setDescricaoItem(jTextFieldNomeDescrição.getText());
-       int id = SGBD.consultarIdNomeItem("Documentos");
-       novoItem.setIdNome(id);
-       novoItem.setIdDoc(Integer.parseInt(jTextFieldDoc.getText()));
-       novoItem.setNomeItem(jTextFieldNomeItem1.getText());
-       
-       SGBD.getConexaoMySQL();
-       SGBD.inserirItemBd(novoItem);
-       SGBD.fecharConexao();
-        */
-        
-       
+       //if (rsNome == null) {
+       //     mybd.inserirItemBd("Insert into nomeitem (nome, idCategoria) "
+       //             + "Values(\"" + nome + "\", \"" + categoriaId + "\";)");
+       // }
+        mybd.alterarItemBd("insert into item (idCor, idDoc, idNome, idAdm, idDataEntrada, idDataSaida, retiradoItem, fotoItem, descricaoItem )"
+                + "values(\"" + corId + "\", 0, \""+nomeId+"\", 1, \""+dataId+"\" , 1, 0, null, \""+descricao+"\" );");
+        JOptionPane.showMessageDialog(null, ""+nome+" cadastrado com sucesso!!");
+        mybd.fecharConexao();
+        janelaControl.dispose();
+        TelaPrincipal telaPrincipal = new TelaPrincipal();
+        telaPrincipal.mostrar();
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
-
-    private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
-       janelaControl.dispose();
-       TelaPrincipal telaPrincipal = new TelaPrincipal();
-       telaPrincipal.mostrar();
-    }//GEN-LAST:event_jButtonVoltarActionPerformed
 
     private void jComboBoxCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCategoriaActionPerformed
         Object item = jComboBoxCategoria.getSelectedItem();
         String itemName = item.toString();
-        popularComboBoxNome("select distinct nomeItem.nome " +
-                            "from item, nomeItem, categoria " +
-                            "where nomeItem.idNome = item.idNome and " +
-                                    "nomeItem.idCategoria = categoria.idCategoria and " +
-                                    "categoria.nomeCat like \""
-                                    + itemName
-                                     + "\";");
-      
-       // jComboBoxNome.setModel(defaultComboBoxNome);
+        popularComboBoxNome("select distinct nomeItem.nome "
+                + "from item, nomeItem, categoria "
+                + "where nomeItem.idNome = item.idNome and "
+                + "nomeItem.idCategoria = categoria.idCategoria and "
+                + "categoria.nomeCat like \""
+                + itemName
+                + "\";");
+
+        // jComboBoxNome.setModel(defaultComboBoxNome);
     }//GEN-LAST:event_jComboBoxCategoriaActionPerformed
 
     private void jComboBoxDiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxDiaActionPerformed
@@ -316,68 +353,90 @@ public class CadastrarItem extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxMesActionPerformed
 
-    private void jTextFieldDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDocActionPerformed
+    private void jTextFieldDocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDocumentoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldDocActionPerformed
+    }//GEN-LAST:event_jTextFieldDocumentoActionPerformed
 
     private void jComboBoxCorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxCorActionPerformed
 
-    private void jTextFieldNomeDescriçãoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeDescriçãoActionPerformed
+    private void jButtonVoltarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonVoltarMouseEntered
+        jButtonVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/VoltarAzul.png")));
+    }//GEN-LAST:event_jButtonVoltarMouseEntered
+
+    private void jButtonVoltarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonVoltarMouseExited
+        jButtonVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/VoltarPreto.png")));
+    }//GEN-LAST:event_jButtonVoltarMouseExited
+
+    private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
+        janelaControl.dispose();
+        TelaPrincipal telaPrincipal = new TelaPrincipal();
+        telaPrincipal.mostrar();
+    }//GEN-LAST:event_jButtonVoltarActionPerformed
+
+    private void jButtonFecharMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonFecharMouseEntered
+        jButtonFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/FecharAzul.png")));
+    }//GEN-LAST:event_jButtonFecharMouseEntered
+
+    private void jButtonFecharMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonFecharMouseExited
+        jButtonFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/FecharPreto.png")));
+    }//GEN-LAST:event_jButtonFecharMouseExited
+
+    private void jButtonFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFecharActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jButtonFecharActionPerformed
+
+    private void jButtonMinimizarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonMinimizarMouseEntered
+        jButtonMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/MinimizarAzul.png")));
+    }//GEN-LAST:event_jButtonMinimizarMouseEntered
+
+    private void jButtonMinimizarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonMinimizarMouseExited
+        jButtonMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/MinimizarPreto.png")));
+    }//GEN-LAST:event_jButtonMinimizarMouseExited
+
+    private void jButtonMinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMinimizarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldNomeDescriçãoActionPerformed
-    
-     public void popular(JLabel label, String imagem){
-        //atribui imagem nos labels desejados
-        
-        ImageIcon icon = new ImageIcon(imagem, "imagem");
-        Image img = icon.getImage();
-        Image nova = getScaledImage(img, 200,150);
-        icon.setImage(nova);
-        label.setIcon(icon); 
-    }
-      
-    private Image getScaledImage(Image srcImg, int w, int h){
-        //Redimensiona a imagem para o tamanho desejado
-        BufferedImage resizedImg = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
-        Graphics2D g2 = resizedImg.createGraphics();
+    }//GEN-LAST:event_jButtonMinimizarActionPerformed
 
-        g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-        g2.drawImage(srcImg, 0, 0, w, h, null);
-        g2.dispose();
+    private void jButtonCadastrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonCadastrarMouseEntered
+        jButtonCadastrar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(000, 191, 255)));
+        jButtonCadastrar.setForeground(new java.awt.Color(000, 191, 255));
+    }//GEN-LAST:event_jButtonCadastrarMouseEntered
 
-        return resizedImg;
-    }
-    
-    private static void popularComboBoxNome(String sql){
+    private void jButtonCadastrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonCadastrarMouseExited
+        jButtonCadastrar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButtonCadastrar.setForeground(new java.awt.Color(0, 0, 0));
+    }//GEN-LAST:event_jButtonCadastrarMouseExited
+
+    private static void popularComboBoxNome(String sql) {
         SGBD mybd = new SGBD();
-        
+
         mybd.getConexaoMySQL();
         ArrayList strList = new ArrayList();
         System.out.println(mybd.statusConection());
-        
-        
+
         //"SELECT nome FROM nome, categoria WHERE nomeCat = 'Eletrônicos' and categoria.`idCategoria` = nome.`idCategoria`")
         ResultSet rs = mybd.consultarItemBd(sql);
-       
+
         String nome;
         strList.add("Nome");
         try {
             rs.beforeFirst();
-            while(rs.next()){
+            while (rs.next()) {
                 nome = rs.getString("nome");
                 strList.add(nome);
             }
         } catch (SQLException ex) {
             Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         defaultComboBoxNome = new DefaultComboBoxModel(strList.toArray());
-        
+
         mybd.fecharConexao();
-        
+
     }
+
     /**
      * @param args the command line arguments
      */
@@ -406,7 +465,6 @@ public class CadastrarItem extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 CadastrarItem cadastrarItem = new CadastrarItem();
@@ -415,279 +473,210 @@ public class CadastrarItem extends javax.swing.JFrame {
             }
         });
     }
-    
-     private static void popularComboBoxCategoria(){
+
+    private static void popularComboBoxCategoria() {
         SGBD mybd = new SGBD();
-        
+
         mybd.getConexaoMySQL();
         ArrayList strList = new ArrayList();
         System.out.println(mybd.statusConection());
-        
-        
-        
-        ResultSet rs = mybd.consultarItemBd("select distinct categoria.nomeCat " +
-                                                "from nomeItem, item, categoria " +
-                                                "where item.idNome = nomeItem.idNome and " +
-                                                "nomeItem.idCategoria = categoria.idCategoria;");
-       
+
+        ResultSet rs = mybd.consultarItemBd("select distinct categoria.nomeCat "
+                + "from nomeItem, item, categoria "
+                + "where item.idNome = nomeItem.idNome and "
+                + "nomeItem.idCategoria = categoria.idCategoria;");
+
         String nome;
         strList.add("Todas");
         try {
             rs.beforeFirst();
-            while(rs.next()){
+            while (rs.next()) {
                 nome = rs.getString("nomeCat");
                 strList.add(nome);
             }
         } catch (SQLException ex) {
             Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         defaultComboBoxCategoria = new DefaultComboBoxModel(strList.toArray());
-        
-        
+
         mybd.fecharConexao();
-        
+
     }
-     private static void popularComboBoxDia(){
+
+    private static void popularComboBoxDia() {
         SGBD mybd = new SGBD();
-        
+
         mybd.getConexaoMySQL();
         ArrayList strList = new ArrayList();
         System.out.println(mybd.statusConection());
-        
-        
-        
+
         ResultSet rs = mybd.consultarItemBd("SELECT * FROM dia");
-       
+
         String nome;
         strList.add("Dia");
-           try {
+        try {
             rs.isFirst();
-            while(rs.next()){
+            while (rs.next()) {
                 nome = rs.getString(1);
                 strList.add(nome);
             }
         } catch (SQLException ex) {
             Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         defaultComboBoxDia = new DefaultComboBoxModel(strList.toArray());
-        
-        
-        
+
         mybd.fecharConexao();
-        
-        
+
     }
-    
-    private static void popularComboBoxMes(){
+
+    private static void popularComboBoxMes() {
         //"127.0.0.1:3307", "findesk", "client", "client123456"
         SGBD mybd = new SGBD();
-        
+
         mybd.getConexaoMySQL();
         ArrayList strList = new ArrayList();
         System.out.println(mybd.statusConection());
-        
-        
-        
+
         ResultSet rs = mybd.consultarItemBd("SELECT * FROM mes");
-       
+
         String nome;
         strList.add("Mês");
-         try {
+        try {
             rs.isFirst();
-            while(rs.next()){
+            while (rs.next()) {
                 nome = rs.getString(1);
                 strList.add(nome);
             }
         } catch (SQLException ex) {
             Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
+
         defaultComboBoxMes = new DefaultComboBoxModel(strList.toArray());
-        
-        
+
         mybd.fecharConexao();
-        
+
     }
-    
-    private static void popularComboBoxAno(){
+
+    private static void popularComboBoxAno() {
         SGBD mybd = new SGBD();
-        
+
         mybd.getConexaoMySQL();
         ArrayList strList = new ArrayList();
         System.out.println(mybd.statusConection());
-        
-        
-        
+
         ResultSet rs = mybd.consultarItemBd("SELECT * FROM ano");
-       
+
         String nome;
         strList.add("Ano");
-           try {
+        try {
             rs.isFirst();
-            while(rs.next()){
+            while (rs.next()) {
                 nome = rs.getString(1);
                 strList.add(nome);
             }
         } catch (SQLException ex) {
             Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         defaultComboBoxAno = new DefaultComboBoxModel(strList.toArray());
-       
-        
-        
+
         mybd.fecharConexao();
-        
+
     }
-     private static void popularComboBoxCor(){
+
+    private static void popularComboBoxCor() {
         SGBD mybd = new SGBD();
-        
+
         mybd.getConexaoMySQL();
         ArrayList strList = new ArrayList();
         System.out.println(mybd.statusConection());
-        
-        
-        
-        ResultSet rs = mybd.consultarItemBd("select distinct cor.nomeCor " +
-                                            "from cor, item " +
-                                            "where item.idCor = cor.idCor;");
-       
+
+        ResultSet rs = mybd.consultarItemBd("select nomeCor from cor");
+
         String nome;
         strList.add("Cor");
-           try {
+        try {
             rs.isFirst();
-            while(rs.next()){
+            while (rs.next()) {
                 nome = rs.getString(1);
                 strList.add(nome);
             }
         } catch (SQLException ex) {
             Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
+
         defaultComboBoxCor = new DefaultComboBoxModel(strList.toArray());
-        
-        
-        
+
         mybd.fecharConexao();
-        
+
     }
-    
-    private static void popularComboBoxNumero(){
+
+    private static void popularComboBoxNumero() {
         SGBD mybd = new SGBD();
-        
+
         mybd.getConexaoMySQL();
         ArrayList strList = new ArrayList();
         System.out.println(mybd.statusConection());
-        
-        
-        
-        ResultSet rs = mybd.consultarItemBd("SELECT item.idDoc " +
-                                "FROM item, nomeItem, categoria " +
-                                "WHERE item.idNome  = nomeItem.idNome and " +
-                                        "nomeItem.idCategoria  = categoria.idCategoria and  " +
-                                        "categoria.idCategoria like \"e\";");
-       
+
+        ResultSet rs = mybd.consultarItemBd("SELECT item.idDoc "
+                + "FROM item, nomeItem, categoria "
+                + "WHERE item.idNome  = nomeItem.idNome and "
+                + "nomeItem.idCategoria  = categoria.idCategoria and  "
+                + "categoria.idCategoria like \"e\";");
+
         int numero;
         strList.add("Selecione");
-        
-        
-        defaultComboBoxNumero= new DefaultComboBoxModel(strList.toArray());
-        
-        
-        
+
+        defaultComboBoxNumero = new DefaultComboBoxModel(strList.toArray());
+
         mybd.fecharConexao();
-        
+
     }
-     private static void cadastroItem(String cor,int iddoc,int dia, int mes, int ano,String descricao){
+
+    private static void dataEntrada(int dia, int mes, int ano) {
         SGBD mybd = new SGBD();
-        
+
         mybd.getConexaoMySQL();
         ArrayList strList = new ArrayList();
         System.out.println(mybd.statusConection());
-        
-        
-        
-        ResultSet rs = mybd.consultarItemBd("INSERT INTO `findesk`.`item` "
-                + "( `idCor`, `idDoc`, idNome`, `idAdm`, `idDataEntrada`, `idDataSaida`,"
-                + " `retiradoItem`, `fotoItem`, `descricaoItem`)"
-                + " VALUES (\""+cor+"\",\""+iddoc+"\", 1,\"SELECT idDataEntrada from dataEntrada\"\n" +
-"                + \"where idData = (select idData from data\"\n" +
-"                + \" where idDia = \\\"\"+dia+\"\\\" AND idMes = \\\"\"+mes+\"\\\" AND idAno = \\\"\"+ano+\"\\\")  \"\n" +
-"                + \"(`nome`, `idCategoria`)\"\n" +
-"                + \"  );\", 0, 0,"
-                + ", '\""+descricao+"\"');");
-        
-       
-        
-        mybd.fecharConexao();
-        
-    }
-     
-      private static void cadastroCat(String nome, String Categoria){
-        SGBD mybd = new SGBD();
-        
-        mybd.getConexaoMySQL();
-        ArrayList strList = new ArrayList();
-        System.out.println(mybd.statusConection());
-        
-        
-        
-        ResultSet rs = mybd.consultarItemBd("INSERT INTO `findesk`.`nomeItem` "
-                + "(`nome`, `idCategoria`)"
-                + " VALUES (\""+nome+"\", select idCategoria from nomeItem where nomeCat = \""+Categoria+"\" );");
-        
-       
-        
-        mybd.fecharConexao();
-        
-    }
-     
-         private static void dataEntrada(int dia, int mes, int ano){
-        SGBD mybd = new SGBD();
-        
-        mybd.getConexaoMySQL();
-        ArrayList strList = new ArrayList();
-        System.out.println(mybd.statusConection());
-        
-        
-        
+
         ResultSet rs = mybd.consultarItemBd("SELECT idDataEntrada from dataEntrada"
                 + "where idData = (select idData from data"
-                + " where idDia = \""+dia+"\" AND idMes = \""+mes+"\" AND idAno = \""+ano+"\")  "
+                + " where idDia = \"" + dia + "\" AND idMes = \"" + mes + "\" AND idAno = \"" + ano + "\")  "
                 + "(`nome`, `idCategoria`)"
                 + "  );");
-        
-       
-        
+
         mybd.fecharConexao();
-        
+
     }
-      
-    
-   
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCadastrar;
+    private javax.swing.JButton jButtonFechar;
+    private javax.swing.JButton jButtonMinimizar;
     private javax.swing.JButton jButtonVoltar;
     private javax.swing.JComboBox<String> jComboBoxAno;
     private javax.swing.JComboBox<String> jComboBoxCategoria;
     private javax.swing.JComboBox<String> jComboBoxCor;
     private javax.swing.JComboBox<String> jComboBoxDia;
     private javax.swing.JComboBox<String> jComboBoxMes;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabelCadastrar1;
     private javax.swing.JLabel jLabelCategoria;
-    private javax.swing.JLabel jLabelCategoria1;
-    private javax.swing.JLabel jLabelDataDescrição;
-    private javax.swing.JLabel jLabelDataPerda1;
+    private javax.swing.JLabel jLabelCor;
+    private javax.swing.JLabel jLabelDataDescricao;
+    private javax.swing.JLabel jLabelDataPerda;
     private javax.swing.JLabel jLabelDoc;
-    private javax.swing.JLabel jLabelNomeItem1;
+    private javax.swing.JLabel jLabelFindesk;
+    private javax.swing.JLabel jLabelNomeItem;
     private javax.swing.JPanel jPanelFundo;
-    private javax.swing.JTextField jTextFieldDoc;
-    private javax.swing.JTextField jTextFieldNomeDescrição;
-    private javax.swing.JTextField jTextFieldNomeItem1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JTextArea jTextAreaDescricao;
+    private javax.swing.JTextField jTextFieldDocumento;
+    private javax.swing.JTextField jTextFieldNomeItem;
     // End of variables declaration//GEN-END:variables
 
 }

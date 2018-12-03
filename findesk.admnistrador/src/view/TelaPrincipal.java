@@ -84,6 +84,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jButtonBuscar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonBuscar.setText("BUSCAR");
         jButtonBuscar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButtonBuscar.setContentAreaFilled(false);
         jButtonBuscar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 jButtonBuscarMouseMoved(evt);
@@ -109,6 +110,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jButtonCadastrarItem.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonCadastrarItem.setText("CADASTRAR ITEM");
         jButtonCadastrarItem.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButtonCadastrarItem.setContentAreaFilled(false);
         jButtonCadastrarItem.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 jButtonCadastrarItemMouseMoved(evt);
@@ -131,6 +133,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jButtonCadastrarItem.setBounds(280, 290, 230, 60);
 
         jButtonFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/FecharPreto.png"))); // NOI18N
+        jButtonFechar.setToolTipText("Fechar");
         jButtonFechar.setBorderPainted(false);
         jButtonFechar.setContentAreaFilled(false);
         jButtonFechar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -150,6 +153,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jButtonFechar.setBounds(760, 0, 20, 30);
 
         jButtonMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/MinimizarPreto.png"))); // NOI18N
+        jButtonMinimizar.setToolTipText("Minimizar");
         jButtonMinimizar.setBorderPainted(false);
         jButtonMinimizar.setContentAreaFilled(false);
         jButtonMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -172,6 +176,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jButtonEstatistica.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonEstatistica.setText("ESTATÍSTICAS");
         jButtonEstatistica.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButtonEstatistica.setContentAreaFilled(false);
         jButtonEstatistica.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 jButtonEstatisticaMouseMoved(evt);
