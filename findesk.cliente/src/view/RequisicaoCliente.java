@@ -7,6 +7,7 @@ package view;
 
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Point;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -29,6 +30,7 @@ public class RequisicaoCliente extends javax.swing.JFrame {
     private static RequisicaoCliente janelaControl;
     private static BuscaUser janelaControlBusca;
     private Item item;
+    private static Point point = new Point();
 
     /**
      * Creates new form RequisicaoCliente
@@ -76,13 +78,25 @@ public class RequisicaoCliente extends javax.swing.JFrame {
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jPanel1MouseDragged(evt);
+            }
+        });
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanel1MousePressed(evt);
+            }
+        });
         jPanel1.setLayout(null);
 
-        jLabelLogoFindesk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/FINDESK_LOGO3_PNG.png"))); // NOI18N
+        jLabelLogoFindesk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/FINDESK_LOGO3_Azul_PNG.png"))); // NOI18N
         jPanel1.add(jLabelLogoFindesk);
         jLabelLogoFindesk.setBounds(-40, -10, 350, 110);
 
+        JButtonConfirmar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/selecionadoPreto.png"))); // NOI18N
         JButtonConfirmar.setText("Confirmar");
+        JButtonConfirmar.setContentAreaFilled(false);
         JButtonConfirmar.setOpaque(false);
         JButtonConfirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,7 +104,7 @@ public class RequisicaoCliente extends javax.swing.JFrame {
             }
         });
         jPanel1.add(JButtonConfirmar);
-        JButtonConfirmar.setBounds(490, 520, 100, 40);
+        JButtonConfirmar.setBounds(600, 520, 130, 30);
 
         jLabelTitulo.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabelTitulo.setForeground(new java.awt.Color(0, 0, 0));
@@ -99,6 +113,8 @@ public class RequisicaoCliente extends javax.swing.JFrame {
         jLabelTitulo.setBounds(20, 120, 230, 60);
 
         jButtonVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/VoltarPreto.png"))); // NOI18N
+        jButtonVoltar.setText("Voltar");
+        jButtonVoltar.setContentAreaFilled(false);
         jButtonVoltar.setOpaque(false);
         jButtonVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,7 +122,7 @@ public class RequisicaoCliente extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButtonVoltar);
-        jButtonVoltar.setBounds(210, 520, 100, 32);
+        jButtonVoltar.setBounds(10, 520, 130, 30);
 
         jTextDescricao.setEditable(false);
         jTextDescricao.setColumns(20);
@@ -152,6 +168,12 @@ public class RequisicaoCliente extends javax.swing.JFrame {
         jButtonMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButtonMinimizarMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButtonMinimizarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButtonMinimizarMouseExited(evt);
             }
         });
         jPanel1.add(jButtonMinimizar);
@@ -229,6 +251,24 @@ public class RequisicaoCliente extends javax.swing.JFrame {
     private void jButtonFecharMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonFecharMouseExited
         jButtonFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/FecharPreto.png")));
     }//GEN-LAST:event_jButtonFecharMouseExited
+
+    private void jButtonMinimizarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonMinimizarMouseEntered
+        jButtonMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/MinimizarAzul.png")));
+    }//GEN-LAST:event_jButtonMinimizarMouseEntered
+
+    private void jButtonMinimizarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonMinimizarMouseExited
+        jButtonMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/MinimizarPreto.png")));
+    }//GEN-LAST:event_jButtonMinimizarMouseExited
+
+    private void jPanel1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseDragged
+        Point p = janelaControl.getLocation();
+        janelaControl.setLocation(p.x + evt.getX() - point.x, p.y + evt.getY() - point.y);
+    }//GEN-LAST:event_jPanel1MouseDragged
+
+    private void jPanel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MousePressed
+        point.x = evt.getX();
+        point.y = evt.getY();
+    }//GEN-LAST:event_jPanel1MousePressed
 
     /**
      * @param args the command line arguments
