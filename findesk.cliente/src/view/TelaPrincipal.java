@@ -16,6 +16,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import model.SGBD;
 import view.BuscaUser;
+import java.awt.Point;
+import model.*;
 
 
 /**
@@ -72,10 +74,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jComboBoxNome = new javax.swing.JComboBox<>();
         jLabelCor = new javax.swing.JLabel();
         jLabelNome = new javax.swing.JLabel();
-        jLabelTitulo1 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabelLogoFindesk = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
+        jLabel1 = new javax.swing.JLabel();
+        jButtonFechar = new javax.swing.JButton();
+        jButtonMinimizar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Findesk");
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(800, 600));
         setResizable(false);
         setSize(new java.awt.Dimension(800, 600));
         getContentPane().setLayout(null);
@@ -87,13 +95,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jButtonConfirmar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonConfirmar.setText("Vai!");
         jButtonConfirmar.setContentAreaFilled(false);
+        jButtonConfirmar.setOpaque(true);
         jButtonConfirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonConfirmarActionPerformed(evt);
             }
         });
         jPanelFundo.add(jButtonConfirmar);
-        jButtonConfirmar.setBounds(340, 450, 120, 70);
+        jButtonConfirmar.setBounds(350, 400, 120, 70);
 
         jComboBoxCategoria.setModel(defaultComboBoxCategoria);
         jComboBoxCategoria.setSelectedItem(jComboBoxCategoria);
@@ -109,7 +118,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabelTitulo.setForeground(new java.awt.Color(0, 0, 0));
         jLabelTitulo.setText("Buscar");
         jPanelFundo.add(jLabelTitulo);
-        jLabelTitulo.setBounds(350, 110, 120, 70);
+        jLabelTitulo.setBounds(350, 120, 120, 70);
 
         jLabelComboBoxCategoria.setForeground(new java.awt.Color(0, 0, 0));
         jLabelComboBoxCategoria.setText("*Selecionar Categoria");
@@ -177,18 +186,53 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabelNome.setText("*Nome do item");
         jPanelFundo.add(jLabelNome);
         jLabelNome.setBounds(210, 290, 110, 16);
+        jPanelFundo.add(jSeparator1);
+        jSeparator1.setBounds(0, 110, 800, 20);
 
-        jLabelTitulo1.setBackground(new java.awt.Color(0, 0, 0));
-        jLabelTitulo1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jLabelTitulo1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabelTitulo1.setText("Buscar");
-        jPanelFundo.add(jLabelTitulo1);
-        jLabelTitulo1.setBounds(350, 110, 120, 70);
+        jLabelLogoFindesk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/FINDESK_LOGO3_PNG.png"))); // NOI18N
+        jPanelFundo.add(jLabelLogoFindesk);
+        jLabelLogoFindesk.setBounds(-40, -10, 350, 110);
+
+        jSeparator2.setForeground(new java.awt.Color(204, 204, 204));
+        jPanelFundo.add(jSeparator2);
+        jSeparator2.setBounds(0, 510, 800, 30);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/SWS3.png"))); // NOI18N
+        jPanelFundo.add(jLabel1);
+        jLabel1.setBounds(690, 510, 170, 220);
+
+        jButtonFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/FecharPreto.png"))); // NOI18N
+        jButtonFechar.setBorderPainted(false);
+        jButtonFechar.setContentAreaFilled(false);
+        jButtonFechar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonFecharMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButtonFecharMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButtonFecharMouseExited(evt);
+            }
+        });
+        jPanelFundo.add(jButtonFechar);
+        jButtonFechar.setBounds(760, 0, 20, 30);
+
+        jButtonMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/MinimizarPreto.png"))); // NOI18N
+        jButtonMinimizar.setBorderPainted(false);
+        jButtonMinimizar.setContentAreaFilled(false);
+        jButtonMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonMinimizarMouseClicked(evt);
+            }
+        });
+        jPanelFundo.add(jButtonMinimizar);
+        jButtonMinimizar.setBounds(700, 0, 40, 30);
 
         getContentPane().add(jPanelFundo);
-        jPanelFundo.setBounds(0, 0, 790, 560);
+        jPanelFundo.setBounds(0, 0, 800, 600);
 
-        setSize(new java.awt.Dimension(800, 600));
+        pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -322,6 +366,22 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void jComboBoxNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxNomeActionPerformed
         if(estaMarcado("Nome")) showComponents("Cor");
     }//GEN-LAST:event_jComboBoxNomeActionPerformed
+
+    private void jButtonFecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonFecharMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_jButtonFecharMouseClicked
+
+    private void jButtonMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonMinimizarMouseClicked
+        janelaControl.setExtendedState(janelaControl.ICONIFIED);
+    }//GEN-LAST:event_jButtonMinimizarMouseClicked
+
+    private void jButtonFecharMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonFecharMouseEntered
+        jButtonFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/FecharAzul.png")));
+    }//GEN-LAST:event_jButtonFecharMouseEntered
+
+    private void jButtonFecharMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonFecharMouseExited
+        jButtonFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/FecharPreto.png")));
+    }//GEN-LAST:event_jButtonFecharMouseExited
 
     /**
      * @param args the command line arguments
@@ -669,18 +729,23 @@ public class TelaPrincipal extends javax.swing.JFrame {
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonConfirmar;
+    private javax.swing.JButton jButtonFechar;
+    private javax.swing.JButton jButtonMinimizar;
     private javax.swing.JComboBox<String> jComboBoxAnoInicial;
     private javax.swing.JComboBox<String> jComboBoxCategoria;
     private javax.swing.JComboBox<String> jComboBoxCor;
     private javax.swing.JComboBox<String> jComboBoxDiaInicial;
     private javax.swing.JComboBox<String> jComboBoxMesInicial;
     private javax.swing.JComboBox<String> jComboBoxNome;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelComboBoxCategoria;
     private javax.swing.JLabel jLabelCor;
     private javax.swing.JLabel jLabelDataInicial;
+    private javax.swing.JLabel jLabelLogoFindesk;
     private javax.swing.JLabel jLabelNome;
     private javax.swing.JLabel jLabelTitulo;
-    private javax.swing.JLabel jLabelTitulo1;
     private javax.swing.JPanel jPanelFundo;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     // End of variables declaration//GEN-END:variables
 }

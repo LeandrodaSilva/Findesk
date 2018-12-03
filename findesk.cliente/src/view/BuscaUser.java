@@ -56,35 +56,27 @@ public class BuscaUser extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButtonVoltar = new javax.swing.JButton();
-        jLabelTitulo = new javax.swing.JLabel();
         jScrollPaneResultado = new javax.swing.JScrollPane();
         jTableResultado = new javax.swing.JTable();
-        jButtonConfirmar = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabelTitulo = new javax.swing.JLabel();
         jLabelFoto = new javax.swing.JLabel();
-        jLabelFundo = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabelLogoFindesk = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
+        jButtonConfirmar = new javax.swing.JButton();
+        jButtonVoltar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jButtonMinimizar = new javax.swing.JButton();
+        jButtonFechar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAutoRequestFocus(false);
-        setMaximumSize(new java.awt.Dimension(800, 600));
+        setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(800, 600));
         setResizable(false);
         setSize(new java.awt.Dimension(800, 600));
         getContentPane().setLayout(null);
-
-        jButtonVoltar.setText("Voltar");
-        jButtonVoltar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonVoltarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButtonVoltar);
-        jButtonVoltar.setBounds(70, 530, 61, 23);
-
-        jLabelTitulo.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jLabelTitulo.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelTitulo.setText("Busca ");
-        getContentPane().add(jLabelTitulo);
-        jLabelTitulo.setBounds(340, 30, 110, 70);
 
         jTableResultado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -117,7 +109,31 @@ public class BuscaUser extends javax.swing.JFrame {
         jScrollPaneResultado.setViewportView(jTableResultado);
 
         getContentPane().add(jScrollPaneResultado);
-        jScrollPaneResultado.setBounds(60, 312, 680, 190);
+        jScrollPaneResultado.setBounds(0, 312, 800, 190);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(null);
+
+        jLabelTitulo.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabelTitulo.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelTitulo.setText("Busca ");
+        jPanel1.add(jLabelTitulo);
+        jLabelTitulo.setBounds(20, 120, 110, 70);
+
+        jLabelFoto.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelFoto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel1.add(jLabelFoto);
+        jLabelFoto.setBounds(240, 120, 310, 180);
+        jPanel1.add(jSeparator1);
+        jSeparator1.setBounds(0, 110, 800, 20);
+
+        jLabelLogoFindesk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/FINDESK_LOGO3_PNG.png"))); // NOI18N
+        jPanel1.add(jLabelLogoFindesk);
+        jLabelLogoFindesk.setBounds(-40, -10, 350, 110);
+
+        jSeparator2.setForeground(new java.awt.Color(204, 204, 204));
+        jPanel1.add(jSeparator2);
+        jSeparator2.setBounds(0, 510, 800, 30);
 
         jButtonConfirmar.setText("Confirmar");
         jButtonConfirmar.addActionListener(new java.awt.event.ActionListener() {
@@ -125,21 +141,55 @@ public class BuscaUser extends javax.swing.JFrame {
                 jButtonConfirmarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonConfirmar);
-        jButtonConfirmar.setBounds(640, 530, 100, 23);
+        jPanel1.add(jButtonConfirmar);
+        jButtonConfirmar.setBounds(470, 530, 100, 32);
 
-        jLabelFoto.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelFoto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        getContentPane().add(jLabelFoto);
-        jLabelFoto.setBounds(210, 100, 370, 200);
+        jButtonVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/VoltarPreto.png"))); // NOI18N
+        jButtonVoltar.setText("Voltar");
+        jButtonVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVoltarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButtonVoltar);
+        jButtonVoltar.setBounds(250, 520, 100, 42);
 
-        jLabelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Fundo2.png"))); // NOI18N
-        jLabelFundo.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Fundo2.png"))); // NOI18N
-        jLabelFundo.setEnabled(false);
-        getContentPane().add(jLabelFundo);
-        jLabelFundo.setBounds(0, 0, 790, 600);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/SWS3.png"))); // NOI18N
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(690, 510, 170, 220);
 
-        setSize(new java.awt.Dimension(800, 600));
+        jButtonMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/MinimizarPreto.png"))); // NOI18N
+        jButtonMinimizar.setBorderPainted(false);
+        jButtonMinimizar.setContentAreaFilled(false);
+        jButtonMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonMinimizarMouseClicked(evt);
+            }
+        });
+        jPanel1.add(jButtonMinimizar);
+        jButtonMinimizar.setBounds(700, 0, 40, 30);
+
+        jButtonFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/FecharPreto.png"))); // NOI18N
+        jButtonFechar.setBorderPainted(false);
+        jButtonFechar.setContentAreaFilled(false);
+        jButtonFechar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonFecharMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButtonFecharMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButtonFecharMouseExited(evt);
+            }
+        });
+        jPanel1.add(jButtonFechar);
+        jButtonFechar.setBounds(760, 0, 20, 30);
+
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(0, 0, 800, 600);
+
+        pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -166,6 +216,22 @@ public class BuscaUser extends javax.swing.JFrame {
         }
         popular(jLabelFoto, itemSelecionado.getFotoItem());
     }//GEN-LAST:event_jTableResultadoMouseClicked
+
+    private void jButtonMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonMinimizarMouseClicked
+        janelaControl.setExtendedState(janelaControl.ICONIFIED);
+    }//GEN-LAST:event_jButtonMinimizarMouseClicked
+
+    private void jButtonFecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonFecharMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_jButtonFecharMouseClicked
+
+    private void jButtonFecharMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonFecharMouseEntered
+        jButtonFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/FecharAzul.png")));
+    }//GEN-LAST:event_jButtonFecharMouseEntered
+
+    private void jButtonFecharMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonFecharMouseExited
+        jButtonFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/FecharPreto.png")));
+    }//GEN-LAST:event_jButtonFecharMouseExited
 
     
     public void popular(JLabel label, String imagem){
@@ -327,11 +393,17 @@ public class BuscaUser extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonConfirmar;
+    private javax.swing.JButton jButtonFechar;
+    private javax.swing.JButton jButtonMinimizar;
     private javax.swing.JButton jButtonVoltar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelFoto;
-    private javax.swing.JLabel jLabelFundo;
+    private javax.swing.JLabel jLabelLogoFindesk;
     private javax.swing.JLabel jLabelTitulo;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPaneResultado;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTable jTableResultado;
     // End of variables declaration//GEN-END:variables
 }
