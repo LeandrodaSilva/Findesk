@@ -220,10 +220,47 @@ public class SGBD
                                   + "where categoria.nomeCat like \""+nomeCategoria+"\" and nomeitem.idCategoria = categoria.idCategoria and item.idNome = nomeitem.idNome;");
             rs.first();
             id = (int) rs.getInt("idNome");
+            System.out.println("consultarIdNomeItem -> "+id);
         } catch (SQLException ex) {
             Logger.getLogger(SGBD.class.getName()).log(Level.SEVERE, null, ex);
         }
         return id;
+    }
+    
+    public static Boolean consultarNomeItem(String nomeItem, String nomeCategoria){
+        Statement stt;
+        ResultSet rs = null;
+        String nome = "";
+        try {
+            stt = connection.createStatement(); 
+            rs = stt.executeQuery("select distinct nomeitem.nome from nomeitem, categoria "
+                                  + "where categoria.nomeCat like \""+nomeCategoria+"\" and "
+                                  + "nomeitem.idCategoria = categoria.idCategoria and item.idNome = nomeitem.idNome and nomeitem like "+nomeItem+";");
+            rs.first();
+            nome = (String) rs.getString("nome");
+            System.out.println("consultarNomeItem -> "+nome);
+            if(!nome.equals("")) return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(SGBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+    
+    public static String consultarIdCategoria(String nomeCategoria){
+        Statement stt;
+        ResultSet rs = null;
+        String nome = "";
+        try {
+            stt = connection.createStatement(); 
+            rs = stt.executeQuery("SELECT distinct idCategoria FROM categoria where nomeCat like \""+nomeCategoria+"\";");
+            rs.first();
+            nome = (String) rs.getString("idCategoria");
+            System.out.println("consultarIdCategoria -> "+nome);
+            return nome;
+        } catch (SQLException ex) {
+            Logger.getLogger(SGBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return nome;
     }
     
     public static void inserirItemBd(Item novoItem){
@@ -233,12 +270,26 @@ public class SGBD
             stt = connection.createStatement(); 
             stt.executeUpdate("INSERT INTO item (idCor, idDoc, idNome, idAdm, idDataEntrada, idDataSaida, retiradoItem, fotoItem, descricaoItem) "
                             + "VALUES ('"+novoItem.getCor()+"', "+novoItem.getIdDoc()+",'"+novoItem.getIdNome()+"', "
-                                         + "1, "+novoItem.getIdDataEntrada()+", "+novoItem.getIdDataSaida()+", "
-                                         + ""+novoItem.getRetiradoItem()+", "+novoItem.getFotoItem()+", '"+novoItem.getDescricaoItem()+"');");
+                                         + "1, 1, 1, "
+                                         + ""+novoItem.getRetiradoItem()+", \" \", '"+novoItem.getDescricaoItem()+"');");
         } catch (SQLException ex) {
             Logger.getLogger(SGBD.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public static void inserirNomeItemBd(String nome, String idCategoria){
+      Statement stt;
+        
+        try {
+            stt = connection.createStatement(); 
+            stt.executeUpdate("INSERT INTO nomeitem (idNome, nome, idCategoria) VALUES (9 ,\""+nome+"\", \""+idCategoria+"\");");
+        } catch (SQLException ex) {
+            Logger.getLogger(SGBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
+    
     
     public static void alterarItemBd(String sql){
         Statement stt;
@@ -252,6 +303,30 @@ public class SGBD
     
     public static void excluirItemBd(){
         
+    }
+    
+    public static void retirarItem(int id, int opt){
+        Statement stt;
+        try {
+            stt = connection.createStatement();
+            String sql = "UPDATE findesk.item SET retiradoItem = '"+opt+"' WHERE (idItem = '"+id+"');";
+            System.out.println("Alterando: "+sql);
+            stt.executeUpdate(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(SGBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public static void retirarItem(){
+        Statement stt;
+        try {
+            stt = connection.createStatement();
+            String sql = "UPDATE findesk.item SET retiradoItem = '1' WHERE (idItem = '2');";
+            System.out.println("Alterando: "+sql);
+            stt.executeUpdate(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(SGBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     

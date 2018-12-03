@@ -196,7 +196,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         getContentPane().add(jPanelFundo);
         jPanelFundo.setBounds(0, 0, 800, 600);
 
-        setSize(new java.awt.Dimension(799, 583));
+        setSize(new java.awt.Dimension(800, 600));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
