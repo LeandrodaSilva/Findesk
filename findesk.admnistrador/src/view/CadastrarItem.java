@@ -12,6 +12,7 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -99,6 +101,9 @@ public class CadastrarItem extends javax.swing.JFrame {
         jButtonFechar = new javax.swing.JButton();
         jButtonMinimizar = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
+        jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
 
         jLabelCadastrar1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabelCadastrar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/FINDESK_LOGO3_Azul_PNG.png"))); // NOI18N
@@ -280,6 +285,28 @@ public class CadastrarItem extends javax.swing.JFrame {
         jPanelFundo.add(jSeparator2);
         jSeparator2.setBounds(0, 110, 800, 10);
 
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanelFundo.add(jButton1);
+        jButton1.setBounds(680, 320, 73, 23);
+
+        jLabel1.setText("jLabel1");
+        jPanelFundo.add(jLabel1);
+        jLabel1.setBounds(650, 350, 130, 120);
+
+        jTextField1.setText("jTextField1");
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+        jPanelFundo.add(jTextField1);
+        jTextField1.setBounds(680, 500, 59, 20);
+
         getContentPane().add(jPanelFundo);
         jPanelFundo.setBounds(0, 0, 800, 600);
 
@@ -408,6 +435,26 @@ public class CadastrarItem extends javax.swing.JFrame {
         jButtonCadastrar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButtonCadastrar.setForeground(new java.awt.Color(0, 0, 0));
     }//GEN-LAST:event_jButtonCadastrarMouseExited
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        JFileChooser arquivo = new JFileChooser();
+       arquivo.setDialogTitle("selecione uma foto");
+       arquivo.setFileSelectionMode(JFileChooser.FILES_ONLY);
+       int opc = arquivo.showOpenDialog(this);
+       if(opc == JFileChooser.APPROVE_OPTION){
+           File file = new File("Caminho");
+           file = arquivo.getSelectedFile();
+           String filename = file.getAbsolutePath();
+           jTextField1.setText(filename);
+           ImageIcon imagem = new ImageIcon(arquivo.getSelectedFile().getPath());
+           jLabel1.setIcon(new ImageIcon(imagem.getImage().getScaledInstance(jLabel1.getWidth(), jLabel1.getHeight(), Image.SCALE_DEFAULT)));
+           
+       }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     private static void popularComboBoxNome(String sql) {
         SGBD mybd = new SGBD();
@@ -654,6 +701,7 @@ public class CadastrarItem extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonCadastrar;
     private javax.swing.JButton jButtonFechar;
     private javax.swing.JButton jButtonMinimizar;
@@ -663,6 +711,7 @@ public class CadastrarItem extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBoxCor;
     private javax.swing.JComboBox<String> jComboBoxDia;
     private javax.swing.JComboBox<String> jComboBoxMes;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelCadastrar1;
     private javax.swing.JLabel jLabelCategoria;
     private javax.swing.JLabel jLabelCor;
@@ -675,6 +724,7 @@ public class CadastrarItem extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTextArea jTextAreaDescricao;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextFieldDocumento;
     private javax.swing.JTextField jTextFieldNomeItem;
     // End of variables declaration//GEN-END:variables
