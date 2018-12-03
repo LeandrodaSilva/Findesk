@@ -41,6 +41,13 @@ public class Requerimento extends javax.swing.JFrame {
         jButtonAceitar = new javax.swing.JButton();
         jButtonNegar = new javax.swing.JButton();
         jLabelNomeItem = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabelLogoFindesk = new javax.swing.JLabel();
+        jScrollPaneDescricao = new javax.swing.JScrollPane();
+        jTextDescricao = new javax.swing.JTextArea();
+        jLabelId = new javax.swing.JLabel();
+        jLabelCor = new javax.swing.JLabel();
+        jLabelData = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 600));
@@ -55,16 +62,17 @@ public class Requerimento extends javax.swing.JFrame {
         jLabelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelTitulo.setText("Requerimento");
         jPanelFundo.add(jLabelTitulo);
-        jLabelTitulo.setBounds(270, 90, 260, 70);
+        jLabelTitulo.setBounds(20, 120, 260, 70);
 
         jButtonAceitar.setText("Aceitar");
+        jButtonAceitar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonAceitar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonAceitarActionPerformed(evt);
             }
         });
         jPanelFundo.add(jButtonAceitar);
-        jButtonAceitar.setBounds(530, 510, 71, 32);
+        jButtonAceitar.setBounds(520, 510, 90, 32);
 
         jButtonNegar.setText("Negar");
         jButtonNegar.addActionListener(new java.awt.event.ActionListener() {
@@ -73,12 +81,40 @@ public class Requerimento extends javax.swing.JFrame {
             }
         });
         jPanelFundo.add(jButtonNegar);
-        jButtonNegar.setBounds(220, 510, 70, 32);
+        jButtonNegar.setBounds(220, 510, 90, 32);
 
         jLabelNomeItem.setForeground(new java.awt.Color(0, 0, 0));
         jLabelNomeItem.setText("Nome:");
         jPanelFundo.add(jLabelNomeItem);
-        jLabelNomeItem.setBounds(240, 270, 330, 16);
+        jLabelNomeItem.setBounds(30, 210, 330, 16);
+        jPanelFundo.add(jSeparator1);
+        jSeparator1.setBounds(0, 110, 800, 20);
+
+        jLabelLogoFindesk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/FINDESK_LOGO3_PNG.png"))); // NOI18N
+        jPanelFundo.add(jLabelLogoFindesk);
+        jLabelLogoFindesk.setBounds(-40, -10, 350, 110);
+
+        jTextDescricao.setColumns(20);
+        jTextDescricao.setRows(5);
+        jScrollPaneDescricao.setViewportView(jTextDescricao);
+
+        jPanelFundo.add(jScrollPaneDescricao);
+        jScrollPaneDescricao.setBounds(10, 310, 780, 160);
+
+        jLabelId.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelId.setText("ID:");
+        jPanelFundo.add(jLabelId);
+        jLabelId.setBounds(30, 190, 220, 16);
+
+        jLabelCor.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelCor.setText("Cor:");
+        jPanelFundo.add(jLabelCor);
+        jLabelCor.setBounds(30, 230, 220, 16);
+
+        jLabelData.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelData.setText("Data:");
+        jPanelFundo.add(jLabelData);
+        jLabelData.setBounds(30, 250, 210, 16);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -153,8 +189,15 @@ public class Requerimento extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAceitar;
     private javax.swing.JButton jButtonNegar;
+    private javax.swing.JLabel jLabelCor;
+    private javax.swing.JLabel jLabelData;
+    private javax.swing.JLabel jLabelId;
+    private javax.swing.JLabel jLabelLogoFindesk;
     private static javax.swing.JLabel jLabelNomeItem;
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JPanel jPanelFundo;
+    private javax.swing.JScrollPane jScrollPaneDescricao;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTextArea jTextDescricao;
     // End of variables declaration//GEN-END:variables
 }
