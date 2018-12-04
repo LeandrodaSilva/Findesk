@@ -172,6 +172,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jButtonMinimizar.setBorderPainted(false);
         jButtonMinimizar.setContentAreaFilled(false);
         jButtonMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonMinimizarMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jButtonMinimizarMouseEntered(evt);
             }
@@ -310,6 +313,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         Point p = janelaControl.getLocation();
         janelaControl.setLocation(p.x + evt.getX() - point.x, p.y + evt.getY() - point.y);
     }//GEN-LAST:event_jPanelFundoMouseDragged
+
+    private void jButtonMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonMinimizarMouseClicked
+        janelaControl.setExtendedState(janelaControl.ICONIFIED);
+    }//GEN-LAST:event_jButtonMinimizarMouseClicked
 
     /**
      */
