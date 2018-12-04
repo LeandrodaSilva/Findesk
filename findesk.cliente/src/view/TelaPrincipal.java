@@ -130,6 +130,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jComboBoxCategoria.setModel(defaultComboBoxCategoria);
         jComboBoxCategoria.setSelectedItem(jComboBoxCategoria);
+        jComboBoxCategoria.setToolTipText("Escolha a categoria ao qual seu item se encaixa.");
         jComboBoxCategoria.setAutoscrolls(true);
         jComboBoxCategoria.setBorder(null);
         jComboBoxCategoria.setRequestFocusEnabled(false);
@@ -524,9 +525,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         
     }
-   
     
-    
+
     public static void ocultar(){
          janelaControl.setVisible(false);
     }
@@ -635,7 +635,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         defaultComboBoxCategoria = new DefaultComboBoxModel(strList.toArray());
         jComboBoxCategoria.setRenderer(new MyCellRender(000,191,255));
         jComboBoxCategoria.setBackground(Color.white);
-        jComboBoxCategoria.setToolTipText("Escolha a categoria ao qual seu item se encaixa.");
+ 
         mybd.fecharConexao();
         
     }
@@ -849,12 +849,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private static javax.swing.JComboBox<String> jComboBoxMesInicial;
     private static javax.swing.JComboBox<String> jComboBoxNome;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabelComboBoxCategoria;
+    private static javax.swing.JLabel jLabelComboBoxCategoria;
     private javax.swing.JLabel jLabelCor;
     private javax.swing.JLabel jLabelDataInicial;
     private javax.swing.JLabel jLabelLogoFindesk;
     private javax.swing.JLabel jLabelNome;
-    private javax.swing.JLabel jLabelTitulo;
+    private static javax.swing.JLabel jLabelTitulo;
     private javax.swing.JPanel jPanelFundo;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;

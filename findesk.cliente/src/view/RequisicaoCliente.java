@@ -238,7 +238,7 @@ public class RequisicaoCliente extends javax.swing.JFrame {
 
     private void JButtonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButtonConfirmarActionPerformed
         try {
-            Socket destino = new Socket("10.20.157.96", 5060);
+            Socket destino = new Socket("127.0.0.1", 5060);
             Sockets.sendItem(destino, item);
             String msg = Sockets.receiveText(destino);
             SGBD mybd = new SGBD();
@@ -395,14 +395,41 @@ public class RequisicaoCliente extends javax.swing.JFrame {
 
     private void load(Item itemSelecionado) {
         System.out.println("Requsição do item: " + itemSelecionado.getIdItem());
+        System.out.println("Número: " + itemSelecionado.getIdDoc());
+        System.out.println("Cor: " + itemSelecionado.getCor());
+        if(itemSelecionado.getIdDoc() == 0){
+            switch(itemSelecionado.getCor()){
+                case "#000000":
+                    jLabelCor.setText("Cor: Preto");
+                break;
+                case "#0000FF":
+                    jLabelCor.setText("Cor: Azul");
+                break;
+                case "#FFFFFF":
+                    jLabelCor.setText("Cor: Branco");
+                break;
+                case "#999999":
+                    jLabelCor.setText("Cor: Sem cor");
+                break;
+                case "#00FF00":
+                    jLabelCor.setText("Cor: Verde");
+                break;
+                case "#FF0000":
+                    jLabelCor.setText("Cor: Vermelho");
+                break;
+            }
+            
+        }else{
+            jLabelCor.setText("Número: " + itemSelecionado.getIdDoc());
+        }
         this.item = itemSelecionado;
         jLabelId.setText("ID: " + Integer.toString(itemSelecionado.getIdItem()));
         jLabelNome.setText("Nome: " + itemSelecionado.getNomeItem());
         jTextDescricao.setText(itemSelecionado.getDescricaoItem());
-        jLabelCor.setText("Cor: " + itemSelecionado.getCor());
-        jLabelData.setText("Data: " + itemSelecionado.getDataEntrada().getDataEntrada().getIdDia()+"/"+
-                            itemSelecionado.getDataEntrada().getDataEntrada().getIdMes()+"/"+
-                               itemSelecionado.getDataEntrada().getDataEntrada().getIdAno());
+//        jLabelData.setText("Data: " + itemSelecionado.getDataEntrada().getDataEntrada().getIdDia()+"/"+
+//                            itemSelecionado.getDataEntrada().getDataEntrada().getIdMes()+"/"+
+//                               itemSelecionado.getDataEntrada().getDataEntrada().getIdAno());
+        jLabelData.setText("Data: "+itemSelecionado.getDataEntradaString());
     }
 
     private void loadIcon(JLabel label, String imagem) {
