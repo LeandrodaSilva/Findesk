@@ -5,7 +5,11 @@
  */
 package view;
 
+import java.awt.Color;
 import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.border.Border;
 import model.Item;
 import model.SGBD;
 import model.Sockets;
@@ -25,6 +29,7 @@ public class Requerimento extends javax.swing.JFrame {
      */
     public Requerimento() {
         initComponents();
+        piscar();
     }
 
     /**
@@ -48,83 +53,165 @@ public class Requerimento extends javax.swing.JFrame {
         jLabelId = new javax.swing.JLabel();
         jLabelCor = new javax.swing.JLabel();
         jLabelData = new javax.swing.JLabel();
+        jLabelDescricao = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
+        jLabel1 = new javax.swing.JLabel();
+        jButtonFechar = new javax.swing.JButton();
+        jButtonMinimizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         setPreferredSize(new java.awt.Dimension(800, 600));
         setResizable(false);
         setSize(new java.awt.Dimension(800, 600));
 
         jPanelFundo.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelFundo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 51), 4));
         jPanelFundo.setLayout(null);
 
-        jLabelTitulo.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        jLabelTitulo.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabelTitulo.setForeground(new java.awt.Color(0, 0, 0));
         jLabelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelTitulo.setText("Requerimento");
+        jLabelTitulo.setText("Confirmar requerimento");
         jPanelFundo.add(jLabelTitulo);
-        jLabelTitulo.setBounds(20, 120, 260, 70);
+        jLabelTitulo.setBounds(20, 120, 390, 60);
 
+        jButtonAceitar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/AceitarPreto.png"))); // NOI18N
         jButtonAceitar.setText("Aceitar");
-        jButtonAceitar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonAceitar.setToolTipText("Aceitar");
+        jButtonAceitar.setContentAreaFilled(false);
+        jButtonAceitar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButtonAceitarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButtonAceitarMouseExited(evt);
+            }
+        });
         jButtonAceitar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonAceitarActionPerformed(evt);
             }
         });
         jPanelFundo.add(jButtonAceitar);
-        jButtonAceitar.setBounds(520, 510, 90, 32);
+        jButtonAceitar.setBounds(500, 520, 125, 66);
 
+        jButtonNegar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/NegarPreto.png"))); // NOI18N
         jButtonNegar.setText("Negar");
+        jButtonNegar.setToolTipText("Negar");
+        jButtonNegar.setContentAreaFilled(false);
+        jButtonNegar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButtonNegarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButtonNegarMouseExited(evt);
+            }
+        });
         jButtonNegar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonNegarActionPerformed(evt);
             }
         });
         jPanelFundo.add(jButtonNegar);
-        jButtonNegar.setBounds(220, 510, 90, 32);
+        jButtonNegar.setBounds(220, 520, 120, 66);
 
         jLabelNomeItem.setForeground(new java.awt.Color(0, 0, 0));
         jLabelNomeItem.setText("Nome:");
         jPanelFundo.add(jLabelNomeItem);
-        jLabelNomeItem.setBounds(30, 210, 330, 16);
+        jLabelNomeItem.setBounds(20, 220, 330, 16);
         jPanelFundo.add(jSeparator1);
         jSeparator1.setBounds(0, 110, 800, 20);
 
-        jLabelLogoFindesk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/FINDESK_LOGO3_PNG.png"))); // NOI18N
+        jLabelLogoFindesk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/FINDESK_LOGO3_Azul_PNG.png"))); // NOI18N
         jPanelFundo.add(jLabelLogoFindesk);
         jLabelLogoFindesk.setBounds(-40, -10, 350, 110);
 
+        jTextDescricao.setEditable(false);
         jTextDescricao.setColumns(20);
         jTextDescricao.setRows(5);
+        jTextDescricao.setRequestFocusEnabled(false);
         jScrollPaneDescricao.setViewportView(jTextDescricao);
 
         jPanelFundo.add(jScrollPaneDescricao);
-        jScrollPaneDescricao.setBounds(10, 310, 780, 160);
+        jScrollPaneDescricao.setBounds(20, 330, 760, 170);
 
         jLabelId.setForeground(new java.awt.Color(0, 0, 0));
         jLabelId.setText("ID:");
         jPanelFundo.add(jLabelId);
-        jLabelId.setBounds(30, 190, 220, 16);
+        jLabelId.setBounds(20, 190, 220, 16);
 
         jLabelCor.setForeground(new java.awt.Color(0, 0, 0));
         jLabelCor.setText("Cor:");
         jPanelFundo.add(jLabelCor);
-        jLabelCor.setBounds(30, 230, 220, 16);
+        jLabelCor.setBounds(20, 250, 220, 16);
 
         jLabelData.setForeground(new java.awt.Color(0, 0, 0));
         jLabelData.setText("Data:");
         jPanelFundo.add(jLabelData);
-        jLabelData.setBounds(30, 250, 210, 16);
+        jLabelData.setBounds(20, 280, 210, 16);
+
+        jLabelDescricao.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelDescricao.setText("Descrição:");
+        jPanelFundo.add(jLabelDescricao);
+        jLabelDescricao.setBounds(20, 310, 90, 16);
+
+        jSeparator2.setForeground(new java.awt.Color(204, 204, 204));
+        jPanelFundo.add(jSeparator2);
+        jSeparator2.setBounds(0, 510, 800, 30);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/SWS3.png"))); // NOI18N
+        jLabel1.setToolTipText("Smart Way Sofware.");
+        jPanelFundo.add(jLabel1);
+        jLabel1.setBounds(690, 510, 170, 220);
+
+        jButtonFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/FecharPreto.png"))); // NOI18N
+        jButtonFechar.setToolTipText("Fechar");
+        jButtonFechar.setBorderPainted(false);
+        jButtonFechar.setContentAreaFilled(false);
+        jButtonFechar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButtonFecharMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButtonFecharMouseExited(evt);
+            }
+        });
+        jButtonFechar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFecharActionPerformed(evt);
+            }
+        });
+        jPanelFundo.add(jButtonFechar);
+        jButtonFechar.setBounds(760, 0, 20, 30);
+
+        jButtonMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/MinimizarPreto.png"))); // NOI18N
+        jButtonMinimizar.setToolTipText("Minimizar");
+        jButtonMinimizar.setBorderPainted(false);
+        jButtonMinimizar.setContentAreaFilled(false);
+        jButtonMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonMinimizarMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButtonMinimizarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButtonMinimizarMouseExited(evt);
+            }
+        });
+        jPanelFundo.add(jButtonMinimizar);
+        jButtonMinimizar.setBounds(700, 0, 40, 30);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelFundo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanelFundo, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelFundo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanelFundo, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
         );
 
         pack();
@@ -144,6 +231,46 @@ public class Requerimento extends javax.swing.JFrame {
         Sockets.sendText(cliente, "Negado");
         janelaControl.setVisible(false);
     }//GEN-LAST:event_jButtonNegarActionPerformed
+
+    private void jButtonFecharMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonFecharMouseEntered
+        jButtonFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/FecharAzul.png")));
+    }//GEN-LAST:event_jButtonFecharMouseEntered
+
+    private void jButtonFecharMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonFecharMouseExited
+        jButtonFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/FecharPreto.png")));
+    }//GEN-LAST:event_jButtonFecharMouseExited
+
+    private void jButtonFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFecharActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jButtonFecharActionPerformed
+
+    private void jButtonMinimizarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonMinimizarMouseEntered
+        jButtonMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/MinimizarAzul.png")));
+    }//GEN-LAST:event_jButtonMinimizarMouseEntered
+
+    private void jButtonMinimizarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonMinimizarMouseExited
+        jButtonMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/MinimizarPreto.png")));
+    }//GEN-LAST:event_jButtonMinimizarMouseExited
+
+    private void jButtonMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonMinimizarMouseClicked
+        janelaControl.setExtendedState(janelaControl.ICONIFIED);
+    }//GEN-LAST:event_jButtonMinimizarMouseClicked
+
+    private void jButtonAceitarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonAceitarMouseEntered
+        jButtonAceitar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/aceitarVerde.png")));
+    }//GEN-LAST:event_jButtonAceitarMouseEntered
+
+    private void jButtonAceitarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonAceitarMouseExited
+        jButtonAceitar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/aceitarPreto.png")));
+    }//GEN-LAST:event_jButtonAceitarMouseExited
+
+    private void jButtonNegarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonNegarMouseEntered
+        jButtonNegar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/negarVermelho.png")));
+    }//GEN-LAST:event_jButtonNegarMouseEntered
+
+    private void jButtonNegarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonNegarMouseExited
+        jButtonNegar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/negarPreto.png")));
+    }//GEN-LAST:event_jButtonNegarMouseExited
 
     /**
      * @param args the command line arguments
@@ -177,27 +304,63 @@ public class Requerimento extends javax.swing.JFrame {
             public void run() {
                 Requerimento janela = new Requerimento();
                 jLabelNomeItem.setText("Nome: " + novoItem.getNomeItem());
+                jLabelId.setText("ID: "+ novoItem.getIdItem());
+                if (novoItem.getIdDoc() == 0) {
+                    jLabelCor.setText("Cor: " + novoItem.getCor());
+                } else {
+                    jLabelCor.setText("Número: " + novoItem.getIdDoc());
+                }
+                jTextDescricao.setText(novoItem.getDescricaoItem());
+                jLabelData.setText("Data: "+novoItem.getDataEntradaString());
                 item = novoItem;
                 janela.setVisible(true);
                 janela.setAlwaysOnTop(true);
                 janelaControl = janela;
                 cliente = novoCliente;
+                
             }
         });
+    }
+    
+    public static void piscar(){
+     
+           new Thread() {
+            public void run() {
+               
+                while(true){
+                    
+                    try {
+                        jPanelFundo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(000, 191, 255),6));
+                        Thread.sleep(500);
+                        jPanelFundo.setBorder(javax.swing.BorderFactory.createLineBorder(Color.black,0));
+                        Thread.sleep(500);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    
+                }
+   
+            }
+        }.start();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAceitar;
+    private javax.swing.JButton jButtonFechar;
+    private javax.swing.JButton jButtonMinimizar;
     private javax.swing.JButton jButtonNegar;
-    private javax.swing.JLabel jLabelCor;
-    private javax.swing.JLabel jLabelData;
-    private javax.swing.JLabel jLabelId;
+    private javax.swing.JLabel jLabel1;
+    static javax.swing.JLabel jLabelCor;
+    static javax.swing.JLabel jLabelData;
+    static javax.swing.JLabel jLabelDescricao;
+    static javax.swing.JLabel jLabelId;
     private javax.swing.JLabel jLabelLogoFindesk;
-    private static javax.swing.JLabel jLabelNomeItem;
-    private javax.swing.JLabel jLabelTitulo;
-    private javax.swing.JPanel jPanelFundo;
+    static javax.swing.JLabel jLabelNomeItem;
+    private static javax.swing.JLabel jLabelTitulo;
+    private static javax.swing.JPanel jPanelFundo;
     private javax.swing.JScrollPane jScrollPaneDescricao;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextArea jTextDescricao;
+    private javax.swing.JSeparator jSeparator2;
+    static javax.swing.JTextArea jTextDescricao;
     // End of variables declaration//GEN-END:variables
 }

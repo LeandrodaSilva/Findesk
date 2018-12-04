@@ -5,6 +5,7 @@
  */
 package view;
 import control.Administrador;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -14,7 +15,6 @@ import java.awt.image.BufferedImage;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
@@ -22,8 +22,6 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import model.*;
 
@@ -113,6 +111,7 @@ public class BuscarAdministrador extends javax.swing.JFrame {
         jPanelFundo.setLayout(null);
 
         jComboBoxCategoria.setToolTipText("Selecione a categoria desejada.");
+        jComboBoxCategoria.setRequestFocusEnabled(false);
         jComboBoxCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxCategoriaActionPerformed(evt);
@@ -123,7 +122,7 @@ public class BuscarAdministrador extends javax.swing.JFrame {
 
         jComboBoxNome.setVisible(false);
         jComboBoxNome.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos" }));
-        jComboBoxNome.setToolTipText("Selecione o item desejado.");
+        jComboBoxNome.setRequestFocusEnabled(false);
         jComboBoxNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxNomeActionPerformed(evt);
@@ -157,16 +156,14 @@ public class BuscarAdministrador extends javax.swing.JFrame {
         jButtonMinimizar.setBorderPainted(false);
         jButtonMinimizar.setContentAreaFilled(false);
         jButtonMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonMinimizarMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jButtonMinimizarMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 jButtonMinimizarMouseExited(evt);
-            }
-        });
-        jButtonMinimizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonMinimizarActionPerformed(evt);
             }
         });
         jPanelFundo.add(jButtonMinimizar);
@@ -203,7 +200,6 @@ public class BuscarAdministrador extends javax.swing.JFrame {
 
         jLabelFoto.setForeground(new java.awt.Color(255, 255, 255));
         jLabelFoto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelFoto.setToolTipText("Imagem.");
         jPanelFundo.add(jLabelFoto);
         jLabelFoto.setBounds(470, 120, 270, 200);
 
@@ -281,6 +277,8 @@ public class BuscarAdministrador extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTableResultado.setSelectionBackground(new java.awt.Color(0, 191, 255));
+        jTableResultado.setSurrendersFocusOnKeystroke(true);
         jTableResultado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTableResultadoMouseClicked(evt);
@@ -450,10 +448,6 @@ public class BuscarAdministrador extends javax.swing.JFrame {
         jButtonMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/MinimizarPreto.png")));
     }//GEN-LAST:event_jButtonMinimizarMouseExited
 
-    private void jButtonMinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMinimizarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonMinimizarActionPerformed
-
     private void jButtonVoltarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonVoltarMouseEntered
         jButtonVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/VoltarAzul.png")));
     }//GEN-LAST:event_jButtonVoltarMouseEntered
@@ -508,6 +502,10 @@ public class BuscarAdministrador extends javax.swing.JFrame {
         janelaControl.setLocation(p.x + evt.getX() - point.x, p.y + evt.getY() - point.y);
     }//GEN-LAST:event_jPanelFundoMouseDragged
 
+    private void jButtonMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonMinimizarMouseClicked
+        janelaControl.setExtendedState(janelaControl.ICONIFIED);
+    }//GEN-LAST:event_jButtonMinimizarMouseClicked
+
     public void popular(JLabel label, String imagem){
         //atribui imagem nos labels desejados
         
@@ -554,6 +552,8 @@ public class BuscarAdministrador extends javax.swing.JFrame {
         }
         
         defaultComboBoxNome = new DefaultComboBoxModel(strList.toArray());
+        jComboBoxNome.setRenderer(new MyCellRender(000,191,255));
+        jComboBoxNome.setBackground(Color.white);
         
         mybd.fecharConexao();
         
@@ -586,6 +586,8 @@ public class BuscarAdministrador extends javax.swing.JFrame {
         }
         
         defaultComboBoxCategoria = new DefaultComboBoxModel(strList.toArray());
+        jComboBoxCategoria.setRenderer(new MyCellRender(000,191,255));
+        jComboBoxCategoria.setBackground(Color.white);
         
         
         mybd.fecharConexao();
@@ -721,8 +723,8 @@ public class BuscarAdministrador extends javax.swing.JFrame {
     private javax.swing.JButton jButtonFechar;
     private javax.swing.JButton jButtonMinimizar;
     private javax.swing.JButton jButtonVoltar;
-    private javax.swing.JComboBox<String> jComboBoxCategoria;
-    private javax.swing.JComboBox<String> jComboBoxNome;
+    private static javax.swing.JComboBox<String> jComboBoxCategoria;
+    private static javax.swing.JComboBox<String> jComboBoxNome;
     private javax.swing.JLabel jLabelCategoria;
     private javax.swing.JLabel jLabelFoto;
     private javax.swing.JLabel jLabelLogoFindesk;
