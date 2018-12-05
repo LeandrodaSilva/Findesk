@@ -28,7 +28,7 @@ public class Usuario {
      */
   
     public static void main(String[] args) {
-    setConfig();
+    //setConfig();
 //       
 //       SGBD mybd = new SGBD();
 //       mybd.getConexaoMySQL();
@@ -45,18 +45,18 @@ public class Usuario {
     
     
     
-    private static void setConfig(){
-       
-        try {
-            SGBD mybd = new SGBD();
-            mybd.getConexaoMySQL();
-            mybd.setUserConfig(InetAddress.getLocalHost().getHostAddress(), 5061);
-            mybd.fecharConexao();
-            System.out.println("ip do usuário atualizado para "+ InetAddress.getLocalHost().getHostAddress());
-        } catch (UnknownHostException ex) {
-            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ipException ex) {
-            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }  
+//    private static void setConfig(){
+//       
+//        try {
+//            SGBD mybd = new SGBD();
+//            mybd.getConexaoMySQL();
+//            mybd.setUserConfig(InetAddress.getLocalHost().getHostAddress(), 5061);
+//            mybd.fecharConexao();
+//            System.out.println("ip do usuário atualizado para "+ InetAddress.getLocalHost().getHostAddress());
+//        } catch (UnknownHostException ex) {
+//            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (ipException ex) {
+//            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }  
 }

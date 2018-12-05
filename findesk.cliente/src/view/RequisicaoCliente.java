@@ -238,7 +238,7 @@ public class RequisicaoCliente extends javax.swing.JFrame {
 
     private void JButtonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButtonConfirmarActionPerformed
         try {
-            Socket destino = new Socket("127.0.0.1", 5060);
+            Socket destino = new Socket("192.168.100.43", 5060);
             Sockets.sendItem(destino, item);
             String msg = Sockets.receiveText(destino);
             SGBD mybd = new SGBD();

@@ -15,10 +15,10 @@ import model.SGBD;
 public class ipException extends Exception{
     public ipException(){
         System.out.println("IP vazio adicionado ip padrão: 127.0.0.1:5061");
-        try {
-            SGBD.setUserConfig("127.0.0.1", 5061);
-        } catch (ipException ex) {
-            Logger.getLogger(ipException.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try {
+//            SGBD.setUserConfig("127.0.0.1", 5061);
+//        } catch (ipException ex) {
+//            Logger.getLogger(ipException.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }
 }
