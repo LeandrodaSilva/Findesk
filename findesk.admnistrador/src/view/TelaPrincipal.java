@@ -301,7 +301,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonEstatisticaMouseExited
 
     private void jButtonEstatisticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEstatisticaActionPerformed
-        // TODO add your handling code here:
+       String string = "abcdef";
+       StringBuilder stringBuilder = new StringBuilder(string);
+       stringBuilder.insert(string.length() - 3, ',');
+       System.out.println(stringBuilder.toString());
     }//GEN-LAST:event_jButtonEstatisticaActionPerformed
 
     private void jPanelFundoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelFundoMousePressed

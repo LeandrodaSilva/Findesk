@@ -118,7 +118,7 @@ public class BuscarAdministrador extends javax.swing.JFrame {
             }
         });
         jPanelFundo.add(jComboBoxCategoria);
-        jComboBoxCategoria.setBounds(20, 170, 190, 26);
+        jComboBoxCategoria.setBounds(20, 170, 190, 20);
 
         jComboBoxNome.setVisible(false);
         jComboBoxNome.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos" }));
@@ -129,7 +129,7 @@ public class BuscarAdministrador extends javax.swing.JFrame {
             }
         });
         jPanelFundo.add(jComboBoxNome);
-        jComboBoxNome.setBounds(20, 240, 190, 26);
+        jComboBoxNome.setBounds(20, 240, 190, 20);
 
         jButtonFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/FecharPreto.png"))); // NOI18N
         jButtonFechar.setToolTipText("Fechar");
@@ -229,7 +229,7 @@ public class BuscarAdministrador extends javax.swing.JFrame {
             }
         });
         jPanelFundo.add(jButtonBuscar);
-        jButtonBuscar.setBounds(210, 160, 54, 40);
+        jButtonBuscar.setBounds(210, 160, 57, 33);
 
         jButtonAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/LapisPreto.png"))); // NOI18N
         jButtonAlterar.setToolTipText("Editar item.");
@@ -291,7 +291,7 @@ public class BuscarAdministrador extends javax.swing.JFrame {
         jPanelFundo.add(jSeparator2);
         jSeparator2.setBounds(0, 110, 780, 50);
         jPanelFundo.add(jSeparator1);
-        jSeparator1.setBounds(0, 510, 780, 10);
+        jSeparator1.setBounds(0, 510, 800, 10);
 
         jButtonVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/VoltarPreto.png"))); // NOI18N
         jButtonVoltar.setToolTipText("Voltar para a tela principal.");
