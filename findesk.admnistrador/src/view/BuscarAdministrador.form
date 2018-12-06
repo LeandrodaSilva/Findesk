@@ -316,7 +316,7 @@
         <Component class="javax.swing.JSeparator" name="jSeparator1">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="0" y="510" width="780" height="10"/>
+              <AbsoluteConstraints x="0" y="510" width="800" height="10"/>
             </Constraint>
           </Constraints>
         </Component>

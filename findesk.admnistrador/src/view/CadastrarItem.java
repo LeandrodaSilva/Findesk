@@ -5,6 +5,7 @@
  */
 package view;
 
+
 import javax.swing.JOptionPane;
 import control.Administrador;
 import java.awt.Component;
@@ -101,9 +102,10 @@ public class CadastrarItem extends javax.swing.JFrame {
         jButtonFechar = new javax.swing.JButton();
         jButtonMinimizar = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
-        jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jLabelFoto = new javax.swing.JLabel();
+        jTextFielPathFoto = new javax.swing.JTextField();
+        jButtonFoto = new javax.swing.JButton();
+        jSeparator3 = new javax.swing.JSeparator();
 
         jLabelCadastrar1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabelCadastrar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/FINDESK_LOGO3_Azul_PNG.png"))); // NOI18N
@@ -126,12 +128,12 @@ public class CadastrarItem extends javax.swing.JFrame {
         jLabelCor.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabelCor.setText("Cor:");
         jPanelFundo.add(jLabelCor);
-        jLabelCor.setBounds(460, 150, 60, 50);
+        jLabelCor.setBounds(450, 150, 60, 50);
 
         jLabelDataDescricao.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabelDataDescricao.setText("Descrição:");
         jPanelFundo.add(jLabelDataDescricao);
-        jLabelDataDescricao.setBounds(30, 340, 150, 30);
+        jLabelDataDescricao.setBounds(30, 310, 150, 30);
 
         jTextFieldDocumento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -139,7 +141,7 @@ public class CadastrarItem extends javax.swing.JFrame {
             }
         });
         jPanelFundo.add(jTextFieldDocumento);
-        jTextFieldDocumento.setBounds(650, 210, 130, 30);
+        jTextFieldDocumento.setBounds(450, 240, 180, 30);
 
         jLabelNomeItem.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabelNomeItem.setText("Nome do item:");
@@ -152,7 +154,7 @@ public class CadastrarItem extends javax.swing.JFrame {
             }
         });
         jPanelFundo.add(jComboBoxDia);
-        jComboBoxDia.setBounds(210, 270, 60, 30);
+        jComboBoxDia.setBounds(200, 270, 60, 30);
 
         jComboBoxCategoria.setToolTipText("");
         jComboBoxCategoria.addActionListener(new java.awt.event.ActionListener() {
@@ -169,10 +171,16 @@ public class CadastrarItem extends javax.swing.JFrame {
             }
         });
         jPanelFundo.add(jComboBoxMes);
-        jComboBoxMes.setBounds(290, 270, 60, 30);
+        jComboBoxMes.setBounds(260, 270, 60, 30);
 
         jPanelFundo.add(jComboBoxAno);
-        jComboBoxAno.setBounds(360, 270, 80, 30);
+        jComboBoxAno.setBounds(320, 270, 80, 30);
+
+        jTextFieldNomeItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldNomeItemActionPerformed(evt);
+            }
+        });
         jPanelFundo.add(jTextFieldNomeItem);
         jTextFieldNomeItem.setBounds(200, 160, 200, 30);
 
@@ -198,14 +206,14 @@ public class CadastrarItem extends javax.swing.JFrame {
         jLabelDataPerda.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabelDataPerda.setText("Data de perda:");
         jPanelFundo.add(jLabelDataPerda);
-        jLabelDataPerda.setBounds(30, 270, 180, 30);
+        jLabelDataPerda.setBounds(30, 260, 170, 30);
 
         jTextAreaDescricao.setColumns(20);
         jTextAreaDescricao.setRows(5);
         jScrollPane1.setViewportView(jTextAreaDescricao);
 
         jPanelFundo.add(jScrollPane1);
-        jScrollPane1.setBounds(200, 340, 420, 150);
+        jScrollPane1.setBounds(200, 330, 340, 150);
 
         jButtonCadastrar.setBackground(new java.awt.Color(255, 255, 255));
         jButtonCadastrar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -226,7 +234,7 @@ public class CadastrarItem extends javax.swing.JFrame {
             }
         });
         jPanelFundo.add(jButtonCadastrar);
-        jButtonCadastrar.setBounds(320, 530, 180, 40);
+        jButtonCadastrar.setBounds(290, 540, 180, 40);
 
         jLabelCategoria.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabelCategoria.setText("Categoria:");
@@ -236,7 +244,7 @@ public class CadastrarItem extends javax.swing.JFrame {
         jLabelDoc.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabelDoc.setText("Num documento:");
         jPanelFundo.add(jLabelDoc);
-        jLabelDoc.setBounds(460, 190, 190, 60);
+        jLabelDoc.setBounds(450, 190, 190, 60);
 
         jLabelFindesk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/FINDESK_LOGO3_Azul_PNG.png"))); // NOI18N
         jLabelFindesk.setText("jLabel1");
@@ -283,29 +291,39 @@ public class CadastrarItem extends javax.swing.JFrame {
         jPanelFundo.add(jButtonMinimizar);
         jButtonMinimizar.setBounds(700, 0, 40, 30);
         jPanelFundo.add(jSeparator2);
-        jSeparator2.setBounds(0, 110, 800, 10);
+        jSeparator2.setBounds(0, 520, 800, 10);
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jLabelFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/noImage.png"))); // NOI18N
+        jPanelFundo.add(jLabelFoto);
+        jLabelFoto.setBounds(580, 330, 140, 130);
+
+        jTextFielPathFoto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jTextFielPathFotoActionPerformed(evt);
             }
         });
-        jPanelFundo.add(jButton1);
-        jButton1.setBounds(680, 320, 73, 23);
+        jPanelFundo.add(jTextFielPathFoto);
+        jTextFielPathFoto.setBounds(520, 530, 250, 40);
 
-        jLabel1.setText("jLabel1");
-        jPanelFundo.add(jLabel1);
-        jLabel1.setBounds(650, 350, 130, 120);
-
-        jTextField1.setText("jTextField1");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+        jButtonFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/cameraPreta.png"))); // NOI18N
+        jButtonFoto.setContentAreaFilled(false);
+        jButtonFoto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButtonFotoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButtonFotoMouseExited(evt);
             }
         });
-        jPanelFundo.add(jTextField1);
-        jTextField1.setBounds(680, 500, 59, 20);
+        jButtonFoto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFotoActionPerformed(evt);
+            }
+        });
+        jPanelFundo.add(jButtonFoto);
+        jButtonFoto.setBounds(540, 450, 40, 40);
+        jPanelFundo.add(jSeparator3);
+        jSeparator3.setBounds(0, 110, 800, 10);
 
         getContentPane().add(jPanelFundo);
         jPanelFundo.setBounds(0, 0, 800, 600);
@@ -321,7 +339,8 @@ public class CadastrarItem extends javax.swing.JFrame {
         int ano = Integer.parseInt((String) jComboBoxAno.getSelectedItem());
         String nome = jTextFieldNomeItem.getText();
         String cor = jComboBoxCor.getSelectedItem().toString();
-//        String idDoc = jTextFieldDocumento.getText();
+        String path = jTextFielPathFoto.getText();
+        String idDoc = jTextFieldDocumento.getText();
         String descricao = jTextAreaDescricao.getText();
         SGBD mybd = new SGBD();
         System.out.println(mybd.statusConection());
@@ -331,7 +350,7 @@ public class CadastrarItem extends javax.swing.JFrame {
         ResultSet rsCategoria = mybd.consultarItemBd("select idCategoria from categoria where nomeCat like \"" + categoria + "\";");
         ResultSet rsCor = mybd.consultarItemBd("select idCor from cor where nomeCor like \"" + cor + "\";");
         ResultSet rsData = mybd.consultarItemBd("select idData from data where idDia like \"" + dia + "\" "
-               + "and idMes like \"" + mes + "\" and idAno like \"" + ano + "\"; "); 
+                + "and idMes like \"" + mes + "\" and idAno like \"" + ano + "\"; ");
         String corId = "";
         int nomeId = 0;
         String categoriaId = "";
@@ -339,19 +358,19 @@ public class CadastrarItem extends javax.swing.JFrame {
         try {
             categoriaId = rsCategoria.getString("idCategoria");
             corId = rsCor.getString("idCor");
-            nomeId = Integer.parseInt(rsNome.getString("idNome")); 
+            nomeId = Integer.parseInt(rsNome.getString("idNome"));
             dataId = Integer.parseInt(rsData.getString("idData"));
         } catch (SQLException ex) {
             Logger.getLogger(CadastrarItem.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-       //if (rsNome == null) {
-       //     mybd.inserirItemBd("Insert into nomeitem (nome, idCategoria) "
-       //             + "Values(\"" + nome + "\", \"" + categoriaId + "\";)");
-       // }
+
+        //if (rsNome == null) {
+        //     mybd.inserirItemBd("Insert into nomeitem (nome, idCategoria) "
+        //             + "Values(\"" + nome + "\", \"" + categoriaId + "\";)");
+        // }
         mybd.alterarItemBd("insert into item (idCor, idDoc, idNome, idAdm, idDataEntrada, idDataSaida, retiradoItem, fotoItem, descricaoItem )"
-                + "values(\"" + corId + "\", 0, \""+nomeId+"\", 1, \""+dataId+"\" , 1, 0, null, \""+descricao+"\" );");
-        JOptionPane.showMessageDialog(null, ""+nome+" cadastrado com sucesso!!");
+                + "values(\"" + corId + "\", 0, \"" + nomeId + "\", 1, \"" + dataId + "\" , 1, 0, \""+path+"\", \"" + descricao + "\" );");
+        JOptionPane.showMessageDialog(null, "" + nome + " cadastrado com sucesso!!");
         mybd.fecharConexao();
         janelaControl.dispose();
         TelaPrincipal telaPrincipal = new TelaPrincipal();
@@ -436,25 +455,38 @@ public class CadastrarItem extends javax.swing.JFrame {
         jButtonCadastrar.setForeground(new java.awt.Color(0, 0, 0));
     }//GEN-LAST:event_jButtonCadastrarMouseExited
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        JFileChooser arquivo = new JFileChooser();
-       arquivo.setDialogTitle("selecione uma foto");
-       arquivo.setFileSelectionMode(JFileChooser.FILES_ONLY);
-       int opc = arquivo.showOpenDialog(this);
-       if(opc == JFileChooser.APPROVE_OPTION){
-           File file = new File("Caminho");
-           file = arquivo.getSelectedFile();
-           String filename = file.getAbsolutePath();
-           jTextField1.setText(filename);
-           ImageIcon imagem = new ImageIcon(arquivo.getSelectedFile().getPath());
-           jLabel1.setIcon(new ImageIcon(imagem.getImage().getScaledInstance(jLabel1.getWidth(), jLabel1.getHeight(), Image.SCALE_DEFAULT)));
-           
-       }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void jTextFielPathFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFielPathFotoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_jTextFielPathFotoActionPerformed
+
+    private void jButtonFotoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonFotoMouseEntered
+        jButtonFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/cameraAzul.png")));
+    }//GEN-LAST:event_jButtonFotoMouseEntered
+
+    private void jButtonFotoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonFotoMouseExited
+        jButtonFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/cameraPreta.png")));
+    }//GEN-LAST:event_jButtonFotoMouseExited
+
+    private void jButtonFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFotoActionPerformed
+        JFileChooser arquivo = new JFileChooser();
+        arquivo.setDialogTitle("selecione uma foto");
+        arquivo.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        int opc = arquivo.showOpenDialog(this);
+        if (opc == JFileChooser.APPROVE_OPTION) {
+            File file = new File("Caminho");
+            file = arquivo.getSelectedFile();
+            String filename = file.getAbsolutePath();
+            jTextFielPathFoto.setText(filename);
+            ImageIcon imagem = new ImageIcon(arquivo.getSelectedFile().getPath());
+            jLabelFoto.setIcon(new ImageIcon(imagem.getImage().getScaledInstance(jLabelFoto.getWidth(), jLabelFoto.getHeight(), Image.SCALE_DEFAULT)));
+        }
+    }//GEN-LAST:event_jButtonFotoActionPerformed
+
+    private void jTextFieldNomeItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeItemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldNomeItemActionPerformed
+    
+    
 
     private static void popularComboBoxNome(String sql) {
         SGBD mybd = new SGBD();
@@ -701,9 +733,9 @@ public class CadastrarItem extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonCadastrar;
     private javax.swing.JButton jButtonFechar;
+    private javax.swing.JButton jButtonFoto;
     private javax.swing.JButton jButtonMinimizar;
     private javax.swing.JButton jButtonVoltar;
     private javax.swing.JComboBox<String> jComboBoxAno;
@@ -711,7 +743,6 @@ public class CadastrarItem extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBoxCor;
     private javax.swing.JComboBox<String> jComboBoxDia;
     private javax.swing.JComboBox<String> jComboBoxMes;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelCadastrar1;
     private javax.swing.JLabel jLabelCategoria;
     private javax.swing.JLabel jLabelCor;
@@ -719,12 +750,14 @@ public class CadastrarItem extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelDataPerda;
     private javax.swing.JLabel jLabelDoc;
     private javax.swing.JLabel jLabelFindesk;
+    private javax.swing.JLabel jLabelFoto;
     private javax.swing.JLabel jLabelNomeItem;
     private javax.swing.JPanel jPanelFundo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JTextArea jTextAreaDescricao;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextFielPathFoto;
     private javax.swing.JTextField jTextFieldDocumento;
     private javax.swing.JTextField jTextFieldNomeItem;
     // End of variables declaration//GEN-END:variables
